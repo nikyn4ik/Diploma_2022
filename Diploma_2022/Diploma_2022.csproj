@@ -4,6 +4,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>severstal_logo_dzo_icon.ico</ApplicationIcon>
   </PropertyGroup>
 
 </Project>
