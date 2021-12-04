@@ -33,15 +33,12 @@ namespace Diploma_2022
                 if (sqlConnection.State == System.Data.ConnectionState.Closed)
                     sqlConnection.Open();
 
-                String query = "SELECT COUNT(*) FROM [dbo].[authorization] WHERE Login=login AND Password=password"; //@1
+                String query = "SELECT COUNT(*) FROM [dbo].[authorization] WHERE Login=@lg AND Password=@pass"; //@1
 
                 SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
 
-                sqlCommand.Parameters.AddWithValue("@login", login.Text); //@login
-                sqlCommand.Parameters.AddWithValue("@password", password.Text);//passwprd
-
-                sqlCommand.Parameters.AddWithValue("@login", System.Data.SqlDbType.NVarChar).Value = login.Text;
-                sqlCommand.Parameters.AddWithValue("@password", System.Data.SqlDbType.NVarChar).Value = password.Text;
+                sqlCommand.Parameters.AddWithValue("@lg", System.Data.SqlDbType.NVarChar).Value = login.Text;
+                sqlCommand.Parameters.AddWithValue("@pass", System.Data.SqlDbType.NVarChar).Value = password.Text;
 
 
                 int count = Convert.ToInt32(sqlCommand.ExecuteScalar());
@@ -68,5 +65,10 @@ namespace Diploma_2022
             }
         }
 
+        private void Login_OnMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+                DragMove();
+        }
     }
 }

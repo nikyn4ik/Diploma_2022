@@ -6,27 +6,41 @@
       xmlns:local="clr-namespace:Diploma_2022"
       mc:Ignorable="d"
       Title="Severstal Infocom" Height="700" Width="1200" FontSize="14" 
-        ResizeMode="NoResize" Icon="C:\Users\Sputnik\source\repos\Diploma_2022\Diploma_2022\Images\severstal_logo.ico"      
-        AllowsTransparency="True" WindowStyle="None">
+  
+        AllowsTransparency="True" WindowStyle="None"
+        MouseDown="Login_OnMouseDown"
+    WindowStartupLocation="CenterScreen" Icon="C:\Users\Sputnik\source\repos\Diploma_2022\Diploma_2022\Images\severstal_logo.ico">
+    
     <Window.Background>
+
         <ImageBrush ImageSource="C:\Users\Sputnik\source\repos\Diploma_2022\Diploma_2022\Images\voestalpine_voest-1024x1024.jpg"/>
+
     </Window.Background>
+    <Grid>
+        <StackPanel>
+            <Label x:Name="LoginCk">This is before clicking the button  </Label>
+            <Button x:Name="Loginc" Width="50px" HorizontalAlignment="Right"
+                    Cursor="Hand" Click ="LoginButton_Click">
+        Close
+        </Button>
+        </StackPanel>
 
-
-
-    <Border Background="#FF000080" CornerRadius="10" Margin="210">
+        <Border Background="#FF000080" CornerRadius="10" Margin="210">
         <StackPanel HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="500">
-        <TextBlock Text="Welcome to Severstal Infocom" Foreground="White" HorizontalAlignment="Center" FontSize="26" />
-        <Separator></Separator>
+
+            <TextBlock Text="Welcome to Severstal Infocom" Foreground="White" HorizontalAlignment="Center" FontSize="26" />
+
+            <Separator/>
 
             <Label Content="Login:" Margin="0,5,0,0" Foreground="White"/>
-        <TextBox Name="login" Background="White" Foreground="White" FontSize="18" AcceptsReturn="True"/>
+            <TextBox x:Name="login" Background="White" Foreground="black" FontSize="18" AcceptsReturn="True"/>
 
             <Label Content="Password:" Margin="0,5,0,0" Foreground="White"/>
-        <TextBox Name="password" Background="White" Foreground="White" FontSize="18" AcceptsReturn="True"/>
+            <TextBox x:Name="password" Background="White" Foreground="black" FontSize="18" AcceptsReturn="True"/>
 
-        <Button x:Name="btnLogin" Content="LOGIN"  Background="#545d6a" 
+            <Button x:Name="btnLogin" Content="LOGIN"  Background="#545d6a" 
                     Padding="5" Margin="0,5,0,0" Foreground="White" Click="btnLogin_Click" />
-    </StackPanel>
+        </StackPanel>
     </Border>
+    </Grid>
 </Window>
