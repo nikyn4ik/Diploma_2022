@@ -1,46 +1,147 @@
-﻿<Window x:Class="Diploma_2022.Login"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:local="clr-namespace:Diploma_2022"
-      mc:Ignorable="d"
-      Title="Severstal Infocom" Height="700" Width="1200" FontSize="14" 
-  
-        AllowsTransparency="True" WindowStyle="None"
-        MouseDown="Login_OnMouseDown"
-    WindowStartupLocation="CenterScreen" Icon="C:\Users\Sputnik\source\repos\Diploma_2022\Diploma_2022\Images\severstal_logo.ico">
-    
+﻿<Window
+    x:Class="Diploma_2022.Login"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Diploma_2022"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Severstal Infocom"
+    Width="1200"
+    Height="700"
+    AllowsTransparency="True"
+    FontSize="14"
+    Icon="C:\Users\Sputnik\source\repos\Diploma_2022\Diploma_2022\Images\severstal_logo.ico"
+    MouseDown="Login_OnMouseDown"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d">
     <Window.Background>
 
-        <ImageBrush ImageSource="C:\Users\Sputnik\source\repos\Diploma_2022\Diploma_2022\Images\voestalpine_voest-1024x1024.jpg"/>
+        <ImageBrush ImageSource="C:\Users\Sputnik\source\repos\Diploma_2022\Diploma_2022\Images\voestalpine_voest-1024x1024.jpg" />
 
     </Window.Background>
     <Grid>
         <StackPanel>
-            <Label x:Name="LoginCk">This is before clicking the button  </Label>
-            <Button x:Name="Loginc" Width="50px" HorizontalAlignment="Right"
-                    Cursor="Hand" Click ="LoginButton_Click">
-        Close
-        </Button>
+            <Label
+                x:Name="NameProgram"
+                Width="1075"
+                Height="23"
+                HorizontalAlignment="Left"
+                HorizontalContentAlignment="Left"
+                VerticalContentAlignment="Top"
+                Background="White"
+                Content="Severstal Infocom"
+                FontFamily="Microsoft JhengHei UI Light"
+                FontSize="11" />
+            <Button
+                x:Name="ButtonClose_Click"
+                Width="41"
+                Height="23"
+                Margin="0,-23,0,0"
+                HorizontalAlignment="Right"
+                Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}"
+                BorderBrush="White"
+                BorderThickness="0,0,0,0"
+                Click="ButtonClose"
+                Content="x"
+                Cursor="Hand"
+                Visibility="Visible">
+                <Button.Style>
+                    <Style />
+                </Button.Style>
+            </Button>
+            <Button
+                x:Name="ButtonOpen_Click"
+                Width="43"
+                Height="23"
+                Margin="0,-23,41,0"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Stretch"
+                Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}"
+                BorderBrush="White"
+                Click="ButtonOpen"
+                Content="[]"
+                Cursor="Hand"
+                Visibility="Visible">
+                <Button.Style>
+                    <Style />
+                </Button.Style>
+            </Button>
+            <Button
+                x:Name="ButtonMinimize_Click"
+                Width="41"
+                Height="23"
+                Margin="0,-23,84,14"
+                HorizontalAlignment="Right"
+                Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}"
+                BorderBrush="Black"
+                BorderThickness="0,0,0,0"
+                Click="ButtonMinimize"
+                Content="-"
+                Cursor="Hand"
+                FontStyle="Normal"
+                FontWeight="Normal"
+                ForceCursor="True"
+                Visibility="Visible">
+                <Button.Style>
+                    <Style />
+                </Button.Style>
+            </Button>
         </StackPanel>
 
-        <Border Background="#FF000080" CornerRadius="10" Margin="210">
-        <StackPanel HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="500">
+        <Border
+            Margin="210"
+            Background="#FF000080"
+            CornerRadius="10">
+            <StackPanel
+                Width="500"
+                Margin="0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
 
-            <TextBlock Text="Welcome to Severstal Infocom" Foreground="White" HorizontalAlignment="Center" FontSize="26" />
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="26"
+                    Foreground="White"
+                    Text="Welcome to Severstal Infocom" />
 
-            <Separator/>
+                <Separator />
 
-            <Label Content="Login:" Margin="0,5,0,0" Foreground="White"/>
-            <TextBox x:Name="login" Background="White" Foreground="black" FontSize="18" AcceptsReturn="True"/>
+                <Label
+                    Margin="0,5,0,0"
+                    Content="Login:"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    Foreground="White" />
+                <TextBox
+                    x:Name="login"
+                    AcceptsReturn="True"
+                    Background="White"
+                    FontSize="18"
+                    Foreground="black" />
 
-            <Label Content="Password:" Margin="0,5,0,0" Foreground="White"/>
-            <TextBox x:Name="password" Background="White" Foreground="black" FontSize="18" AcceptsReturn="True"/>
+                <Label
+                    Margin="0,5,0,0"
+                    Content="Password:"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    Foreground="White" />
 
-            <Button x:Name="btnLogin" Content="LOGIN"  Background="#545d6a" 
-                    Padding="5" Margin="0,5,0,0" Foreground="White" Click="btnLogin_Click" />
-        </StackPanel>
-    </Border>
+                <PasswordBox
+                    x:Name="password"
+                    Background="White"
+                    FontSize="18"
+                    Foreground="black" />
+
+                <Button
+                    x:Name="btnLogin"
+                    Margin="0,5,0,0"
+                    Padding="5"
+                    Background="#545d6a"
+                    Click="btnLogin_Click"
+                    Content="LOGIN"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    Foreground="White" />
+            </StackPanel>
+        </Border>
     </Grid>
 </Window>
