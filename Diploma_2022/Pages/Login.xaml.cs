@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Data.SqlClient;
 
+
 namespace Diploma_2022
 {
     /// <summary>
@@ -40,10 +41,12 @@ namespace Diploma_2022
                 sqlCommand.Parameters.AddWithValue("@lg", System.Data.SqlDbType.NVarChar).Value = login.Text;
                 sqlCommand.Parameters.AddWithValue("@pass", System.Data.SqlDbType.NVarChar).Value = password.Password;
 
+                //add caps lock?
 
                 int count = Convert.ToInt32(sqlCommand.ExecuteScalar());
                 if (count == 1)
                 {
+                    MessageBox.Show("Welcome " + login.Text);
                     MainWindow mainWindow = new MainWindow();
                     mainWindow.Show();
                     this.Close();
@@ -69,24 +72,6 @@ namespace Diploma_2022
         {
             if (e.LeftButton == MouseButtonState.Pressed)
                 DragMove();
-        }
-
-
-
-        private void ButtonOpen(object sender, RoutedEventArgs e)
-        {
-            Visibility = Visibility.Visible;
-            UpdateLayout();
-        }
-
-        private void ButtonMinimize(object sender, RoutedEventArgs e)
-        {
-            this.WindowState = WindowState.Minimized;
-        }
-
-        private void ButtonClose(object sender, RoutedEventArgs e)
-        {
-            this.Close();
         }
     }
 }

@@ -8,12 +8,11 @@
     Title="Severstal Infocom"
     Width="1200"
     Height="700"
-    AllowsTransparency="True"
+    AllowsTransparency="False"
     FontSize="14"
     Icon="C:\Users\Sputnik\source\repos\Diploma_2022\Diploma_2022\Images\severstal_logo.ico"
     MouseDown="Login_OnMouseDown"
     WindowStartupLocation="CenterScreen"
-    WindowStyle="None"
     mc:Ignorable="d">
     <Window.Background>
 
@@ -21,77 +20,11 @@
 
     </Window.Background>
     <Grid>
-        <StackPanel>
-            <Label
-                x:Name="NameProgram"
-                Width="1075"
-                Height="23"
-                HorizontalAlignment="Left"
-                HorizontalContentAlignment="Left"
-                VerticalContentAlignment="Top"
-                Background="White"
-                Content="Severstal Infocom"
-                FontFamily="Microsoft JhengHei UI Light"
-                FontSize="11" />
-            <Button
-                x:Name="ButtonClose_Click"
-                Width="41"
-                Height="23"
-                Margin="0,-23,0,0"
-                HorizontalAlignment="Right"
-                Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}"
-                BorderBrush="White"
-                BorderThickness="0,0,0,0"
-                Click="ButtonClose"
-                Content="x"
-                Cursor="Hand"
-                Visibility="Visible">
-                <Button.Style>
-                    <Style />
-                </Button.Style>
-            </Button>
-            <Button
-                x:Name="ButtonOpen_Click"
-                Width="43"
-                Height="23"
-                Margin="0,-23,41,0"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Stretch"
-                Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}"
-                BorderBrush="White"
-                Click="ButtonOpen"
-                Content="[]"
-                Cursor="Hand"
-                Visibility="Visible">
-                <Button.Style>
-                    <Style />
-                </Button.Style>
-            </Button>
-            <Button
-                x:Name="ButtonMinimize_Click"
-                Width="41"
-                Height="23"
-                Margin="0,-23,84,14"
-                HorizontalAlignment="Right"
-                Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}"
-                BorderBrush="Black"
-                BorderThickness="0,0,0,0"
-                Click="ButtonMinimize"
-                Content="-"
-                Cursor="Hand"
-                FontStyle="Normal"
-                FontWeight="Normal"
-                ForceCursor="True"
-                Visibility="Visible">
-                <Button.Style>
-                    <Style />
-                </Button.Style>
-            </Button>
-        </StackPanel>
+        <StackPanel />
 
         <Border
             Margin="210"
-            Background="#FF000080"
+            Background="#002F6C"
             CornerRadius="10">
             <StackPanel
                 Width="500"
@@ -103,7 +36,7 @@
                     HorizontalAlignment="Center"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="26"
-                    Foreground="White"
+                    Foreground="#FFFFFF"
                     Text="Welcome to Severstal Infocom" />
 
                 <Separator />
@@ -136,11 +69,11 @@
                     x:Name="btnLogin"
                     Margin="0,5,0,0"
                     Padding="5"
-                    Background="#545d6a"
+                    Background="#909090"
                     Click="btnLogin_Click"
                     Content="LOGIN"
                     FontFamily="Microsoft JhengHei UI Light"
-                    Foreground="White" />
+                    Foreground="#FFFFFF" />
             </StackPanel>
         </Border>
     </Grid>

@@ -5,7 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Diploma_2022"
         mc:Ignorable="d"
-        Title="Severstal Infocom" Height="770" Width="1200">
+        Title="Severstal Infocom" Height="770" Foreground="#FFFFFF" Width="1200">
+    <Window.Background>
+
+        <ImageBrush ImageSource="C:\Users\Sputnik\source\repos\Diploma_2022\Diploma_2022\Images\voestalpine_voest-1024x1024.jpg" />
+
+    </Window.Background>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="300" />
@@ -13,8 +18,8 @@
         </Grid.ColumnDefinitions>
 
 
-        <StackPanel Background="#FF426EA7">
-            <TextBlock Text="Menu" TextAlignment="Center" />
+        <StackPanel Background="#002F6C">
+            <TextBlock Text="Menu" Foreground="#FFFFFF" TextAlignment="Center" />
             <Button Content="Orders" />
             <Button Content="Shipment" />
             <Button Content="Certificate" />
