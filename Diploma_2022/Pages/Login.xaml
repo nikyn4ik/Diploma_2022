@@ -20,10 +20,14 @@
 
     </Window.Background>
     <Grid>
-        <StackPanel />
+        <StackPanel Width="1200" HorizontalAlignment="Left" />
 
         <Border
-            Margin="210"
+            Width="780"
+            Height="264"
+            Margin="0,0,0,210"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Bottom"
             Background="#002F6C"
             CornerRadius="10">
             <StackPanel
@@ -53,17 +57,21 @@
                     FontSize="18"
                     Foreground="black" />
 
+
                 <Label
                     Margin="0,5,0,0"
                     Content="Password:"
                     FontFamily="Microsoft JhengHei UI Light"
                     Foreground="White" />
 
+
                 <PasswordBox
                     x:Name="password"
                     Background="White"
                     FontSize="18"
                     Foreground="black" />
+
+
 
                 <Button
                     x:Name="btnLogin"
@@ -74,7 +82,9 @@
                     Content="LOGIN"
                     FontFamily="Microsoft JhengHei UI Light"
                     Foreground="#FFFFFF" />
+
             </StackPanel>
+
         </Border>
     </Grid>
 </Window>

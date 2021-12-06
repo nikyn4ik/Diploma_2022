@@ -12,16 +12,23 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Diploma_2022
+namespace Diploma_2022.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для Window1.xaml
+    /// Логика взаимодействия для Shipment.xaml
     /// </summary>
-    public partial class Window1 : Window
+    public partial class Shipment : Window
     {
-        public Window1()
+        public Shipment()
         {
             InitializeComponent();
+        }
+
+        private void Button_Back(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            this.Hide();
         }
     }
 }
