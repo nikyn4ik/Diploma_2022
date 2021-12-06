@@ -63,7 +63,7 @@ namespace Diploma_2022
 
         private void Button_Storage(object sender, RoutedEventArgs e)
         {
-            Pages.Storage ord = new Pages.Storage();
+            Pages.Storage ord = new Pages.Storage(); //
             ord.Show();
             this.Close();
         }

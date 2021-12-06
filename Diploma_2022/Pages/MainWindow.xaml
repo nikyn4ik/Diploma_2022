@@ -100,7 +100,7 @@
                     <ColumnDefinition Width="51*" />
                 </Grid.ColumnDefinitions>
                 <Image
-                    Margin="392,140,83,206"
+                    Margin="302,146,15,206"
                     Source="C:\Users\Sputnik\source\repos\Diploma_2022\Diploma_2022\Images\Severstal_Logo_LAT_White_RGB.png"
                     Stretch="Uniform"
                     StretchDirection="Both"

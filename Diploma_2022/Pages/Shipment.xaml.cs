@@ -11,6 +11,11 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Data.SqlClient;
+using System.Data;
+using System.IO;
+using System.Configuration;
+
 
 namespace Diploma_2022.Pages
 {
@@ -19,9 +24,14 @@ namespace Diploma_2022.Pages
     /// </summary>
     public partial class Shipment : Window
     {
+        //string connectionString;
+        //SqlDataAdapter shipment;
+        //DataTable shipments;
+
         public Shipment()
         {
             InitializeComponent();
+            Shipment_DataGrid_SelectionChanged();
         }
 
         private void Button_Back(object sender, RoutedEventArgs e)
@@ -29,6 +39,21 @@ namespace Diploma_2022.Pages
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
             this.Hide();
+        }
+
+        private void Shipment_DataGrid_SelectionChanged()
+        {
+            SqlConnection sqlConnection = new SqlConnection();
+            sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
+            sqlConnection.Open();
+            SqlCommand createCommand = new SqlCommand();
+            createCommand.CommandText = "SELECT * FROM [dbo].[storage]";
+            createCommand.Connection = sqlConnection;
+
+            SqlDataAdapter Shipment = new SqlDataAdapter(createCommand);
+            DataTable dt = new DataTable("diploma_db"); 
+            Shipment.Fill(dt);
+            ShipmentGrid.ItemsSource = dt.DefaultView; 
         }
     }
 }

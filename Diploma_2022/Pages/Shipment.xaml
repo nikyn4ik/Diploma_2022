@@ -5,16 +5,21 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Diploma_2022.Pages"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="Shipment"
+    Title="Severstal Infocom"
     Width="1200"
     Height="700"
     mc:Ignorable="d">
+
+    <Window.Background>
+
+        <ImageBrush ImageSource="C:\Users\Sputnik\source\repos\Diploma_2022\Diploma_2022\Images\lebedevsevers.jpg" />
+
+    </Window.Background>
+
     <Grid>
         <Border
             Width="638"
-            Height="65"
-            Margin="281,0,281,613"
-            VerticalAlignment="Bottom"
+            Margin="281,18,281,613"
             Background="#002F6C"
             BorderThickness="0,0,0,0"
             CornerRadius="10">
@@ -33,12 +38,53 @@
 
             </StackPanel>
         </Border>
+
+
+        <DataGrid
+            Name="ShipmentGrid"
+            Height="528"
+            Margin="2,82,2,0"
+            VerticalAlignment="Top"
+            AutoGenerateColumns="False"
+            Background="Snow"
+          >
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Width="4*"
+                    Binding="{Binding id_shipment}"
+                    Header="id отгрузки" />
+
+                <DataGridTextColumn
+                    Width="4*"
+                    Binding="{Binding early_shipment}"
+                    Header="Ранняя отгрузка" />
+
+                <DataGridTextColumn
+                    Width="4*"
+                    Binding="{Binding consignee}"
+                    Header="Грузополучатель" />
+
+                <DataGridTextColumn
+                    Width="4*"
+                    Binding="{Binding date_of_shipments}"
+                    Header="Дата отгрузки" />
+
+                <DataGridTextColumn
+                    Width="4*"
+                    Binding="{Binding shipment_total_amount_tons}"
+                    Header="Отгр.кол-во всего [тонны]" />
+
+                <DataGridTextColumn
+                    Width="4*"
+                    Binding="{Binding number_of_shipments_per_month_tons}"
+                    Header="Отгр. кол-во за месяц [тонны]" />
+
+            </DataGrid.Columns>
+        </DataGrid>
+
+
         <Button
-            Width="72"
-            Height="41"
-            Margin="1102,0,0,625"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Bottom"
+            Margin="1082,18,26,613"
             Background="#002F6C"
             Click="Button_Back"
             Content="Back"

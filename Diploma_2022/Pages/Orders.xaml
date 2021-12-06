@@ -5,11 +5,15 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Diploma_2022.Pages"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="Orders"
+    Title="Severstal Infocom"
     Width="1200"
     Height="700"
     mc:Ignorable="d">
+    <Window.Background>
 
+        <ImageBrush ImageSource="C:\Users\Sputnik\source\repos\Diploma_2022\Diploma_2022\Images\ugs.jpg" />
+
+    </Window.Background>
 
 
     <Grid>
