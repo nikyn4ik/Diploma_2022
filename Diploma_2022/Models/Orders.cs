@@ -8,7 +8,6 @@ namespace Diploma_2022.Models
 {
     class Orders
     {
-
         public int syst_c3 { get; set; }
         public int log_c3 { get; set; }
         public int position_c3 { get; set; }

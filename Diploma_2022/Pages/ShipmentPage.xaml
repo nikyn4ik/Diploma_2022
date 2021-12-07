@@ -1,5 +1,5 @@
 ﻿<Window
-    x:Class="Diploma_2022.Pages.Shipment"
+    x:Class="Diploma_2022.Pages.ShipmentPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -12,29 +12,25 @@
 
     <Window.Background>
 
-        <ImageBrush ImageSource="C:\Users\Sputnik\source\repos\Diploma_2022\Diploma_2022\Images\lebedevsevers.jpg" />
+        <ImageBrush ImageSource="C:\Users\Sputnik\source\repos\Diploma_2022\Diploma_2022\Images\ugs.jpg" />
 
     </Window.Background>
 
     <Grid>
         <Border
-            Width="638"
-            Margin="281,18,281,613"
+            Margin="0,0,258,613"
             Background="#002F6C"
             BorderThickness="0,0,0,0"
-            CornerRadius="10">
-            <StackPanel
-                Width="163"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center">
+            CornerRadius="10" HorizontalAlignment="Right" Width="661" Height="53" VerticalAlignment="Bottom">
+            <StackPanel Margin="256,10,255,10">
 
                 <TextBlock
-                    Width="116"
-                    HorizontalAlignment="Center"
+                    Width="133"
+                    HorizontalAlignment="Right"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="26"
                     Foreground="#FFFFFF"
-                    Text="Shipment" />
+                    Text="Shipment" Height="33" />
 
             </StackPanel>
         </Border>
@@ -42,54 +38,59 @@
 
         <DataGrid
             Name="ShipmentGrid"
-            Height="528"
-            Margin="2,82,2,0"
-            VerticalAlignment="Top"
+            Margin="2,82,2,74"
             AutoGenerateColumns="False"
-            Background="Snow"
-          >
+            Background="Snow">
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Width="4*"
                     Binding="{Binding id_shipment}"
                     Header="id отгрузки" />
-
                 <DataGridTextColumn
                     Width="4*"
                     Binding="{Binding early_shipment}"
                     Header="Ранняя отгрузка" />
-
                 <DataGridTextColumn
                     Width="4*"
                     Binding="{Binding consignee}"
                     Header="Грузополучатель" />
-
                 <DataGridTextColumn
                     Width="4*"
                     Binding="{Binding date_of_shipments}"
                     Header="Дата отгрузки" />
-
                 <DataGridTextColumn
                     Width="4*"
                     Binding="{Binding shipment_total_amount_tons}"
                     Header="Отгр.кол-во всего [тонны]" />
-
                 <DataGridTextColumn
                     Width="4*"
                     Binding="{Binding number_of_shipments_per_month_tons}"
                     Header="Отгр. кол-во за месяц [тонны]" />
-
             </DataGrid.Columns>
         </DataGrid>
 
+        <Button
+            x:Name="deleteButton"
+            Margin="712,615,281,19"
+            Background="#002F6C"
+            Click="deleteClick"
+            Content="Delete"
+            Foreground="#FFFFFF" />
 
         <Button
-            Margin="1082,18,26,613"
+            x:Name="addButton"
+            Margin="281,615,711,19"
+            Background="#002F6C"
+            Click="AddButton"
+            Content="Add"
+            Foreground="#FFFFFF" />
+        <Button
+            Margin="1082,18,26,0"
             Background="#002F6C"
             Click="Button_Back"
             Content="Back"
             FontFamily="Microsoft JhengHei UI Light"
-            Foreground="#FFFFFF">
+            Foreground="#FFFFFF" Height="53" VerticalAlignment="Top">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="10" />

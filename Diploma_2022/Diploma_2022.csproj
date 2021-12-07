@@ -8,6 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\exit.png" />
+    <None Remove="Images\logout.png" />
+    <None Remove="Images\warning1.png" />
     <None Remove="Pages\logout.png" />
   </ItemGroup>
 
@@ -16,10 +19,6 @@
     <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="Images\logout.png" />
   </ItemGroup>
 
 </Project>

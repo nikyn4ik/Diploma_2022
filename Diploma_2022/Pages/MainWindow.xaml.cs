@@ -49,21 +49,21 @@ namespace Diploma_2022
 
         private void Button_Order(object sender, RoutedEventArgs e)
         {
-            Pages.Orders ord = new Pages.Orders(); //<Button Content="Orders" RenderTransformOrigin="0,0.5" Click="Button_Order" Height="33" FontFamily="Times New Roman" FontSize="16"
+            Pages.OrdersPage ord = new Pages.OrdersPage(); //<Button Content="Orders" RenderTransformOrigin="0,0.5" Click="Button_Order" Height="33" FontFamily="Times New Roman" FontSize="16"
             ord.Show();
             this.Close();
         }
 
         private void Button_Shipment(object sender, RoutedEventArgs e)
         {
-            Pages.Shipment ord = new Pages.Shipment();
+            Pages.ShipmentPage ord = new Pages.ShipmentPage();
             ord.Show();
             this.Close();
         }
 
         private void Button_Storage(object sender, RoutedEventArgs e)
         {
-            Pages.Storage ord = new Pages.Storage(); //
+            Pages.StoragePage ord = new Pages.StoragePage(); //
             ord.Show();
             this.Close();
         }

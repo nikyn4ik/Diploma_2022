@@ -26,7 +26,7 @@
                 <RowDefinition Height="684" />
             </Grid.RowDefinitions>
             <StackPanel
-                Margin="0,0,898,-10"
+                Margin="0,0,950,-10"
                 Background="#002F6C"
                 Orientation="Vertical"
                 RenderTransformOrigin="0.503,0.539">
@@ -94,21 +94,26 @@
 
 
 
-            <Grid Margin="0,0,0,-10">
+            <Grid
+                Width="1198"
+                Margin="0,0,0,-10"
+                HorizontalAlignment="Center">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1199*" />
-                    <ColumnDefinition Width="51*" />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="0*" />
                 </Grid.ColumnDefinitions>
                 <Image
-                    Margin="302,146,15,206"
+                    Width="645"
+                    Height="342"
+                    Margin="0,108,123,0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
                     Source="C:\Users\Sputnik\source\repos\Diploma_2022\Diploma_2022\Images\Severstal_Logo_LAT_White_RGB.png"
                     Stretch="Uniform"
                     StretchDirection="Both"
                     Visibility="Visible" />
                 <Button
-                    Width="300"
-                    Margin="0,638,899,16"
-                    HorizontalAlignment="Right"
+                    Margin="0,638,950,30"
                     VerticalContentAlignment="Center"
                     Background="#F4F4F4"
                     BorderBrush="White"

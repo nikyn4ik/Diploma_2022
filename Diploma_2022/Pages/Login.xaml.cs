@@ -42,6 +42,7 @@ namespace Diploma_2022
                 sqlCommand.Parameters.AddWithValue("@pass", System.Data.SqlDbType.NVarChar).Value = password.Password;
 
                 int count = Convert.ToInt32(sqlCommand.ExecuteScalar());
+
                 if (count == 1)
                 {
 
@@ -66,13 +67,13 @@ namespace Diploma_2022
 
             }
         }
-
-
         private void Login_OnMouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
                 DragMove();
         }
+
+
 
         //private void Tooltip(object sender, RoutedEventArgs e) //caps
         //{
@@ -101,23 +102,23 @@ namespace Diploma_2022
         //        }
         //    }
         //}
-                 /*      <Button
-                    x:Name="ss"
-                    Width="185"
-                    Height="30"
-                    Margin="0,-30,-320,0"
-                    Click="Tooltip"
-                    Content="Tooltip">
-                    
-                    
-                    <Button.ToolTip>
-                        <ToolTip>
-                            <Label
-                                Content = "CapsLock Enabled"
-                                Foreground="White"
-                                Visibility="{Binding CapsVisibility, Mode=TwoWay}" />
-                        </ToolTip>
-                    </Button.ToolTip>
-                </Button> */
+        /*      <Button
+           x:Name="ss"
+           Width="185"
+           Height="30"
+           Margin="0,-30,-320,0"
+           Click="Tooltip"
+           Content="Tooltip">
+
+
+           <Button.ToolTip>
+               <ToolTip>
+                   <Label
+                       Content = "CapsLock Enabled"
+                       Foreground="White"
+                       Visibility="{Binding CapsVisibility, Mode=TwoWay}" />
+               </ToolTip>
+           </Button.ToolTip>
+       </Button> */
     }
 }

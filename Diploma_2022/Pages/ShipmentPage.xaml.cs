@@ -20,15 +20,15 @@ using System.Configuration;
 namespace Diploma_2022.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для Shipment.xaml
+    /// Логика взаимодействия для ShipmentPage.xaml
     /// </summary>
-    public partial class Shipment : Window
+    public partial class ShipmentPage : Window
     {
-        //string connectionString;
-        //SqlDataAdapter shipment;
-        //DataTable shipments;
+        string connectionString;
+      //  SqlDataAdapter shipment;
+       // DataTable shipments;
 
-        public Shipment()
+        public ShipmentPage()
         {
             InitializeComponent();
             Shipment_DataGrid_SelectionChanged();
@@ -46,14 +46,25 @@ namespace Diploma_2022.Pages
             SqlConnection sqlConnection = new SqlConnection();
             sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
             sqlConnection.Open();
-            SqlCommand createCommand = new SqlCommand();
-            createCommand.CommandText = "SELECT * FROM [dbo].[storage]";
-            createCommand.Connection = sqlConnection;
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = "SELECT * FROM [dbo].[shipment]";
+            cmd.Connection = sqlConnection;
 
-            SqlDataAdapter Shipment = new SqlDataAdapter(createCommand);
+            SqlDataAdapter Shipment = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable("diploma_db"); 
             Shipment.Fill(dt);
-            ShipmentGrid.ItemsSource = dt.DefaultView; 
+            ShipmentGrid.ItemsSource = dt.DefaultView;
+            sqlConnection.Close();
+        }
+
+        private void deleteClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AddButton(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

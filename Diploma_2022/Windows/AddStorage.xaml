@@ -1,0 +1,86 @@
+﻿<Window
+    x:Class="Diploma_2022.Windows.AddStorage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Diploma_2022.Windows"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="AddStorage"
+    Width="1200"
+    Height="700"
+    mc:Ignorable="d">
+
+    <Window.Background>
+
+        <ImageBrush ImageSource="C:\Users\Sputnik\source\repos\Diploma_2022\Diploma_2022\Images\lebedevsevers.jpg" />
+
+    </Window.Background>
+    <Grid>
+        <Border
+            Width="638"
+            Margin="281,6,281,613"
+            Background="#002F6C"
+            BorderThickness="0,0,0,0"
+            CornerRadius="10">
+            <StackPanel
+                Width="237"
+                Margin="0,0,-13.3,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+
+                <TextBlock
+                    Width="199"
+                    Margin="0,0,-2,0"
+                    HorizontalAlignment="Center"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="26"
+                    Foreground="White"
+                    Text="Add new storage" />
+
+            </StackPanel>
+        </Border>
+
+        <DataGrid
+            Name="StorageGrid"
+            Margin="12,80,12,79"
+            AutoGenerateColumns="False"
+            Background="Snow">
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Width="4*"
+                    Binding="{Binding id_storage}"
+                    Header="id Склада" />
+
+                <DataGridTextColumn
+                    Width="4*"
+                    Binding="{Binding name_storage}"
+                    Header="Имя склада" />
+
+                <DataGridTextColumn
+                    Width="4*"
+                    Binding="{Binding address}"
+                    Header="Адрес склада" />
+
+                <DataGridTextColumn
+                    Width="4*"
+                    Binding="{Binding phone_storage}"
+                    Header="Телефон склада" />
+
+                <DataGridTextColumn
+                    Width="4*"
+                    Binding="{Binding date_of_entrance}"
+                    Header="Дата поступления" />
+
+                <DataGridTextColumn
+                    Width="4*"
+                    Binding="{Binding SAP_product_code}"
+                    Header="Код товара SAP" />
+
+                <DataGridTextColumn
+                    Width="4*"
+                    Binding="{Binding remainder}"
+                    Header="Остаток" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

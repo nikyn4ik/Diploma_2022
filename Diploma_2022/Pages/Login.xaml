@@ -14,27 +14,22 @@
     MouseDown="Login_OnMouseDown"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
+
     <Window.Background>
 
         <ImageBrush ImageSource="C:\Users\Sputnik\source\repos\Diploma_2022\Diploma_2022\Images\voestalpine_voest-1024x1024.jpg" />
 
     </Window.Background>
+
     <Grid>
+
         <StackPanel Width="1200" HorizontalAlignment="Left" />
 
         <Border
-            Width="780"
-            Height="264"
-            Margin="0,0,0,210"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Bottom"
+            Margin="210,210,210,210"
             Background="#002F6C"
             CornerRadius="10">
-            <StackPanel
-                Width="500"
-                Margin="0"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center">
+            <StackPanel Margin="140,0,140,0" VerticalAlignment="Center">
 
                 <TextBlock
                     HorizontalAlignment="Center"
@@ -64,13 +59,24 @@
                     FontFamily="Microsoft JhengHei UI Light"
                     Foreground="White" />
 
-
                 <PasswordBox
-                    x:Name="password"
+                                     x:Name="password"
                     Background="White"
                     FontSize="18"
-                    Foreground="black" />
-
+                    Foreground="black" >
+                    
+                    <PasswordBox.Style>
+                        <Style TargetType="PasswordBox">
+                            <Style.Triggers>
+                                <Trigger Property="Validation.HasError"  Value="true">
+                                    <Setter Property="Control.ToolTip" 
+                                Value="{Binding RelativeSource={RelativeSource Self}
+                            , Path=(Validation.Errors)[0].ErrorContent}"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </PasswordBox.Style>
+                </PasswordBox>
 
 
                 <Button
