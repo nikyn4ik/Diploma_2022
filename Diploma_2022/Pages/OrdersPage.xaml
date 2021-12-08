@@ -94,21 +94,6 @@
             </DataGrid.Columns>
         </DataGrid>
         <Button
-            Height="53"
-            Margin="1082,18,26,0"
-            VerticalAlignment="Top"
-            Background="#002F6C"
-            Click="Button_Back"
-            Content="Back"
-            FontFamily="Microsoft JhengHei UI Light"
-            Foreground="#FFFFFF">
-            <Button.Resources>
-                <Style TargetType="{x:Type Border}">
-                    <Setter Property="CornerRadius" Value="10" />
-                </Style>
-            </Button.Resources>
-        </Button>
-        <Button
             x:Name="deleteButton"
             Margin="712,615,281,19"
             Background="#002F6C"

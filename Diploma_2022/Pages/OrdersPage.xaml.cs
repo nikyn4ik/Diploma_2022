@@ -52,13 +52,6 @@ namespace Diploma_2022.Pages
 
         } 
 
-        private void Button_Back(object sender, RoutedEventArgs e)
-        {
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
-            this.Hide();
-        }
-
 
 
         //private void UpdateDB()

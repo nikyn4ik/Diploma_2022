@@ -43,20 +43,29 @@ namespace Diploma_2022
 
                 int count = Convert.ToInt32(sqlCommand.ExecuteScalar());
 
-                if (count == 1)
-                {
+                    if (count == 1)
+                    {
+                    var Login = login.Text;///!!!!!!!!!!!
+                     var Password = password.Password;
+                     //  if (Login == login.Text && Password == password.Password)
+                    //    {
+                      var window = new MainWindow();
+                         window.lplogin.Text = Login;
 
-                    MessageBox.Show("Welcome " + login.Text, "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Information);
-                    MainWindow mainWindow = new MainWindow();
-                    mainWindow.Show();
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("Username or password incorrect.", "Username or password incorrect.", MessageBoxButton.OK, MessageBoxImage.Error);
-                    
-                }
 
+                        MessageBox.Show("Welcome " + login.Text, "Severstal Infocom",
+                        MessageBoxButton.OK, MessageBoxImage.Information);
+                      //  MainWindow mainWindow = new MainWindow();
+                        window.Show();//!!!!!!!!!!!
+                        this.Hide();
+                    }
+                    else 
+                    {
+                        MessageBox.Show("Username or password incorrect.", "Username or password incorrect.", //решить вопрос с боксом
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+
+               // }
             }
             catch (Exception ex)
             {

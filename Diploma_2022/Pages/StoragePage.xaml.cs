@@ -33,13 +33,6 @@ namespace Diploma_2022.Pages
             Storage_DataGrid_SelectionChanged();//
         }
 
-        private void Button_Back(object sender, RoutedEventArgs e)
-        {
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
-            this.Hide();
-        }
-
         private void Storage_DataGrid_SelectionChanged()
         {
             SqlConnection sqlConnection = new SqlConnection();

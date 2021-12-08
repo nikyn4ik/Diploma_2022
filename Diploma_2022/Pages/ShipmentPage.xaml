@@ -84,18 +84,5 @@
             Click="AddButton"
             Content="Add"
             Foreground="#FFFFFF" />
-        <Button
-            Margin="1082,18,26,0"
-            Background="#002F6C"
-            Click="Button_Back"
-            Content="Back"
-            FontFamily="Microsoft JhengHei UI Light"
-            Foreground="#FFFFFF" Height="53" VerticalAlignment="Top">
-            <Button.Resources>
-                <Style TargetType="{x:Type Border}">
-                    <Setter Property="CornerRadius" Value="10" />
-                </Style>
-            </Button.Resources>
-        </Button>
     </Grid>
 </Window>

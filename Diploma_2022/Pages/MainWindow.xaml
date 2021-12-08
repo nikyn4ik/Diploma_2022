@@ -129,6 +129,7 @@
                     </Button.Resources>
                     <TextBlock Foreground="#FF002F6C"><Run Text="Logout" /></TextBlock>
                 </Button>
+                <TextBlock x:Name="lplogin" Background="#FFFFFF" Foreground="#FF0000" Margin="0,602,1080,74"/>
 
 
 

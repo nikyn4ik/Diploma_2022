@@ -39,11 +39,10 @@
 
             </StackPanel>
         </Border>
-
         <DataGrid
             Name="StorageGrid"
-            Margin="12,80,12,79"
-            AutoGenerateColumns="False"
+            Margin="12,80,12,474"
+            AutoGenerateColumns="True"
             Background="Snow">
             <DataGrid.Columns>
                 <DataGridTextColumn
@@ -82,5 +81,144 @@
                     Header="Остаток" />
             </DataGrid.Columns>
         </DataGrid>
+
+        <TextBox
+            x:Name="idsclad"
+            Margin="236,222,600,416"
+            Background="#FFFFFF"
+            Foreground="#FF0000"
+            TextAlignment="Left" />
+        <TextBox
+            x:Name="namesclad"
+            Margin="236,286,600,351"
+            Background="#FFFFFF"
+            Foreground="#FF0000"
+            TextAlignment="Left" />
+        <TextBox
+            x:Name="addresssklad"
+            Margin="236,346,600,294"
+            Background="#FFFFFF"
+            Foreground="#FF0000"
+            TextAlignment="Left" />
+        <TextBox
+            x:Name="phonesklad"
+            Margin="236,403,600,238"
+            Background="#FFFFFF"
+            Foreground="#FF0000"
+            TextAlignment="Left" />
+
+
+        <TextBox
+            x:Name="datasklad"
+            Margin="898,222,12,416"
+            Background="#FFFFFF"
+            Foreground="#FF0000"
+            TextAlignment="Left" />
+        <TextBox
+            x:Name="kodsap"
+            Margin="898,286,12,351"
+            Background="#FFFFFF"
+            Foreground="#FF0000"
+            TextAlignment="Left" />
+        <TextBox
+            x:Name="ostatok"
+            Margin="898,346,12,294"
+            Background="#FFFFFF"
+            Foreground="#FF0000"
+            TextAlignment="Left" />
+
+        <Border>
+            <Button
+                Width="310"
+                Height="82"
+                Margin="0,544,0,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                Background="#002F6C"
+                BorderThickness="0,0,0,0"
+                Click="Button_Click"
+                Content="Load Table"
+                FontFamily="Microsoft JhengHei UI Light"
+                FontSize="26"
+                Foreground="White" />
+        </Border>
+        <Label
+            Width="182"
+            Height="36"
+            Margin="12,222,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Background="#002F6C"
+            Content="id склада"
+            Foreground="White" />
+        <Label
+            Width="182"
+            Height="36"
+            Margin="12,286,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Background="#002F6C"
+            Content="Имя"
+            Foreground="White" />
+        <Label
+            Width="182"
+            Height="36"
+            Margin="12,346,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Background="#002F6C"
+            Content="Адрес"
+            Foreground="White" />
+        <Label
+            Width="182"
+            Height="36"
+            Margin="12,403,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Background="#002F6C"
+            Content="Телефон"
+            Foreground="White" />
+        <Label
+            Width="182"
+            Height="36"
+            Margin="668,222,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Background="#002F6C"
+            Content="Дата поступления"
+            Foreground="White" />
+        <Label
+            Width="182"
+            Height="36"
+            Margin="668,286,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Background="#002F6C"
+            Content="Код товара SAP"
+            Foreground="White" />
+        <Label
+            Width="182"
+            Height="36"
+            Margin="668,346,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Background="#002F6C"
+            Content="Остаток"
+            Foreground="White" />
+
     </Grid>
 </Window>
