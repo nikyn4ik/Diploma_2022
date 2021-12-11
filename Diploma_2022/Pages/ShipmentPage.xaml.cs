@@ -57,7 +57,9 @@ namespace Diploma_2022.Pages
 
         private void AddButton(object sender, RoutedEventArgs e)
         {
-
+            Windows.AddShipment taskWindow = new Windows.AddShipment();
+            taskWindow.Show();
+            Shipment_DataGrid_SelectionChanged();
         }
     }
 }

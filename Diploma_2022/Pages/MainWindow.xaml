@@ -39,7 +39,7 @@
                     FontSize="30"
                     Foreground="#FFFFFF"
                     RenderTransformOrigin="0,0.5"
-                    Text="Menu"
+                    Text="Меню"
                     TextAlignment="Center"
                     TextWrapping="NoWrap" />
 
@@ -49,7 +49,7 @@
                     AllowDrop="True"
                     Background="#FFFFFF  "
                     Click="Button_Order"
-                    Content="Orders"
+                    Content="Заказы"
                     FontFamily="Times New Roman"
                     FontSize="16"
                     Foreground="#002F6C" />
@@ -60,7 +60,7 @@
                     AllowDrop="True"
                     Background="#FF0000 "
                     Click="Button_Shipment"
-                    Content="Shipment"
+                    Content="Доставки"
                     FontFamily="Times New Roman"
                     FontSize="16"
                     Foreground="#FFFFFF " />
@@ -73,7 +73,7 @@
                     AllowDrop="True"
                     Background="#FFFFFF  "
                     Click="Button_Storage"
-                    Content="Storage"
+                    Content="Склады"
                     FontFamily="Times New Roman"
                     FontSize="16"
                     Foreground="#002F6C" />
@@ -84,7 +84,7 @@
                     AllowDrop="True"
                     Background="#FF0000 "
                     Click="Button_Certificatet"
-                    Content="Certificate"
+                    Content="Сертификаты"
                     FontFamily="Times New Roman"
                     FontSize="16"
                     Foreground="#FFFFFF " />
@@ -127,9 +127,13 @@
                             <Setter Property="CornerRadius" Value="10" />
                         </Style>
                     </Button.Resources>
-                    <TextBlock Foreground="#FF002F6C"><Run Text="Logout" /></TextBlock>
+                    <TextBlock Foreground="#FF002F6C"><Run Text="Выход" /></TextBlock>
                 </Button>
-                <TextBlock x:Name="lplogin" Background="#FFFFFF" Foreground="#FF0000" Margin="0,602,1080,74"/>
+                <TextBlock
+                    x:Name="lplogin"
+                    Margin="0,602,1080,74"
+                    Background="#FFFFFF"
+                    Foreground="#FF0000" />
 
 
 

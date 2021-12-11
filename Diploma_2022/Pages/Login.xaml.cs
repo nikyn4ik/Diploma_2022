@@ -53,7 +53,7 @@ namespace Diploma_2022
                          window.lplogin.Text = Login;
 
 
-                        MessageBox.Show("Welcome " + login.Text, "Severstal Infocom",
+                        MessageBox.Show("Добро пожаловать " + login.Text, "Severstal Infocom",
                         MessageBoxButton.OK, MessageBoxImage.Information);
                       //  MainWindow mainWindow = new MainWindow();
                         window.Show();//!!!!!!!!!!!
@@ -61,7 +61,7 @@ namespace Diploma_2022
                     }
                     else 
                     {
-                        MessageBox.Show("Username or password incorrect.", "Username or password incorrect.", //решить вопрос с боксом
+                        MessageBox.Show("Введен неверный логин или пароль.", "Severstal Infocom", //решить вопрос с боксом
                         MessageBoxButton.OK, MessageBoxImage.Error);
                     }
 

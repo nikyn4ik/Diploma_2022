@@ -29,16 +29,16 @@ namespace Diploma_2022
         private void Button_ClickOut(object sender, RoutedEventArgs e)
         {
             var lg = new Login();
-            MessageBoxResult result = MessageBox.Show("Are you sure you want to quit ?"
+            MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите выйти?"
                // +  "\"Account\"?" - create reference to login.Text
                 , "Sevestal Infocom", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning);
             switch (result)
             {
                 case MessageBoxResult.No:
-                    MessageBox.Show("Welcome again!", "Sevestal Infocom");
+                    MessageBox.Show("И снова добро пожаловать!", "Severstal Infocom");
                     break;
                 case MessageBoxResult.Yes:
-                    MessageBox.Show("Goodbye!", "Sevestal Infocom");
+                    MessageBox.Show("До свидания!", "Severstal Infocom");
                     this.Hide();
                     lg.Show();
                     break;

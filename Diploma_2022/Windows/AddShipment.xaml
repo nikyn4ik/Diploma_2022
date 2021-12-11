@@ -1,5 +1,5 @@
 ﻿<Window
-    x:Class="Diploma_2022.Windows.AddStorage"
+    x:Class="Diploma_2022.Windows.AddShipment"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -28,13 +28,13 @@
                 VerticalAlignment="Center">
 
                 <TextBlock
-                    Width="340"
+                    Width="282"
                     Margin="0,0,-2,0"
                     HorizontalAlignment="Center"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="26"
                     Foreground="White"
-                    Text="Создание нового склада" />
+                    Text="Оформление доставки" />
 
             </StackPanel>
         </Border>
@@ -46,61 +46,51 @@
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Width="4*"
-                    Binding="{Binding id_storage}"
-                    Header="id Склада" />
-
+                    Binding="{Binding id_shipment}"
+                    Header="id отгрузки" />
                 <DataGridTextColumn
                     Width="4*"
-                    Binding="{Binding name_storage}"
-                    Header="Имя склада" />
-
+                    Binding="{Binding early_shipment}"
+                    Header="Ранняя отгрузка" />
                 <DataGridTextColumn
                     Width="4*"
-                    Binding="{Binding address}"
-                    Header="Адрес склада" />
-
+                    Binding="{Binding consignee}"
+                    Header="Грузополучатель" />
                 <DataGridTextColumn
                     Width="4*"
-                    Binding="{Binding phone_storage}"
-                    Header="Телефон склада" />
-
+                    Binding="{Binding date_of_shipments}"
+                    Header="Дата отгрузки" />
                 <DataGridTextColumn
                     Width="4*"
-                    Binding="{Binding date_of_entrance}"
-                    Header="Дата поступления" />
-
+                    Binding="{Binding shipment_total_amount_tons}"
+                    Header="Отгр.кол-во всего [тонны]" />
                 <DataGridTextColumn
                     Width="4*"
-                    Binding="{Binding SAP_product_code}"
-                    Header="Код товара SAP" />
-
-                <DataGridTextColumn
-                    Width="4*"
-                    Binding="{Binding remainder}"
-                    Header="Остаток" />
+                    Binding="{Binding number_of_shipments_per_month_tons}"
+                    Header="Отгр. кол-во за месяц [тонны]" />
             </DataGrid.Columns>
         </DataGrid>
 
         <TextBox
-            x:Name="idsclad"
+            x:Name="id_shipment"
             Margin="236,222,600,416"
             Background="#FFFFFF"
             Foreground="#FF0000"
             TextAlignment="Left" />
         <TextBox
-            x:Name="namesclad"
+            x:Name="early_shipment"
             Margin="236,286,600,351"
             Background="#FFFFFF"
             Foreground="#FF0000"
             TextAlignment="Left" />
         <TextBox
-            x:Name="addresssklad"
+            x:Name="consignee"
             Margin="236,346,600,294"
             Background="#FFFFFF"
             Foreground="#FF0000"
             TextAlignment="Left" />
         <TextBox
-            x:Name="phonesklad"
+            x:Name="date_of_shipments"
             Margin="236,403,600,238"
             Background="#FFFFFF"
             Foreground="#FF0000"
@@ -108,20 +98,14 @@
 
 
         <TextBox
-            x:Name="datasklad"
+            x:Name="shipment_total_amount_tons"
             Margin="898,222,12,416"
             Background="#FFFFFF"
             Foreground="#FF0000"
             TextAlignment="Left" />
         <TextBox
-            x:Name="kodsap"
+            x:Name="number_of_shipments_per_month_tons"
             Margin="898,286,12,351"
-            Background="#FFFFFF"
-            Foreground="#FF0000"
-            TextAlignment="Left" />
-        <TextBox
-            x:Name="ostatok"
-            Margin="898,346,12,294"
             Background="#FFFFFF"
             Foreground="#FF0000"
             TextAlignment="Left" />
@@ -135,7 +119,7 @@
                 VerticalAlignment="Top"
                 Background="#002F6C"
                 BorderThickness="0,0,0,0"
-                Click="Button_Click"
+                Click="Button_add"
                 Content="Загрузить в таблицу"
                 FontFamily="Microsoft JhengHei UI Light"
                 FontSize="26"
@@ -150,7 +134,7 @@
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
-            Content="id склада"
+            Content="id отгрузки"
             Foreground="White" />
         <Label
             Width="182"
@@ -161,7 +145,7 @@
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
-            Content="Имя"
+            Content="Ранняя отгрузка"
             Foreground="White" />
         <Label
             Width="182"
@@ -172,7 +156,7 @@
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
-            Content="Адрес"
+            Content="Грузополучатель"
             Foreground="White" />
         <Label
             Width="182"
@@ -183,7 +167,7 @@
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
-            Content="Телефон"
+            Content="Дата отгрузки"
             Foreground="White" />
         <Label
             Width="182"
@@ -194,7 +178,7 @@
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
-            Content="Дата поступления"
+            Content="Отгр.кол-во всего [тонны]"
             Foreground="White" />
         <Label
             Width="182"
@@ -205,19 +189,7 @@
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
-            Content="Код товара SAP"
+            Content="Отгр.кол-во за месяц [тонны]"
             Foreground="White" />
-        <Label
-            Width="182"
-            Height="36"
-            Margin="668,346,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            HorizontalContentAlignment="Center"
-            VerticalContentAlignment="Center"
-            Background="#002F6C"
-            Content="Остаток"
-            Foreground="White" />
-
     </Grid>
 </Window>

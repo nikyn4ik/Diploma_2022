@@ -89,7 +89,7 @@
             Margin="712,615,281,19"
             Background="#002F6C"
             Click="deleteButton"
-            Content="Delete"
+            Content="Удаление склада"
             Foreground="#FFFFFF" />
 
         <Button
@@ -97,7 +97,7 @@
             Margin="281,615,711,19"
             Background="#002F6C"
             Click="AddButton"
-            Content="Add"
+            Content="Добавление склада"
             Foreground="#FFFFFF" />
     </Grid>
 </Window>

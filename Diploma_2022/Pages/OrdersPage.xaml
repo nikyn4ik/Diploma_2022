@@ -40,7 +40,7 @@
                     FontSize="26"
                     Foreground="#FFFFFF"
                     RenderTransformOrigin="0.588,0.494"
-                    Text="Orders" />
+                    Text="Заказы" />
 
             </StackPanel>
         </Border>
@@ -98,14 +98,14 @@
             Margin="712,615,281,19"
             Background="#002F6C"
             Click="deleteButton_Click"
-            Content="Delete"
+            Content="Удаление заказа"
             Foreground="#FFFFFF" />
         <Button
             x:Name="addButton"
             Margin="281,615,712,19"
             Background="#002F6C"
             Click="AddButton_Click"
-            Content="Add"
+            Content="Добавление заказа"
             Foreground="#FFFFFF" />
 
     </Grid>

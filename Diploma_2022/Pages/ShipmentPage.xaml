@@ -74,7 +74,7 @@
             Margin="712,615,281,19"
             Background="#002F6C"
             Click="deleteClick"
-            Content="Delete"
+            Content="Удаление доставки"
             Foreground="#FFFFFF" />
 
         <Button
@@ -82,7 +82,7 @@
             Margin="281,615,711,19"
             Background="#002F6C"
             Click="AddButton"
-            Content="Add"
+            Content="Добавление доставки"
             Foreground="#FFFFFF" />
     </Grid>
 </Window>
