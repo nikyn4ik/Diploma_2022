@@ -49,7 +49,7 @@
                     AllowDrop="True"
                     Background="#FFFFFF  "
                     Click="Button_Order"
-                    Content="Заказы"
+                    Content="Заказы (-)"
                     FontFamily="Times New Roman"
                     FontSize="16"
                     Foreground="#002F6C" />
@@ -131,19 +131,25 @@
                 </Button>
                 <TextBlock
                     x:Name="lplogin"
-                    Margin="172,592,950,76"
+                    Height="26"
+                    Margin="158,0,950,76"
+                    VerticalAlignment="Bottom"
                     Background="#FFFFFF"
+                    FontSize="18"
+                    FontWeight="Normal"
                     Foreground="#FF0000"
                     TextAlignment="Left" />
 
                 <Label
                     Width="158"
+                    Height="26"
                     Margin="0,592,0,0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     HorizontalContentAlignment="Left"
                     VerticalContentAlignment="Top"
                     Background="#FF0000"
+                    BorderThickness="0,0,0,0"
                     Content="Активный пользователь:"
                     FontWeight="Normal"
                     Foreground="#FFFFFF" />
