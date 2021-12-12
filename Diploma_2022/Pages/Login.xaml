@@ -32,11 +32,12 @@
             <StackPanel Margin="99,0,99,0" VerticalAlignment="Center">
 
                 <TextBlock
+                    Width="532"
                     HorizontalAlignment="Center"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="26"
                     Foreground="#FFFFFF"
-                    Text="Добро пожаловать в Северсталь-Инфоком" Width="532" />
+                    Text="Добро пожаловать в Северсталь-Инфоком" />
 
                 <Separator />
 
@@ -76,7 +77,6 @@
                     </PasswordBox.Style>
                 </PasswordBox>
 
-
                 <Button
                     x:Name="btnLogin"
                     Margin="0,5,0,0"
@@ -88,7 +88,18 @@
                     Foreground="#FFFFFF" />
 
             </StackPanel>
-
         </Border>
+        <StackPanel VerticalAlignment="Center">
+            <Border x:Name="capsLabel">
+                <TextBlock
+                    Width="152"
+                    Margin="836,353,210,310"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    FontSize="15"
+                    Foreground="#FFFFFF"
+                    Text="Caps lock включен!" />
+            </Border>
+        </StackPanel>
     </Grid>
 </Window>

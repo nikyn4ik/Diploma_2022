@@ -24,8 +24,23 @@ namespace Diploma_2022
         public Login()
         {
             InitializeComponent();
+            if((Keyboard.GetKeyStates(Key.CapsLock) & KeyStates.Toggled)==KeyStates.Toggled)
+            {
+                capsLabel.Visibility = Visibility.Visible;  
+            }
+            else
+            {
+                capsLabel.Visibility = Visibility.Hidden;
+            }
+            Keyboard.AddKeyDownHandler(Application.Current.MainWindow, HandlerSub);
         }
-
+        private void HandlerSub(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.CapsLock)
+            { capsLabel.Visibility = e.IsToggled ? Visibility.Visible : Visibility.Hidden;
+            
+            }
+        }
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
             SqlConnection sqlConnection = new SqlConnection(@"Data Source=SPUTNIK; Initial Catalog=diploma_db; Integrated Security=True");
@@ -81,53 +96,5 @@ namespace Diploma_2022
             if (e.LeftButton == MouseButtonState.Pressed)
                 DragMove();
         }
-
-
-
-        //private void Tooltip(object sender, RoutedEventArgs e) //caps
-        //{
-        //    {
-        //        if ((Keyboard.GetKeyStates(Key.CapsLock) & KeyStates.Toggled) == KeyStates.Toggled)
-        //        {
-        //            if (PasswordBox.ToolTip == null)
-        //            {
-        //                ToolTip tt = new ToolTip();
-        //                tt.Content = "Warning: CapsLock is on";
-        //                tt.PlacementTarget = sender as UIElement; ;
-        //                tt.Placement = PlacementMode.Custom;
-        //                PasswordBox.ToolTip = tt;
-        //                tt.IsOpen = true;
-        //            }
-        //        }
-        //        else
-        //        {
-        //            var currentToolTip = PasswordBox.ToolTip as ToolTip;
-        //            if (currentToolTip != null)
-        //            {
-        //                currentToolTip.IsOpen = false;
-        //            }
-
-        //            PasswordBox.ToolTip = null;
-        //        }
-        //    }
-        //}
-        /*      <Button
-           x:Name="ss"
-           Width="185"
-           Height="30"
-           Margin="0,-30,-320,0"
-           Click="Tooltip"
-           Content="Tooltip">
-
-
-           <Button.ToolTip>
-               <ToolTip>
-                   <Label
-                       Content = "CapsLock Enabled"
-                       Foreground="White"
-                       Visibility="{Binding CapsVisibility, Mode=TwoWay}" />
-               </ToolTip>
-           </Button.ToolTip>
-       </Button> */
     }
 }
