@@ -59,7 +59,6 @@ namespace Diploma_2022
             Hide();
             var window = new Pages.ShipmentPage();
             window.ShowDialog();
-
             Show();
         }
 
@@ -71,9 +70,12 @@ namespace Diploma_2022
             Show();
         }
 
-        private void Button_Certificatet(object sender, RoutedEventArgs e)
+        private void Button_Certificates(object sender, RoutedEventArgs e)
         {
-
+            Hide();
+            var window = new Pages.Certificates();
+            window.ShowDialog();
+            Show();
         }
     }
 }

@@ -60,7 +60,7 @@
                     AllowDrop="True"
                     Background="#FF0000 "
                     Click="Button_Shipment"
-                    Content="Доставки"
+                    Content="Доставка"
                     FontFamily="Times New Roman"
                     FontSize="16"
                     Foreground="#FFFFFF " />
@@ -83,7 +83,7 @@
                     Margin="0,0,0,1"
                     AllowDrop="True"
                     Background="#FF0000 "
-                    Click="Button_Certificatet"
+                    Click="Button_Certificates"
                     Content="Сертификаты"
                     FontFamily="Times New Roman"
                     FontSize="16"
@@ -131,12 +131,22 @@
                 </Button>
                 <TextBlock
                     x:Name="lplogin"
-                    Margin="0,602,1080,74"
+                    Margin="172,592,950,76"
                     Background="#FFFFFF"
-                    Foreground="#FF0000" />
+                    Foreground="#FF0000"
+                    TextAlignment="Left" />
 
-
-
+                <Label
+                    Width="158"
+                    Margin="0,592,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    HorizontalContentAlignment="Left"
+                    VerticalContentAlignment="Top"
+                    Background="#FF0000"
+                    Content="Активный пользователь:"
+                    FontWeight="Normal"
+                    Foreground="#FFFFFF" />
             </Grid>
         </Grid>
     </Grid>

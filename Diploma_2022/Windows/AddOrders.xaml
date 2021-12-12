@@ -17,8 +17,7 @@
     </Window.Background>
     <Grid>
         <Border
-            Width="638"
-            Margin="281,6,281,613"
+            Margin="260,6,260,613"
             Background="#002F6C"
             BorderThickness="0,0,0,0"
             CornerRadius="10">
@@ -28,13 +27,14 @@
                 VerticalAlignment="Center">
 
                 <TextBlock
-                    Width="349"
-                    Margin="0,0,-2,0"
+                    Width="352"
+                    Margin="0,0,-11,0"
                     HorizontalAlignment="Center"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="26"
                     Foreground="White"
-                    Text="Оформление нового заказа" />
+                    Text="Оформление нового заказа"
+                    TextAlignment="Center" />
 
             </StackPanel>
         </Border>

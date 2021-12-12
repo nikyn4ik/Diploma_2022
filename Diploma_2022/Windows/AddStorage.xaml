@@ -17,8 +17,7 @@
     </Window.Background>
     <Grid>
         <Border
-            Width="638"
-            Margin="281,6,281,613"
+            Margin="260,6,260,613"
             Background="#002F6C"
             BorderThickness="0,0,0,0"
             CornerRadius="10">
@@ -28,8 +27,8 @@
                 VerticalAlignment="Center">
 
                 <TextBlock
-                    Width="340"
-                    Margin="0,0,-2,0"
+                    Width="310"
+                    Margin="0,0,-11,0"
                     HorizontalAlignment="Center"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="26"
@@ -45,37 +44,37 @@
             Background="Snow">
             <DataGrid.Columns>
                 <DataGridTextColumn
-                    Width="4*"
+                    Width="*"
                     Binding="{Binding id_storage}"
                     Header="id Склада" />
 
                 <DataGridTextColumn
-                    Width="4*"
+                    Width="*"
                     Binding="{Binding name_storage}"
                     Header="Имя склада" />
 
                 <DataGridTextColumn
-                    Width="4*"
+                    Width="*"
                     Binding="{Binding address}"
                     Header="Адрес склада" />
 
                 <DataGridTextColumn
-                    Width="4*"
+                    Width="*"
                     Binding="{Binding phone_storage}"
                     Header="Телефон склада" />
 
                 <DataGridTextColumn
-                    Width="4*"
+                    Width="*"
                     Binding="{Binding date_of_entrance}"
                     Header="Дата поступления" />
 
                 <DataGridTextColumn
-                    Width="4*"
+                    Width="*"
                     Binding="{Binding SAP_product_code}"
                     Header="Код товара SAP" />
 
                 <DataGridTextColumn
-                    Width="4*"
+                    Width="*"
                     Binding="{Binding remainder}"
                     Header="Остаток" />
             </DataGrid.Columns>

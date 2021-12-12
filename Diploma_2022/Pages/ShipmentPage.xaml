@@ -18,19 +18,25 @@
 
     <Grid>
         <Border
-            Margin="0,0,258,613"
+            Margin="260,6,260,613"
             Background="#002F6C"
             BorderThickness="0,0,0,0"
-            CornerRadius="10" HorizontalAlignment="Right" Width="661" Height="53" VerticalAlignment="Bottom">
-            <StackPanel Margin="256,10,255,10">
+            CornerRadius="10">
+            <StackPanel
+                Width="392"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
 
                 <TextBlock
-                    Width="133"
-                    HorizontalAlignment="Right"
+                    Width="310"
+                    Margin="0,0,-11,0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="26"
-                    Foreground="#FFFFFF"
-                    Text="Shipment" Height="33" />
+                    Foreground="White"
+                    Text="Доставка"
+                    TextAlignment="Center" />
 
             </StackPanel>
         </Border>

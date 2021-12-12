@@ -18,28 +18,23 @@
 
     <Grid>
         <Border
-            Width="661"
-            Height="61"
-            Margin="0,0,258,613"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Bottom"
+            Margin="260,6,260,613"
             Background="#002F6C"
             BorderThickness="0,0,0,0"
             CornerRadius="10">
             <StackPanel
-                Width="163"
+                Width="392"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center">
 
                 <TextBlock
-                    Width="93"
-                    Height="38"
+                    Width="310"
+                    Margin="0,0,-11,0"
                     HorizontalAlignment="Center"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="26"
-                    Foreground="#FFFFFF"
-                    RenderTransformOrigin="0.5,0.5"
-                    Text="Storage">
+                    Foreground="White"
+                    Text="Склады" TextAlignment="Center" VerticalAlignment="Center">
                     <TextBlock.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform />

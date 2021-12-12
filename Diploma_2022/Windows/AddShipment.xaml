@@ -17,24 +17,25 @@
     </Window.Background>
     <Grid>
         <Border
-            Width="638"
-            Margin="281,6,281,613"
+            Margin="260,6,260,613"
             Background="#002F6C"
             BorderThickness="0,0,0,0"
             CornerRadius="10">
             <StackPanel
                 Width="392"
                 HorizontalAlignment="Center"
-                VerticalAlignment="Center">
+                VerticalAlignment="Center" Orientation="Vertical">
 
                 <TextBlock
-                    Width="282"
-                    Margin="0,0,-2,0"
+                    Width="310"
+                    Margin="0,0,0,0"
                     HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="26"
                     Foreground="White"
-                    Text="Оформление доставки" />
+                    Text="Оформление доставки"
+                    TextAlignment="Center" />
 
             </StackPanel>
         </Border>
@@ -45,27 +46,27 @@
             Background="Snow">
             <DataGrid.Columns>
                 <DataGridTextColumn
-                    Width="4*"
+                    Width="*"
                     Binding="{Binding id_shipment}"
                     Header="id отгрузки" />
                 <DataGridTextColumn
-                    Width="4*"
+                    Width="*"
                     Binding="{Binding early_shipment}"
                     Header="Ранняя отгрузка" />
                 <DataGridTextColumn
-                    Width="4*"
+                    Width="*"
                     Binding="{Binding consignee}"
                     Header="Грузополучатель" />
                 <DataGridTextColumn
-                    Width="4*"
+                    Width="*"
                     Binding="{Binding date_of_shipments}"
                     Header="Дата отгрузки" />
                 <DataGridTextColumn
-                    Width="4*"
+                    Width="*"
                     Binding="{Binding shipment_total_amount_tons}"
                     Header="Отгр.кол-во всего [тонны]" />
                 <DataGridTextColumn
-                    Width="4*"
+                    Width="*"
                     Binding="{Binding number_of_shipments_per_month_tons}"
                     Header="Отгр. кол-во за месяц [тонны]" />
             </DataGrid.Columns>
