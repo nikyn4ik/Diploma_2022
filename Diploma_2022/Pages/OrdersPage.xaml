@@ -44,9 +44,7 @@
 
         <DataGrid
             Name="OrdersGrid"
-            Height="531"
-            Margin="0,79,0,0"
-            VerticalAlignment="Top"
+            Margin="2,82,2,74"
             AutoGenerateColumns="False"
             Background="Snow"
             SelectionChanged="OrdersGrid_SelectionChanged">

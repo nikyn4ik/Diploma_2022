@@ -53,7 +53,7 @@
 
         <DataGrid
             Name="StorageGrid"
-            Margin="12,80,12,79"
+            Margin="2,82,2,74"
             AutoGenerateColumns="False"
             Background="Snow"
             SelectionChanged="StorageGrid_SelectionChanged">
@@ -78,6 +78,11 @@
                     Width="4*"
                     Binding="{Binding remainder}"
                     Header="Остаток" />
+
+                <DataGridTextColumn
+                    Width="4*"
+                    Binding="{Binding date_of_entrance}"
+                    Header="Дата" />
             </DataGrid.Columns>
 
         </DataGrid>
@@ -105,13 +110,13 @@
             Content="Обновление таблицы"
             Foreground="#FFFFFF" />
         <TextBox
-            x:Name="search"
+            x:Name="imya"
             Width="97"
             Height="32"
             Margin="1002,22,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Text=""
+            TextChanged="imya_TextChanged"
             TextWrapping="Wrap" />
         <Button
             Width="63"

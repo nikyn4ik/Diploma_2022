@@ -49,7 +49,7 @@
                     AllowDrop="True"
                     Background="#FFFFFF  "
                     Click="Button_Order"
-                    Content="Заказы (-)"
+                    Content="Заказы"
                     FontFamily="Times New Roman"
                     FontSize="16"
                     Foreground="#002F6C" />

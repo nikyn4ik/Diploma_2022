@@ -24,7 +24,8 @@
             <StackPanel
                 Width="392"
                 HorizontalAlignment="Center"
-                VerticalAlignment="Center" Orientation="Vertical">
+                VerticalAlignment="Center"
+                Orientation="Vertical">
 
                 <TextBlock
                     Width="310"
@@ -42,7 +43,7 @@
         <DataGrid
             Name="StorageGrid"
             Margin="12,80,12,474"
-            AutoGenerateColumns="True"
+            AutoGenerateColumns="False"
             Background="Snow">
             <DataGrid.Columns>
                 <DataGridTextColumn

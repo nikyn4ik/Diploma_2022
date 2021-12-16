@@ -17,7 +17,7 @@
 
     <Grid>
         <Border
-            Margin="281,18,258,613"
+            Margin="260,6,260,613"
             Background="#002F6C"
             BorderThickness="0,0,0,0"
             CornerRadius="10">

@@ -25,12 +25,15 @@ namespace Diploma_2022.Pages
     {
         // string connectionString;
         // SqlDataAdapter Dstorage;
-       //DataTable dt;
+        //DataTable dt;
 
         public StoragePage()
         {
             InitializeComponent();
             Storage_DataGrid_SelectionChanged();
+            SqlDataAdapter adpt;
+            DataTable dt;
+            SqlConnection sqlConnection = new SqlConnection(@"Data Source=SPUTNIK; Initial Catalog=diploma_db; Integrated Security=True");
         }
 
         private void Storage_DataGrid_SelectionChanged()
@@ -48,7 +51,6 @@ namespace Diploma_2022.Pages
             StorageGrid.ItemsSource = dt.DefaultView;
             sqlConnection.Close();
         }
-    
         private void AddButton(object sender, RoutedEventArgs e)
         {
             Windows.AddStorage taskWindow = new Windows.AddStorage();
@@ -76,70 +78,36 @@ namespace Diploma_2022.Pages
             StorageGrid.Items.Refresh();
 
         }
-
-
+        private void imya_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
+            try
+            {
+                SqlConnection cmds = new SqlConnection(ConnectionString);
+                string cmd = "SELECT * FROM [dbo].[storage] WHERE name_storage like '" + imya.Text + "%'";
+                cmds.Open();
+                SqlCommand sqlcom = new SqlCommand(cmd, cmds);
+                SqlDataAdapter storages = new SqlDataAdapter(sqlcom);
+                DataTable dt = new DataTable("storage");
+                storages.Fill(dt);
+                StorageGrid.ItemsSource = dt.DefaultView;
+                storages.Update(dt);
+                cmds.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+            private void Button_Click_search(object sender, RoutedEventArgs e)
+        {
+            
+        }
 
         private void StorageGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
 
-        private void Button_Click_search(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        //private void Button_Click(object sender, RoutedEventArgs e)
-        //{
-        //    string searchValue = search.Text;
-
-        //    StorageGrid.SelectionMode = StorageGrid.FullRowSelect;
-        //    try
-        //    {
-        //        foreach (StorageGrid str in DataGridView.Rows)
-        //        {
-        //            if (str.Cells[1].Value.ToString().Equals(searchValue))
-        //            {
-        //                str.Selected = true;
-        //                break;
-        //            }
-        //        }
-        //    }
-        //    catch (Exception exc)
-        //    {
-        //        MessageBox.Show(exc.Message);
-        //    }
-        //}
-
-
-        //private void UpdateDB()
-        //{
-        //    SqlCommandBuilder comandbuilder = new SqlCommandBuilder(Dstorage);
-        //    Dstorage.Update(storages); //System.NullReferenceException: 'Object reference not set to an instance of an object.'
-        //    /// System.NullReferenceException: 'Object reference not set to an instance of an object.'
-        //}
-
-        //private void updateButton_Click(object sender, RoutedEventArgs e)
-        //{
-        //    SqlCommandBuilder comandbuilder = new SqlCommandBuilder(Dstorage);
-        //    Dstorage.Update(storages); //System.NullReferenceException: 'Object reference not set to an instance of an object.'
-        //}
-
-        //private void deleteButton_Click(object sender, RoutedEventArgs e)
-        //{
-        //    if (StorageGrid.SelectedItems != null)
-        //    {
-        //        for (int i = 0; i < StorageGrid.SelectedItems.Count; i++) //FK_orders_type_product
-        //        {
-        //            DataRowView datarowView = StorageGrid.SelectedItems[i] as DataRowView;
-        //            if (datarowView != null)
-        //            {
-        //                DataRow dataRow = (DataRow)datarowView.Row;
-        //                dataRow.Delete();
-        //            }
-        //        }
-        //    }
-        //    UpdateDB();
-        //}
     }
 }
