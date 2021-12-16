@@ -27,10 +27,10 @@ namespace Diploma_2022.Pages
         // SqlDataAdapter Dstorage;
        //DataTable dt;
 
-        public StoragePage()//
+        public StoragePage()
         {
             InitializeComponent();
-            Storage_DataGrid_SelectionChanged();//
+            Storage_DataGrid_SelectionChanged();
         }
 
         private void Storage_DataGrid_SelectionChanged()
@@ -58,15 +58,58 @@ namespace Diploma_2022.Pages
 
         private void deleteButton(object sender, RoutedEventArgs e)
         {
+            if (StorageGrid.SelectedItems.Count > 0)
+            {
+                DataRowView drv = (DataRowView)StorageGrid.SelectedItem;
+                string storage = drv.Row[0].ToString();
+                SqlConnection con = new SqlConnection(@"Data Source=SPUTNIK; Initial Catalog=diploma_db; Integrated Security=True");
+                con.Open();
+                SqlCommand cmd = new SqlCommand("DELETE FROM storage WHERE id_storage=@id", con);
+                cmd.Parameters.AddWithValue("@id", storage);
+                cmd.ExecuteNonQuery();
+                Storage_DataGrid_SelectionChanged();
+            }
+        }
+
+        private void UpdButton(object sender, RoutedEventArgs e)
+        {
+            StorageGrid.Items.Refresh();
 
         }
+
+
 
         private void StorageGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
 
+        private void Button_Click_search(object sender, RoutedEventArgs e)
+        {
 
+        }
+
+        //private void Button_Click(object sender, RoutedEventArgs e)
+        //{
+        //    string searchValue = search.Text;
+
+        //    StorageGrid.SelectionMode = StorageGrid.FullRowSelect;
+        //    try
+        //    {
+        //        foreach (StorageGrid str in DataGridView.Rows)
+        //        {
+        //            if (str.Cells[1].Value.ToString().Equals(searchValue))
+        //            {
+        //                str.Selected = true;
+        //                break;
+        //            }
+        //        }
+        //    }
+        //    catch (Exception exc)
+        //    {
+        //        MessageBox.Show(exc.Message);
+        //    }
+        //}
 
 
         //private void UpdateDB()

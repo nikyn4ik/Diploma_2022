@@ -31,10 +31,12 @@
                     Width="310"
                     Margin="0,0,-11,0"
                     HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="26"
                     Foreground="White"
-                    Text="Склады" TextAlignment="Center" VerticalAlignment="Center">
+                    Text="Склады"
+                    TextAlignment="Center">
                     <TextBlock.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform />
@@ -94,5 +96,33 @@
             Click="AddButton"
             Content="Добавление склада"
             Foreground="#FFFFFF" />
+
+        <Button
+            x:Name="update"
+            Margin="496,615,496,19"
+            Background="#002F6C"
+            Click="UpdButton"
+            Content="Обновление таблицы"
+            Foreground="#FFFFFF" />
+        <TextBox
+            x:Name="search"
+            Width="97"
+            Height="32"
+            Margin="1002,22,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Text=""
+            TextWrapping="Wrap" />
+        <Button
+            Width="63"
+            Height="32"
+            Margin="1104,22,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Background="#002F6C"
+            Click="Button_Click_search"
+            Content="Поиск"
+            Foreground="#FFFFFF" />
+
     </Grid>
 </Window>
