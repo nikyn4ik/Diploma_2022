@@ -16,9 +16,22 @@
 
     </Window.Background>
 
-    <Grid>
+    <Grid Height="684" VerticalAlignment="Bottom">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="513*" />
+            <ColumnDefinition Width="206*" />
+            <ColumnDefinition Width="482*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="91*" />
+            <RowDefinition Height="519*" />
+            <RowDefinition Height="75*" />
+        </Grid.RowDefinitions>
         <Border
-            Margin="260,6,260,613"
+            Grid.ColumnSpan="3"
+            Width="680"
+            Margin="260,22,0,16"
+            HorizontalAlignment="Left"
             Background="#002F6C"
             BorderThickness="0,0,0,0"
             CornerRadius="10">
@@ -44,7 +57,12 @@
 
         <DataGrid
             Name="ShipmentGrid"
-            Margin="2,82,2,74"
+            Grid.Row="1"
+            Grid.RowSpan="2"
+            Grid.ColumnSpan="3"
+            Height="528"
+            Margin="2,0,2,65"
+            VerticalAlignment="Bottom"
             AutoGenerateColumns="False"
             Background="Snow">
             <DataGrid.Columns>
@@ -77,18 +95,62 @@
 
         <Button
             x:Name="deleteButton"
-            Margin="712,615,281,19"
+            Grid.Row="2"
+            Grid.Column="2"
+            Width="207"
+            Height="50"
+            Margin="53,0,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
             Background="#002F6C"
             Click="deleteClick"
             Content="Удаление доставки"
             Foreground="#FFFFFF" />
 
         <Button
+            x:Name="update"
+            Grid.Row="2"
+            Grid.Column="1"
+            Width="208"
+            Height="50"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Background="#002F6C"
+            Click="UpdButton"
+            Content="Обновление таблицы"
+            Foreground="#FFFFFF" />
+        <Button
             x:Name="addButton"
-            Margin="281,615,711,19"
+            Grid.Row="2"
+            Width="208"
+            Height="50"
+            Margin="237,0,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
             Background="#002F6C"
             Click="AddButton"
             Content="Добавление доставки"
+            Foreground="#FFFFFF" />
+        <TextBox
+            x:Name="pole"
+            Grid.Column="2"
+            Width="97"
+            Height="32"
+            Margin="254,33,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            TextChanged="polee_TextChanged"
+            TextWrapping="Wrap" />
+        <Button
+            Grid.Column="2"
+            Width="86"
+            Height="32"
+            Margin="370,32,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Background="#002F6C"
+            Click="Button_Click_search"
+            Content="Поиск"
             Foreground="#FFFFFF" />
     </Grid>
 </Window>

@@ -31,12 +31,24 @@ namespace Diploma_2022.Pages
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Windows.AddCertificates taskWindow = new Windows.AddCertificates();
+            taskWindow.Show();
+            Certificates_DataGrid_SelectionChanged();
         }
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
         {
-
+            if (CertificatesGrid.SelectedItems.Count > 0)
+            {
+                DataRowView drv = (DataRowView)CertificatesGrid.SelectedItem;
+                string certific = drv.Row[0].ToString();
+                SqlConnection con = new SqlConnection(@"Data Source=SPUTNIK; Initial Catalog=diploma_db; Integrated Security=True");
+                con.Open();
+                SqlCommand cmd = new SqlCommand("DELETE FROM qua_certificate WHERE id_qua_certificate=@id", con);
+                cmd.Parameters.AddWithValue("@id", certific);
+                cmd.ExecuteNonQuery();
+                Certificates_DataGrid_SelectionChanged();
+            }
         }
 
         private void Certificates_DataGrid_SelectionChanged()
@@ -53,6 +65,38 @@ namespace Diploma_2022.Pages
             certificates.Fill(dt);
             CertificatesGrid.ItemsSource = dt.DefaultView;
             sqlConnection.Close();
+        }
+
+        private void polee_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CertificatesGrid.Items.Refresh();
+        }
+
+        private void Button_Click_search(object sender, RoutedEventArgs e)
+        {
+            string ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
+            try
+            {
+                SqlConnection cmds = new SqlConnection(ConnectionString);
+                string cmd = "SELECT * FROM [dbo].[qua_certificate] WHERE id_qua_certificate like '" + pole.Text + "%'";
+                cmds.Open();
+                SqlCommand sqlcom = new SqlCommand(cmd, cmds);
+                SqlDataAdapter certificat = new SqlDataAdapter(sqlcom);
+                DataTable dt = new DataTable("qua_certificate");
+                certificat.Fill(dt);
+                CertificatesGrid.ItemsSource = dt.DefaultView;
+                certificat.Update(dt);
+                cmds.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void UpdButton(object sender, RoutedEventArgs e)
+        {
+            CertificatesGrid.Items.Refresh();
         }
     }
 }

@@ -19,16 +19,14 @@ using System.Configuration;
 namespace Diploma_2022.Windows
 {
     /// <summary>
-    /// Interaction logic for AddShipment.xaml
+    /// Interaction logic for AddCertificates.xaml
     /// </summary>
-    public partial class AddShipment : Window
+    public partial class AddCertificates : Window
     {
-        public AddShipment()
+        public AddCertificates()
         {
             InitializeComponent();
             SqlConnection sqlConnection = new SqlConnection(@"Data Source=SPUTNIK; Initial Catalog=diploma_db; Integrated Security=True");
-            SqlDataAdapter adpt;
-            DataTable dt;
         }
 
         private void Button_add(object sender, RoutedEventArgs e)
@@ -37,13 +35,11 @@ namespace Diploma_2022.Windows
             sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
             {
                 sqlConnection.Open();
-                String query = "INSERT INTO shipment values(@early_shipment,@consignee,@date_of_shipments,@shipment_total_amount_tons,@number_of_shipments_per_month_tons); ";
+                String query = "INSERT INTO qua_certificate values(@standard_per_mark,@tolerance_standart,@product_standard); ";
                 SqlCommand createCommand = new SqlCommand(query, sqlConnection);
-                createCommand.Parameters.AddWithValue("@early_shipment", early_shipment.Text);
-                createCommand.Parameters.AddWithValue("@consignee", consignee.Text);
-                createCommand.Parameters.AddWithValue("@date_of_shipments", date_of_shipments.Text);
-                createCommand.Parameters.AddWithValue("@shipment_total_amount_tons", shipment_total_amount_tons.Text);
-                createCommand.Parameters.AddWithValue("@number_of_shipments_per_month_tons", number_of_shipments_per_month_tons.Text);
+                createCommand.Parameters.AddWithValue("@standard_per_mark", standard_per_mark.Text);
+                createCommand.Parameters.AddWithValue("@tolerance_standart", tolerance_standart.Text);
+                createCommand.Parameters.AddWithValue("@product_standard", product_standard.Text);
                 createCommand.ExecuteNonQuery();
                 MessageBox.Show("Сохранено!", "Severstal Infocom", MessageBoxButton.OK);
                 sqlConnection.Close();
@@ -54,11 +50,11 @@ namespace Diploma_2022.Windows
         public void showdata()
         {
             SqlConnection sqlConnection = new SqlConnection(@"Data Source=SPUTNIK; Initial Catalog=diploma_db; Integrated Security=True");
-            SqlDataAdapter adpt = new SqlDataAdapter("SELECT * FROM [dbo].[shipment]", sqlConnection);
+            SqlDataAdapter adpt = new SqlDataAdapter("SELECT * FROM [dbo].[qua_certificate]", sqlConnection);
             DataTable dt = new DataTable();
             adpt.Fill(dt);
-            ShipmentGrid.DataContext = dt;
-            ShipmentGrid.ItemsSource = dt.DefaultView;
+            CertificatesGrid.DataContext = dt;
+            CertificatesGrid.ItemsSource = dt.DefaultView;
         }
     }
 }

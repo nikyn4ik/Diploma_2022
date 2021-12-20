@@ -52,13 +52,55 @@ namespace Diploma_2022.Pages
 
         private void deleteClick(object sender, RoutedEventArgs e)
         {
-
+            if (ShipmentGrid.SelectedItems.Count > 0)
+            {
+                DataRowView drv = (DataRowView)ShipmentGrid.SelectedItem;
+                string shipmen = drv.Row[0].ToString();
+                SqlConnection con = new SqlConnection(@"Data Source=SPUTNIK; Initial Catalog=diploma_db; Integrated Security=True");
+                con.Open();
+                SqlCommand cmd = new SqlCommand("DELETE FROM shipment WHERE id_shipment=@id", con);
+                cmd.Parameters.AddWithValue("@id", shipmen);
+                cmd.ExecuteNonQuery();
+                Shipment_DataGrid_SelectionChanged();
+            }
         }
         private void AddButton(object sender, RoutedEventArgs e)
         {
             Windows.AddShipment taskWindow = new Windows.AddShipment();
             taskWindow.Show();
             Shipment_DataGrid_SelectionChanged();
+        }
+
+        private void UpdButton(object sender, RoutedEventArgs e)
+        {
+            ShipmentGrid.Items.Refresh();
+        }
+
+        private void polee_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ShipmentGrid.Items.Refresh();
+        }
+
+        private void Button_Click_search(object sender, RoutedEventArgs e)
+        {
+            string ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
+            try
+            {
+                SqlConnection cmds = new SqlConnection(ConnectionString);
+                string cmd = "SELECT * FROM [dbo].[shipment] WHERE id_shipment like '" + pole.Text + "%'";
+                cmds.Open();
+                SqlCommand sqlcom = new SqlCommand(cmd, cmds);
+                SqlDataAdapter shipments = new SqlDataAdapter(sqlcom);
+                DataTable dt = new DataTable("shipment");
+                shipments.Fill(dt);
+                ShipmentGrid.ItemsSource = dt.DefaultView;
+                shipments.Update(dt);
+                cmds.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

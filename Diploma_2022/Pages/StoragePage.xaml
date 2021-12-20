@@ -16,9 +16,22 @@
 
     </Window.Background>
 
-    <Grid>
+    <Grid Height="684" VerticalAlignment="Bottom">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="513*" />
+            <ColumnDefinition Width="206*" />
+            <ColumnDefinition Width="482*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="85*" />
+            <RowDefinition Height="524*" />
+            <RowDefinition Height="75*" />
+        </Grid.RowDefinitions>
         <Border
-            Margin="260,6,260,613"
+            Grid.ColumnSpan="3"
+            Width="680"
+            Margin="260,22,0,10"
+            HorizontalAlignment="Left"
             Background="#002F6C"
             BorderThickness="0,0,0,0"
             CornerRadius="10">
@@ -53,34 +66,40 @@
 
         <DataGrid
             Name="StorageGrid"
-            Margin="2,82,2,74"
-            AutoGenerateColumns="False"
+            Grid.Row="1"
+            Grid.ColumnSpan="3"
+            Height="528"
+            Margin="2,0,2,0"
+            VerticalAlignment="Center"
+            AutoGenerateColumns="True"
             Background="Snow"
+            CanUserAddRows="False"
+            ColumnWidth="*"
             SelectionChanged="StorageGrid_SelectionChanged">
 
             <DataGrid.Columns>
                 <DataGridTextColumn
-                    Width="4*"
+                    Width="*"
                     Binding="{Binding id_storage}"
                     Header="ID склад" />
 
                 <DataGridTextColumn
-                    Width="4*"
+                    Width="*"
                     Binding="{Binding name_storage}"
                     Header="Имя" />
 
                 <DataGridTextColumn
-                    Width="4*"
+                    Width="*"
                     Binding="{Binding address}"
                     Header="Адрес" />
 
                 <DataGridTextColumn
-                    Width="4*"
+                    Width="*"
                     Binding="{Binding remainder}"
                     Header="Остаток" />
 
                 <DataGridTextColumn
-                    Width="4*"
+                    Width="*"
                     Binding="{Binding date_of_entrance}"
                     Header="Дата" />
             </DataGrid.Columns>
@@ -88,40 +107,85 @@
         </DataGrid>
         <Button
             x:Name="delete"
-            Margin="712,615,281,19"
+            Grid.Row="2"
+            Grid.Column="1"
+            Width="208"
+            Height="50"
+            Margin="0,6,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
             Background="#002F6C"
             Click="deleteButton"
             Content="Удаление склада"
             Foreground="#FFFFFF" />
 
         <Button
+            x:Name="outexcel"
+            Grid.Row="2"
+            Grid.Column="2"
+            Width="207"
+            Height="50"
+            Margin="34,6,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Background="#002F6C"
+            Click="out_excel_button"
+            Content="Вывод в Microsoft Excel"
+            Foreground="#FFFFFF" />
+
+        <Button
             x:Name="add"
-            Margin="281,615,711,19"
+            Grid.Row="2"
+            Width="208"
+            Height="50"
+            Margin="10,0,0,19"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Bottom"
             Background="#002F6C"
             Click="AddButton"
             Content="Добавление склада"
             Foreground="#FFFFFF" />
 
         <Button
+            x:Name="OutPDF"
+            Grid.Row="2"
+            Grid.Column="2"
+            Width="208"
+            Height="50"
+            Margin="0,0,10,19"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"
+            Background="#002F6C"
+            Click="outpdfButton"
+            Content="Вывод в PDF"
+            Foreground="#FFFFFF" />
+        <Button
             x:Name="update"
-            Margin="496,615,496,19"
+            Grid.Row="2"
+            Width="208"
+            Height="50"
+            Margin="260,0,0,19"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Bottom"
             Background="#002F6C"
             Click="UpdButton"
             Content="Обновление таблицы"
             Foreground="#FFFFFF" />
         <TextBox
-            x:Name="imya"
+            x:Name="pole"
+            Grid.Column="2"
             Width="97"
             Height="32"
-            Margin="1002,22,0,0"
+            Margin="256,32,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            TextChanged="imya_TextChanged"
+            TextChanged="polee_TextChanged"
             TextWrapping="Wrap" />
         <Button
-            Width="63"
+            Grid.Column="2"
+            Width="86"
             Height="32"
-            Margin="1104,22,0,0"
+            Margin="370,32,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Background="#002F6C"
