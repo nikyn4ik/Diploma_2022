@@ -18,9 +18,9 @@
 
     <Grid Height="684" VerticalAlignment="Bottom">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="513*" />
-            <ColumnDefinition Width="206*" />
-            <ColumnDefinition Width="482*" />
+            <ColumnDefinition Width="497*" />
+            <ColumnDefinition Width="207*"/>
+            <ColumnDefinition Width="496*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="85*" />
@@ -28,13 +28,12 @@
             <RowDefinition Height="75*" />
         </Grid.RowDefinitions>
         <Border
-            Grid.ColumnSpan="3"
             Width="680"
-            Margin="260,22,0,10"
+            Margin="261,22,0,10"
             HorizontalAlignment="Left"
             Background="#002F6C"
             BorderThickness="0,0,0,0"
-            CornerRadius="10">
+            CornerRadius="10" Grid.ColumnSpan="3">
             <StackPanel
                 Width="392"
                 HorizontalAlignment="Center"
@@ -67,15 +66,14 @@
         <DataGrid
             Name="StorageGrid"
             Grid.Row="1"
-            Grid.ColumnSpan="3"
             Height="528"
             Margin="2,0,2,0"
-            VerticalAlignment="Center"
-            AutoGenerateColumns="True"
+            VerticalAlignment="Bottom"
+            AutoGenerateColumns="False"
             Background="Snow"
             CanUserAddRows="False"
             ColumnWidth="*"
-            SelectionChanged="StorageGrid_SelectionChanged">
+            SelectionChanged="StorageGrid_SelectionChanged" Grid.ColumnSpan="3">
 
             <DataGrid.Columns>
                 <DataGridTextColumn
@@ -108,7 +106,6 @@
         <Button
             x:Name="delete"
             Grid.Row="2"
-            Grid.Column="1"
             Width="208"
             Height="50"
             Margin="0,6,0,0"
@@ -117,29 +114,28 @@
             Background="#002F6C"
             Click="deleteButton"
             Content="Удаление склада"
-            Foreground="#FFFFFF" />
+            Foreground="#FFFFFF" Grid.Column="1" />
 
         <Button
             x:Name="outexcel"
             Grid.Row="2"
-            Grid.Column="2"
             Width="207"
             Height="50"
-            Margin="34,6,0,0"
+            Margin="279,6,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Background="#002F6C"
             Click="out_excel_button"
             Content="Вывод в Microsoft Excel"
-            Foreground="#FFFFFF" />
+            Foreground="#FFFFFF" Grid.Column="2" />
 
         <Button
             x:Name="add"
             Grid.Row="2"
             Width="208"
             Height="50"
-            Margin="10,0,0,19"
-            HorizontalAlignment="Left"
+            Margin="0,0,279,19"
+            HorizontalAlignment="Right"
             VerticalAlignment="Bottom"
             Background="#002F6C"
             Click="AddButton"
@@ -149,23 +145,22 @@
         <Button
             x:Name="OutPDF"
             Grid.Row="2"
-            Grid.Column="2"
             Width="208"
             Height="50"
-            Margin="0,0,10,19"
-            HorizontalAlignment="Right"
+            Margin="28,0,0,19"
+            HorizontalAlignment="Left"
             VerticalAlignment="Bottom"
             Background="#002F6C"
             Click="outpdfButton"
             Content="Вывод в PDF"
-            Foreground="#FFFFFF" />
+            Foreground="#FFFFFF" Grid.Column="2" />
         <Button
             x:Name="update"
             Grid.Row="2"
             Width="208"
             Height="50"
-            Margin="260,0,0,19"
-            HorizontalAlignment="Left"
+            Margin="0,0,38,19"
+            HorizontalAlignment="Right"
             VerticalAlignment="Bottom"
             Background="#002F6C"
             Click="UpdButton"
@@ -173,25 +168,23 @@
             Foreground="#FFFFFF" />
         <TextBox
             x:Name="pole"
-            Grid.Column="2"
             Width="97"
             Height="32"
-            Margin="256,32,0,0"
+            Margin="257,32,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             TextChanged="polee_TextChanged"
-            TextWrapping="Wrap" />
+            TextWrapping="Wrap" Grid.Column="2" />
         <Button
-            Grid.Column="2"
             Width="86"
             Height="32"
-            Margin="370,32,0,0"
+            Margin="382,32,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Background="#002F6C"
             Click="Button_Click_search"
             Content="Поиск"
-            Foreground="#FFFFFF" />
+            Foreground="#FFFFFF" Grid.Column="2" />
 
     </Grid>
 </Window>
