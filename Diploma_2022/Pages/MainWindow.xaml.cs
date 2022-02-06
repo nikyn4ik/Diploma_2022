@@ -35,7 +35,7 @@ namespace Diploma_2022
             switch (result)
             {
                 case MessageBoxResult.No:
-                    MessageBox.Show("И снова добро пожаловать!", "Severstal Infocom");
+                    MessageBox.Show("И вновь добро пожаловать!", "Severstal Infocom");
                     break;
                 case MessageBoxResult.Yes:
                     MessageBox.Show("До свидания!", "Severstal Infocom");

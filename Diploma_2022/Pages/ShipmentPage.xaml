@@ -8,11 +8,12 @@
     Title="Severstal Infocom"
     Width="1200"
     Height="700"
+        ResizeMode="NoResize"
     mc:Ignorable="d">
 
     <Window.Background>
 
-        <ImageBrush ImageSource="C:\Users\Sputnik\source\repos\Diploma_2022\Diploma_2022\Images\ugs.jpg" />
+        <ImageBrush ImageSource="C:\Users\nikab\source\repos\Diploma_2022\Diploma_2022\Images\ugs.jpg" />
 
     </Window.Background>
 

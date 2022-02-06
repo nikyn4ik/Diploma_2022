@@ -11,7 +11,7 @@
     mc:Ignorable="d">
     <Window.Background>
 
-        <ImageBrush ImageSource="C:\Users\Sputnik\source\repos\Diploma_2022\Diploma_2022\Images\ugs.jpg" />
+        <ImageBrush ImageSource="C:\Users\nikab\source\repos\Diploma_2022\Diploma_2022\Images\ugs.jpg" />
 
     </Window.Background>
 
@@ -93,13 +93,6 @@
             Background="#002F6C"
             Click="deleteButton_Click"
             Content="Удаление заказа"
-            Foreground="#FFFFFF" />
-        <Button
-            x:Name="addButton"
-            Margin="281,615,712,19"
-            Background="#002F6C"
-            Click="AddButton_Click"
-            Content="Добавление заказа"
             Foreground="#FFFFFF" />
 
     </Grid>

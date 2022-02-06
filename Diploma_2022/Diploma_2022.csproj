@@ -10,10 +10,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\755815785298206.jpg" />
     <None Remove="Images\exit.png" />
+    <None Remove="Images\lebedevsevers.jpg" />
     <None Remove="Images\logout.png" />
+    <None Remove="Images\severstal_logo.ico" />
+    <None Remove="Images\severstal_logo_dzo_icon.ico" />
+    <None Remove="Images\Severstal_Logo_LAT_White_RGB.png" />
+    <None Remove="Images\ugs.jpg" />
+    <None Remove="Images\voestalpine_voest-1024x1024.jpg" />
     <None Remove="Images\warning1.png" />
     <None Remove="Pages\logout.png" />
+    <None Remove="severstal_logo.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,7 +37,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="EPPlus" Version="5.8.4" />
+    <PackageReference Include="EPPlus" Version="5.8.5" />
     <PackageReference Include="iTextSharp" Version="5.5.13.2" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
@@ -37,6 +45,17 @@
     <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
     <PackageReference Include="System.Text.Encoding" Version="4.3.0" />
     <PackageReference Include="System.Text.Encoding.CodePages" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\755815785298206.jpg" />
+    <Resource Include="Images\lebedevsevers.jpg" />
+    <Resource Include="Images\severstal_logo.ico" />
+    <Resource Include="Images\severstal_logo_dzo_icon.ico" />
+    <Resource Include="Images\Severstal_Logo_LAT_White_RGB.png" />
+    <Resource Include="Images\ugs.jpg" />
+    <Resource Include="Images\voestalpine_voest-1024x1024.jpg" />
+    <Resource Include="severstal_logo.ico" />
   </ItemGroup>
 
 </Project>

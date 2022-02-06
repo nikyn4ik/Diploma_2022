@@ -96,7 +96,17 @@ namespace Diploma_2022.Pages
 
         private void UpdButton(object sender, RoutedEventArgs e)
         {
-            CertificatesGrid.Items.Refresh();
+            string ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
+            SqlConnection cmds = new SqlConnection(ConnectionString);
+            string cmd = "SELECT * FROM [dbo].[qua_certificate] WHERE id_qua_certificate like '" + pole.Text + "%'";
+            cmds.Open();
+            SqlCommand sqlcom = new SqlCommand(cmd, cmds);
+            SqlDataAdapter certificat = new SqlDataAdapter(sqlcom);
+            DataTable dt = new DataTable("qua_certificate");
+            certificat.Fill(dt);
+            CertificatesGrid.ItemsSource = dt.DefaultView;
+            certificat.Update(dt);
+            cmds.Close();
         }
     }
 }

@@ -8,16 +8,17 @@
     Title="Severstal Infocom"
     Width="1200"
     Height="700"
+ResizeMode="NoResize"
     AllowsTransparency="False"
     FontSize="14"
-    Icon="C:\Users\Sputnik\source\repos\Diploma_2022\Diploma_2022\Images\severstal_logo.ico"
+    Icon="C:\Users\nikab\source\repos\Diploma_2022\Diploma_2022\Images\severstal_logo.ico"
     MouseDown="Login_OnMouseDown"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
 
     <Window.Background>
 
-        <ImageBrush ImageSource="C:\Users\Sputnik\source\repos\Diploma_2022\Diploma_2022\Images\voestalpine_voest-1024x1024.jpg" />
+        <ImageBrush ImageSource="C:\Users\nikab\source\repos\Diploma_2022\Diploma_2022\Images\voestalpine_voest-1024x1024.jpg" />
 
     </Window.Background>
 

@@ -9,10 +9,11 @@
     Width="1200"
     Height="710"
     Foreground="#FFFFFF"
+    ResizeMode="NoResize"
     mc:Ignorable="d">
     <Window.Background>
 
-        <ImageBrush ImageSource="C:\Users\Sputnik\source\repos\Diploma_2022\Diploma_2022\Images\755815785298206.jpg" />
+        <ImageBrush ImageSource="C:\Users\nikab\source\repos\Diploma_2022\Diploma_2022\Images\newbrand-bg2.jpg" />
 
     </Window.Background>
     <Grid Height="684" VerticalAlignment="Top">
@@ -105,10 +106,10 @@
                 <Image
                     Width="645"
                     Height="342"
-                    Margin="0,108,123,0"
+                    Margin="0,88,331,0"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Top"
-                    Source="C:\Users\Sputnik\source\repos\Diploma_2022\Diploma_2022\Images\Severstal_Logo_LAT_White_RGB.png"
+                    Source="C:\Users\nikab\source\repos\Diploma_2022\Diploma_2022\Images\Severstal_Logo_LAT_White_RGB.png"
                     Stretch="Uniform"
                     StretchDirection="Both"
                     Visibility="Visible" />

@@ -8,19 +8,20 @@
     Title="Severstal Infocom"
     Width="1200"
     Height="700"
+    ResizeMode="NoResize"
     mc:Ignorable="d">
 
     <Window.Background>
 
-        <ImageBrush ImageSource="C:\Users\Sputnik\source\repos\Diploma_2022\Diploma_2022\Images\ugs.jpg" />
+        <ImageBrush ImageSource="C:\Users\nikab\source\repos\Diploma_2022\Diploma_2022\Images\ugs.jpg" />
 
     </Window.Background>
 
     <Grid Height="684" VerticalAlignment="Bottom">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="497*" />
-            <ColumnDefinition Width="207*"/>
-            <ColumnDefinition Width="496*"/>
+            <ColumnDefinition Width="207*" />
+            <ColumnDefinition Width="496*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="85*" />
@@ -28,12 +29,13 @@
             <RowDefinition Height="75*" />
         </Grid.RowDefinitions>
         <Border
+            Grid.ColumnSpan="3"
             Width="680"
             Margin="261,22,0,10"
             HorizontalAlignment="Left"
             Background="#002F6C"
             BorderThickness="0,0,0,0"
-            CornerRadius="10" Grid.ColumnSpan="3">
+            CornerRadius="10">
             <StackPanel
                 Width="392"
                 HorizontalAlignment="Center"
@@ -66,6 +68,7 @@
         <DataGrid
             Name="StorageGrid"
             Grid.Row="1"
+            Grid.ColumnSpan="3"
             Height="528"
             Margin="2,0,2,0"
             VerticalAlignment="Bottom"
@@ -73,7 +76,7 @@
             Background="Snow"
             CanUserAddRows="False"
             ColumnWidth="*"
-            SelectionChanged="StorageGrid_SelectionChanged" Grid.ColumnSpan="3">
+            SelectionChanged="StorageGrid_SelectionChanged">
 
             <DataGrid.Columns>
                 <DataGridTextColumn
@@ -106,6 +109,7 @@
         <Button
             x:Name="delete"
             Grid.Row="2"
+            Grid.Column="1"
             Width="208"
             Height="50"
             Margin="0,6,0,0"
@@ -114,11 +118,12 @@
             Background="#002F6C"
             Click="deleteButton"
             Content="Удаление склада"
-            Foreground="#FFFFFF" Grid.Column="1" />
+            Foreground="#FFFFFF" />
 
         <Button
             x:Name="outexcel"
             Grid.Row="2"
+            Grid.Column="2"
             Width="207"
             Height="50"
             Margin="279,6,0,0"
@@ -127,7 +132,7 @@
             Background="#002F6C"
             Click="out_excel_button"
             Content="Вывод в Microsoft Excel"
-            Foreground="#FFFFFF" Grid.Column="2" />
+            Foreground="#FFFFFF" />
 
         <Button
             x:Name="add"
@@ -145,6 +150,7 @@
         <Button
             x:Name="OutPDF"
             Grid.Row="2"
+            Grid.Column="2"
             Width="208"
             Height="50"
             Margin="28,0,0,19"
@@ -153,7 +159,7 @@
             Background="#002F6C"
             Click="outpdfButton"
             Content="Вывод в PDF"
-            Foreground="#FFFFFF" Grid.Column="2" />
+            Foreground="#FFFFFF" />
         <Button
             x:Name="update"
             Grid.Row="2"
@@ -168,14 +174,16 @@
             Foreground="#FFFFFF" />
         <TextBox
             x:Name="pole"
+            Grid.Column="2"
             Width="97"
             Height="32"
             Margin="257,32,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             TextChanged="polee_TextChanged"
-            TextWrapping="Wrap" Grid.Column="2" />
+            TextWrapping="Wrap" />
         <Button
+            Grid.Column="2"
             Width="86"
             Height="32"
             Margin="382,32,0,0"
@@ -184,7 +192,7 @@
             Background="#002F6C"
             Click="Button_Click_search"
             Content="Поиск"
-            Foreground="#FFFFFF" Grid.Column="2" />
+            Foreground="#FFFFFF" />
 
     </Grid>
 </Window>

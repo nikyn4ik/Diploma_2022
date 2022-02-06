@@ -78,13 +78,6 @@ namespace Diploma_2022.Pages
         //    //UpdateDB();
         //}
 
-        private void AddButton_Click(object sender, RoutedEventArgs e)
-        {
-            Windows.AddOrders taskWindow = new Windows.AddOrders();
-            taskWindow.Show();
-            OrdersDataGrid_SelectionChanged();
-        }
-
         private void deleteButton_Click(object sender, RoutedEventArgs e)
         {
 
