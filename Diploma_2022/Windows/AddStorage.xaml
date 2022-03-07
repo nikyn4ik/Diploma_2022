@@ -41,7 +41,8 @@
             Name="StorageGrid"
             Margin="12,80,12,474"
             AutoGenerateColumns="False"
-            Background="Snow">
+            Background="Snow"
+            IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Width="*"
@@ -82,48 +83,62 @@
 
         <TextBox
             x:Name="idsclad"
+            Height="36"
             Margin="236,222,600,0"
+            VerticalAlignment="Top"
             Background="#FFFFFF"
             Foreground="#FF0000"
-            TextAlignment="Left" Height="36" VerticalAlignment="Top" />
+            TextAlignment="Left" />
         <TextBox
             x:Name="namesclad"
+            Height="36"
             Margin="236,286,600,0"
+            VerticalAlignment="Top"
             Background="#FFFFFF"
             Foreground="#FF0000"
-            TextAlignment="Left" Height="36" VerticalAlignment="Top" />
+            TextAlignment="Left" />
         <TextBox
             x:Name="addresssklad"
+            Height="36"
             Margin="236,346,600,0"
+            VerticalAlignment="Top"
             Background="#FFFFFF"
             Foreground="#FF0000"
-            TextAlignment="Left" Height="36" VerticalAlignment="Top" />
+            TextAlignment="Left" />
         <TextBox
             x:Name="phonesklad"
+            Height="36"
             Margin="236,403,600,0"
+            VerticalAlignment="Top"
             Background="#FFFFFF"
             Foreground="#FF0000"
-            TextAlignment="Left" Height="36" VerticalAlignment="Top" />
+            TextAlignment="Left" />
 
 
         <TextBox
             x:Name="datasklad"
+            Height="36"
             Margin="898,222,12,0"
+            VerticalAlignment="Top"
             Background="#FFFFFF"
             Foreground="#FF0000"
-            TextAlignment="Left" Height="36" VerticalAlignment="Top" />
+            TextAlignment="Left" />
         <TextBox
             x:Name="kodsap"
+            Height="36"
             Margin="898,286,12,0"
+            VerticalAlignment="Top"
             Background="#FFFFFF"
             Foreground="#FF0000"
-            TextAlignment="Left" Height="36" VerticalAlignment="Top" />
+            TextAlignment="Left" />
         <TextBox
             x:Name="ostatok"
+            Height="36"
             Margin="898,346,12,0"
+            VerticalAlignment="Top"
             Background="#FFFFFF"
             Foreground="#FF0000"
-            TextAlignment="Left" Height="36" VerticalAlignment="Top" />
+            TextAlignment="Left" />
 
         <Border>
             <Button

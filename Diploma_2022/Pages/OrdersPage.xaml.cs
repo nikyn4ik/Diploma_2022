@@ -25,14 +25,15 @@ namespace Diploma_2022.Pages
     public partial class OrdersPage : Window
     {
         string connectionString;
-       //SqlDataAdapter orders;
-       //  DataTable OrdersG;
-
+        //SqlDataAdapter orders;
+        //  DataTable OrdersG;
+        SqlConnection sqlConnection = new SqlConnection(@"Data Source=SPUTNIK; Initial Catalog=diploma_db; Integrated Security=True");
 
         public OrdersPage()
         {
             InitializeComponent();
             OrdersDataGrid_SelectionChanged();
+
         }
 
         private void OrdersDataGrid_SelectionChanged()
@@ -52,39 +53,24 @@ namespace Diploma_2022.Pages
 
         } 
 
-
-
-        //private void UpdateDB()
-        //{
-        //    SqlCommandBuilder comandbuilder = new SqlCommandBuilder(orders);
-        //    orders.Update(OrdersG);
-        //}
-
-
-        //private void deleteButton_Click(object sender, RoutedEventArgs e)
-        //{
-        //    if (OrdersGrid.SelectedItems != null)
-        //    {
-        //        for (int i = 0; i < OrdersGrid.SelectedItems.Count; i++) //FK_orders_type_product
-        //        {
-        //            DataRowView datarowView = OrdersGrid.SelectedItems[i] as DataRowView;
-        //            if (datarowView != null)
-        //            {
-        //                DataRow dataRow = (DataRow)datarowView.Row;
-        //                dataRow.Delete();
-        //            }
-        //        }
-        //    }
-        //    //UpdateDB();
-        //}
-
-        private void deleteButton_Click(object sender, RoutedEventArgs e)
+        private void OrdersGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
 
-        private void OrdersGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Buttontoshipment(object sender, RoutedEventArgs e)
         {
+            if (OrdersGrid.SelectedItems.Count > 0)
+            {
+                DataRowView drv = (DataRowView)OrdersGrid.SelectedItem;
+                string orders = drv.Row[0].ToString();
+                sqlConnection.Open();
+                SqlCommand cmd = new SqlCommand("SET IDENTITY_INSERT shipment ON  INSERT INTO shipment(id_shipment, consignee, date_of_shipments) SELECT id_order, SAP_product_code, date_of_delivery FROM orders WHERE id_order=@id", sqlConnection);
+                cmd.Parameters.AddWithValue("@id", orders);
+                cmd.ExecuteNonQuery();
+                OrdersDataGrid_SelectionChanged();
+                MessageBox.Show("Заявка успешно отправлена в отгрузку!", "Severstal Infocom");
+            }
 
         }
     }

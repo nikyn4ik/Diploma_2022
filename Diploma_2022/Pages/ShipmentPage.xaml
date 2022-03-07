@@ -8,7 +8,7 @@
     Title="Severstal Infocom"
     Width="1200"
     Height="700"
-        ResizeMode="NoResize"
+    ResizeMode="NoResize"
     mc:Ignorable="d">
 
     <Window.Background>
@@ -18,6 +18,9 @@
     </Window.Background>
 
     <Grid Height="684" VerticalAlignment="Bottom">
+        <Grid.Style>
+            <Style />
+        </Grid.Style>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="513*" />
             <ColumnDefinition Width="206*" />
@@ -49,7 +52,7 @@
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="26"
                     Foreground="White"
-                    Text="Доставка"
+                    Text="Отгрузка"
                     TextAlignment="Center" />
 
             </StackPanel>
@@ -59,13 +62,16 @@
         <DataGrid
             Name="ShipmentGrid"
             Grid.Row="1"
-            Grid.RowSpan="2"
             Grid.ColumnSpan="3"
-            Height="528"
-            Margin="2,0,2,65"
-            VerticalAlignment="Bottom"
+            Height="498"
+            Margin="10,0,10,0"
+            VerticalAlignment="Center"
             AutoGenerateColumns="False"
-            Background="Snow">
+            Background="Snow"
+            BorderBrush="#FF7C79BB"
+            IsReadOnly="True"
+            SelectionChanged="ShipmentGrid_SelectionChanged">
+
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Width="4*"
@@ -73,12 +79,8 @@
                     Header="id отгрузки" />
                 <DataGridTextColumn
                     Width="4*"
-                    Binding="{Binding early_shipment}"
-                    Header="Ранняя отгрузка" />
-                <DataGridTextColumn
-                    Width="4*"
                     Binding="{Binding consignee}"
-                    Header="Грузополучатель" />
+                    Header="Груз" />
                 <DataGridTextColumn
                     Width="4*"
                     Binding="{Binding date_of_shipments}"
@@ -91,46 +93,54 @@
                     Width="4*"
                     Binding="{Binding number_of_shipments_per_month_tons}"
                     Header="Отгр. кол-во за месяц [тонны]" />
+                <DataGridTextColumn
+                    Width="4*"
+                    Binding="{Binding early_shipment}"
+                    Header="Ранняя отгрузка" />
+                <DataGridTextColumn
+                    Width="4*"
+                    Binding="{Binding product_standard}"
+                    Header="Сертификат" />
             </DataGrid.Columns>
         </DataGrid>
-
-        <Button
-            x:Name="deleteButton"
-            Grid.Row="2"
-            Grid.Column="2"
-            Width="207"
-            Height="50"
-            Margin="53,0,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
-            Background="#002F6C"
-            Click="deleteClick"
-            Content="Удаление доставки"
-            Foreground="#FFFFFF" />
 
         <Button
             x:Name="update"
             Grid.Row="2"
             Grid.Column="1"
+            Grid.ColumnSpan="2"
             Width="208"
             Height="50"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
+            Margin="205,10,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
             Background="#002F6C"
             Click="UpdButton"
             Content="Обновление таблицы"
             Foreground="#FFFFFF" />
         <Button
-            x:Name="addButton"
+            x:Name="go_to_dostav_Button"
             Grid.Row="2"
+            Grid.ColumnSpan="2"
             Width="208"
             Height="50"
-            Margin="237,0,0,0"
+            Margin="305,10,0,0"
             HorizontalAlignment="Left"
-            VerticalAlignment="Center"
+            VerticalAlignment="Top"
             Background="#002F6C"
-            Click="AddButton"
-            Content="Добавление доставки"
+            Click="go_to_dostav_Click"
+            Content="Отправить из отгрузки в доставку"
+            Foreground="#FFFFFF" />
+        <Button
+            x:Name="brakButton"
+            Grid.Row="2"
+            Grid.Column="2"
+            Height="50"
+            Margin="264,5,10,0"
+            VerticalAlignment="Top"
+            Background="#002F6C"
+            Click="brakButton_Click"
+            Content="Отправить заказ в брак"
             Foreground="#FFFFFF" />
         <TextBox
             x:Name="pole"
@@ -152,6 +162,18 @@
             Background="#002F6C"
             Click="Button_Click_search"
             Content="Поиск"
+            Foreground="#FFFFFF" />
+        <Button
+            x:Name="certButton"
+            Grid.Row="2"
+            Width="208"
+            Height="50"
+            Margin="10,8,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Background="#002F6C"
+            Click="cert_Click"
+            Content="Добавление сертификации"
             Foreground="#FFFFFF" />
     </Grid>
 </Window>

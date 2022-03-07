@@ -47,12 +47,6 @@ namespace Diploma_2022
 
             }
         }
-        private void Button_Order(object sender, RoutedEventArgs e)
-        {
-            var window = new Pages.OrdersPage(); //<Button Content="Orders" RenderTransformOrigin="0,0.5" Click="Button_Order" Height="33" FontFamily="Times New Roman" FontSize="16"
-            window.ShowDialog();
-            Show();
-        }
 
         private void Button_Shipment(object sender, RoutedEventArgs e)
         {
@@ -76,6 +70,19 @@ namespace Diploma_2022
             var window = new Pages.Certificates();
             window.ShowDialog();
             Show();
+        }
+
+        private void Button_order(object sender, RoutedEventArgs e)
+        {
+            Hide();
+            var window = new Pages.OrdersPage();
+            window.ShowDialog();
+            Show();
+        }
+
+        private void Button_RabMestoMastera(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

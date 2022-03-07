@@ -44,55 +44,52 @@
 
         <DataGrid
             Name="OrdersGrid"
-            Margin="2,82,2,74"
+            Margin="10,106,10,50"
             AutoGenerateColumns="False"
             Background="Snow"
+            IsReadOnly="True"
             SelectionChanged="OrdersGrid_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn
-                    Width="3*"
-                    Binding="{Binding id_type_product}"
-                    Header="Id продукта" />
-                <DataGridTextColumn
-                    Width="3*"
-                    Binding="{Binding consignee}"
-                    Header="Грузополучатель" />
-                <DataGridTextColumn
-                    Width="3*"
-                    Binding="{Binding order_status}"
-                    Header="Статус заказа " />
-                <DataGridTextColumn
-                    Width="3*"
-                    Binding="{Binding date_of_change}"
-                    Header="Дата изменения" />
-                <DataGridTextColumn
-                    Width="3*"
-                    Binding="{Binding order_type}"
-                    Header="Тип заказа" />
+                    Width="4*"
+                    Binding="{Binding id_order}"
+                    Header="Id заказа" />
                 <DataGridTextColumn
                     Width="4*"
-                    Binding="{Binding tolerance_standart}"
-                    Header="Стандарт на допуски" />
+                    Binding="{Binding SAP_product_code}"
+                    Header="Продукт" />
                 <DataGridTextColumn
                     Width="4*"
-                    Binding="{Binding product_standard}"
-                    Header="Стандарт на продукцию" />
-                <DataGridTextColumn
-                    Width="2*"
-                    Binding="{Binding remainder}"
-                    Header="Остаток" />
+                    Binding="{Binding syst_c3}"
+                    Header="СИСТ №СЗ" />
                 <DataGridTextColumn
                     Width="4*"
-                    Binding="{Binding order_status_indicator}"
-                    Header="Индикатор статуса заказа" />
+                    Binding="{Binding log_c3}"
+                    Header="ЛОГ № СЗ" />
+                <DataGridTextColumn
+                    Width="4*"
+                    Binding="{Binding date_of_entrance}"
+                    Header="Дата поступления" />
+                <DataGridTextColumn
+                    Width="4*"
+                    Binding="{Binding thickness_mm}"
+                    Header="Толщина [мм]" />
+                <DataGridTextColumn
+                    Width="4*"
+                    Binding="{Binding width_mm}"
+                    Header="Ширина [мм]" />
+                <DataGridTextColumn
+                    Width="4*"
+                    Binding="{Binding length_mm}"
+                    Header="Длина [мм]" />
             </DataGrid.Columns>
         </DataGrid>
         <Button
-            x:Name="deleteButton"
-            Margin="712,615,281,19"
+            x:Name="toshipment"
+            Margin="10,20,983,613"
             Background="#002F6C"
-            Click="deleteButton_Click"
-            Content="Удаление заказа"
+            Click="Buttontoshipment"
+            Content="Отправить заявку в отгрузку"
             Foreground="#FFFFFF" />
 
     </Grid>

@@ -49,7 +49,7 @@
                     Margin="0,2,0,2"
                     AllowDrop="True"
                     Background="#FFFFFF  "
-                    Click="Button_Order"
+                    Click="Button_order"
                     Content="Заказы"
                     FontFamily="Times New Roman"
                     FontSize="16"
@@ -61,7 +61,7 @@
                     AllowDrop="True"
                     Background="#FF0000 "
                     Click="Button_Shipment"
-                    Content="Доставка"
+                    Content="Отгрузка и доставка"
                     FontFamily="Times New Roman"
                     FontSize="16"
                     Foreground="#FFFFFF " />
@@ -85,10 +85,19 @@
                     AllowDrop="True"
                     Background="#FF0000 "
                     Click="Button_Certificates"
-                    Content="Сертификаты"
+                    Content="Документация"
                     FontFamily="Times New Roman"
                     FontSize="16"
                     Foreground="#FFFFFF " />
+                <Button
+                    Height="33"
+                    AllowDrop="True"
+                    Background="#FFFFFF  "
+                    Click="Button_RabMestoMastera"
+                    Content="Рабочее место мастера (QR) "
+                    FontFamily="Times New Roman"
+                    FontSize="16"
+                    Foreground="#002F6C" />
 
 
             </StackPanel>

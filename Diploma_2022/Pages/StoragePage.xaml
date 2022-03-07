@@ -76,6 +76,7 @@
             Background="Snow"
             CanUserAddRows="False"
             ColumnWidth="*"
+            IsReadOnly="True"
             SelectionChanged="StorageGrid_SelectionChanged">
 
             <DataGrid.Columns>

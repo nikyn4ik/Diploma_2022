@@ -1,5 +1,5 @@
 ﻿<Window
-    x:Class="Diploma_2022.Windows.AddShipment"
+    x:Class="Diploma_2022.Windows.Delivery"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -41,154 +41,125 @@
             </StackPanel>
         </Border>
         <DataGrid
-            Name="ShipmentGrid"
-            Margin="12,80,12,474"
-            AutoGenerateColumns="False">
+            Name="DeliveryGrid"
+            Margin="12,80,12,192"
+            AutoGenerateColumns="False"
+            IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Width="*"
-                    Binding="{Binding id_shipment}"
+                    Binding="{Binding id_delivery}"
                     Header="id отгрузки" />
                 <DataGridTextColumn
                     Width="*"
-                    Binding="{Binding early_shipment}"
-                    Header="Ранняя отгрузка" />
-                <DataGridTextColumn
-                    Width="*"
                     Binding="{Binding consignee}"
-                    Header="Грузополучатель" />
+                    Header="Продукт" />
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding date_of_shipments}"
                     Header="Дата отгрузки" />
                 <DataGridTextColumn
                     Width="*"
-                    Binding="{Binding shipment_total_amount_tons}"
-                    Header="Отгр.кол-во всего [тонны]" />
-                <DataGridTextColumn
-                    Width="*"
-                    Binding="{Binding number_of_shipments_per_month_tons}"
-                    Header="Отгр. кол-во за месяц [тонны]" />
+                    Binding="{Binding early_shipment}"
+                    Header="Ранняя отгрузка" />
             </DataGrid.Columns>
         </DataGrid>
 
-        <TextBox
-            x:Name="id_shipment"
-            Margin="236,222,600,0"
-            Background="#FFFFFF"
-            Foreground="#FF0000"
-            TextAlignment="Left" Height="36" VerticalAlignment="Top" />
-        <TextBox
-            x:Name="early_shipment"
-            Margin="236,286,600,0"
-            Background="#FFFFFF"
-            Foreground="#FF0000"
-            TextAlignment="Left" Height="36" VerticalAlignment="Top" />
-        <TextBox
-            x:Name="consignee"
-            Margin="236,346,600,0"
-            Background="#FFFFFF"
-            Foreground="#FF0000"
-            TextAlignment="Left" Height="36" VerticalAlignment="Top" />
-        <TextBox
-            x:Name="date_of_shipments"
-            Margin="236,403,600,0"
-            Background="#FFFFFF"
-            Foreground="#FF0000"
-            TextAlignment="Left" Height="36" VerticalAlignment="Top" />
-        <TextBox
-            x:Name="shipment_total_amount_tons"
-            Margin="898,222,12,0"
-            Background="#FFFFFF"
-            Foreground="#FF0000"
-            TextAlignment="Left" Height="36" VerticalAlignment="Top" />
-        <TextBox
-            x:Name="number_of_shipments_per_month_tons"
-            Margin="898,286,12,0"
-            Background="#FFFFFF"
-            Foreground="#FF0000"
-            TextAlignment="Left" Height="36" VerticalAlignment="Top" />
+        <Border />
+        <Label
+            Width="182"
+            Height="36"
+            Margin="12,515,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Background="#002F6C"
+            Content="Пройдены стандарты"
+            Foreground="White" />
+        <Label
+            Width="182"
+            Height="36"
+            Margin="12,609,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Background="#002F6C"
+            Content="Склад"
+            Foreground="White" />
+        <Label
+            Width="182"
+            Height="36"
+            Margin="714,515,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Background="#002F6C"
+            Content="Дата доставки"
+            Foreground="White" />
+        <Label
+            Width="182"
+            Height="36"
+            Margin="714,609,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Background="#002F6C"
+            Content="Выполнен?"
+            Foreground="White" />
 
-        <Border>
-            <Button
-                Width="310"
-                Height="82"
-                Margin="0,544,0,0"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Top"
-                Background="#002F6C"
-                BorderThickness="0,0,0,0"
-                Click="Button_add"
-                Content="Загрузить в таблицу"
-                FontFamily="Microsoft JhengHei UI Light"
-                FontSize="26"
-                Foreground="White" />
-        </Border>
+
+        <ComboBox
+            x:Name="product_standart"
+            Width="182"
+            Height="36"
+            Margin="260,515,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            SelectionChanged="product_standart_SelectionChanged" />
+
+
+        <ComboBox
+            x:Name="Storage"
+            Width="182"
+            Height="36"
+            Margin="260,609,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            SelectionChanged="Storage_SelectionChanged" />
+
+
+        <ComboBox
+            x:Name="DateDelivery"
+            Width="182"
+            Height="36"
+            Margin="1006,515,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            SelectionChanged="DateDelivery_SelectionChanged" />
+
+
+        <ComboBox
+            x:Name="Done"
+            Width="182"
+            Height="36"
+            Margin="1006,609,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            SelectionChanged="Done_SelectionChanged" />
         <Label
             Width="182"
             Height="36"
-            Margin="12,222,0,0"
+            Margin="714,609,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
-            Content="id отгрузки"
-            Foreground="White" />
-        <Label
-            Width="182"
-            Height="36"
-            Margin="12,286,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            HorizontalContentAlignment="Center"
-            VerticalContentAlignment="Center"
-            Background="#002F6C"
-            Content="Ранняя отгрузка"
-            Foreground="White" />
-        <Label
-            Width="182"
-            Height="36"
-            Margin="12,346,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            HorizontalContentAlignment="Center"
-            VerticalContentAlignment="Center"
-            Background="#002F6C"
-            Content="Грузополучатель"
-            Foreground="White" />
-        <Label
-            Width="182"
-            Height="36"
-            Margin="12,403,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            HorizontalContentAlignment="Center"
-            VerticalContentAlignment="Center"
-            Background="#002F6C"
-            Content="Дата отгрузки"
-            Foreground="White" />
-        <Label
-            Width="182"
-            Height="36"
-            Margin="668,222,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            HorizontalContentAlignment="Center"
-            VerticalContentAlignment="Center"
-            Background="#002F6C"
-            Content="Отгр.кол-во всего [тонны]"
-            Foreground="White" />
-        <Label
-            Width="182"
-            Height="36"
-            Margin="668,286,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            HorizontalContentAlignment="Center"
-            VerticalContentAlignment="Center"
-            Background="#002F6C"
-            Content="Отгр.кол-во за месяц [тонны]"
+            Content="Выполнен?"
             Foreground="White" />
     </Grid>
 </Window>

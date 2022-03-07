@@ -22,18 +22,27 @@
             <RowDefinition Height="13*" />
         </Grid.RowDefinitions>
         <Border
+            Width="680"
+            Margin="0,18,0,10"
+            HorizontalAlignment="Center"
             Background="#002F6C"
             BorderThickness="0,0,0,0"
-            CornerRadius="10" HorizontalAlignment="Center" Width="680" Height="55" VerticalAlignment="Top">
-            <StackPanel Margin="174,7,174,6">
+            CornerRadius="10">
+            <StackPanel
+                Width="392"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+
                 <TextBlock
-                    Width="208"
-                    Height="36"
+                    Width="310"
+                    Margin="0,0,-11,0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="26"
-                    Foreground="#FFFFFF"
-                    RenderTransformOrigin="0.588,0.494"
-                    Text="Сертификаты" TextAlignment="Center" TextWrapping="NoWrap" />
+                    Foreground="White"
+                    Text="Сертификаты"
+                    TextAlignment="Center" />
 
             </StackPanel>
         </Border>
@@ -43,9 +52,11 @@
             Name="CertificatesGrid"
             Grid.Row="1"
             Height="525"
+            Margin="0,3,0,0"
             VerticalAlignment="Top"
             AutoGenerateColumns="False"
-            Background="Snow" Margin="0,3,0,0">
+            Background="Snow"
+            IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Width="*"
@@ -75,7 +86,7 @@
             VerticalAlignment="Top"
             Background="#002F6C"
             Click="deleteButton_Click"
-            Content="Удаление сертификата"
+            Content="Удалить сертификат"
             Foreground="#FFFFFF" />
         <Button
             x:Name="update"
@@ -107,7 +118,7 @@
             x:Name="pole"
             Width="98"
             Height="32"
-            Margin="983,12,0,0"
+            Margin="983,27,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             TextChanged="polee_TextChanged"
@@ -115,7 +126,7 @@
         <Button
             Width="86"
             Height="32"
-            Margin="1099,12,0,0"
+            Margin="1095,27,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Background="#002F6C"
