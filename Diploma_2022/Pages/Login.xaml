@@ -6,6 +6,7 @@
     xmlns:local="clr-namespace:Diploma_2022"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Severstal Infocom"
+    WindowStartupLocation="CenterScreen"
     Width="1200"
     Height="700"
 ResizeMode="NoResize"
@@ -13,7 +14,6 @@ ResizeMode="NoResize"
     FontSize="14"
     Icon="C:\Users\nikab\source\repos\Diploma_2022\Diploma_2022\Images\severstal_logo.ico"
     MouseDown="Login_OnMouseDown"
-    WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
 
     <Window.Background>

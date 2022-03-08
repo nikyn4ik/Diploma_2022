@@ -24,7 +24,7 @@ namespace Diploma_2022.Pages
     /// </summary>
     public partial class ShipmentPage : Window
     {
-        string connectionString;
+        //string connectionString;
         SqlConnection sqlConnection = new SqlConnection(@"Data Source=SPUTNIK; Initial Catalog=diploma_db; Integrated Security=True");
 
         public ShipmentPage()
@@ -52,7 +52,11 @@ namespace Diploma_2022.Pages
 
         private void UpdButton(object sender, RoutedEventArgs e)
         {
-            ShipmentGrid.Items.Refresh();
+            SqlDataAdapter adpt = new SqlDataAdapter("SELECT * FROM [dbo].[shipment]", sqlConnection);
+            DataTable dt = new DataTable();
+            adpt.Fill(dt);
+            ShipmentGrid.DataContext = dt;
+            ShipmentGrid.ItemsSource = dt.DefaultView;
         }
 
         private void polee_TextChanged(object sender, TextChangedEventArgs e)
@@ -63,7 +67,6 @@ namespace Diploma_2022.Pages
         private void Button_Click_search(object sender, RoutedEventArgs e)
         {
             string ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
-            try
             {
                 SqlConnection cmds = new SqlConnection(ConnectionString);
                 string cmd = "SELECT * FROM [dbo].[shipment] WHERE id_shipment like '" + pole.Text + "%'";
@@ -75,6 +78,27 @@ namespace Diploma_2022.Pages
                 ShipmentGrid.ItemsSource = dt.DefaultView;
                 shipments.Update(dt);
                 cmds.Close();
+            }
+            }
+        private void clientButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void brakButton_Click(object sender, RoutedEventArgs e) //!!!!!!!!!!!
+        {
+            try
+            {
+                if (ShipmentGrid.SelectedItems.Count > 0)
+                {
+                    sqlConnection.Open();
+                    DataRowView drv = (DataRowView)ShipmentGrid.SelectedItem;
+                    string shipment = drv.Row[0].ToString();
+                    SqlCommand cmd = new SqlCommand("DELETE FROM storage WHERE id_storage=@id", sqlConnection);
+                    cmd.Parameters.AddWithValue("@id", shipment);
+                    cmd.ExecuteNonQuery();
+                    Shipment_DataGrid_SelectionChanged();
+                }
             }
             catch (Exception ex)
             {
@@ -96,32 +120,6 @@ namespace Diploma_2022.Pages
                 }
             }
         }
-        private void clientButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void brakButton_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                if (ShipmentGrid.SelectedItems.Count > 0)
-                {
-                    SqlConnection sqlConnection = new SqlConnection(@"Data Source=SPUTNIK; Initial Catalog=diploma_db; Integrated Security=True");
-                    DataRowView drv = (DataRowView)ShipmentGrid.SelectedItem;
-                    string storage = drv.Row[0].ToString();
-                    sqlConnection.Open();
-                    SqlCommand cmd = new SqlCommand("DELETE FROM storage WHERE id_storage=@id", sqlConnection);
-                    cmd.Parameters.AddWithValue("@id", storage);
-                    cmd.ExecuteNonQuery();
-                    Shipment_DataGrid_SelectionChanged();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Заявка отменена", "Severstal Infocom");
-            }
-        }
 
         private void cert_Click(object sender, RoutedEventArgs e)
         {
@@ -140,6 +138,10 @@ namespace Diploma_2022.Pages
                 cmd.ExecuteNonQuery();
                 Shipment_DataGrid_SelectionChanged();
                 MessageBox.Show("Заявка из отгрузки успешно отправлена в доставку!", "Severstal Infocom");
+                Hide();
+                var window = new Windows.Delivery();
+                window.ShowDialog();
+                Show();
             }
         }
 

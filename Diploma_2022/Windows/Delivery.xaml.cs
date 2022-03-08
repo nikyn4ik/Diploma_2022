@@ -16,6 +16,7 @@ using System.Data;
 using System.IO;
 using System.Configuration;
 
+
 namespace Diploma_2022.Windows
 { 
     public partial class Delivery : Window
@@ -28,26 +29,6 @@ namespace Diploma_2022.Windows
         }
         SqlConnection sqlConnection = new SqlConnection(@"Data Source=SPUTNIK; Initial Catalog=diploma_db; Integrated Security=True");
         SqlDataReader db;
-        //private void Button_add(object sender, RoutedEventArgs e)
-        //{
-        //    SqlConnection sqlConnection = new SqlConnection();
-        //    sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
-        //    {
-        //        sqlConnection.Open();
-        //        String query = "INSERT INTO shipment values(@early_shipment,@consignee,@date_of_shipments,@shipment_total_amount_tons,@number_of_shipments_per_month_tons); ";
-        //        SqlCommand createCommand = new SqlCommand(query, sqlConnection);
-        //        createCommand.Parameters.AddWithValue("@early_shipment", early_shipment.Text);
-        //        createCommand.Parameters.AddWithValue("@consignee", consignee.Text);
-        //        createCommand.Parameters.AddWithValue("@date_of_shipments", date_of_shipments.Text);
-        //        createCommand.Parameters.AddWithValue("@shipment_total_amount_tons", shipment_total_amount_tons.Text);
-        //        createCommand.Parameters.AddWithValue("@number_of_shipments_per_month_tons", number_of_shipments_per_month_tons.Text);
-        //        createCommand.ExecuteNonQuery();
-        //        MessageBox.Show("Сохранено!", "Severstal Infocom", MessageBoxButton.OK);
-        //        sqlConnection.Close();
-        //        showdata();
-
-        //    }
-        //}
         public void showdata()
         {
             SqlDataAdapter adpt = new SqlDataAdapter("SELECT * FROM [dbo].[delivery]", sqlConnection);
