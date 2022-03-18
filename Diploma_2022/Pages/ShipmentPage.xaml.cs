@@ -36,13 +36,9 @@ namespace Diploma_2022.Pages
 
         private void Shipment_DataGrid_SelectionChanged()
         {
-            SqlConnection sqlConnection = new SqlConnection();
-            sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
-            sqlConnection.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.CommandText = "SELECT * FROM [dbo].[shipment], [dbo].[qua_certificate] ";
             cmd.Connection = sqlConnection;
-
             SqlDataAdapter Shipment = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable("diploma_db");
             Shipment.Fill(dt);
@@ -80,45 +76,30 @@ namespace Diploma_2022.Pages
                 cmds.Close();
             }
             }
-        private void clientButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void brakButton_Click(object sender, RoutedEventArgs e) //!!!!!!!!!!!
         {
-            try
+            var window = new ShipmentPage();
+            MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите отменить заявку?", "Sevestal Infocom", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning);
+            switch (result)
             {
-                if (ShipmentGrid.SelectedItems.Count > 0)
-                {
+                case MessageBoxResult.No:
+                    MessageBox.Show("Заявка НЕ была отменена", "Severstal Infocom");
+                    break;
+                case MessageBoxResult.Yes:
+                    MessageBox.Show("Заявка отменена", "Severstal Infocom");
+                    this.Hide();
+                    DataRowView drv = (DataRowView)ShipmentGrid.SelectedItem; //if (ShipmentGrid.SelectedItems.Count > 0)
+                        string shipment = drv.Row[0].ToString();
                     sqlConnection.Open();
-                    DataRowView drv = (DataRowView)ShipmentGrid.SelectedItem;
-                    string shipment = drv.Row[0].ToString();
-                    SqlCommand cmd = new SqlCommand("DELETE FROM storage WHERE id_storage=@id", sqlConnection);
+                    SqlCommand cmd = new SqlCommand("DELETE FROM shipment WHERE id_shipment=@id", sqlConnection);
                     cmd.Parameters.AddWithValue("@id", shipment);
                     cmd.ExecuteNonQuery();
                     Shipment_DataGrid_SelectionChanged();
-                }
-            }
-            catch (Exception ex)
-            {
-                var window = new ShipmentPage();
-                MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите отменить заявку?"
-     , "Sevestal Infocom", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning);
-                switch (result)
-                {
-                    case MessageBoxResult.No:
-                        MessageBox.Show("Заявка была НЕ отменена", "Severstal Infocom");
-                        break;
-                    case MessageBoxResult.Yes:
-                        MessageBox.Show("Заявка отменена", "Severstal Infocom");
-                        this.Hide();
-                        window.Show();
-                        break;
-                    case MessageBoxResult.Cancel:
-                        break;
-                }
-            }
+                    window.Show();
+                    break;
+                case MessageBoxResult.Cancel:
+                    break;
+}
         }
 
         private void cert_Click(object sender, RoutedEventArgs e)
@@ -133,12 +114,14 @@ namespace Diploma_2022.Pages
                 DataRowView drv = (DataRowView)ShipmentGrid.SelectedItem;
                 string shipment = drv.Row[0].ToString();
                 sqlConnection.Open();
-                SqlCommand cmd = new SqlCommand("SET IDENTITY_INSERT delivery ON  INSERT INTO delivery (id_delivery, consignee, date_of_delivery) SELECT id_shipment, consignee, date_of_shipment FROM shipment WHERE id_shipment=@id", sqlConnection);
+                SqlCommand cmd = new SqlCommand("INSERT INTO delivery" +
+                    " (id_delivery, consignee) SELECT id_shipment, " +
+                    "consignee FROM shipment WHERE id_shipment=@id", sqlConnection); 
+                //date_of_delivery   date_of_shipment
                 cmd.Parameters.AddWithValue("@id", shipment);
                 cmd.ExecuteNonQuery();
                 Shipment_DataGrid_SelectionChanged();
                 MessageBox.Show("Заявка из отгрузки успешно отправлена в доставку!", "Severstal Infocom");
-                Hide();
                 var window = new Windows.Delivery();
                 window.ShowDialog();
                 Show();

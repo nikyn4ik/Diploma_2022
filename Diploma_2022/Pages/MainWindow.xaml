@@ -6,11 +6,11 @@
     xmlns:local="clr-namespace:Diploma_2022"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Severstal Infocom"
-    WindowStartupLocation="CenterScreen"
     Width="1200"
     Height="710"
     Foreground="#FFFFFF"
     ResizeMode="NoResize"
+    WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
     <Window.Background>
 
@@ -149,7 +149,7 @@
                     FontSize="18"
                     FontWeight="Normal"
                     Foreground="#FF0000"
-                    TextAlignment="Left" />
+                    TextAlignment="Center" />
 
                 <Label
                     Width="158"

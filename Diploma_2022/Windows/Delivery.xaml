@@ -6,9 +6,9 @@
     xmlns:local="clr-namespace:Diploma_2022.Windows"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Severstal Infocom"
-    WindowStartupLocation="CenterScreen"
     Width="1200"
     Height="700"
+    WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
 
     <Window.Background>
@@ -17,8 +17,19 @@
 
     </Window.Background>
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="443*" />
+            <ColumnDefinition Width="276*" />
+            <ColumnDefinition Width="292*" />
+            <ColumnDefinition Width="190*" />
+        </Grid.ColumnDefinitions>
         <Border
-            Margin="260,6,260,613"
+            Grid.ColumnSpan="3"
+            Width="640"
+            Height="65"
+            Margin="261,6,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
             Background="#002F6C"
             BorderThickness="0,0,0,0"
             CornerRadius="10">
@@ -27,12 +38,8 @@
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 Orientation="Vertical">
-
                 <TextBlock
-                    Width="310"
-                    Margin="0,0,0,0"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
+                    Width="355"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="26"
                     Foreground="White"
@@ -43,9 +50,10 @@
         </Border>
         <DataGrid
             Name="DeliveryGrid"
-            Margin="12,80,12,192"
+            Grid.ColumnSpan="4"
+            Margin="12,80,10,192"
             AutoGenerateColumns="False"
-            IsReadOnly="True">
+            IsReadOnly="True" SelectionChanged="DeliveryGrid_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Width="*"
@@ -65,34 +73,60 @@
                     Header="Ранняя отгрузка" />
             </DataGrid.Columns>
         </DataGrid>
-
-        <Border />
+        <Button
+            x:Name="OutPDF"
+            Grid.Column="1"
+            Width="147"
+            Height="54"
+            Margin="64,497,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Background="#002F6C"
+            Click="outpdfButton"
+            Content="Вывод в PDF"
+            Foreground="#FFFFFF" />
+        <Button
+            x:Name="outexcel"
+            Grid.Column="1"
+            Width="147"
+            Height="54"
+            Margin="64,575,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Background="#002F6C"
+            Click="out_excel_button"
+            Content="Вывод в Microsoft Excel"
+            Foreground="#FFFFFF" />
         <Label
             Width="182"
             Height="36"
-            Margin="12,515,0,0"
+            Margin="12,497,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
+            AllowDrop="True"
             Background="#002F6C"
             Content="Пройдены стандарты"
             Foreground="White" />
         <Label
             Width="182"
             Height="36"
-            Margin="12,609,0,0"
+            Margin="12,575,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
+            AllowDrop="True"
             Background="#002F6C"
             Content="Склад"
             Foreground="White" />
         <Label
+            Grid.Column="1"
+            Grid.ColumnSpan="2"
             Width="182"
             Height="36"
-            Margin="714,515,0,0"
+            Margin="273,497,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
@@ -100,34 +134,26 @@
             Background="#002F6C"
             Content="Дата доставки"
             Foreground="White" />
-        <Label
-            Width="182"
-            Height="36"
-            Margin="714,609,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            HorizontalContentAlignment="Center"
-            VerticalContentAlignment="Center"
-            Background="#002F6C"
-            Content="Выполнен?"
-            Foreground="White" />
 
 
         <ComboBox
             x:Name="product_standart"
+            Grid.ColumnSpan="2"
             Width="182"
             Height="36"
-            Margin="260,515,0,0"
+            Margin="261,497,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            DataContextChanged="product_standart_DataContextChanged"
             SelectionChanged="product_standart_SelectionChanged" />
+
 
 
         <ComboBox
             x:Name="Storage"
             Width="182"
             Height="36"
-            Margin="260,609,0,0"
+            Margin="260,575,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             SelectionChanged="Storage_SelectionChanged" />
@@ -135,9 +161,11 @@
 
         <ComboBox
             x:Name="DateDelivery"
+            Grid.Column="2"
+            Grid.ColumnSpan="2"
             Width="182"
             Height="36"
-            Margin="1006,515,0,0"
+            Margin="290,497,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             SelectionChanged="DateDelivery_SelectionChanged" />
@@ -145,16 +173,20 @@
 
         <ComboBox
             x:Name="Done"
+            Grid.Column="2"
+            Grid.ColumnSpan="2"
             Width="182"
             Height="36"
-            Margin="1006,609,0,0"
+            Margin="290,575,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             SelectionChanged="Done_SelectionChanged" />
         <Label
+            Grid.Column="1"
+            Grid.ColumnSpan="2"
             Width="182"
             Height="36"
-            Margin="714,609,0,0"
+            Margin="275,575,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"

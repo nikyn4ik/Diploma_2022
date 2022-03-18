@@ -53,24 +53,25 @@ namespace Diploma_2022.Pages
 
         } 
 
-        private void OrdersGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void Buttontoshipment(object sender, RoutedEventArgs e)
+        private void Buttontoshipment(object sender, RoutedEventArgs e) //после оформления заявки и отправки в доставку - её нет - сделать
         {
             if (OrdersGrid.SelectedItems.Count > 0)
             {
                 DataRowView drv = (DataRowView)OrdersGrid.SelectedItem;
                 string orders = drv.Row[0].ToString();
                 sqlConnection.Open();
-                SqlCommand cmd = new SqlCommand("SET IDENTITY_INSERT shipment ON  INSERT INTO shipment(id_shipment, consignee, date_of_shipments) SELECT id_order, SAP_product_code, date_of_delivery FROM orders WHERE id_order=@id", sqlConnection);
+                SqlCommand cmd = new SqlCommand("SET IDENTITY_INSERT shipment ON  INSERT INTO shipment" +
+                 "(id_shipment, consignee, date_of_shipments) SELECT id_order, SAP_product_code, date_of_delivery " +
+                "FROM orders WHERE id_order=@id", sqlConnection);
                 cmd.Parameters.AddWithValue("@id", orders);
                 cmd.ExecuteNonQuery();
                 OrdersDataGrid_SelectionChanged();
                 MessageBox.Show("Заявка успешно отправлена в отгрузку!", "Severstal Infocom");
             }
+    }
+
+        private void OrdersGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
 
         }
     }

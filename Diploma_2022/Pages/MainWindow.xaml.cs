@@ -30,7 +30,6 @@ namespace Diploma_2022
         {
             var lg = new Login();
             MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите выйти?"
-               // +  "\"Account\"?" - create reference to login.Text
                 , "Sevestal Infocom", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning);
             switch (result)
             {
@@ -82,7 +81,10 @@ namespace Diploma_2022
 
         private void Button_RabMestoMastera(object sender, RoutedEventArgs e)
         {
-
+            Hide();
+            var window = new Windows.Delivery();
+            window.ShowDialog();
+            Show();
         }
     }
 }

@@ -6,10 +6,10 @@
     xmlns:local="clr-namespace:Diploma_2022.Pages"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Severstal Infocom"
-    WindowStartupLocation="CenterScreen"
     Width="1200"
     Height="700"
     ResizeMode="NoResize"
+    WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
 
     <Window.Background>
@@ -111,11 +111,11 @@
         <Button
             x:Name="delete"
             Grid.Row="2"
-            Grid.Column="1"
+            Grid.Column="2"
             Width="208"
             Height="50"
-            Margin="0,6,0,0"
-            HorizontalAlignment="Center"
+            Margin="170,10,0,0"
+            HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Background="#002F6C"
             Click="deleteButton"
@@ -123,53 +123,26 @@
             Foreground="#FFFFFF" />
 
         <Button
-            x:Name="outexcel"
-            Grid.Row="2"
-            Grid.Column="2"
-            Width="207"
-            Height="50"
-            Margin="279,6,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Background="#002F6C"
-            Click="out_excel_button"
-            Content="Вывод в Microsoft Excel"
-            Foreground="#FFFFFF" />
-
-        <Button
             x:Name="add"
             Grid.Row="2"
             Width="208"
             Height="50"
-            Margin="0,0,279,19"
+            Margin="0,0,170,15"
             HorizontalAlignment="Right"
             VerticalAlignment="Bottom"
             Background="#002F6C"
             Click="AddButton"
             Content="Добавление склада"
             Foreground="#FFFFFF" />
-
-        <Button
-            x:Name="OutPDF"
-            Grid.Row="2"
-            Grid.Column="2"
-            Width="208"
-            Height="50"
-            Margin="28,0,0,19"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Bottom"
-            Background="#002F6C"
-            Click="outpdfButton"
-            Content="Вывод в PDF"
-            Foreground="#FFFFFF" />
         <Button
             x:Name="update"
             Grid.Row="2"
+            Grid.Column="1"
             Width="208"
             Height="50"
-            Margin="0,0,38,19"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Bottom"
+            Margin="0,10,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
             Background="#002F6C"
             Click="UpdButton"
             Content="Обновление таблицы"

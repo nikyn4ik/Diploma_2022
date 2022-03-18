@@ -6,9 +6,9 @@
     xmlns:local="clr-namespace:Diploma_2022.Pages"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Severstal Infocom"
-    WindowStartupLocation="CenterScreen"
     Width="1200"
     Height="700"
+    WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
     <Window.Background>
 
@@ -19,10 +19,10 @@
 
     <Grid>
         <Border
-            Margin="260,6,260,613"
+            Margin="0,0,0,613"
             Background="#002F6C"
             BorderThickness="0,0,0,0"
-            CornerRadius="10">
+            CornerRadius="10" HorizontalAlignment="Center" Width="680">
             <StackPanel
                 Width="392"
                 HorizontalAlignment="Center"
@@ -87,11 +87,11 @@
         </DataGrid>
         <Button
             x:Name="toshipment"
-            Margin="10,20,983,613"
+            Margin="10,20,0,0"
             Background="#002F6C"
             Click="Buttontoshipment"
             Content="Отправить заявку в отгрузку"
-            Foreground="#FFFFFF" />
+            Foreground="#FFFFFF" Height="51" VerticalAlignment="Top" HorizontalAlignment="Left" Width="207" />
 
     </Grid>
 </Window>
