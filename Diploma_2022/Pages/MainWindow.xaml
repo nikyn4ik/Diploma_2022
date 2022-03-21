@@ -12,11 +12,7 @@
     ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
-    <Window.Background>
-
-        <ImageBrush ImageSource="C:\Users\nikab\source\repos\Diploma_2022\Diploma_2022\Images\newbrand-bg2.jpg" />
-
-    </Window.Background>
+   
     <Grid Height="684" VerticalAlignment="Top">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto" />
@@ -27,6 +23,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="684" />
             </Grid.RowDefinitions>
+            
             <StackPanel
                 Margin="0,0,950,-10"
                 Background="#002F6C"
@@ -119,7 +116,7 @@
                     Margin="0,88,331,0"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Top"
-                    Source="C:\Users\nikab\source\repos\Diploma_2022\Diploma_2022\Images\Severstal_Logo_LAT_White_RGB.png"
+                    Source="\Images\Severstal_Logo_LAT_White_RGB.png"
                     Stretch="Uniform"
                     StretchDirection="Both"
                     Visibility="Visible" />
@@ -138,7 +135,9 @@
                             <Setter Property="CornerRadius" Value="10" />
                         </Style>
                     </Button.Resources>
-                    <TextBlock Foreground="#FF002F6C"><Run Text="Выход" /></TextBlock>
+                    <TextBlock Foreground="#FF002F6C">
+                        <Run Text="Выход" />
+                    </TextBlock>
                 </Button>
                 <TextBlock
                     x:Name="lplogin"

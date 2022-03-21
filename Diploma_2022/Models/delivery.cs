@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Diploma_2022.Models
 {
-    class delivery
+    class Delivery
     {
         public int id_delivery { get; set; }
         public string consignee { get; set; }

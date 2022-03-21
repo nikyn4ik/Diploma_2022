@@ -11,7 +11,7 @@
     mc:Ignorable="d">
     <Window.Background>
 
-        <ImageBrush ImageSource="C:\Users\nikab\source\repos\Diploma_2022\Diploma_2022\Images\ugs.jpg" />
+        <ImageBrush ImageSource="\Images\ugs.jpg" />
 
     </Window.Background>
 

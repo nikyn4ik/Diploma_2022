@@ -5,32 +5,41 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Diploma_2022"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    
     Title="Severstal Infocom"
+    
     WindowStartupLocation="CenterScreen"
+    
     Width="1200"
     Height="700"
-ResizeMode="NoResize"
+    
+    ResizeMode="NoResize"
+    
     AllowsTransparency="False"
+    
     FontSize="14"
-    Icon="C:\Users\nikab\source\repos\Diploma_2022\Diploma_2022\Images\severstal_logo.ico"
+    Icon="\Images\severstal_logo.ico"
     MouseDown="Login_OnMouseDown"
     mc:Ignorable="d">
 
     <Window.Background>
-
-        <ImageBrush ImageSource="C:\Users\nikab\source\repos\Diploma_2022\Diploma_2022\Images\voestalpine_voest-1024x1024.jpg" />
-
+        <ImageBrush ImageSource="\Images\voestalpine_voest-1024x1024.jpg" />
     </Window.Background>
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="60*"/>
+            <RowDefinition Height="20*"/>
+        </Grid.RowDefinitions>
+        <StackPanel  HorizontalAlignment="Left" />
 
-        <StackPanel Width="1200" HorizontalAlignment="Left" />
-
-        <Border
-            Margin="210,210,210,210"
+        <Border 
+            Grid.Row="1"
+            Margin="100,0"
             Background="#002F6C"
             CornerRadius="10">
-            <StackPanel Margin="99,0,99,0" VerticalAlignment="Center">
+            <StackPanel Margin="200,0" VerticalAlignment="Center">
 
                 <TextBlock
                     Width="532"
@@ -78,6 +87,17 @@ ResizeMode="NoResize"
                     </PasswordBox.Style>
                 </PasswordBox>
 
+                <Border x:Name="capsLabel">
+                    <TextBlock
+                    Width="150"
+                    Margin="0,5"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    FontSize="14"
+                    Foreground="#FFFFFF"
+                    Text="Caps lock включен!" />
+                </Border>
+                
                 <Button
                     x:Name="btnLogin"
                     Margin="0,5,0,0"
@@ -90,17 +110,5 @@ ResizeMode="NoResize"
 
             </StackPanel>
         </Border>
-        <StackPanel VerticalAlignment="Center">
-            <Border x:Name="capsLabel">
-                <TextBlock
-                    Width="152"
-                    Margin="836,353,210,310"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    FontSize="15"
-                    Foreground="#FFFFFF"
-                    Text="Caps lock включен!" />
-            </Border>
-        </StackPanel>
     </Grid>
 </Window>

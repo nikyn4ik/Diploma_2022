@@ -16,7 +16,7 @@ using System.Data;
 using System.IO;
 using System.Configuration;
 
-namespace Diploma_2022.Pages 
+namespace Diploma_2022.Pages
 {
     /// <summary>
     /// Interaction logic for Certificates.xaml
