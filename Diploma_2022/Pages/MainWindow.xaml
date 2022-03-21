@@ -99,7 +99,7 @@
                     AllowDrop="True"
                     Background="#FFFFFF"
                     Click="Button_RabMestoMastera"
-                    Content="Рабочее место мастера (QR) ДВ "
+                    Content="Рабочее место мастера (QR)"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="18"
                     Foreground="#002F6C" />

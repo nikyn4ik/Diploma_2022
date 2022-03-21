@@ -35,7 +35,7 @@ namespace Diploma_2022.Windows
             sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
             {
                 sqlConnection.Open();
-                String query = "INSERT INTO qua_certificate values(@standard_per_mark,@tolerance_standart,@product_standard); ";
+                String query = "INSERT INTO [dbo].qua_certificate values(@standard_per_mark, @tolerance_standart, @product_standard); ";
                 SqlCommand createCommand = new SqlCommand(query, sqlConnection);
                 createCommand.Parameters.AddWithValue("@standard_per_mark", standard_per_mark.Text);
                 createCommand.Parameters.AddWithValue("@tolerance_standart", tolerance_standart.Text);

@@ -97,6 +97,7 @@
                 </Border>
 
                 <Button
+                    IsDefault = "true"
                     x:Name="btnLogin"
                     Margin="0,5,0,0"
                     Padding="5"

@@ -15,7 +15,7 @@ using System.IO;
 
 
 namespace Diploma_2022.Windows
-{ 
+{
     public partial class AddDelivery : Window
     {
         List<Models.Storage> list = new();
@@ -24,8 +24,10 @@ namespace Diploma_2022.Windows
         public AddDelivery()
         {
             InitializeComponent();
-            SqlDataAdapter adpt;
-            DataTable dt;
+            deliv();
+            delivstor();
+            delivDate();
+            delivDone();
         }
         public void showdata()
         {
@@ -38,7 +40,11 @@ namespace Diploma_2022.Windows
 
         private void product_standart_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SqlCommand cmd = new SqlCommand("SELECT product_standart FROM confirmation", sqlConnection);
+            deliv();
+        }
+        private void deliv()
+        {
+            SqlCommand cmd = new SqlCommand("SELECT product_standard FROM [dbo]. delivery", sqlConnection);
             sqlConnection.Open();
             cmd.CommandType = CommandType.Text;
             db = cmd.ExecuteReader();
@@ -46,37 +52,54 @@ namespace Diploma_2022.Windows
             {
                 product_standart.Items.Add(db.GetValue(0));
             }
+            product_standart.Items.Add("1");
+            sqlConnection.Close();
         }
 
         private void Storage_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //SqlCommand cmd = new SqlCommand("SELECT name_storage FROM delivery", sqlConnection);
-            //sqlConnection.Open();
-            //cmd.CommandType = CommandType.Text;
-            //db = cmd.ExecuteReader();
-
-            //while (db.Read())
-            //{
-            //    Storage.Items.Add(db.GetValue(0));
-            //}
+            delivstor();
+        }
+        private void delivstor()
+        {
+            SqlCommand cmd = new SqlCommand("SELECT name_storage FROM [dbo].storage", sqlConnection);
+            sqlConnection.Open();
+            cmd.CommandType = CommandType.Text;
+            db = cmd.ExecuteReader();
+            while (db.Read())
+            {
+                Storage.Items.Add(db.GetValue(0));
+            }
+            Storage.Items.Add("2");
+            sqlConnection.Close();
         }
 
         private void DateDelivery_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SqlCommand cmd = new SqlCommand("SELECT date_of_delivery FROM delivery", sqlConnection);
+            delivDate();
+        }
+        private void delivDate()
+        {
+            SqlCommand cmd = new SqlCommand("SELECT date_of_delivery FROM [dbo].delivery", sqlConnection);
             sqlConnection.Open();
             cmd.CommandType = CommandType.Text;
             db = cmd.ExecuteReader();
-
             while (db.Read())
             {
                 DateDelivery.Items.Add(db.GetValue(0));
             }
+            DateDelivery.Items.Add("3");
+            sqlConnection.Close();
         }
 
         private void Done_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SqlCommand cmd = new SqlCommand("SELECT done_delivery FROM confirmation", sqlConnection);
+            delivDone();
+        }
+
+        private void delivDone()
+        {
+            SqlCommand cmd = new SqlCommand("SELECT done_delivery FROM  [dbo].confirmation", sqlConnection);
             sqlConnection.Open();
             cmd.CommandType = CommandType.Text;
             db = cmd.ExecuteReader();
@@ -85,6 +108,8 @@ namespace Diploma_2022.Windows
             {
                 Done.Items.Add(db.GetValue(0));
             }
+            Done.Items.Add("2");
+            sqlConnection.Close();
         }
 
         private void outpdfButton(object sender, RoutedEventArgs e)

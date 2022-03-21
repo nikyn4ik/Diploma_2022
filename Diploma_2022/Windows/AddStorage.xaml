@@ -18,7 +18,9 @@
     </Window.Background>
     <Grid>
         <Border
-            Margin="260,6,260,613"
+            Width="680"
+            Margin="0,0,0,613"
+            HorizontalAlignment="Center"
             Background="#002F6C"
             BorderThickness="0,0,0,0"
             CornerRadius="10">
@@ -40,7 +42,7 @@
         </Border>
         <DataGrid
             Name="StorageGrid"
-            Margin="12,80,12,474"
+            Margin="12,80,12,364"
             AutoGenerateColumns="False"
             Background="Snow"
             IsReadOnly="True">
@@ -81,157 +83,128 @@
                     Header="Остаток" />
             </DataGrid.Columns>
         </DataGrid>
-
-        <TextBox
-            x:Name="idsclad"
-            Height="36"
-            Margin="236,222,600,0"
-            VerticalAlignment="Top"
-            Background="#FFFFFF"
-            Foreground="#FF0000"
-            TextAlignment="Left" />
-        <TextBox
-            x:Name="namesclad"
-            Height="36"
-            Margin="236,286,600,0"
-            VerticalAlignment="Top"
-            Background="#FFFFFF"
-            Foreground="#FF0000"
-            TextAlignment="Left" />
-        <TextBox
-            x:Name="addresssklad"
-            Height="36"
-            Margin="236,346,600,0"
-            VerticalAlignment="Top"
-            Background="#FFFFFF"
-            Foreground="#FF0000"
-            TextAlignment="Left" />
-        <TextBox
-            x:Name="phonesklad"
-            Height="36"
-            Margin="236,403,600,0"
-            VerticalAlignment="Top"
-            Background="#FFFFFF"
-            Foreground="#FF0000"
-            TextAlignment="Left" />
-
-
-        <TextBox
-            x:Name="datasklad"
-            Height="36"
-            Margin="898,222,12,0"
-            VerticalAlignment="Top"
-            Background="#FFFFFF"
-            Foreground="#FF0000"
-            TextAlignment="Left" />
-        <TextBox
-            x:Name="kodsap"
-            Height="36"
-            Margin="898,286,12,0"
-            VerticalAlignment="Top"
-            Background="#FFFFFF"
-            Foreground="#FF0000"
-            TextAlignment="Left" />
-        <TextBox
-            x:Name="ostatok"
-            Height="36"
-            Margin="898,346,12,0"
-            VerticalAlignment="Top"
-            Background="#FFFFFF"
-            Foreground="#FF0000"
-            TextAlignment="Left" />
-
-        <Border>
-            <Button
-                Width="310"
-                Height="82"
-                Margin="0,544,0,0"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Top"
-                Background="#002F6C"
-                BorderThickness="0,0,0,0"
-                Click="Button_Click"
-                Content="Загрузить в таблицу"
-                FontFamily="Microsoft JhengHei UI Light"
-                FontSize="26"
-                Foreground="White" />
-        </Border>
         <Label
-            Width="182"
-            Height="36"
-            Margin="12,222,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            HorizontalContentAlignment="Center"
-            VerticalContentAlignment="Center"
-            Background="#002F6C"
-            Content="id склада"
-            Foreground="White" />
-        <Label
-            Width="182"
-            Height="36"
-            Margin="12,286,0,0"
+            Width="191"
+            Height="51"
+            Margin="10,342,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
             Content="Имя"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="14"
             Foreground="White" />
         <Label
-            Width="182"
-            Height="36"
-            Margin="12,346,0,0"
+            Width="191"
+            Height="51"
+            Margin="10,416,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
             Content="Адрес"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="14"
             Foreground="White" />
         <Label
-            Width="182"
-            Height="36"
-            Margin="12,403,0,0"
+            Width="191"
+            Height="52"
+            Margin="10,490,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
             Content="Телефон"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="14"
             Foreground="White" />
         <Label
-            Width="182"
-            Height="36"
-            Margin="668,222,0,0"
+            Width="192"
+            Height="51"
+            Margin="12,556,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
-            Content="Дата поступления"
+            Content="Дата создания склада"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="14"
             Foreground="White" />
         <Label
-            Width="182"
-            Height="36"
-            Margin="668,286,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            HorizontalContentAlignment="Center"
-            VerticalContentAlignment="Center"
-            Background="#002F6C"
-            Content="Код товара SAP"
-            Foreground="White" />
-        <Label
-            Width="182"
-            Height="36"
-            Margin="668,346,0,0"
+            Width="191"
+            Height="51"
+            Margin="600,342,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
             Content="Остаток"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="14"
+            Foreground="White" />
+
+        <TextBox
+            x:Name="namesclad"
+            Height="51"
+            Margin="228,342,642,0"
+            VerticalAlignment="Top"
+            Background="#FFFFFF"
+            Foreground="#FF0000"
+            TextAlignment="Left" />
+        <TextBox
+            x:Name="addresssklad"
+            Width="330"
+            Height="51"
+            Margin="228,416,642,0"
+            VerticalAlignment="Top"
+            Background="#FFFFFF"
+            Foreground="#FF0000"
+            TextAlignment="Left" />
+        <TextBox
+            x:Name="phonesklad"
+            Width="330"
+            Height="51"
+            Margin="228,490,642,0"
+            VerticalAlignment="Top"
+            Background="#FFFFFF"
+            Foreground="#FF0000"
+            TextAlignment="Left" />
+        <TextBox
+            x:Name="ostatok"
+            Width="330"
+            Height="51"
+            Margin="858,342,12,0"
+            VerticalAlignment="Top"
+            Background="#FFFFFF"
+            Foreground="#FF0000"
+            TextAlignment="Left" />
+        <TextBox
+            x:Name="dataaddsklad"
+            Width="330"
+            Height="50"
+            Margin="228,558,643,0"
+            VerticalAlignment="Top"
+            Background="#FFFFFF"
+            Foreground="#FF0000"
+            TextAlignment="Left" />
+        <Button
+            Width="588"
+            Height="82"
+            Margin="600,527,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Background="#002F6C"
+            BorderThickness="0,0,0,0"
+            Click="Button_add"
+            Content="Загрузить в таблицу"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="26"
             Foreground="White" />
 
     </Grid>

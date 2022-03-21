@@ -32,8 +32,8 @@
         <Border
             Grid.ColumnSpan="3"
             Width="680"
-            Margin="260,0,0,29"
-            HorizontalAlignment="Left"
+            Margin="248,0,272,14"
+            HorizontalAlignment="Center"
             Background="#002F6C"
             BorderThickness="0,0,0,0"
             CornerRadius="10">
@@ -158,7 +158,7 @@
             Grid.Column="2"
             Width="97"
             Height="32"
-            Margin="261,12,0,0"
+            Margin="261,20,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             TextChanged="polee_TextChanged"
@@ -167,7 +167,7 @@
             Grid.Column="2"
             Width="123"
             Height="32"
-            Margin="363,12,0,0"
+            Margin="363,21,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Background="#002F6C"

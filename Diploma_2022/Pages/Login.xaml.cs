@@ -61,20 +61,16 @@ namespace Diploma_2022
                     if (count == 1)
                     {
                     var Login = login.Text;
-                    ///!!!!!!!!!!!
                     var Password = password.Password;
-                     //  if (Login == login.Text && Password == password.Password)
-                    //    {
                       var window = new MainWindow();
                      window.lplogin.Text = Login;
 
 
                      MessageBox.Show(
-                         "Добро пожаловать " + login.Text,
+                         "Добро пожаловать" + ", " + login.Text,
                          "Severstal Infocom",
                          MessageBoxButton.OK,
                          MessageBoxImage.Information);
-                      //  MainWindow mainWindow = new MainWindow();
                         window.Show();//!!!!!!!!!!!
                         this.Hide();
                     }

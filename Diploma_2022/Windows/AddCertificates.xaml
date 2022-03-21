@@ -18,15 +18,16 @@
     </Window.Background>
     <Grid>
         <Border
-            Margin="260,6,260,613"
+            Width="680"
+            Margin="0,0,0,613"
+            HorizontalAlignment="Center"
             Background="#002F6C"
             BorderThickness="0,0,0,0"
             CornerRadius="10">
             <StackPanel
                 Width="392"
                 HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                Orientation="Vertical">
+                VerticalAlignment="Center">
 
                 <TextBlock
                     Width="342"
@@ -40,7 +41,6 @@
 
             </StackPanel>
         </Border>
-
 
         <DataGrid
             Name="CertificatesGrid"
@@ -73,54 +73,12 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <TextBox
-            x:Name="id_qua_certificate"
-            Height="35"
-            Margin="236,409,600,0"
-            VerticalAlignment="Top"
-            Background="#FFFFFF"
-            FontFamily="Segoe UI"
-            FontSize="12"
-            Foreground="#FF0000"
-            TextAlignment="Left" />
-        <TextBox
-            x:Name="standard_per_mark"
-            Height="40"
-            Margin="236,482,600,0"
-            VerticalAlignment="Top"
-            Background="#FFFFFF"
-            FontFamily="Segoe UI"
-            FontSize="12"
-            Foreground="#FF0000"
-            TextAlignment="Left" />
-
-        <TextBox
-            x:Name="tolerance_standart"
-            Height="35"
-            Margin="949,409,12,0"
-            VerticalAlignment="Top"
-            Background="#FFFFFF"
-            FontFamily="Segoe UI"
-            FontSize="12"
-            Foreground="#FF0000"
-            TextAlignment="Left" />
-        <TextBox
-            x:Name="product_standard"
-            Height="35"
-            Margin="949,482,12,0"
-            VerticalAlignment="Top"
-            Background="#FFFFFF"
-            FontFamily="Segoe UI"
-            FontSize="12"
-            Foreground="#FF0000"
-            TextAlignment="Left" />
-
         <Border>
             <Button
-                Width="310"
+                Width="588"
                 Height="82"
-                Margin="0,548,0,0"
-                HorizontalAlignment="Center"
+                Margin="602,527,0,0"
+                HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 Background="#002F6C"
                 BorderThickness="0,0,0,0"
@@ -131,48 +89,76 @@
                 Foreground="White" />
         </Border>
         <Label
-            Width="180"
-            Height="35"
-            Margin="22,409,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            HorizontalContentAlignment="Center"
-            VerticalContentAlignment="Center"
-            Background="#002F6C"
-            Content="id сертификата"
-            Foreground="White" />
-        <Label
-            Width="180"
-            Height="35"
-            Margin="22,487,0,0"
+            Width="191"
+            Height="52"
+            Margin="12,434,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
             Content="Стандарт на марку"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="14"
             Foreground="White" />
         <Label
-            Width="181"
-            Height="35"
-            Margin="734,409,0,0"
+            Width="191"
+            Height="51"
+            Margin="12,527,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
             Content="Стандарт на допуск"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="14"
             Foreground="White" />
         <Label
-            Width="182"
-            Height="35"
-            Margin="734,482,0,0"
+            Width="191"
+            Height="51"
+            Margin="621,434,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
             Content="Стандарт на продукцию"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="14"
             Foreground="White" />
+        <TextBox
+            x:Name="standard_per_mark"
+            Width="330"
+            Height="51"
+            Margin="246,434,624,0"
+            VerticalAlignment="Top"
+            Background="#FFFFFF"
+            FontFamily="Segoe UI"
+            FontSize="12"
+            Foreground="#FF0000"
+            TextAlignment="Left" />
+        <TextBox
+            x:Name="tolerance_standart"
+            Width="330"
+            Height="51"
+            Margin="246,527,624,0"
+            VerticalAlignment="Top"
+            Background="#FFFFFF"
+            FontFamily="Segoe UI"
+            FontSize="12"
+            Foreground="#FF0000"
+            TextAlignment="Left" />
+        <TextBox
+            x:Name="product_standard"
+            Width="330"
+            Height="51"
+            Margin="858,434,12,0"
+            VerticalAlignment="Top"
+            Background="#FFFFFF"
+            FontFamily="Segoe UI"
+            FontSize="12"
+            Foreground="#FF0000"
+            TextAlignment="Left" />
     </Grid>
 </Window>
