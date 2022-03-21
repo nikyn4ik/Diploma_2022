@@ -39,7 +39,7 @@
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="26"
+                    FontSize="28"
                     Foreground="White"
                     Text="Сертификаты"
                     TextAlignment="Center" />

@@ -14,7 +14,7 @@
 
     <Window.Background>
 
-        <ImageBrush ImageSource="Images\ugs.jpg" />
+        <ImageBrush ImageSource="/Images\ugs.jpg" />
 
     </Window.Background>
 
@@ -32,7 +32,7 @@
         <Border
             Grid.ColumnSpan="3"
             Width="680"
-            Margin="261,22,0,10"
+            Margin="260,0,0,29"
             HorizontalAlignment="Left"
             Background="#002F6C"
             BorderThickness="0,0,0,0"
@@ -48,7 +48,7 @@
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="26"
+                    FontSize="28"
                     Foreground="White"
                     Text="Склады"
                     TextAlignment="Center">
@@ -89,7 +89,7 @@
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding name_storage}"
-                    Header="Имя" />
+                    Header="Наименование" />
 
                 <DataGridTextColumn
                     Width="*"
@@ -103,8 +103,8 @@
 
                 <DataGridTextColumn
                     Width="*"
-                    Binding="{Binding date_of_entrance}"
-                    Header="Дата" />
+                    Binding="{Binding date_add_storage}"
+                    Header="Дата добавления склада" />
             </DataGrid.Columns>
 
         </DataGrid>
@@ -119,7 +119,9 @@
             VerticalAlignment="Top"
             Background="#002F6C"
             Click="deleteButton"
-            Content="Удаление склада"
+            Content="Удаление склада из базы"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="14"
             Foreground="#FFFFFF" />
 
         <Button
@@ -133,6 +135,8 @@
             Background="#002F6C"
             Click="AddButton"
             Content="Добавление склада"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="14"
             Foreground="#FFFFFF" />
         <Button
             x:Name="update"
@@ -146,27 +150,31 @@
             Background="#002F6C"
             Click="UpdButton"
             Content="Обновление таблицы"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="14"
             Foreground="#FFFFFF" />
         <TextBox
             x:Name="pole"
             Grid.Column="2"
             Width="97"
             Height="32"
-            Margin="257,32,0,0"
+            Margin="261,12,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             TextChanged="polee_TextChanged"
             TextWrapping="Wrap" />
         <Button
             Grid.Column="2"
-            Width="86"
+            Width="123"
             Height="32"
-            Margin="382,32,0,0"
+            Margin="363,12,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Background="#002F6C"
             Click="Button_Click_search"
             Content="Поиск"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="14"
             Foreground="#FFFFFF" />
 
     </Grid>

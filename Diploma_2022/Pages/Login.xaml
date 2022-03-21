@@ -5,21 +5,15 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Diploma_2022"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    
     Title="Severstal Infocom"
-    
-    WindowStartupLocation="CenterScreen"
-    
     Width="1200"
     Height="700"
-    
-    ResizeMode="NoResize"
-    
     AllowsTransparency="False"
-    
     FontSize="14"
-    Icon="\Images\severstal_logo.ico"
+    Icon="/Images\severstal_logo.ico"
     MouseDown="Login_OnMouseDown"
+    ResizeMode="NoResize"
+    WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
 
     <Window.Background>
@@ -28,46 +22,49 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="20*"/>
-            <RowDefinition Height="60*"/>
-            <RowDefinition Height="20*"/>
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="60*" />
+            <RowDefinition Height="20*" />
         </Grid.RowDefinitions>
-        <StackPanel  HorizontalAlignment="Left" />
+        <StackPanel HorizontalAlignment="Left" />
 
-        <Border 
+        <Border
             Grid.Row="1"
-            Margin="100,0"
+            Margin="148,10,148,0"
             Background="#002F6C"
             CornerRadius="10">
-            <StackPanel Margin="200,0" VerticalAlignment="Center">
+            <StackPanel Margin="150,0,150,0" VerticalAlignment="Center">
 
                 <TextBlock
-                    Width="532"
+                    Width="577"
                     HorizontalAlignment="Center"
                     FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="26"
+                    FontSize="28"
                     Foreground="#FFFFFF"
                     Text="Добро пожаловать в Северсталь-Инфоком" />
 
                 <Separator />
 
                 <Label
-                    Margin="0,5,0,0"
-                    Content="Логин:"
+                    Margin="-4,5,0,0"
+                    Content="ЛОГИН:"
                     FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="14"
                     Foreground="White" />
                 <TextBox
                     x:Name="login"
                     AcceptsReturn="True"
                     Background="White"
+                    FontFamily="Microsoft JhengHei UI Light"
                     FontSize="18"
                     Foreground="black" />
 
 
                 <Label
-                    Margin="0,5,0,0"
-                    Content="Пароль:"
+                    Margin="-4,5,0,0"
+                    Content="ПАРОЛЬ:"
                     FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="14"
                     Foreground="White" />
 
                 <PasswordBox
@@ -89,23 +86,25 @@
 
                 <Border x:Name="capsLabel">
                     <TextBlock
-                    Width="150"
-                    Margin="0,5"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    FontSize="14"
-                    Foreground="#FFFFFF"
-                    Text="Caps lock включен!" />
+                        Width="150"
+                        Margin="0,-1,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        FontFamily="Microsoft JhengHei UI Light"
+                        FontSize="14"
+                        Foreground="#FFFFFF"
+                        Text="CAPS LOCK ВКЛЮЧЕН!" />
                 </Border>
-                
+
                 <Button
                     x:Name="btnLogin"
                     Margin="0,5,0,0"
                     Padding="5"
                     Background="#909090"
                     Click="btnLogin_Click"
-                    Content="Войти"
+                    Content="ВОЙТИ"
                     FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="14"
                     Foreground="#FFFFFF" />
 
             </StackPanel>

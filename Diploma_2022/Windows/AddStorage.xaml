@@ -6,9 +6,9 @@
     xmlns:local="clr-namespace:Diploma_2022.Windows"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Severstal Infocom"
-    WindowStartupLocation="CenterScreen"
     Width="1200"
     Height="700"
+    WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
 
     <Window.Background>
@@ -28,11 +28,11 @@
                 VerticalAlignment="Center">
 
                 <TextBlock
-                    Width="310"
+                    Width="334"
                     Margin="0,0,-11,0"
                     HorizontalAlignment="Center"
                     FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="26"
+                    FontSize="28"
                     Foreground="White"
                     Text="Создание нового склада" />
 

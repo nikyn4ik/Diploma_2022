@@ -19,13 +19,14 @@
     </Window.Background>
 
     <Grid Height="684" VerticalAlignment="Bottom">
+
         <Grid.Style>
             <Style />
         </Grid.Style>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="513*" />
-            <ColumnDefinition Width="206*" />
-            <ColumnDefinition Width="482*" />
+            <ColumnDefinition Width="551*" />
+            <ColumnDefinition Width="109*" />
+            <ColumnDefinition Width="540*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="91*" />
@@ -35,7 +36,7 @@
         <Border
             Grid.ColumnSpan="3"
             Width="680"
-            Margin="260,22,0,16"
+            Margin="260,0,0,29"
             HorizontalAlignment="Left"
             Background="#002F6C"
             BorderThickness="0,0,0,0"
@@ -46,12 +47,11 @@
                 VerticalAlignment="Center">
 
                 <TextBlock
-                    Width="310"
+                    Width="326"
                     Margin="0,0,-11,0"
                     HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
                     FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="26"
+                    FontSize="28"
                     Foreground="White"
                     Text="Отгрузка"
                     TextAlignment="Center" />
@@ -65,7 +65,7 @@
             Grid.Row="1"
             Grid.ColumnSpan="3"
             Height="500"
-            Margin="10,0"
+            Margin="10,0,10,0"
             VerticalAlignment="Center"
             AutoGenerateColumns="False"
             Background="Snow"
@@ -106,68 +106,74 @@
         </DataGrid>
 
         <Button
-            x:Name="update"
+            x:Name="dateship"
             Grid.Row="2"
-            Grid.Column="1"
-            Grid.ColumnSpan="2"
-            Width="208"
+            Grid.Column="2"
+            Width="240"
             Height="48"
-            Margin="205,10,0,0"
+            Margin="0,10,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Background="#002F6C"
             Click="UpdButton"
-            Content="Обновление таблицы"
+            Content="Указать дату отгрузки"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="14"
             Foreground="#FFFFFF" />
         <Button
             x:Name="go_to_dostav_Button"
             Grid.Row="2"
-            Grid.ColumnSpan="2"
-            Width="208"
+            Width="240"
             Height="48"
-            Margin="305,10,0,0"
+            Margin="311,10,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Background="#002F6C"
             Click="go_to_dostav_Click"
             Content="Отправить из отгрузки в доставку"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="14"
             Foreground="#FFFFFF" />
         <Button
             x:Name="brakButton"
             Grid.Row="2"
             Grid.Column="2"
             Height="48"
-            Margin="264,10,10,0"
+            Margin="290,10,10,0"
             VerticalAlignment="Top"
             Background="#002F6C"
             Click="brakButton_Click"
             Content="Отправить заказ в брак"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="14"
             Foreground="#FFFFFF" />
         <TextBox
             x:Name="pole"
             Grid.Column="2"
-            Width="97"
+            Width="120"
             Height="32"
-            Margin="254,33,0,0"
+            Margin="300,15,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             TextChanged="polee_TextChanged"
             TextWrapping="Wrap" />
         <Button
             Grid.Column="2"
-            Width="86"
+            Width="100"
             Height="32"
-            Margin="370,32,0,0"
+            Margin="431,15,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Background="#002F6C"
             Click="Button_Click_search"
             Content="Поиск"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="14"
             Foreground="#FFFFFF" />
         <Button
             x:Name="certButton"
             Grid.Row="2"
-            Width="208"
+            Width="240"
             Height="48"
             Margin="10,10,0,0"
             HorizontalAlignment="Left"
@@ -175,6 +181,8 @@
             Background="#002F6C"
             Click="cert_Click"
             Content="Добавление сертификации"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="14"
             Foreground="#FFFFFF" />
     </Grid>
 </Window>

@@ -8,11 +8,16 @@
     Title="Severstal Infocom"
     Width="1200"
     Height="710"
+    Closing="Window_Closing"
     Foreground="#FFFFFF"
     ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
-   
+
+    <Window.Background>
+        <ImageBrush ImageSource="/Images\newbrand-bg2.jpg" />
+    </Window.Background>
+
     <Grid Height="684" VerticalAlignment="Top">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto" />
@@ -23,84 +28,25 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="684" />
             </Grid.RowDefinitions>
-            
+
             <StackPanel
-                Margin="0,0,950,-10"
+                Margin="0,0,920,-10"
                 Background="#002F6C"
                 Orientation="Vertical"
                 RenderTransformOrigin="0.503,0.539">
                 <TextBlock
-                    Height="33"
+                    Width="274"
+                    Height="74"
                     Margin="0,0,0,0"
                     HorizontalAlignment="Center"
-                    VerticalAlignment="Stretch"
-                    FontFamily="Times New Roman"
-                    FontSize="30"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="50"
                     Foreground="#FFFFFF"
                     RenderTransformOrigin="0,0.5"
                     Text="Меню"
                     TextAlignment="Center"
                     TextWrapping="NoWrap" />
-
-                <Button
-                    Height="33"
-                    Margin="0,2,0,2"
-                    AllowDrop="True"
-                    Background="#FFFFFF  "
-                    Click="Button_order"
-                    Content="Заказы"
-                    FontFamily="Times New Roman"
-                    FontSize="16"
-                    Foreground="#002F6C" />
-
-                <Button
-                    Height="33"
-                    Margin="0,0,0,2"
-                    AllowDrop="True"
-                    Background="#FF0000 "
-                    Click="Button_Shipment"
-                    Content="Отгрузка и доставка"
-                    FontFamily="Times New Roman"
-                    FontSize="16"
-                    Foreground="#FFFFFF " />
-
-
-
-                <Button
-                    Height="33"
-                    Margin="0,0,0,2"
-                    AllowDrop="True"
-                    Background="#FFFFFF  "
-                    Click="Button_Storage"
-                    Content="Склады"
-                    FontFamily="Times New Roman"
-                    FontSize="16"
-                    Foreground="#002F6C" />
-
-                <Button
-                    Height="33"
-                    Margin="0,0,0,1"
-                    AllowDrop="True"
-                    Background="#FF0000 "
-                    Click="Button_Certificates"
-                    Content="Документация"
-                    FontFamily="Times New Roman"
-                    FontSize="16"
-                    Foreground="#FFFFFF " />
-                <Button
-                    Height="33"
-                    AllowDrop="True"
-                    Background="#FFFFFF  "
-                    Click="Button_RabMestoMastera"
-                    Content="Рабочее место мастера (QR) "
-                    FontFamily="Times New Roman"
-                    FontSize="16"
-                    Foreground="#002F6C" />
-
-
             </StackPanel>
-
-
 
             <Grid
                 Width="1198"
@@ -116,44 +62,26 @@
                     Margin="0,88,331,0"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Top"
-                    Source="\Images\Severstal_Logo_LAT_White_RGB.png"
+                    Source="/Images\Severstal_Logo_LAT_White_RGB.png"
                     Stretch="Uniform"
                     StretchDirection="Both"
                     Visibility="Visible" />
-                <Button
-                    Margin="0,638,950,30"
-                    VerticalContentAlignment="Center"
-                    Background="#F4F4F4"
-                    BorderBrush="White"
-                    BorderThickness="1,1,1,1"
-                    Click="Button_ClickOut"
-                    ForceCursor="True"
-                    Foreground="#FFB85F5F"
-                    IsTabStop="False">
-                    <Button.Resources>
-                        <Style TargetType="{x:Type Border}">
-                            <Setter Property="CornerRadius" Value="10" />
-                        </Style>
-                    </Button.Resources>
-                    <TextBlock Foreground="#FF002F6C">
-                        <Run Text="Выход" />
-                    </TextBlock>
-                </Button>
                 <TextBlock
                     x:Name="lplogin"
-                    Height="26"
-                    Margin="158,0,950,76"
+                    Height="32"
+                    Margin="197,0,920,23"
                     VerticalAlignment="Bottom"
                     Background="#FFFFFF"
+                    FontFamily="Microsoft JhengHei UI Light"
                     FontSize="18"
                     FontWeight="Normal"
                     Foreground="#FF0000"
                     TextAlignment="Center" />
 
                 <Label
-                    Width="158"
-                    Height="26"
-                    Margin="0,592,0,0"
+                    Width="197"
+                    Height="32"
+                    Margin="0,639,0,0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     HorizontalContentAlignment="Left"
@@ -161,8 +89,60 @@
                     Background="#FF0000"
                     BorderThickness="0,0,0,0"
                     Content="Активный пользователь:"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="16"
                     FontWeight="Normal"
                     Foreground="#FFFFFF" />
+                <Button
+                    Height="44"
+                    Margin="0,303,920,347"
+                    AllowDrop="True"
+                    Background="#FFFFFF"
+                    Click="Button_RabMestoMastera"
+                    Content="Рабочее место мастера (QR) "
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="18"
+                    Foreground="#002F6C" />
+                <Button
+                    Height="44"
+                    Margin="0,248,920,402"
+                    AllowDrop="True"
+                    Background="#FF0000 "
+                    Click="Button_Certificates"
+                    Content="Документация"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="18"
+                    Foreground="#FFFFFF " />
+                <Button
+                    Height="44"
+                    Margin="0,192,920,458"
+                    AllowDrop="True"
+                    Background="#FFFFFF"
+                    Click="Button_Storage"
+                    Content="Склады"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="18"
+                    Foreground="#002F6C" />
+                <Button
+                    Width="278"
+                    Height="44"
+                    Margin="0,136,920,514"
+                    AllowDrop="True"
+                    Background="#FF0000 "
+                    Click="Button_Shipment"
+                    Content="Отгрузка и доставка"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="18"
+                    Foreground="#FFFFFF " />
+                <Button
+                    Margin="0,79,920,571"
+                    AllowDrop="True"
+                    Background="#FFFFFF"
+                    Click="Button_order"
+                    Content="Заказы"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="18"
+                    Foreground="#002F6C" />
             </Grid>
         </Grid>
     </Grid>

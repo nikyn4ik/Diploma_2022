@@ -19,10 +19,12 @@
 
     <Grid>
         <Border
+            Width="680"
             Margin="0,0,0,613"
+            HorizontalAlignment="Center"
             Background="#002F6C"
             BorderThickness="0,0,0,0"
-            CornerRadius="10" HorizontalAlignment="Center" Width="680">
+            CornerRadius="10">
             <StackPanel
                 Width="392"
                 HorizontalAlignment="Center"
@@ -87,11 +89,17 @@
         </DataGrid>
         <Button
             x:Name="toshipment"
+            Width="207"
+            Height="51"
             Margin="10,20,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
             Background="#002F6C"
             Click="Buttontoshipment"
             Content="Отправить заявку в отгрузку"
-            Foreground="#FFFFFF" Height="51" VerticalAlignment="Top" HorizontalAlignment="Left" Width="207" />
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="14"
+            Foreground="#FFFFFF" />
 
     </Grid>
 </Window>

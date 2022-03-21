@@ -24,7 +24,6 @@ namespace Diploma_2022.Pages
     /// </summary>
     public partial class ShipmentPage : Window
     {
-        //string connectionString;
         SqlConnection sqlConnection = new SqlConnection(@"Data Source=SPUTNIK; Initial Catalog=diploma_db; Integrated Security=True");
 
         public ShipmentPage()
@@ -46,13 +45,9 @@ namespace Diploma_2022.Pages
             sqlConnection.Close();
         }
 
-        private void UpdButton(object sender, RoutedEventArgs e)
+        private void dateship(object sender, RoutedEventArgs e)/* (!!!)*/
         {
-            SqlDataAdapter adpt = new SqlDataAdapter("SELECT * FROM [dbo].[shipment]", sqlConnection);
-            DataTable dt = new DataTable();
-            adpt.Fill(dt);
-            ShipmentGrid.DataContext = dt;
-            ShipmentGrid.ItemsSource = dt.DefaultView;
+
         }
 
         private void polee_TextChanged(object sender, TextChangedEventArgs e)
@@ -76,7 +71,7 @@ namespace Diploma_2022.Pages
                 cmds.Close();
             }
             }
-        private void brakButton_Click(object sender, RoutedEventArgs e) //!!!!!!!!!!!
+        private void brakButton_Click(object sender, RoutedEventArgs e)
         {
             var window = new ShipmentPage();
             MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите отменить заявку?", "Sevestal Infocom", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning);
@@ -104,7 +99,10 @@ namespace Diploma_2022.Pages
 
         private void cert_Click(object sender, RoutedEventArgs e)
         {
-
+            Hide();
+            var window = new Certificates();
+            window.ShowDialog();
+            Show();
         }
 
         private void go_to_dostav_Click(object sender, RoutedEventArgs e)
@@ -114,9 +112,7 @@ namespace Diploma_2022.Pages
                 DataRowView drv = (DataRowView)ShipmentGrid.SelectedItem;
                 string shipment = drv.Row[0].ToString();
                 sqlConnection.Open();
-                SqlCommand cmd = new SqlCommand("INSERT INTO delivery" +
-                    " (id_delivery, consignee) SELECT id_shipment, " +
-                    "consignee FROM shipment WHERE id_shipment=@id", sqlConnection); 
+                SqlCommand cmd = new SqlCommand("INSERT INTO delivery" + " (id_delivery, consignee) SELECT id_shipment, " + "consignee FROM shipment WHERE id_shipment=@id", sqlConnection); 
                 //date_of_delivery   date_of_shipment
                 cmd.Parameters.AddWithValue("@id", shipment);
                 cmd.ExecuteNonQuery();

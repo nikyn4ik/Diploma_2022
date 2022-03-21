@@ -39,9 +39,9 @@
                 VerticalAlignment="Center"
                 Orientation="Vertical">
                 <TextBlock
-                    Width="355"
+                    Width="363"
                     FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="26"
+                    FontSize="28"
                     Foreground="White"
                     Text="Оформление доставки"
                     TextAlignment="Center" />
@@ -53,7 +53,8 @@
             Grid.ColumnSpan="4"
             Margin="12,80,10,192"
             AutoGenerateColumns="False"
-            IsReadOnly="True" SelectionChanged="DeliveryGrid_SelectionChanged">
+            IsReadOnly="True"
+            SelectionChanged="DeliveryGrid_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Width="*"
@@ -161,8 +162,10 @@
 
         <ComboBox
             x:Name="DateDelivery"
-            Grid.Column="2" Grid.ColumnSpan="2"
-            Width="182" Height="36"
+            Grid.Column="2"
+            Grid.ColumnSpan="2"
+            Width="182"
+            Height="36"
             Margin="290,497,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"

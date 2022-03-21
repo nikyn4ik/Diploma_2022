@@ -16,6 +16,7 @@
     <None Remove="Images\exit.png" />
     <None Remove="Images\lebedevsevers.jpg" />
     <None Remove="Images\logout.png" />
+    <None Remove="Images\newbrand-bg2.jpg" />
     <None Remove="Images\severstal_logo.ico" />
     <None Remove="Images\severstal_logo_dzo_icon.ico" />
     <None Remove="Images\Severstal_Logo_LAT_White_RGB.png" />
@@ -57,6 +58,7 @@
   <ItemGroup>
     <Resource Include="Images\755815785298206.jpg" />
     <Resource Include="Images\lebedevsevers.jpg" />
+    <Resource Include="Images\newbrand-bg2.jpg" />
     <Resource Include="Images\severstal_logo.ico" />
     <Resource Include="Images\severstal_logo_dzo_icon.ico" />
     <Resource Include="Images\Severstal_Logo_LAT_White_RGB.png" />

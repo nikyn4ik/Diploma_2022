@@ -26,26 +26,6 @@ namespace Diploma_2022
             InitializeComponent();
 
         }
-        private void Button_ClickOut(object sender, RoutedEventArgs e)
-        {
-            var lg = new Login();
-            MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите выйти?"
-                , "Sevestal Infocom", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning);
-            switch (result)
-            {
-                case MessageBoxResult.No:
-                    MessageBox.Show("И вновь добро пожаловать!", "Severstal Infocom");
-                    break;
-                case MessageBoxResult.Yes:
-                    MessageBox.Show("До свидания!", "Severstal Infocom");
-                    this.Hide();
-                    lg.Show();
-                    break;
-                case MessageBoxResult.Cancel:
-                    break;
-
-            }
-        }
 
         private void Button_Shipment(object sender, RoutedEventArgs e)
         {
@@ -86,5 +66,23 @@ namespace Diploma_2022
             window.ShowDialog();
             Show();
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            var lg = new Login();
+            MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите выйти?"
+                , "Sevestal Infocom", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            switch (result)
+            {
+                case MessageBoxResult.No:
+                    //MessageBox.Show("Добро пожаловать!", "Severstal Infocom");
+                    break;
+                case MessageBoxResult.Yes:
+                    MessageBox.Show("До свидания!", "Severstal Infocom");
+                    this.Hide();
+                    lg.Show();
+                    break;
+            }
+            }
     }
 }
