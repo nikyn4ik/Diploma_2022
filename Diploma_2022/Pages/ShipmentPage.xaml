@@ -115,7 +115,7 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Background="#002F6C"
-            Click="UpdButton"
+            Click="dateships"
             Content="Указать дату отгрузки"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"

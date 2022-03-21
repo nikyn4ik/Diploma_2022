@@ -16,12 +16,12 @@ using System.IO;
 
 namespace Diploma_2022.Windows
 { 
-    public partial class Delivery : Window
+    public partial class AddDelivery : Window
     {
         List<Models.Storage> list = new();
         SqlConnection sqlConnection = new SqlConnection(@"Data Source=SPUTNIK; Initial Catalog=diploma_db; Integrated Security=True");
         SqlDataReader db;
-        public Delivery()
+        public AddDelivery()
         {
             InitializeComponent();
             SqlDataAdapter adpt;
@@ -119,9 +119,8 @@ namespace Diploma_2022.Windows
                 table.AddCell(new Phrase(storages.name_storage, font));
                 table.AddCell(new Phrase(storages.address, font));
                 table.AddCell(new Phrase(storages.phone_storage, font));
-                table.AddCell(new Phrase(storages.date_of_entrance.ToString(), font));
-                table.AddCell(new Phrase(storages.SAP_product_code, font));
                 table.AddCell(new Phrase(storages.remainder, font));
+                table.AddCell(new Phrase(storages.date_add_storage.ToString(), font));
             }
 
             doc.Add(table);

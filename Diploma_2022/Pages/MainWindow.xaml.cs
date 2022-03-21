@@ -62,7 +62,7 @@ namespace Diploma_2022
         private void Button_RabMestoMastera(object sender, RoutedEventArgs e)
         {
             Hide();
-            var window = new Windows.Delivery();
+            var window = new Windows.AddDelivery();
             window.ShowDialog();
             Show();
         }
