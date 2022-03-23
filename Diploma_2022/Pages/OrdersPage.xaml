@@ -99,7 +99,7 @@
             Margin="10,20,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Background="#002F6C"
+            Background="#FF0000"
             Click="Buttontoshipment"
             Content="Отправить заявку в отгрузку"
             FontFamily="Microsoft JhengHei UI Light"

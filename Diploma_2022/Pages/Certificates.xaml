@@ -8,6 +8,7 @@
     Title="Severstal Infocom"
     Width="1200"
     Height="700"
+    WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
     <Window.Background>
 
@@ -93,7 +94,7 @@
             Margin="712,9,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Background="#002F6C"
+            Background="#FF0000"
             Click="deleteButton_Click"
             Content="Удалить сертификат"
             FontFamily="Microsoft JhengHei UI Light"

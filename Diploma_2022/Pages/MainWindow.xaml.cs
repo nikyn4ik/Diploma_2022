@@ -24,7 +24,6 @@ namespace Diploma_2022
         public MainWindow()
         {
             InitializeComponent();
-
         }
 
         private void Button_Shipment(object sender, RoutedEventArgs e)
@@ -53,6 +52,7 @@ namespace Diploma_2022
 
         private void Button_order(object sender, RoutedEventArgs e)
         {
+            MessageBox.Show("Модуль Миши", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
             Hide();
             var window = new Pages.OrdersPage();
             window.ShowDialog();
@@ -69,10 +69,7 @@ namespace Diploma_2022
 
         private void Button_RabMestoMastera(object sender, RoutedEventArgs e)
         {
-            Hide();
-            var window = new Windows.AddDelivery();
-            window.ShowDialog();
-            Show();
+            MessageBox.Show("Модуль Влада", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

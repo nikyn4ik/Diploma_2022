@@ -99,5 +99,10 @@ namespace Diploma_2022
             if (e.LeftButton == MouseButtonState.Pressed)
                 DragMove();
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
     }
 }

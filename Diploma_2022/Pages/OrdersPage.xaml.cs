@@ -57,12 +57,10 @@ namespace Diploma_2022.Pages
                 if (OrdersGrid.SelectedItems.Count > 0)
                 {
                     DataRowView drv = (DataRowView)OrdersGrid.SelectedItem;
-                    string orders = drv.Row[0].ToString();
+                    string ordersid = drv.Row[0].ToString();
                     sqlConnection.Open();
-                    SqlCommand cmd = new SqlCommand("INSERT INTO [dbo]. shipment" +
-                     "(id_shipment, consignee, date_of_shipments) SELECT id_order, SAP_product_code, date_of_delivery " +
-                    "FROM orders WHERE id_order=@id", sqlConnection);
-                    cmd.Parameters.AddWithValue("@id", orders);
+                    SqlCommand cmd = new SqlCommand("INSERT INTO [dbo].[shipment](id_shipment, consignee, date_of_shipments) VALUES((SELECT id_order, SAP_product_code, date_of_delivery FROM orders WHERE id_order=@id))", sqlConnection);
+                    cmd.Parameters.AddWithValue("@id", ordersid);
                     cmd.ExecuteNonQuery();
                     OrdersDataGrid_SelectionChanged();
                     MessageBox.Show("Заявка успешно отправлена в отгрузку!", "Severstal Infocom");

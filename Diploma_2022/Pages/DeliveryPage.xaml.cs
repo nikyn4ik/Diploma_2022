@@ -100,5 +100,13 @@ namespace Diploma_2022.Pages
                 cmds.Close();
             }
         }
+
+        private void editButton(object sender, RoutedEventArgs e)
+        {
+            Hide();
+            var window = new Windows.AddDelivery();
+            window.ShowDialog();
+            Show();
+        }
     }
 }

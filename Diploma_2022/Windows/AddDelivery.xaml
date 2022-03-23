@@ -87,28 +87,42 @@
         <Button
             x:Name="OutPDF"
             Grid.Column="1"
-            Width="191"
+            Width="95"
             Height="51"
-            Margin="0,497,0,0"
-            HorizontalAlignment="Center"
+            Margin="37,497,0,0"
+            HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Background="#002F6C"
             Click="outpdfButton"
-            Content="Вывод в PDF"
+            Content="PDF"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
             Foreground="#FFFFFF" />
         <Button
             x:Name="outexcel"
             Grid.Column="1"
+            Width="95"
+            Height="51"
+            Margin="145,497,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Background="#002F6C"
+            Click="out_excel_button"
+            Content="Excel"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="14"
+            Foreground="#FFFFFF" />
+        <Button
+            Grid.Column="1"
             Width="191"
             Height="51"
             Margin="0,575,0,0"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
-            Background="#002F6C"
-            Click="out_excel_button"
-            Content="Вывод в Microsoft Excel"
+            Background="#FF0000"
+            BorderThickness="0,0,0,0"
+            Click="Button_add"
+            Content="Загрузить в таблицу"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
             Foreground="#FFFFFF" />
@@ -157,7 +171,7 @@
             Foreground="White" />
 
         <ComboBox
-            x:Name="product_standart"
+            x:Name="product_stan"
             Grid.ColumnSpan="2"
             Width="182"
             Height="51"
@@ -166,7 +180,8 @@
             VerticalAlignment="Top"
             DataContextChanged="product_standart_DataContextChanged"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="12"
+            FontSize="14"
+            Foreground="#002F6C"
             SelectionChanged="product_standart_SelectionChanged" />
         <ComboBox
             x:Name="Storage"
@@ -176,7 +191,8 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="12"
+            FontSize="14"
+            Foreground="#002F6C"
             SelectionChanged="Storage_SelectionChanged" />
         <TextBox
             x:Name="DateDelivery"
@@ -188,8 +204,8 @@
             VerticalAlignment="Top"
             Background="#FFFFFF"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="18"
-            Foreground="#FF0000"
+            FontSize="14"
+            Foreground="#002F6C"
             Text="{Binding ElementName=DatePicker, Path=SelectedDate, StringFormat=d}"
             TextAlignment="Left"
             TextChanged="DateDelivery_TextChanged" />
@@ -204,7 +220,8 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="12"
+            FontSize="14"
+            Foreground="#002F6C"
             SelectionChanged="Done_SelectionChanged" />
         <Label
             Grid.Column="1"

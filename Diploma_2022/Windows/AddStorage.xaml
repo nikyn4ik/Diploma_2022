@@ -150,7 +150,9 @@
             Margin="228,342,642,0"
             VerticalAlignment="Top"
             Background="#FFFFFF"
-            Foreground="#FF0000"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="14"
+            Foreground="#002F6C"
             TextAlignment="Left" />
         <TextBox
             x:Name="addresssklad"
@@ -159,7 +161,9 @@
             Margin="228,416,642,0"
             VerticalAlignment="Top"
             Background="#FFFFFF"
-            Foreground="#FF0000"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="14"
+            Foreground="#002F6C"
             TextAlignment="Left" />
         <TextBox
             x:Name="phonesklad"
@@ -168,7 +172,9 @@
             Margin="228,490,642,0"
             VerticalAlignment="Top"
             Background="#FFFFFF"
-            Foreground="#FF0000"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="14"
+            Foreground="#002F6C"
             TextAlignment="Left" />
         <TextBox
             x:Name="ostatok"
@@ -177,7 +183,9 @@
             Margin="858,342,12,0"
             VerticalAlignment="Top"
             Background="#FFFFFF"
-            Foreground="#FF0000"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="14"
+            Foreground="#002F6C"
             TextAlignment="Left" />
         <TextBox
             x:Name="dataaddsklad"
@@ -186,7 +194,9 @@
             Margin="228,558,643,0"
             VerticalAlignment="Top"
             Background="#FFFFFF"
-            Foreground="#FF0000"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="14"
+            Foreground="#002F6C"
             TextAlignment="Left" />
         <Button
             Width="588"
@@ -194,13 +204,13 @@
             Margin="600,527,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Background="#002F6C"
+            Background="#FF0000"
             BorderThickness="0,0,0,0"
             Click="Button_add"
             Content="Загрузить в таблицу"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="26"
-            Foreground="White" />
+            Foreground="#FFFFFF" />
 
     </Grid>
 </Window>

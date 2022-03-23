@@ -14,7 +14,7 @@
     MouseDown="Login_OnMouseDown"
     ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen"
-    mc:Ignorable="d">
+    mc:Ignorable="d" Closing="Window_Closing">
 
     <Window.Background>
         <ImageBrush ImageSource="\Images\voestalpine_voest-1024x1024.jpg" />

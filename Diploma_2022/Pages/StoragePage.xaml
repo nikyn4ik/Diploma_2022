@@ -102,7 +102,7 @@
             Margin="170,10,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Background="#002F6C"
+            Background="#FF0000"
             Click="deleteButton"
             Content="Удаление склада из базы"
             FontFamily="Microsoft JhengHei UI Light"

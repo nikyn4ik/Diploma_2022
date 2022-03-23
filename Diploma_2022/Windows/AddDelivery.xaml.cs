@@ -49,9 +49,9 @@ namespace Diploma_2022.Windows
             db = cmd.ExecuteReader();
             while (db.Read())
             {
-                product_standart.Items.Add(db.GetValue(0));
+                product_stan.Items.Add(db.GetValue(0));
             }
-            product_standart.Items.Add("1");
+            product_stan.Items.Add("1");
             sqlConnection.Close();
         }
 
@@ -211,6 +211,25 @@ namespace Diploma_2022.Windows
         private void DateDelivery_TextChanged(object sender, TextChangedEventArgs e)
         {
             DateTime DateDelivery = (DateTime)this.DatePicker.SelectedDate;
+        }
+
+        private void Button_add(object sender, RoutedEventArgs e)
+        {
+            SqlConnection sqlConnection = new SqlConnection();
+            sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
+            {
+                sqlConnection.Open();
+                String query = "INSERT INTO [dbo].delivery values(@product_standard, @name_storage, @date_of_delivery); ";
+                SqlCommand createCommand = new SqlCommand(query, sqlConnection);
+                createCommand.Parameters.AddWithValue("@product_standard", product_stan.Text);
+                createCommand.Parameters.AddWithValue("@name_storage", Storage.Text);
+                createCommand.Parameters.AddWithValue("@date_of_delivery", DateDelivery.Text);
+                //createCommand.Parameters.AddWithValue("@product_standard", Done.Text);
+                createCommand.ExecuteNonQuery();
+                MessageBox.Show("Сохранено!", "Severstal Infocom", MessageBoxButton.OK);
+                sqlConnection.Close();
+                showdata();
+            }
         }
     }
 }

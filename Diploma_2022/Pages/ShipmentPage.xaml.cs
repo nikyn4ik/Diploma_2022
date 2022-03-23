@@ -32,22 +32,25 @@ namespace Diploma_2022.Pages
             Shipment_DataGrid_SelectionChanged();
 
         }
-
         private void Shipment_DataGrid_SelectionChanged()
         {
+            SqlConnection sqlConnection = new SqlConnection();
+            sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
+            sqlConnection.Open();
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "SELECT * FROM [dbo].[shipment], [dbo].[qua_certificate] ";
+            cmd.CommandText = "SELECT * FROM [dbo].[shipment]";
             cmd.Connection = sqlConnection;
-            SqlDataAdapter Shipment = new SqlDataAdapter(cmd);
+            SqlDataAdapter shipment = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable("diploma_db");
-            Shipment.Fill(dt);
+            shipment.Fill(dt);
             ShipmentGrid.ItemsSource = dt.DefaultView;
             sqlConnection.Close();
         }
-
         private void dateships(object sender, RoutedEventArgs e)/* (!!!)*/
         {
-
+            var window = new Windows.AddCalendarDateShipment();
+            window.ShowDialog();
+            Show();
         }
 
         private void polee_TextChanged(object sender, TextChangedEventArgs e)
@@ -58,6 +61,7 @@ namespace Diploma_2022.Pages
         private void Button_Click_search(object sender, RoutedEventArgs e)
         {
             string ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
+            try
             {
                 SqlConnection cmds = new SqlConnection(ConnectionString);
                 string cmd = "SELECT * FROM [dbo].[shipment] WHERE id_shipment like '" + pole.Text + "%'";
@@ -70,7 +74,11 @@ namespace Diploma_2022.Pages
                 shipments.Update(dt);
                 cmds.Close();
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
+        }
         private void brakButton_Click(object sender, RoutedEventArgs e)
         {
             var window = new ShipmentPage();
@@ -110,11 +118,11 @@ namespace Diploma_2022.Pages
             if (ShipmentGrid.SelectedItems.Count > 0)
             {
                 DataRowView drv = (DataRowView)ShipmentGrid.SelectedItem;
-                string shipment = drv.Row[0].ToString();
+                string shipmentId = drv.Row[0].ToString();
                 sqlConnection.Open();
-                SqlCommand cmd = new SqlCommand("INSERT INTO delivery" + " (id_delivery, consignee) SELECT id_shipment, " + "consignee FROM shipment WHERE id_shipment=@id", sqlConnection); 
-                //date_of_delivery   date_of_shipment
-                cmd.Parameters.AddWithValue("@id", shipment);
+                SqlCommand cmd = new SqlCommand("INSERT INTO [dbo].[delivery](consignee, product_standard, name_storage, id_order) " +
+                "VALUES((SELECT consignee FROM shipment WHERE id_shipment = @id), 's', 's', (SELECT consignee FROM shipment WHERE id_shipment = @id))", sqlConnection);
+                cmd.Parameters.AddWithValue("@id", shipmentId);
                 cmd.ExecuteNonQuery();
                 Shipment_DataGrid_SelectionChanged();
                 MessageBox.Show("Заявка из отгрузки успешно отправлена в доставку!", "Severstal Infocom");
@@ -123,6 +131,5 @@ namespace Diploma_2022.Pages
                 Show();
             }
         }
-
     }
 }

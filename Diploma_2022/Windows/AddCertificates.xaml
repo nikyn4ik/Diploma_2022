@@ -80,13 +80,13 @@
                 Margin="602,527,0,0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
-                Background="#002F6C"
+                Background="#FF0000"
                 BorderThickness="0,0,0,0"
                 Click="Button_add"
                 Content="Загрузить в таблицу"
                 FontFamily="Microsoft JhengHei UI Light"
                 FontSize="26"
-                Foreground="White" />
+                Foreground="#FFFFFF" />
         </Border>
         <Label
             Width="191"
