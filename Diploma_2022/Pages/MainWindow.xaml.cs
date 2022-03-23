@@ -59,6 +59,14 @@ namespace Diploma_2022
             Show();
         }
 
+        private void Button_Delivery(object sender, RoutedEventArgs e)
+        {
+            Hide();
+            var window = new Pages.DeliveryPage();
+            window.ShowDialog();
+            Show();
+        }
+
         private void Button_RabMestoMastera(object sender, RoutedEventArgs e)
         {
             Hide();

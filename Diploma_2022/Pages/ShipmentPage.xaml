@@ -36,29 +36,27 @@
         <Border
             Grid.ColumnSpan="3"
             Width="680"
-            Margin="260,5,0,22"
+            Height="71"
+            Margin="260,0,0,0"
             HorizontalAlignment="Left"
+            VerticalAlignment="Top"
             Background="#002F6C"
             BorderThickness="0,0,0,0"
             CornerRadius="10">
-            <StackPanel
-                Width="392"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center">
+            <StackPanel Margin="144,26,144,3">
 
                 <TextBlock
-                    Width="326"
+                    Width="310"
+                    Height="38"
                     Margin="0,0,-11,0"
                     HorizontalAlignment="Center"
                     FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="28"
+                    FontSize="26"
                     Foreground="White"
-                    Text="Отгрузка"
-                    TextAlignment="Center" />
+                    TextAlignment="Center"><Run Language="ru-ru" Text="Отгрузка" /></TextBlock>
 
             </StackPanel>
         </Border>
-
 
         <DataGrid
             Name="ShipmentGrid"
@@ -70,37 +68,60 @@
             AutoGenerateColumns="False"
             Background="Snow"
             BorderBrush="#FF7C79BB"
-            IsReadOnly="True"
-            SelectionChanged="ShipmentGrid_SelectionChanged">
+            CanUserAddRows="False"
+            CanUserDeleteRows="False"
+            CanUserReorderColumns="False"
+            CanUserResizeRows="False"
+            CanUserSortColumns="False"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="12"
+            IsReadOnly="False">
 
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Width="4*"
                     Binding="{Binding id_shipment}"
-                    Header="id отгрузки" />
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="12"
+                    Header="id отгрузки"
+                    IsReadOnly="True" />
                 <DataGridTextColumn
                     Width="4*"
                     Binding="{Binding consignee}"
-                    Header="Груз" />
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="12"
+                    Header="Груз"
+                    IsReadOnly="True" />
                 <DataGridTextColumn
                     Width="4*"
                     Binding="{Binding date_of_shipments}"
-                    Header="Дата отгрузки" />
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="12"
+                    Header="Дата отгрузки"
+                    IsReadOnly="True" />
                 <DataGridTextColumn
                     Width="4*"
                     Binding="{Binding shipment_total_amount_tons}"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="12"
                     Header="Отгр.кол-во всего [тонны]" />
                 <DataGridTextColumn
                     Width="4*"
                     Binding="{Binding number_of_shipments_per_month_tons}"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="12"
                     Header="Отгр. кол-во за месяц [тонны]" />
                 <DataGridTextColumn
                     Width="4*"
                     Binding="{Binding early_shipment}"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="12"
                     Header="Ранняя отгрузка" />
                 <DataGridTextColumn
                     Width="4*"
                     Binding="{Binding product_standard}"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="12"
                     Header="Сертификат" />
             </DataGrid.Columns>
         </DataGrid>
@@ -123,9 +144,9 @@
         <Button
             x:Name="go_to_dostav_Button"
             Grid.Row="2"
-            Width="240"
+            Width="247"
             Height="48"
-            Margin="301,10,0,0"
+            Margin="304,10,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Background="#002F6C"
@@ -152,7 +173,7 @@
             Grid.Column="2"
             Width="120"
             Height="32"
-            Margin="299,0,0,0"
+            Margin="300,0,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             TextChanged="polee_TextChanged"

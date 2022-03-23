@@ -50,6 +50,11 @@
             Margin="10,106,10,50"
             AutoGenerateColumns="False"
             Background="Snow"
+            CanUserAddRows="False"
+            CanUserDeleteRows="False"
+            CanUserReorderColumns="False"
+            CanUserResizeRows="False"
+            CanUserSortColumns="False"
             IsReadOnly="True"
             SelectionChanged="OrdersGrid_SelectionChanged">
             <DataGrid.Columns>
@@ -90,14 +95,16 @@
         <Button
             x:Name="toshipment"
             Width="207"
+            Height="51"
             Margin="10,20,0,0"
             HorizontalAlignment="Left"
+            VerticalAlignment="Top"
             Background="#002F6C"
             Click="Buttontoshipment"
             Content="Отправить заявку в отгрузку"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
-            Foreground="#FFFFFF" Height="51" VerticalAlignment="Top" />
+            Foreground="#FFFFFF" />
 
     </Grid>
 </Window>

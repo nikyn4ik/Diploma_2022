@@ -70,12 +70,7 @@
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding date_of_entrance}"
-                    Header="Дата поступления" />
-
-                <DataGridTextColumn
-                    Width="*"
-                    Binding="{Binding SAP_product_code}"
-                    Header="Код товара SAP" />
+                    Header="Дата создания склада" />
 
                 <DataGridTextColumn
                     Width="*"

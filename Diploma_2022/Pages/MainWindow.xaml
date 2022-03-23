@@ -95,24 +95,34 @@
                     Foreground="#FFFFFF" />
                 <Button
                     Height="44"
-                    Margin="0,303,920,347"
+                    Margin="0,358,920,292"
                     AllowDrop="True"
-                    Background="#FFFFFF"
+                    Background="#FF0000"
                     Click="Button_RabMestoMastera"
                     Content="Рабочее место мастера (QR)"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="18"
-                    Foreground="#002F6C" />
+                    Foreground="#FFFFFF" />
                 <Button
                     Height="44"
                     Margin="0,248,920,402"
                     AllowDrop="True"
                     Background="#FF0000 "
                     Click="Button_Certificates"
-                    Content="Документация"
+                    Content="Сертификация"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="18"
                     Foreground="#FFFFFF " />
+                <Button
+                    Height="44"
+                    Margin="0,303,920,347"
+                    AllowDrop="True"
+                    Background="#FFFFFF "
+                    Click="Button_Delivery"
+                    Content="Служба доставки"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="18"
+                    Foreground="#002F6C " />
                 <Button
                     Height="44"
                     Margin="0,192,920,458"

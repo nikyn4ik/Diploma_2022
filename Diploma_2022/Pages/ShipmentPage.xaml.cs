@@ -124,14 +124,5 @@ namespace Diploma_2022.Pages
             }
         }
 
-        private void ShipmentGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void UpdButton(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

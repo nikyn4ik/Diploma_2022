@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Diploma_2022.Windows"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
     Title="Severstal Infocom"
     Width="1200"
     Height="700"
@@ -45,32 +46,41 @@
                     Foreground="White"
                     Text="Оформление доставки"
                     TextAlignment="Center" />
-
             </StackPanel>
         </Border>
         <DataGrid
             Name="DeliveryGrid"
             Grid.ColumnSpan="4"
-            Margin="12,80,10,192"
+            Margin="12,80,8,192"
             AutoGenerateColumns="False"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="12"
             IsReadOnly="True"
             SelectionChanged="DeliveryGrid_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding id_delivery}"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="12"
                     Header="id отгрузки" />
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding consignee}"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="12"
                     Header="Продукт" />
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding date_of_shipments}"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="12"
                     Header="Дата отгрузки" />
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding early_shipment}"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="12"
                     Header="Ранняя отгрузка" />
             </DataGrid.Columns>
         </DataGrid>
@@ -146,7 +156,6 @@
             FontSize="14"
             Foreground="White" />
 
-
         <ComboBox
             x:Name="product_standart"
             Grid.ColumnSpan="2"
@@ -156,10 +165,9 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             DataContextChanged="product_standart_DataContextChanged"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="12"
             SelectionChanged="product_standart_SelectionChanged" />
-
-
-
         <ComboBox
             x:Name="Storage"
             Width="182"
@@ -167,20 +175,24 @@
             Margin="260,575,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="12"
             SelectionChanged="Storage_SelectionChanged" />
-
-
-        <ComboBox
+        <TextBox
             x:Name="DateDelivery"
             Grid.Column="2"
             Grid.ColumnSpan="2"
             Width="182"
-            Height="51"
-            Margin="290,497,0,0"
-            HorizontalAlignment="Left"
+            Height="32"
+            Margin="292,497,8,0"
             VerticalAlignment="Top"
-            SelectionChanged="DateDelivery_SelectionChanged" />
-
+            Background="#FFFFFF"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="18"
+            Foreground="#FF0000"
+            Text="{Binding ElementName=DatePicker, Path=SelectedDate, StringFormat=d}"
+            TextAlignment="Left"
+            TextChanged="DateDelivery_TextChanged" />
 
         <ComboBox
             x:Name="Done"
@@ -191,6 +203,8 @@
             Margin="290,575,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="12"
             SelectionChanged="Done_SelectionChanged" />
         <Label
             Grid.Column="1"
@@ -207,5 +221,19 @@
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
             Foreground="White" />
+        <DatePicker
+            x:Name="DatePicker"
+            Grid.Column="2"
+            Grid.ColumnSpan="2"
+            Width="182"
+            Height="30"
+            Margin="292,529,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            DisplayDate="2022-03-23"
+            FirstDayOfWeek="Monday"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="14" />
+
     </Grid>
 </Window>

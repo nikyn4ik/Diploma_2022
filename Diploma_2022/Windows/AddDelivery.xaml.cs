@@ -26,7 +26,6 @@ namespace Diploma_2022.Windows
             InitializeComponent();
             deliv();
             delivstor();
-            delivDate();
             delivDone();
         }
         public void showdata()
@@ -70,26 +69,19 @@ namespace Diploma_2022.Windows
             {
                 Storage.Items.Add(db.GetValue(0));
             }
-            Storage.Items.Add("2");
             sqlConnection.Close();
         }
 
         private void DateDelivery_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            delivDate();
-        }
-        private void delivDate()
-        {
-            SqlCommand cmd = new SqlCommand("SELECT date_of_delivery FROM [dbo].delivery", sqlConnection);
             sqlConnection.Open();
-            cmd.CommandType = CommandType.Text;
-            db = cmd.ExecuteReader();
-            while (db.Read())
-            {
-                DateDelivery.Items.Add(db.GetValue(0));
-            }
-            DateDelivery.Items.Add("3");
+            String query = "INSERT INTO [dbo]. delivery values(@date_of_delivery);";
+            SqlCommand createCommand = new SqlCommand(query, sqlConnection);
+            createCommand.Parameters.AddWithValue("@date_of_delivery", DateDelivery.Text);
+            createCommand.ExecuteNonQuery();
+            MessageBox.Show("Сохранено!", "Severstal Infocom", MessageBoxButton.OK);
             sqlConnection.Close();
+            showdata();
         }
 
         private void Done_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -108,18 +100,17 @@ namespace Diploma_2022.Windows
             {
                 Done.Items.Add(db.GetValue(0));
             }
-            Done.Items.Add("2");
             sqlConnection.Close();
         }
 
         private void outpdfButton(object sender, RoutedEventArgs e)
         {
             using var doc = new Document();
-            PdfWriter.GetInstance(doc, new FileStream("pdfTables.pdf", FileMode.Create));
+            PdfWriter.GetInstance(doc, new FileStream("Order.pdf", FileMode.Create));
             sqlConnection.Open();
             doc.Open();
 
-            var sql = "SELECT * FROM storage";
+            var sql = "SELECT * FROM [dbo]. storage";
             var cmd = new SqlCommand(sql, sqlConnection);
 
             var baseFont = BaseFont.CreateFont(@"C:\Windows\Fonts\arial.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
@@ -203,7 +194,23 @@ namespace Diploma_2022.Windows
 
         private void DeliveryGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            SqlConnection sqlConnection = new SqlConnection();
+            sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
+            sqlConnection.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = "SELECT * FROM [dbo].[delivery]";
+            cmd.Connection = sqlConnection;
 
+            SqlDataAdapter deliverygrid = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable("diploma_db");
+            deliverygrid.Fill(dt);
+            DeliveryGrid.ItemsSource = dt.DefaultView;
+            sqlConnection.Close();
+        }
+
+        private void DateDelivery_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            DateTime DateDelivery = (DateTime)this.DatePicker.SelectedDate;
         }
     }
 }
