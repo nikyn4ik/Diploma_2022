@@ -41,41 +41,37 @@ namespace Diploma_2022.Pages
             SqlCommand cmd = new SqlCommand();
             cmd.CommandText = "SELECT * FROM [dbo].[orders]";
             cmd.Connection = sqlConnection;
-
-            SqlDataAdapter orders = new SqlDataAdapter(cmd);
+            SqlDataAdapter order = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable("diploma_db");
-            orders.Fill(dt);
+            order.Fill(dt);
             OrdersGrid.ItemsSource = dt.DefaultView;
             sqlConnection.Close();
-
         }
 
         private void Buttontoshipment(object sender, RoutedEventArgs e) //после оформления заявки и отправки в доставку - её нет - сделать
         {
-            try
-            {
                 if (OrdersGrid.SelectedItems.Count > 0)
                 {
-                    DataRowView drv = (DataRowView)OrdersGrid.SelectedItem;
-                    string ordersid = drv.Row[0].ToString();
-                    sqlConnection.Open();
-                    SqlCommand cmd = new SqlCommand("INSERT INTO [dbo].[shipment](id_shipment, consignee, date_of_shipments) VALUES((SELECT id_order, SAP_product_code, date_of_delivery FROM orders WHERE id_order=@id))", sqlConnection);
-                    cmd.Parameters.AddWithValue("@id", ordersid);
-                    cmd.ExecuteNonQuery();
-                    OrdersDataGrid_SelectionChanged();
-                    MessageBox.Show("Заявка успешно отправлена в отгрузку!", "Severstal Infocom");
-                }
-            }
-            catch (Exception ex)
-            {
-                if (OrdersGrid.SelectedItems.Count == 0)
-                {
-                    MessageBox.Show("Данная заявка уже отправлена в отгрузку", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
 
+                 DataRowView drv = (DataRowView)OrdersGrid.SelectedItem;
+                 string ID_Orders = drv.Row[0].ToString();
+                 SqlConnection con = new SqlConnection(@"Data Source=SPUTNIK; Initial Catalog=diploma_db; Integrated Security=True");
+                 con.Open();
+                 SqlCommand cmd = new SqlCommand("INSERT INTO [dbo].[shipment](id_shipment, consignee, date_of_shipments) SELECT id_order, SAP_product_code, date_of_adoption FROM orders WHERE id_order=@id", sqlConnection);
+                 cmd.Parameters.AddWithValue("@id", ID_Orders);
+                 cmd.ExecuteNonQuery();
+                 OrdersDataGrid_SelectionChanged();
+                 MessageBox.Show("Заявка успешно отправлена в отгрузку!", "Severstal Infocom");
             }
+            //catch (Exception ex)
+            //{
+            //        MessageBox.Show("Данная заявка уже была отправлена в отгрузку", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
+            //}
+            //finally
+            //{
+
+            //}
         }
-
         private void OrdersGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 

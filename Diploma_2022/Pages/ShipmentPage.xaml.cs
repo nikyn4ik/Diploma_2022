@@ -82,7 +82,7 @@ namespace Diploma_2022.Pages
         private void brakButton_Click(object sender, RoutedEventArgs e)
         {
             var window = new ShipmentPage();
-            MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите отменить заявку?", "Sevestal Infocom", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning);
+            MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите отменить заявку?", "Sevestal Infocom", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             switch (result)
             {
                 case MessageBoxResult.No:
@@ -99,8 +99,6 @@ namespace Diploma_2022.Pages
                     cmd.ExecuteNonQuery();
                     Shipment_DataGrid_SelectionChanged();
                     window.Show();
-                    break;
-                case MessageBoxResult.Cancel:
                     break;
 }
         }

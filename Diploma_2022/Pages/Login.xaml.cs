@@ -82,8 +82,6 @@ namespace Diploma_2022
                             MessageBoxButton.OK, 
                             MessageBoxImage.Error);
                     }
-
-               // }
             }
             catch (Exception ex)
             {
