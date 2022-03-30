@@ -9,12 +9,13 @@
     Width="1200"
     Height="700"
     AllowsTransparency="False"
+    Closing="Window_Closing"
     FontSize="14"
     Icon="/Images\severstal_logo.ico"
     MouseDown="Login_OnMouseDown"
     ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen"
-    mc:Ignorable="d" Closing="Window_Closing">
+    mc:Ignorable="d">
 
     <Window.Background>
         <ImageBrush ImageSource="\Images\voestalpine_voest-1024x1024.jpg" />

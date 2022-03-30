@@ -98,8 +98,8 @@
                     Margin="0,358,920,292"
                     AllowDrop="True"
                     Background="#FF0000"
-                    Click="Button_RabMestoMastera"
-                    Content="Рабочее место мастера (QR)"
+                    Click="Button_doc"
+                    Content="Документация"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="18"
                     Foreground="#FFFFFF" />
@@ -140,7 +140,7 @@
                     AllowDrop="True"
                     Background="#FF0000 "
                     Click="Button_Shipment"
-                    Content="Отгрузка и доставка"
+                    Content="Отгрузка"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="18"
                     Foreground="#FFFFFF " />

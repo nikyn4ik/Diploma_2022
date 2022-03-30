@@ -67,11 +67,6 @@ namespace Diploma_2022
             Show();
         }
 
-        private void Button_RabMestoMastera(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Модуль Влада", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Error);
-        }
-
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             var lg = new Login();
@@ -93,5 +88,10 @@ namespace Diploma_2022
                     break;
             }
             }
+
+        private void Button_doc(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
