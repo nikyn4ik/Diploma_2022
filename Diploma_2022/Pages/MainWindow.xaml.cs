@@ -93,5 +93,13 @@ namespace Diploma_2022
         {
 
         }
+
+        private void Button_Package(object sender, RoutedEventArgs e)
+        {
+            Hide();
+            var window = new Pages.Package();
+            window.ShowDialog();
+            Show();
+        }
     }
 }

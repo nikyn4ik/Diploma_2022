@@ -24,9 +24,9 @@
             <Style />
         </Grid.Style>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="551*" />
-            <ColumnDefinition Width="109*" />
-            <ColumnDefinition Width="540*" />
+            <ColumnDefinition Width="59*" />
+            <ColumnDefinition Width="31*" />
+            <ColumnDefinition Width="60*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="91*" />
@@ -37,8 +37,8 @@
             Grid.ColumnSpan="3"
             Width="680"
             Height="71"
-            Margin="260,0,0,0"
-            HorizontalAlignment="Left"
+            Margin="0,0,264,0"
+            HorizontalAlignment="Right"
             VerticalAlignment="Top"
             Background="#002F6C"
             BorderThickness="0,0,0,0"
@@ -130,10 +130,8 @@
             x:Name="dateship"
             Grid.Row="2"
             Grid.Column="2"
-            Width="240"
             Height="48"
-            Margin="290,10,0,0"
-            HorizontalAlignment="Left"
+            Margin="230,5,10,0"
             VerticalAlignment="Top"
             Background="#002F6C"
             Click="dateships"
@@ -144,27 +142,15 @@
         <Button
             x:Name="go_to_dostav_Button"
             Grid.Row="2"
-            Width="247"
+            Grid.Column="1"
+            Width="248"
             Height="48"
-            Margin="304,10,0,0"
-            HorizontalAlignment="Left"
+            Margin="0,5,0,0"
+            HorizontalAlignment="Center"
             VerticalAlignment="Top"
             Background="#FF0000"
             Click="go_to_dostav_Click"
             Content="Отправить из отгрузки в доставку"
-            FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14"
-            Foreground="#FFFFFF" />
-        <Button
-            x:Name="brakButton"
-            Grid.Row="2"
-            Grid.Column="2"
-            Height="48"
-            Margin="0,10,300,0"
-            VerticalAlignment="Top"
-            Background="#FF0000"
-            Click="brakButton_Click"
-            Content="Отправить заказ в брак"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
             Foreground="#FFFFFF" />
@@ -173,7 +159,7 @@
             Grid.Column="2"
             Width="120"
             Height="32"
-            Margin="300,0,0,0"
+            Margin="240,0,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             TextChanged="polee_TextChanged"
@@ -182,7 +168,7 @@
             Grid.Column="2"
             Width="100"
             Height="32"
-            Margin="430,0,0,0"
+            Margin="370,0,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             Background="#002F6C"
@@ -196,7 +182,7 @@
             Grid.Row="2"
             Width="240"
             Height="48"
-            Margin="10,10,0,0"
+            Margin="10,5,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Background="#002F6C"

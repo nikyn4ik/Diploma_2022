@@ -48,7 +48,7 @@ namespace Diploma_2022.Pages
             sqlConnection.Close();
         }
 
-        private void Buttontoshipment(object sender, RoutedEventArgs e) //после оформления заявки и отправки в доставку - её нет - сделать
+        private void Buttontopack(object sender, RoutedEventArgs e) //после оформления заявки и отправки в доставку - её нет - сделать
         {
                 if (OrdersGrid.SelectedItems.Count > 0)
                 {
@@ -61,7 +61,7 @@ namespace Diploma_2022.Pages
                  cmd.Parameters.AddWithValue("@id", ID_Orders);
                  cmd.ExecuteNonQuery();
                  OrdersDataGrid_SelectionChanged();
-                 MessageBox.Show("Заявка успешно отправлена в отгрузку!", "Severstal Infocom");
+                 MessageBox.Show("Заявка успешно отправлена в упаковку!", "Severstal Infocom");
             }
             //catch (Exception ex)
             //{
@@ -76,5 +76,29 @@ namespace Diploma_2022.Pages
         {
 
         }
+
+        private void brakButton_Click(object sender, RoutedEventArgs e)
+        {
+                var window = new OrdersPage();
+                MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите отправить заказ в брак?", "Sevestal Infocom", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                switch (result)
+                {
+                    case MessageBoxResult.No:
+                        MessageBox.Show("Заказ НЕ был отправлен в брак", "Severstal Infocom");
+                        break;
+                    case MessageBoxResult.Yes:
+                        MessageBox.Show("Заказ отправлен в брак", "Severstal Infocom");
+                        this.Hide();
+                        DataRowView drv = (DataRowView)OrdersGrid.SelectedItem; //if (ShipmentGrid.SelectedItems.Count > 0)
+                        string opder = drv.Row[0].ToString();
+                        sqlConnection.Open();
+                        SqlCommand cmd = new SqlCommand("DELETE FROM orders WHERE id_order=@id", sqlConnection);
+                        cmd.Parameters.AddWithValue("@id", opder);
+                        cmd.ExecuteNonQuery();
+                        OrdersDataGrid_SelectionChanged();
+                        window.Show();
+                        break;
+                }
+            }
     }
 }

@@ -79,29 +79,6 @@ namespace Diploma_2022.Pages
                 MessageBox.Show(ex.Message);
             }
         }
-        private void brakButton_Click(object sender, RoutedEventArgs e)
-        {
-            var window = new ShipmentPage();
-            MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите отменить заявку?", "Sevestal Infocom", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-            switch (result)
-            {
-                case MessageBoxResult.No:
-                    MessageBox.Show("Заявка НЕ была отменена", "Severstal Infocom");
-                    break;
-                case MessageBoxResult.Yes:
-                    MessageBox.Show("Заявка отменена", "Severstal Infocom");
-                    this.Hide();
-                    DataRowView drv = (DataRowView)ShipmentGrid.SelectedItem; //if (ShipmentGrid.SelectedItems.Count > 0)
-                        string shipment = drv.Row[0].ToString();
-                    sqlConnection.Open();
-                    SqlCommand cmd = new SqlCommand("DELETE FROM shipment WHERE id_shipment=@id", sqlConnection);
-                    cmd.Parameters.AddWithValue("@id", shipment);
-                    cmd.ExecuteNonQuery();
-                    Shipment_DataGrid_SelectionChanged();
-                    window.Show();
-                    break;
-}
-        }
 
         private void cert_Click(object sender, RoutedEventArgs e)
         {
