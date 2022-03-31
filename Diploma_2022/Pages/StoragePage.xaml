@@ -33,11 +33,10 @@
 
         <DataGrid
             Name="StorageGrid"
-            Grid.Row="1"
             Grid.ColumnSpan="3"
-            Height="528"
-            Margin="2,0,2,0"
-            VerticalAlignment="Bottom"
+            Height="533"
+            Margin="10,76,10,0"
+            VerticalAlignment="Top"
             AutoGenerateColumns="False"
             Background="Snow"
             CanUserAddRows="False"
@@ -49,7 +48,7 @@
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="12"
             IsReadOnly="False"
-            SelectionChanged="StorageGrid_SelectionChanged">
+            SelectionChanged="StorageGrid_SelectionChanged" Grid.RowSpan="2">
 
             <DataGrid.Columns>
                 <DataGridTextColumn
