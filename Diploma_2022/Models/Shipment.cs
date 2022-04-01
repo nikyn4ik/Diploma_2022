@@ -13,5 +13,6 @@ namespace Diploma_2022.Models
         public DateTime date_of_shipments { get; set; }
         public int shipment_total_amount_tons { get; set; }
         public float number_of_shipments_per_month_tons { get; set; }
+        public string name_product { get; set; }
     }
 }

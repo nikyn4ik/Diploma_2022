@@ -20,6 +20,6 @@ namespace Diploma_2022.Models
         public float thickness_max_mm { get; set; }
         public float width_max_mm { get; set; }
         public float length_max_mm { get; set; }
-        public string SAP_product_code { get; set; } 
+        public string name_product { get; set; } 
     }
 }

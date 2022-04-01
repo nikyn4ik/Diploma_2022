@@ -99,7 +99,7 @@
                     AllowDrop="True"
                     Background="#FF0000"
                     Click="Button_doc"
-                    Content="Документация ?"
+                    Content="Документация"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="18"
                     Foreground="#FFFFFF" />

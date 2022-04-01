@@ -17,24 +17,46 @@
     </Window.Background>
 
 
-    <Grid>
+    <Grid Height="684" VerticalAlignment="Bottom">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="497*" />
+            <ColumnDefinition Width="224*" />
+            <ColumnDefinition Width="256*" />
+            <ColumnDefinition Width="215*" />
+            <ColumnDefinition Width="9*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="23*" />
+            <RowDefinition Height="29*" />
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="22*" />
+            <RowDefinition Height="515*" />
+            <RowDefinition Height="58*" />
+            <RowDefinition Height="17*" />
+        </Grid.RowDefinitions>
         <Border
+            Grid.RowSpan="4"
+            Grid.ColumnSpan="3"
             Width="680"
-            Margin="0,0,0,613"
-            HorizontalAlignment="Center"
+            Height="72"
+            Margin="272,0,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
             Background="#002F6C"
             BorderThickness="0,0,0,0"
             CornerRadius="10">
             <StackPanel
                 Width="392"
+                Height="41"
+                Margin="0,20,0,0"
                 HorizontalAlignment="Center"
-                VerticalAlignment="Center">
+                VerticalAlignment="Top">
 
                 <TextBlock
                     Width="310"
+                    Height="36"
                     Margin="0,0,-11,0"
                     HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="26"
                     Foreground="White"
@@ -47,7 +69,9 @@
 
         <DataGrid
             Name="OrdersGrid"
-            Margin="10,106,10,50"
+            Grid.Row="4"
+            Grid.ColumnSpan="4"
+            Margin="10,10,1,0"
             AutoGenerateColumns="False"
             Background="Snow"
             CanUserAddRows="False"
@@ -55,63 +79,75 @@
             CanUserReorderColumns="False"
             CanUserResizeRows="False"
             CanUserSortColumns="False"
-            IsReadOnly="True"
+            IsReadOnly="False"
             SelectionChanged="OrdersGrid_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn
-                    Width="4*"
+                    Width="*"
                     Binding="{Binding id_order}"
-                    Header="Id заказа" />
+                    Header="Id заказа"
+                    IsReadOnly="True" />
                 <DataGridTextColumn
-                    Width="4*"
-                    Binding="{Binding SAP_product_code}"
-                    Header="Продукт" />
+                    Width="*"
+                    Binding="{Binding name_product}"
+                    Header="Продукт"
+                    IsReadOnly="True" />
                 <DataGridTextColumn
-                    Width="4*"
+                    Width="*"
                     Binding="{Binding syst_c3}"
-                    Header="СИСТ №СЗ" />
+                    Header="СИСТ №СЗ"
+                    IsReadOnly="True" />
                 <DataGridTextColumn
-                    Width="4*"
+                    Width="*"
                     Binding="{Binding log_c3}"
-                    Header="ЛОГ № СЗ" />
+                    Header="ЛОГ № СЗ"
+                    IsReadOnly="True" />
                 <DataGridTextColumn
-                    Width="4*"
+                    Width="*"
+                    Binding="{Binding consignee}"
+                    Header="Грузополучатель" />
+                <DataGridTextColumn
+                    Width="*"
                     Binding="{Binding date_of_entrance}"
                     Header="Дата поступления" />
                 <DataGridTextColumn
-                    Width="4*"
+                    Width="*"
                     Binding="{Binding thickness_mm}"
-                    Header="Толщина [мм]" />
+                    Header="Толщина [мм]"
+                    IsReadOnly="True" />
                 <DataGridTextColumn
-                    Width="4*"
+                    Width="*"
                     Binding="{Binding width_mm}"
-                    Header="Ширина [мм]" />
+                    Header="Ширина [мм]"
+                    IsReadOnly="True" />
                 <DataGridTextColumn
-                    Width="4*"
+                    Width="*"
                     Binding="{Binding length_mm}"
-                    Header="Длина [мм]" />
+                    Header="Длина [мм]"
+                    IsReadOnly="True" />
             </DataGrid.Columns>
         </DataGrid>
         <Button
             x:Name="topack"
+            Grid.Row="1"
+            Grid.RowSpan="3"
             Width="207"
-            Height="51"
-            Margin="10,20,0,0"
+            Margin="10,10,0,10"
             HorizontalAlignment="Left"
-            VerticalAlignment="Top"
             Background="#FF0000"
-            Click="Buttontoshipment"
+            Click="Buttontopack"
             Content="Отправить заказ в упаковку"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
             Foreground="#FFFFFF" />
         <Button
             x:Name="brakButton"
-            Width="207"
+            Grid.Row="1"
+            Grid.RowSpan="3"
+            Grid.Column="3"
             Height="51"
-            Margin="0,20,10,0"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Top"
+            Margin="7,0,1,0"
+            VerticalAlignment="Center"
             Background="#FF0000"
             Click="brakButton_Click"
             Content="Отправить заказ в брак"

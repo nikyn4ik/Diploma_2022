@@ -1,5 +1,5 @@
 ﻿<Window
-    x:Class="Diploma_2022.Pages.Package"
+    x:Class="Diploma_2022.Pages.Documents"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -17,12 +17,12 @@
 
     </Window.Background>
 
-
     <Grid Height="684" VerticalAlignment="Bottom">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="497*" />
             <ColumnDefinition Width="224*" />
-            <ColumnDefinition Width="471*" />
+            <ColumnDefinition Width="256*" />
+            <ColumnDefinition Width="215*" />
             <ColumnDefinition Width="9*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -60,55 +60,55 @@
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="26"
                     Foreground="White"
-                    Text="Упаковка"
-                    TextAlignment="Center" />
+                    TextAlignment="Center"><Run Language="ru-ru" Text="Документация" /></TextBlock>
 
             </StackPanel>
         </Border>
 
 
         <DataGrid
-            Name="PackageGrid"
+            Name="DocGrid"
             Grid.Row="4"
-            Grid.ColumnSpan="3"
+            Grid.ColumnSpan="4"
             Height="494"
-            Margin="10,10,1,11"
+            Margin="10,0,1,0"
+            VerticalAlignment="Center"
             AutoGenerateColumns="False"
             Background="Snow"
-            CanUserAddRows="False"
-            CanUserDeleteRows="False"
-            CanUserReorderColumns="False"
-            CanUserResizeRows="False"
-            CanUserSortColumns="False"
-            IsReadOnly="True"
-            SelectionChanged="PackageGrid_SelectionChanged">
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="12"
+            IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding id_order}"
-                    Header="Id заказа" />
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="12"
+                    Header="Id заказа"
+                    IsReadOnly="True" />
                 <DataGridTextColumn
                     Width="*"
-                    Binding="{Binding id_model}"
-                    Header="Id" />
+                    Binding="{Binding name_product}"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="12"
+                    Header="Продукт"
+                    IsReadOnly="True" />
                 <DataGridTextColumn
                     Width="*"
-                    Binding="{Binding color_package}"
-                    Header="Цвет" />
-                <DataGridTextColumn
-                    Width="*"
-                    Binding="{Binding date_package}"
-                    Header="Дата" />
+                    Binding="{Binding date_of_delivery}"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="12"
+                    Header="Дата доставки " />
             </DataGrid.Columns>
         </DataGrid>
         <Button
             x:Name="outputdoc"
             Grid.Row="5"
-            Grid.Column="1"
-            Grid.ColumnSpan="2"
-            Width="208"
+            Grid.RowSpan="2"
+            Width="207"
             Height="49"
-            Margin="223,9,263,0"
+            Margin="272,10,0,0"
+            HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Background="#FF0000"
             Click="outButton_Click"
@@ -117,17 +117,41 @@
             FontSize="14"
             Foreground="#FFFFFF" />
         <Button
-            x:Name="toshipment"
+            x:Name="update"
             Grid.Row="5"
             Grid.RowSpan="2"
-            Grid.ColumnSpan="2"
-            Width="207"
+            Grid.Column="2"
+            Width="208"
             Height="49"
-            Margin="290,10,0,16"
-            HorizontalAlignment="Left"
-            Background="#FF0000"
-            Click="Buttontoshipment"
-            Content="Отправить заявку в отгрузку"
+            Margin="0,10,39,0"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            Background="#002F6C"
+            Click="UpdButton"
+            Content="Обновление таблицы"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="14"
+            Foreground="#FFFFFF" />
+
+        <TextBox
+            x:Name="pole"
+            Grid.Row="1"
+            Grid.Column="2"
+            Grid.ColumnSpan="2"
+            Margin="255,0,110,0"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="12"
+            TextChanged="polee_TextChanged"
+            TextWrapping="Wrap" />
+        <Button
+            Grid.Row="1"
+            Grid.Column="3"
+            Height="27"
+            Margin="130,0,1,0"
+            VerticalAlignment="Center"
+            Background="#002F6C"
+            Click="Button_Click_search"
+            Content="Поиск"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
             Foreground="#FFFFFF" />

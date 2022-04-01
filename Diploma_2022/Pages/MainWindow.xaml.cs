@@ -52,7 +52,6 @@ namespace Diploma_2022
 
         private void Button_order(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Модуль Миши", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
             Hide();
             var window = new Pages.OrdersPage();
             window.ShowDialog();
@@ -91,7 +90,10 @@ namespace Diploma_2022
 
         private void Button_doc(object sender, RoutedEventArgs e)
         {
-
+            Hide();
+            var window = new Pages.Documents();
+            window.ShowDialog();
+            Show();
         }
 
         private void Button_Package(object sender, RoutedEventArgs e)

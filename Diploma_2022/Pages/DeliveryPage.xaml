@@ -14,28 +14,45 @@
     <Window.Background>
         <ImageBrush ImageSource="\Images\ugs.jpg" />
     </Window.Background>
-    <Grid>
+    <Grid Height="684" VerticalAlignment="Bottom">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="512*" />
+            <ColumnDefinition Width="208*" />
+            <ColumnDefinition Width="471*" />
+            <ColumnDefinition Width="9*" />
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="7*" />
+            <RowDefinition Height="23*" />
+            <RowDefinition Height="29*" />
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="22*" />
+            <RowDefinition Height="515*" />
+            <RowDefinition Height="58*" />
+            <RowDefinition Height="17*" />
         </Grid.RowDefinitions>
         <Border
+            Grid.RowSpan="4"
+            Grid.ColumnSpan="3"
             Width="680"
-            Margin="0,0,0,529"
-            HorizontalAlignment="Center"
+            Height="72"
+            Margin="272,0,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
             Background="#002F6C"
             BorderThickness="0,0,0,0"
             CornerRadius="10">
             <StackPanel
                 Width="392"
+                Height="41"
+                Margin="0,20,0,0"
                 HorizontalAlignment="Center"
-                VerticalAlignment="Center">
+                VerticalAlignment="Top">
 
                 <TextBlock
                     Width="310"
+                    Height="36"
                     Margin="0,0,-11,0"
                     HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="26"
                     Foreground="White"
@@ -46,7 +63,11 @@
 
         <DataGrid
             Name="DeliveryGrid"
-            Margin="12,80,8,1"
+            Grid.Row="4"
+            Grid.ColumnSpan="4"
+            Height="494"
+            Margin="10,0,1,0"
+            VerticalAlignment="Center"
             AutoGenerateColumns="False"
             CanUserAddRows="False"
             CanUserDeleteRows="False"
@@ -84,26 +105,29 @@
             </DataGrid.Columns>
         </DataGrid>
         <Button
-            x:Name="cancelButton"
-            Grid.Row="1"
-            Width="207"
-            Height="50"
-            Margin="733,4,0,0"
-            HorizontalAlignment="Left"
+            x:Name="outputdoc"
+            Grid.Row="5"
+            Grid.RowSpan="2"
+            Grid.Column="1"
+            Width="208"
+            Height="49"
+            Margin="0,10,0,0"
+            HorizontalAlignment="Center"
             VerticalAlignment="Top"
             Background="#FF0000"
-            Click="cancelButton_Click"
-            Content="Отменить доставку"
+            Click="outButton_Click"
+            Content="Вывод PDF"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
             Foreground="#FFFFFF" />
         <Button
             x:Name="update"
-            Grid.Row="1"
+            Grid.Row="5"
+            Grid.Column="2"
             Width="208"
             Height="49"
-            Margin="260,4,0,0"
-            HorizontalAlignment="Left"
+            Margin="0,9,235,0"
+            HorizontalAlignment="Right"
             VerticalAlignment="Top"
             Background="#002F6C"
             Click="UpdButton"
@@ -114,11 +138,11 @@
 
         <Button
             x:Name="editdeliv"
-            Grid.Row="1"
+            Grid.Row="5"
             Width="208"
-            Height="49"
-            Margin="0,4,0,0"
-            HorizontalAlignment="Center"
+            Height="48"
+            Margin="0,10,41,0"
+            HorizontalAlignment="Right"
             VerticalAlignment="Top"
             Background="#002F6C"
             Click="editButton"
@@ -129,19 +153,17 @@
 
         <TextBox
             x:Name="pole"
-            Width="98"
-            Height="32"
-            Margin="976,14,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
+            Grid.Row="1"
+            Grid.Column="2"
+            Margin="255,0,101,0"
             TextChanged="polee_TextChanged"
             TextWrapping="Wrap" />
         <Button
-            Width="86"
-            Height="32"
-            Margin="1088,14,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
+            Grid.Row="1"
+            Grid.Column="2"
+            Height="27"
+            Margin="387,0,0,0"
+            VerticalAlignment="Center"
             Background="#002F6C"
             Click="Button_Click_search"
             Content="Поиск"

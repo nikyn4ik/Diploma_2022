@@ -53,31 +53,31 @@ namespace Diploma_2022.Pages
             sqlConnection.Close();
         }
 
-        private void cancelButton_Click(object sender, RoutedEventArgs e)
-        {
-            var window = new DeliveryPage();
-            MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите отменить доставку?", "Sevestal Infocom", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning);
-            switch (result)
-            {
-                case MessageBoxResult.No:
-                    MessageBox.Show("Заявка НЕ была отменена", "Severstal Infocom");
-                    break;
-                case MessageBoxResult.Yes:
-                    MessageBox.Show("Заявка отменена", "Severstal Infocom");
-                    this.Hide();
-                    DataRowView drv = (DataRowView)DeliveryGrid.SelectedItem;
-                    string delivery = drv.Row[0].ToString();
-                    sqlConnection.Open();
-                    SqlCommand cmd = new SqlCommand("DELETE FROM delivery WHERE id_delivery=@id", sqlConnection);
-                    cmd.Parameters.AddWithValue("@id", delivery);
-                    cmd.ExecuteNonQuery();
-                    DeliveryGrid_SelectionChanged();
-                    window.Show();
-                    break;
-                case MessageBoxResult.Cancel:
-                    break;
-            }
-        }
+        //private void cancelButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    var window = new DeliveryPage();
+        //    MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите отменить доставку?", "Sevestal Infocom", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning);
+        //    switch (result)
+        //    {
+        //        case MessageBoxResult.No:
+        //            MessageBox.Show("Заявка НЕ была отменена", "Severstal Infocom");
+        //            break;
+        //        case MessageBoxResult.Yes:
+        //            MessageBox.Show("Заявка отменена", "Severstal Infocom");
+        //            this.Hide();
+        //            DataRowView drv = (DataRowView)DeliveryGrid.SelectedItem;
+        //            string delivery = drv.Row[0].ToString();
+        //            sqlConnection.Open();
+        //            SqlCommand cmd = new SqlCommand("DELETE FROM delivery WHERE id_delivery=@id", sqlConnection);
+        //            cmd.Parameters.AddWithValue("@id", delivery);
+        //            cmd.ExecuteNonQuery();
+        //            DeliveryGrid_SelectionChanged();
+        //            window.Show();
+        //            break;
+        //        case MessageBoxResult.Cancel:
+        //            break;
+        //    }
+        //}
 
         private void polee_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -107,6 +107,11 @@ namespace Diploma_2022.Pages
             var window = new Windows.AddDelivery();
             window.ShowDialog();
             Show();
+        }
+
+        private void outButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

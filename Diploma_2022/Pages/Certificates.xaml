@@ -16,27 +16,43 @@
 
     </Window.Background>
 
-    <Grid>
+    <Grid Height="684" VerticalAlignment="Bottom">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="497*" />
+            <ColumnDefinition Width="224*" />
+            <ColumnDefinition Width="471*" />
+            <ColumnDefinition Width="9*" />
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="13*" />
-            <RowDefinition Height="88*" />
-            <RowDefinition Height="13*" />
+            <RowDefinition Height="23*" />
+            <RowDefinition Height="29*" />
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="22*" />
+            <RowDefinition Height="515*" />
+            <RowDefinition Height="58*" />
+            <RowDefinition Height="17*" />
         </Grid.RowDefinitions>
         <Border
+            Grid.RowSpan="4"
             Grid.ColumnSpan="3"
             Width="680"
-            Height="71"
-            Margin="260,0,0,0"
+            Height="72"
+            Margin="272,0,0,0"
             HorizontalAlignment="Left"
-            VerticalAlignment="Top"
+            VerticalAlignment="Center"
             Background="#002F6C"
             BorderThickness="0,0,0,0"
             CornerRadius="10">
-            <StackPanel Margin="144,26,144,3">
+            <StackPanel
+                Width="392"
+                Height="41"
+                Margin="0,20,0,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top">
 
                 <TextBlock
                     Width="310"
-                    Height="38"
+                    Height="36"
                     Margin="0,0,-11,0"
                     HorizontalAlignment="Center"
                     FontFamily="Microsoft JhengHei UI Light"
@@ -50,10 +66,11 @@
 
         <DataGrid
             Name="CertificatesGrid"
-            Grid.Row="1"
-            Height="525"
-            Margin="0,3,0,0"
-            VerticalAlignment="Top"
+            Grid.Row="4"
+            Grid.ColumnSpan="3"
+            Height="494"
+            Margin="10,0,1,0"
+            VerticalAlignment="Center"
             AutoGenerateColumns="False"
             Background="Snow"
             FontFamily="Microsoft JhengHei UI Light"
@@ -65,35 +82,46 @@
                     Binding="{Binding id_qua_certificate}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="12"
-                    Header="Id сертификата" />
+                    Header="Id сертификата"
+                    IsReadOnly="True" />
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding standard_per_mark}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="12"
-                    Header="Стандарт на марку" />
+                    Header="Стандарт на марку"
+                    IsReadOnly="True" />
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding tolerance_standart}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="12"
-                    Header="Стандарт на допуск " />
+                    Header="Стандарт на допуск "
+                    IsReadOnly="True" />
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding product_standard}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="12"
-                    Header="Стандарт на продукцию" />
+                    Header="Стандарт на продукцию"
+                    IsReadOnly="True" />
+                <DataGridTextColumn
+                    Width="*"
+                    Binding="{Binding date_add_certificate}"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="12"
+                    Header="Дата добавления" />
             </DataGrid.Columns>
         </DataGrid>
         <Button
             x:Name="deleteButton"
-            Grid.Row="2"
+            Grid.Row="5"
+            Grid.Column="1"
             Width="207"
-            Height="50"
-            Margin="712,9,0,0"
+            Height="49"
+            Margin="10,0,0,0"
             HorizontalAlignment="Left"
-            VerticalAlignment="Top"
+            VerticalAlignment="Center"
             Background="#FF0000"
             Click="deleteButton_Click"
             Content="Удалить сертификат"
@@ -102,12 +130,13 @@
             Foreground="#FFFFFF" />
         <Button
             x:Name="update"
-            Grid.Row="2"
+            Grid.Row="5"
+            Grid.Column="2"
             Width="208"
-            Height="49"
-            Margin="0,10,0,0"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Top"
+            Height="48"
+            Margin="28,0,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
             Background="#002F6C"
             Click="UpdButton"
             Content="Обновление таблицы"
@@ -117,12 +146,12 @@
 
         <Button
             x:Name="addButton"
-            Grid.Row="2"
-            Width="207"
-            Height="50"
-            Margin="0,9,712,0"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Top"
+            Grid.Row="5"
+            Width="208"
+            Height="48"
+            Margin="272,0,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
             Background="#002F6C"
             Click="AddButton_Click"
             Content="Добавление Сертификата"
@@ -132,19 +161,19 @@
 
         <TextBox
             x:Name="pole"
-            Width="98"
-            Height="32"
-            Margin="976,14,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
+            Grid.Row="1"
+            Grid.Column="2"
+            Grid.ColumnSpan="2"
+            Margin="255,0,110,0"
             TextChanged="polee_TextChanged"
             TextWrapping="Wrap" />
         <Button
-            Width="86"
-            Height="32"
-            Margin="1088,14,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
+            Grid.Row="1"
+            Grid.Column="2"
+            Width="83.8209825145711"
+            Height="27"
+            Margin="386,0,1,0"
+            VerticalAlignment="Center"
             Background="#002F6C"
             Click="Button_Click_search"
             Content="Поиск"

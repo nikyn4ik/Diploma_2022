@@ -47,6 +47,16 @@ namespace Diploma_2022.Pages
         {
 
         }
+
+        private void outButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void PackageGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
     }
 

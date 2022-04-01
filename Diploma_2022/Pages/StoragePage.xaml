@@ -21,21 +21,28 @@
     <Grid Height="684" VerticalAlignment="Bottom">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="497*" />
-            <ColumnDefinition Width="207*" />
-            <ColumnDefinition Width="496*" />
+            <ColumnDefinition Width="224*" />
+            <ColumnDefinition Width="256*" />
+            <ColumnDefinition Width="215*" />
+            <ColumnDefinition Width="9*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="85*" />
-            <RowDefinition Height="524*" />
-            <RowDefinition Height="75*" />
+            <RowDefinition Height="23*" />
+            <RowDefinition Height="29*" />
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="22*" />
+            <RowDefinition Height="515*" />
+            <RowDefinition Height="58*" />
+            <RowDefinition Height="17*" />
         </Grid.RowDefinitions>
 
 
         <DataGrid
             Name="StorageGrid"
-            Grid.ColumnSpan="3"
-            Height="533"
-            Margin="10,76,10,0"
+            Grid.Row="4"
+            Grid.ColumnSpan="4"
+            Height="494"
+            Margin="10,0,1,0"
             VerticalAlignment="Top"
             AutoGenerateColumns="False"
             Background="Snow"
@@ -48,7 +55,7 @@
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="12"
             IsReadOnly="False"
-            SelectionChanged="StorageGrid_SelectionChanged" Grid.RowSpan="2">
+            SelectionChanged="StorageGrid_SelectionChanged">
 
             <DataGrid.Columns>
                 <DataGridTextColumn
@@ -94,13 +101,13 @@
         </DataGrid>
         <Button
             x:Name="delete"
-            Grid.Row="2"
+            Grid.Row="5"
             Grid.Column="2"
             Width="208"
             Height="50"
-            Margin="170,10,0,0"
+            Margin="38,0,0,0"
             HorizontalAlignment="Left"
-            VerticalAlignment="Top"
+            VerticalAlignment="Center"
             Background="#FF0000"
             Click="deleteButton"
             Content="Удаление склада из базы"
@@ -110,10 +117,10 @@
 
         <Button
             x:Name="add"
-            Grid.Row="2"
+            Grid.Row="5"
             Width="208"
             Height="50"
-            Margin="0,0,170,15"
+            Margin="0,0,41,8"
             HorizontalAlignment="Right"
             VerticalAlignment="Bottom"
             Background="#002F6C"
@@ -124,13 +131,13 @@
             Foreground="#FFFFFF" />
         <Button
             x:Name="update"
-            Grid.Row="2"
+            Grid.Row="5"
             Grid.Column="1"
             Width="208"
             Height="50"
-            Margin="0,10,0,0"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Top"
+            Margin="5,0,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
             Background="#002F6C"
             Click="UpdButton"
             Content="Обновление таблицы"
@@ -139,23 +146,23 @@
             Foreground="#FFFFFF" />
         <TextBox
             x:Name="pole"
+            Grid.Row="1"
+            Grid.RowSpan="2"
             Grid.Column="2"
-            Width="120"
-            Height="32"
-            Margin="255,0,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
+            Grid.ColumnSpan="2"
+            Width="105.607826810991"
+            Margin="255,2,110,15"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="12"
             TextChanged="polee_TextChanged"
             TextWrapping="Wrap" />
         <Button
-            Grid.Column="2"
-            Width="100"
+            Grid.Row="1"
+            Grid.RowSpan="2"
+            Grid.Column="3"
             Height="32"
-            Margin="386,0,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
+            Margin="130,2,1,0"
+            VerticalAlignment="Top"
             Background="#002F6C"
             Click="Button_Click_search"
             Content="Поиск"
@@ -163,20 +170,26 @@
             FontSize="14"
             Foreground="#FFFFFF" />
         <Border
+            Grid.RowSpan="4"
             Grid.ColumnSpan="3"
             Width="680"
-            Height="71"
-            Margin="260,0,0,0"
+            Height="72"
+            Margin="272,0,0,0"
             HorizontalAlignment="Left"
-            VerticalAlignment="Top"
+            VerticalAlignment="Center"
             Background="#002F6C"
             BorderThickness="0,0,0,0"
             CornerRadius="10">
-            <StackPanel Margin="144,26,144,3">
+            <StackPanel
+                Width="392"
+                Height="41"
+                Margin="0,20,0,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top">
 
                 <TextBlock
                     Width="310"
-                    Height="38"
+                    Height="51"
                     Margin="0,0,-11,0"
                     HorizontalAlignment="Center"
                     FontFamily="Microsoft JhengHei UI Light"

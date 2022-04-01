@@ -19,35 +19,43 @@
     </Window.Background>
 
     <Grid Height="684" VerticalAlignment="Bottom">
-
-        <Grid.Style>
-            <Style />
-        </Grid.Style>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="59*" />
-            <ColumnDefinition Width="31*" />
-            <ColumnDefinition Width="60*" />
+            <ColumnDefinition Width="497*" />
+            <ColumnDefinition Width="224*" />
+            <ColumnDefinition Width="256*" />
+            <ColumnDefinition Width="215*" />
+            <ColumnDefinition Width="9*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="91*" />
-            <RowDefinition Height="519*" />
-            <RowDefinition Height="75*" />
+            <RowDefinition Height="23*" />
+            <RowDefinition Height="29*" />
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="22*" />
+            <RowDefinition Height="515*" />
+            <RowDefinition Height="58*" />
+            <RowDefinition Height="17*" />
         </Grid.RowDefinitions>
         <Border
+            Grid.RowSpan="4"
             Grid.ColumnSpan="3"
             Width="680"
-            Height="71"
-            Margin="0,0,264,0"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Top"
+            Height="72"
+            Margin="272,0,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
             Background="#002F6C"
             BorderThickness="0,0,0,0"
             CornerRadius="10">
-            <StackPanel Margin="144,26,144,3">
+            <StackPanel
+                Width="392"
+                Height="41"
+                Margin="0,20,0,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top">
 
                 <TextBlock
                     Width="310"
-                    Height="38"
+                    Height="36"
                     Margin="0,0,-11,0"
                     HorizontalAlignment="Center"
                     FontFamily="Microsoft JhengHei UI Light"
@@ -60,11 +68,11 @@
 
         <DataGrid
             Name="ShipmentGrid"
-            Grid.Row="1"
-            Grid.ColumnSpan="3"
-            Height="500"
-            Margin="10,0,10,0"
-            VerticalAlignment="Center"
+            Grid.Row="4"
+            Grid.ColumnSpan="4"
+            Height="494"
+            Margin="10,0,1,0"
+            VerticalAlignment="Top"
             AutoGenerateColumns="False"
             Background="Snow"
             BorderBrush="#FF7C79BB"
@@ -79,46 +87,46 @@
 
             <DataGrid.Columns>
                 <DataGridTextColumn
-                    Width="4*"
+                    Width="*"
                     Binding="{Binding id_shipment}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="12"
                     Header="id отгрузки"
                     IsReadOnly="True" />
                 <DataGridTextColumn
-                    Width="4*"
-                    Binding="{Binding consignee}"
+                    Width="*"
+                    Binding="{Binding name_product}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="12"
-                    Header="Груз"
+                    Header="Продукт"
                     IsReadOnly="True" />
                 <DataGridTextColumn
-                    Width="4*"
+                    Width="*"
                     Binding="{Binding date_of_shipments}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="12"
                     Header="Дата отгрузки"
                     IsReadOnly="True" />
                 <DataGridTextColumn
-                    Width="4*"
+                    Width="*"
                     Binding="{Binding shipment_total_amount_tons}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="12"
                     Header="Отгр.кол-во всего [тонны]" />
                 <DataGridTextColumn
-                    Width="4*"
+                    Width="*"
                     Binding="{Binding number_of_shipments_per_month_tons}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="12"
                     Header="Отгр. кол-во за месяц [тонны]" />
                 <DataGridTextColumn
-                    Width="4*"
+                    Width="*"
                     Binding="{Binding early_shipment}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="12"
                     Header="Ранняя отгрузка" />
                 <DataGridTextColumn
-                    Width="4*"
+                    Width="*"
                     Binding="{Binding product_standard}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="12"
@@ -129,9 +137,8 @@
         <Button
             x:Name="dateship"
             Grid.Row="2"
-            Grid.Column="2"
             Height="48"
-            Margin="230,5,10,0"
+            Margin="959,5,10,0"
             VerticalAlignment="Top"
             Background="#002F6C"
             Click="dateships"
@@ -140,13 +147,28 @@
             FontSize="14"
             Foreground="#FFFFFF" />
         <Button
+            x:Name="outputdoc"
+            Grid.Row="5"
+            Grid.Column="1"
+            Grid.ColumnSpan="2"
+            Width="231"
+            Height="48"
+            Margin="223,10,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Background="#FF0000"
+            Click="outButton_Click"
+            Content="Вывод PDF"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="14"
+            Foreground="#FFFFFF" />
+        <Button
             x:Name="go_to_dostav_Button"
             Grid.Row="2"
-            Grid.Column="1"
-            Width="248"
+            Width="231"
             Height="48"
-            Margin="0,5,0,0"
-            HorizontalAlignment="Center"
+            Margin="689,5,0,0"
+            HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Background="#FF0000"
             Click="go_to_dostav_Click"
@@ -156,19 +178,19 @@
             Foreground="#FFFFFF" />
         <TextBox
             x:Name="pole"
-            Grid.Column="2"
-            Width="120"
-            Height="32"
-            Margin="240,0,0,0"
+            Grid.Row="1"
+            Grid.Column="3"
+            Width="106"
+            Margin="10,0,0,0"
             HorizontalAlignment="Left"
-            VerticalAlignment="Center"
             TextChanged="polee_TextChanged"
             TextWrapping="Wrap" />
         <Button
-            Grid.Column="2"
-            Width="100"
-            Height="32"
-            Margin="370,0,0,0"
+            Grid.Row="1"
+            Grid.Column="3"
+            Width="84"
+            Height="29"
+            Margin="130,0,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             Background="#002F6C"
@@ -176,13 +198,15 @@
             Content="Поиск"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
-            Foreground="#FFFFFF" />
+            Foreground="#FFFFFF"
+            RenderTransformOrigin="0.545,1.183" />
         <Button
             x:Name="certButton"
-            Grid.Row="2"
-            Width="240"
+            Grid.Row="5"
+            Grid.ColumnSpan="2"
+            Width="231"
             Height="48"
-            Margin="10,5,0,0"
+            Margin="266,10,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Background="#002F6C"

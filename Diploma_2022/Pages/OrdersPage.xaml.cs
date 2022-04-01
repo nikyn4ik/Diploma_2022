@@ -48,29 +48,25 @@ namespace Diploma_2022.Pages
             sqlConnection.Close();
         }
 
-        private void Buttontopack(object sender, RoutedEventArgs e) //после оформления заявки и отправки в доставку - её нет - сделать
+        private void Buttontopack(object sender, RoutedEventArgs e)
         {
-                if (OrdersGrid.SelectedItems.Count > 0)
+            try
                 {
-
-                 DataRowView drv = (DataRowView)OrdersGrid.SelectedItem;
+                sqlConnection.Open();
+                DataRowView drv = (DataRowView)OrdersGrid.SelectedItem;
                  string ID_Orders = drv.Row[0].ToString();
-                 SqlConnection con = new SqlConnection(@"Data Source=SPUTNIK; Initial Catalog=diploma_db; Integrated Security=True");
-                 con.Open();
-                 SqlCommand cmd = new SqlCommand("INSERT INTO [dbo].[shipment](id_shipment, consignee, date_of_shipments) SELECT id_order, SAP_product_code, date_of_adoption FROM orders WHERE id_order=@id", sqlConnection);
+                 SqlCommand cmd = new SqlCommand("INSERT INTO [dbo].[shipment] (id_shipment, name_product, date_of_shipments, consignee) ((SELECT id_order, name_product, date_of_adoption, consignee FROM orders WHERE id_order=@id))", sqlConnection);
                  cmd.Parameters.AddWithValue("@id", ID_Orders);
                  cmd.ExecuteNonQuery();
                  OrdersDataGrid_SelectionChanged();
                  MessageBox.Show("Заявка успешно отправлена в упаковку!", "Severstal Infocom");
+                sqlConnection.Close();
             }
-            //catch (Exception ex)
-            //{
-            //        MessageBox.Show("Данная заявка уже была отправлена в отгрузку", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
-            //}
-            //finally
-            //{
+                catch (Exception ex)
+            {
 
-            //}
+                MessageBox.Show("Данная заявка уже была отправлена в отгрузку", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
         }
         private void OrdersGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
