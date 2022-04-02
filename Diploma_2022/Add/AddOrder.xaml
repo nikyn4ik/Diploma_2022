@@ -6,72 +6,63 @@
     xmlns:local="clr-namespace:Diploma_2022.Add"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Severstal Infocom"
-    Width="360"
-    Height="200"
+    Width="550"
+    Height="270"
     ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
     <Window.Background>
 
-        <ImageBrush ImageSource="\Images\Sevrstal554840.jpg" />
+        <ImageBrush ImageSource="/Images/add.jpg" />
 
     </Window.Background>
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="11*"/>
+            <ColumnDefinition Width="218*"/>
+            <ColumnDefinition Width="90*"/>
+            <ColumnDefinition Width="231*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="84*"/>
+            <RowDefinition Height="39*"/>
+            <RowDefinition Height="38*"/>
+            <RowDefinition Height="48*"/>
+            <RowDefinition Height="45*"/>
+        </Grid.RowDefinitions>
         <TextBox
             x:Name="consignee"
-            Width="120"
-            Height="22"
-            Margin="230,35,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14"
-            Foreground="#FF0000"
-            TextWrapping="Wrap" />
-        <TextBox
-            x:Name="date_of_entrance"
-            Width="120"
-            Height="22"
-            Margin="230,0,0,0"
+            Width="204"
+            Height="44"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14"
+            FontSize="18"
             Foreground="#FF0000"
-            TextWrapping="Wrap" />
+            TextWrapping="Wrap" Grid.Column="3" Grid.Row="1" />
         <Label
-            Margin="10,0,0,0"
-            HorizontalAlignment="Left"
+            Width="218"
+            HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            Background="#002F6C"
-            Content="Дата поступления"
-            FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14"
-            Foreground="#FFFFFF" />
-        <Label
-            Width="128"
-            Margin="10,32,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
             Background="#002F6C"
             Content="Грузополучатель"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
-            Foreground="#FFFFFF" />
-        <Border>
-            <Button
-                Width="175"
-                Height="29"
-                Margin="0,145,0,0"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Top"
+            Foreground="#FFFFFF" Height="44" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="1" Grid.Row="1" />
+        <Label
+            VerticalAlignment="Top"
+            Background="#FFFFFF"
+            Content="Добавление грузополучателя"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="22"
+            Foreground="#002F6C" Height="36" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,10,0" />
+        <Button
                 Background="#FF0000"
                 BorderThickness="0,0,0,0"
                 Click="Button_add"
                 Content="Загрузить в таблицу"
                 FontFamily="Microsoft JhengHei UI Light"
                 FontSize="14"
-                Foreground="#FFFFFF" />
-        </Border>
+                Foreground="#FFFFFF" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Margin="163,38,176,0" Grid.RowSpan="2" />
     </Grid>
 </Window>

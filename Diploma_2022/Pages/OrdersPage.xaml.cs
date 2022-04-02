@@ -57,18 +57,19 @@ namespace Diploma_2022.Pages
                     sqlConnection.Open();
                     DataRowView drv = (DataRowView)OrdersGrid.SelectedItem;
                     string ID_Orders = drv.Row[0].ToString();
-                    SqlCommand cmd = new SqlCommand("INSERT INTO [dbo].[shipment] (id_shipment, name_product, date_of_shipments, consignee) ((SELECT id_order, name_product, date_of_adoption, consignee FROM orders WHERE id_order=@id))", sqlConnection);
+                    SqlCommand cmd = new SqlCommand("INSERT INTO [dbo].[package] (id_order) ((SELECT id_order FROM orders WHERE id_order=@id))", sqlConnection);
+                    //SqlCommand cmd = new SqlCommand("INSERT INTO [dbo].[shipment] (id_shipment, name_product, date_of_shipments, consignee) ((SELECT id_order, name_product, date_of_adoption, consignee FROM orders WHERE id_order=@id))", sqlConnection);
                     cmd.Parameters.AddWithValue("@id", ID_Orders);
                     cmd.ExecuteNonQuery();
                     OrdersDataGrid_SelectionChanged();
-                    MessageBox.Show("Заявка успешно отправлена в упаковку!", "Severstal Infocom");
+                    MessageBox.Show("Заказ успешно отправлен в упаковку!", "Severstal Infocom");
                     sqlConnection.Close();
                 }
             }
             catch (Exception ex)
             {
 
-                MessageBox.Show("Данная заявка уже была отправлена в отгрузку", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Данный заказ уже быа отправлен в упаковку", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
@@ -97,11 +98,24 @@ namespace Diploma_2022.Pages
                 }
             }
 
+        //protected void update()
+        //{
+        //    SqlConnection sqlConnection = new SqlConnection();
+        //    sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
+        //    sqlConnection.Open();
+        //    SqlCommand cmd = new SqlCommand();
+        //    cmd.CommandText = "SELECT * FROM [dbo].[orders]";
+        //    cmd.Connection = sqlConnection;
+        //    SqlDataAdapter order = new SqlDataAdapter(cmd);
+        //    order.Fill(dt);
+        //    OrdersGrid.ItemsSource = dt.DefaultView;
+        //    sqlConnection.Close();
+        //}
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             Add.AddOrder taskWindow = new Add.AddOrder();
             taskWindow.Show();
-            OrdersDataGrid_SelectionChanged();
+            //update();
         }
     }
 }

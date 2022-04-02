@@ -170,7 +170,7 @@
             VerticalAlignment="Top"
             Background="#002F6C"
             Click="AddButton_Click"
-            Content="Добавление даты поступления заказа"
+            Content="Добавление грузополучателя"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
             Foreground="#FFFFFF" />

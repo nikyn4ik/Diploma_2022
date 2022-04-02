@@ -13,6 +13,7 @@
     <None Remove="Database1.mdf" />
     <None Remove="Database1_log.ldf" />
     <None Remove="Images\755815785298206.jpg" />
+    <None Remove="Images\add.jpg" />
     <None Remove="Images\exit.png" />
     <None Remove="Images\lebedevsevers.jpg" />
     <None Remove="Images\logout.png" />
@@ -20,6 +21,7 @@
     <None Remove="Images\severstal_logo.ico" />
     <None Remove="Images\severstal_logo_dzo_icon.ico" />
     <None Remove="Images\Severstal_Logo_LAT_White_RGB.png" />
+    <None Remove="Images\Sevrstal554840.jpg" />
     <None Remove="Images\ugs.jpg" />
     <None Remove="Images\voestalpine_voest-1024x1024.jpg" />
     <None Remove="Images\warning1.png" />
@@ -57,6 +59,7 @@
 
   <ItemGroup>
     <Resource Include="Images\755815785298206.jpg" />
+    <Resource Include="Images\add.jpg" />
     <Resource Include="Images\lebedevsevers.jpg" />
     <Resource Include="Images\newbrand-bg2.jpg" />
     <Resource Include="Images\severstal_logo.ico" />

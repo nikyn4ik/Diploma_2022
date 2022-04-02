@@ -45,9 +45,27 @@ namespace Diploma_2022.Pages
         }
         private void Buttontoshipment(object sender, RoutedEventArgs e)
         {
+                try
+                {
+                    if (PackageGrid.SelectedItems.Count > 0)
+                    {
+                        sqlConnection.Open();
+                        DataRowView drv = (DataRowView)PackageGrid.SelectedItem;
+                        string ID_Orders = drv.Row[0].ToString();
+                        SqlCommand cmd = new SqlCommand("INSERT INTO [dbo].[shipment] (id_order) ((SELECT id_order FROM package WHERE id_order=@id))", sqlConnection);
+                        cmd.Parameters.AddWithValue("@id", ID_Orders);
+                        cmd.ExecuteNonQuery();
+                        Package_DataGrid_SelectionChanged();
+                        MessageBox.Show("Заказ успешно отправлен в отгрузку!", "Severstal Infocom");
+                        sqlConnection.Close();
+                    }
+                }
+                catch (Exception ex)
+                {
 
-        }
-
+                    MessageBox.Show("Данный заказ уже быа отправлен в отгрузку", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
         private void outButton_Click(object sender, RoutedEventArgs e)
         {
 
@@ -56,6 +74,12 @@ namespace Diploma_2022.Pages
         private void PackageGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            Add.AddPackage taskWindow = new Add.AddPackage();
+            taskWindow.Show();
         }
     }
     }

@@ -20,34 +20,35 @@ using System.Globalization;
 namespace Diploma_2022.Add
 {
     /// <summary>
-    /// Логика взаимодействия для AddOrder.xaml
+    /// Логика взаимодействия для AddPackage.xaml
     /// </summary>
-    public partial class AddOrder : Window
+    public partial class AddPackage : Window
     {
-        public AddOrder()
+        public AddPackage()
         {
             InitializeComponent();
             SqlConnection sqlConnection = new SqlConnection(@"Data Source=SPUTNIK; Initial Catalog=diploma_db; Integrated Security=True");
         }
 
+        private void date_package_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            DateTime date_package = (DateTime)this.DatePicker.SelectedDate;
+        }
         private void Button_add(object sender, RoutedEventArgs e)
         {
             SqlConnection sqlConnection = new SqlConnection();
             sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
             {
                 sqlConnection.Open();
-                string query = ("INSERT INTO [dbo].[orders] VALUES (@consignee)");
+                string query = ("INSERT INTO  [dbo].[package] values (@id_model, @color_package, @date_package)");
                 SqlCommand createCommand = new SqlCommand(query, sqlConnection);
-                createCommand.Parameters.AddWithValue("@consignee", consignee.Text);
+                createCommand.Parameters.AddWithValue("@id_model", id_model.Text);
+                createCommand.Parameters.AddWithValue("@color_package", color_package.Text);
+                createCommand.Parameters.AddWithValue("@date_package", Convert.ToDateTime(date_package.Text));
                 createCommand.ExecuteNonQuery();
                 MessageBox.Show("Сохранено!", "Severstal Infocom", MessageBoxButton.OK);
                 sqlConnection.Close();
             }
-            }
         }
-
-        //private void date_of_entrance_TextChanged(object sender, TextChangedEventArgs e)
-        //{
-        //    DateTime date_of_entrance = (DateTime)this.DatePicker.SelectedDate;
-        //}
     }
+}

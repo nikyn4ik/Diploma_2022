@@ -95,13 +95,6 @@
                     IsReadOnly="True" />
                 <DataGridTextColumn
                     Width="*"
-                    Binding="{Binding name_product}"
-                    FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="12"
-                    Header="Продукт"
-                    IsReadOnly="True" />
-                <DataGridTextColumn
-                    Width="*"
                     Binding="{Binding date_of_shipments}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="12"

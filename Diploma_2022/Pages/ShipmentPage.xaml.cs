@@ -95,7 +95,7 @@ namespace Diploma_2022.Pages
                 DataRowView drv = (DataRowView)ShipmentGrid.SelectedItem;
                 string shipmentId = drv.Row[0].ToString();
                 sqlConnection.Open();
-                SqlCommand cmd = new SqlCommand("INSERT INTO [dbo].[delivery](name_product, product_standard, name_storage, id_order) VALUES((SELECT name_product FROM shipment WHERE id_shipment = @id), 's', 's', (SELECT name_product FROM shipment WHERE id_shipment = @id))", sqlConnection);
+                SqlCommand cmd = new SqlCommand("INSERT INTO [dbo].[delivery](product_standard, name_storage, id_order) VALUES((SELECT id_order FROM shipment WHERE id_shipment = @id))", sqlConnection);
                 cmd.Parameters.AddWithValue("@id", shipmentId);
                 cmd.ExecuteNonQuery();
                 Shipment_DataGrid_SelectionChanged();

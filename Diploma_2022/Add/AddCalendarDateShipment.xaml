@@ -13,7 +13,7 @@
     mc:Ignorable="d">
     <Window.Background>
 
-        <ImageBrush ImageSource="\Images\Sevrstal554840.jpg" />
+        <ImageBrush ImageSource="\Images\add.jpg" />
 
     </Window.Background>
     <Grid>

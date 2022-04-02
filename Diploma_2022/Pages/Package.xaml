@@ -90,7 +90,7 @@
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding id_model}"
-                    Header="Id" />
+                    Header="Модель" />
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding color_package}"
@@ -98,33 +98,44 @@
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding date_package}"
-                    Header="Дата"
+                    Header="Дата упаковки"
                     IsReadOnly="True" />
             </DataGrid.Columns>
         </DataGrid>
         <Button
             x:Name="outputdoc"
             Grid.Row="5"
-            Grid.Column="1"
-            Grid.ColumnSpan="2"
+            Grid.Column="2"
             Width="208"
             Height="49"
-            Margin="223,9,263,0"
+            Margin="0,9,231,0"
             VerticalAlignment="Top"
             Background="#FF0000"
             Click="outButton_Click"
             Content="Вывод PDF"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
-            Foreground="#FFFFFF" />
+            Foreground="#FFFFFF" HorizontalAlignment="Right" />
+        <Button
+            x:Name="addButton"
+            Grid.Row="5"
+            Width="224"
+            Height="49"
+            Margin="0,9,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Background="#002F6C"
+            Click="AddButton_Click"
+            Content="Добавление"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="14"
+            Foreground="#FFFFFF" Grid.Column="1" />
         <Button
             x:Name="toshipment"
             Grid.Row="5"
-            Grid.RowSpan="2"
-            Grid.ColumnSpan="2"
-            Width="207"
+            Width="208"
             Height="49"
-            Margin="290,10,0,16"
+            Margin="256,9,0,0"
             HorizontalAlignment="Left"
             Background="#FF0000"
             Click="Buttontoshipment"
