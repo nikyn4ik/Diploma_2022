@@ -19,9 +19,9 @@
 
     <Grid Height="684" VerticalAlignment="Bottom">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="497*" />
-            <ColumnDefinition Width="224*" />
-            <ColumnDefinition Width="256*" />
+            <ColumnDefinition Width="462*" />
+            <ColumnDefinition Width="295*" />
+            <ColumnDefinition Width="220*" />
             <ColumnDefinition Width="215*" />
             <ColumnDefinition Width="9*" />
         </Grid.ColumnDefinitions>
@@ -79,50 +79,69 @@
             CanUserReorderColumns="False"
             CanUserResizeRows="False"
             CanUserSortColumns="False"
-            IsReadOnly="False"
-            SelectionChanged="OrdersGrid_SelectionChanged">
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="12"
+            IsReadOnly="False">
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding id_order}"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="12"
                     Header="Id заказа"
                     IsReadOnly="True" />
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding name_product}"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="12"
                     Header="Продукт"
                     IsReadOnly="True" />
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding syst_c3}"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="12"
                     Header="СИСТ №СЗ"
                     IsReadOnly="True" />
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding log_c3}"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="12"
                     Header="ЛОГ № СЗ"
                     IsReadOnly="True" />
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding consignee}"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="12"
                     Header="Грузополучатель" />
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding date_of_entrance}"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="12"
                     Header="Дата поступления" />
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding thickness_mm}"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="12"
                     Header="Толщина [мм]"
                     IsReadOnly="True" />
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding width_mm}"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="12"
                     Header="Ширина [мм]"
                     IsReadOnly="True" />
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding length_mm}"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="12"
                     Header="Длина [мм]"
                     IsReadOnly="True" />
             </DataGrid.Columns>
@@ -137,6 +156,21 @@
             Background="#FF0000"
             Click="Buttontopack"
             Content="Отправить заказ в упаковку"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="14"
+            Foreground="#FFFFFF" />
+        <Button
+            x:Name="addButton"
+            Grid.Row="5"
+            Grid.Column="1"
+            Width="295"
+            Height="48"
+            Margin="0,10,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Background="#002F6C"
+            Click="AddButton_Click"
+            Content="Добавление даты поступления заказа"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
             Foreground="#FFFFFF" />

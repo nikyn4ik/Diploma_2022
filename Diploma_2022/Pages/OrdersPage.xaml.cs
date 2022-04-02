@@ -25,6 +25,7 @@ namespace Diploma_2022.Pages
     public partial class OrdersPage : Window
     {
         SqlConnection sqlConnection = new SqlConnection(@"Data Source=SPUTNIK; Initial Catalog=diploma_db; Integrated Security=True");
+        DataTable dt = new DataTable("diploma_db");
 
         public OrdersPage()
         {
@@ -42,7 +43,6 @@ namespace Diploma_2022.Pages
             cmd.CommandText = "SELECT * FROM [dbo].[orders]";
             cmd.Connection = sqlConnection;
             SqlDataAdapter order = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable("diploma_db");
             order.Fill(dt);
             OrdersGrid.ItemsSource = dt.DefaultView;
             sqlConnection.Close();
@@ -51,27 +51,27 @@ namespace Diploma_2022.Pages
         private void Buttontopack(object sender, RoutedEventArgs e)
         {
             try
+            {
+                if (OrdersGrid.SelectedItems.Count > 0)
                 {
-                sqlConnection.Open();
-                DataRowView drv = (DataRowView)OrdersGrid.SelectedItem;
-                 string ID_Orders = drv.Row[0].ToString();
-                 SqlCommand cmd = new SqlCommand("INSERT INTO [dbo].[shipment] (id_shipment, name_product, date_of_shipments, consignee) ((SELECT id_order, name_product, date_of_adoption, consignee FROM orders WHERE id_order=@id))", sqlConnection);
-                 cmd.Parameters.AddWithValue("@id", ID_Orders);
-                 cmd.ExecuteNonQuery();
-                 OrdersDataGrid_SelectionChanged();
-                 MessageBox.Show("Заявка успешно отправлена в упаковку!", "Severstal Infocom");
-                sqlConnection.Close();
+                    sqlConnection.Open();
+                    DataRowView drv = (DataRowView)OrdersGrid.SelectedItem;
+                    string ID_Orders = drv.Row[0].ToString();
+                    SqlCommand cmd = new SqlCommand("INSERT INTO [dbo].[shipment] (id_shipment, name_product, date_of_shipments, consignee) ((SELECT id_order, name_product, date_of_adoption, consignee FROM orders WHERE id_order=@id))", sqlConnection);
+                    cmd.Parameters.AddWithValue("@id", ID_Orders);
+                    cmd.ExecuteNonQuery();
+                    OrdersDataGrid_SelectionChanged();
+                    MessageBox.Show("Заявка успешно отправлена в упаковку!", "Severstal Infocom");
+                    sqlConnection.Close();
+                }
             }
-                catch (Exception ex)
+            catch (Exception ex)
             {
 
                 MessageBox.Show("Данная заявка уже была отправлена в отгрузку", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
+            }
         }
-        private void OrdersGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
 
-        }
 
         private void brakButton_Click(object sender, RoutedEventArgs e)
         {
@@ -96,5 +96,12 @@ namespace Diploma_2022.Pages
                         break;
                 }
             }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            Add.AddOrder taskWindow = new Add.AddOrder();
+            taskWindow.Show();
+            OrdersDataGrid_SelectionChanged();
+        }
     }
 }

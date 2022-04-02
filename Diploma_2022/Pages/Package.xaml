@@ -98,7 +98,8 @@
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding date_package}"
-                    Header="Дата" />
+                    Header="Дата"
+                    IsReadOnly="True" />
             </DataGrid.Columns>
         </DataGrid>
         <Button

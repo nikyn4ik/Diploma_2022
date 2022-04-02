@@ -41,7 +41,7 @@ namespace Diploma_2022.Pages
         }
         private void AddButton(object sender, RoutedEventArgs e)
         {
-            Windows.AddStorage taskWindow = new Windows.AddStorage();
+            Add.AddStorage taskWindow = new Add.AddStorage();
             taskWindow.Show();
             Storage_DataGrid_SelectionChanged();
         }

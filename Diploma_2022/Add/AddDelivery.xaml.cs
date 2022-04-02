@@ -14,7 +14,7 @@ using iTextSharp.text.pdf;
 using System.IO;
 
 
-namespace Diploma_2022.Windows
+namespace Diploma_2022.Add
 {
     public partial class AddDelivery : Window
     {

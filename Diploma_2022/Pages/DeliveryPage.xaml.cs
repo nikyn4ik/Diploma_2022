@@ -104,7 +104,7 @@ namespace Diploma_2022.Pages
         private void editButton(object sender, RoutedEventArgs e)
         {
             Hide();
-            var window = new Windows.AddDelivery();
+            var window = new Add.AddDelivery();
             window.ShowDialog();
             Show();
         }

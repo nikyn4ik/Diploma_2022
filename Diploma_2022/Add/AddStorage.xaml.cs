@@ -16,7 +16,7 @@ using System.Data;
 using System.IO;
 using System.Configuration;
 
-namespace Diploma_2022.Windows
+namespace Diploma_2022.Add
 {
     /// <summary>
     /// Логика взаимодействия для AddStorage.xaml

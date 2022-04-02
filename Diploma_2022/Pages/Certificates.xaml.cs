@@ -31,7 +31,7 @@ namespace Diploma_2022.Pages
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            Windows.AddCertificates taskWindow = new Windows.AddCertificates();
+            Add.AddCertificates taskWindow = new Add.AddCertificates();
             taskWindow.Show();
             Certificates_DataGrid_SelectionChanged();
         }

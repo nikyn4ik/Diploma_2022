@@ -16,7 +16,7 @@ using System.Data;
 using System.IO;
 using System.Configuration;
 
-namespace Diploma_2022.Windows
+namespace Diploma_2022.Add
 {
     /// <summary>
     /// Interaction logic for AddCertificates.xaml
@@ -56,5 +56,6 @@ namespace Diploma_2022.Windows
             CertificatesGrid.DataContext = dt;
             CertificatesGrid.ItemsSource = dt.DefaultView;
         }
+
     }
 }

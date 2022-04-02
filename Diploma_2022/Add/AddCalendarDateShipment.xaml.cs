@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Diploma_2022.Windows
+namespace Diploma_2022.Add
 {
     /// <summary>
     /// Логика взаимодействия для CalendarDate.xaml

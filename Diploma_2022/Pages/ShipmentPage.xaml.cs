@@ -48,7 +48,7 @@ namespace Diploma_2022.Pages
         }
         private void dateships(object sender, RoutedEventArgs e)/* (!!!)*/
         {
-            var window = new Windows.AddCalendarDateShipment();
+            var window = new Add.AddCalendarDateShipment();
             window.ShowDialog();
             Show();
         }
@@ -100,7 +100,7 @@ namespace Diploma_2022.Pages
                 cmd.ExecuteNonQuery();
                 Shipment_DataGrid_SelectionChanged();
                 MessageBox.Show("Заявка из отгрузки успешно отправлена в доставку!", "Severstal Infocom");
-                var window = new Windows.AddDelivery();
+                var window = new Add.AddDelivery();
                 window.ShowDialog();
                 Show();
             }

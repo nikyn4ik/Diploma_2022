@@ -73,7 +73,7 @@
                     VerticalAlignment="Bottom"
                     Background="#FFFFFF"
                     FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="18"
+                    FontSize="24"
                     FontWeight="Normal"
                     Foreground="#FF0000"
                     TextAlignment="Center" />
@@ -104,8 +104,9 @@
                     FontSize="18"
                     Foreground="#FFFFFF" />
                 <Button
+                    Width="278"
                     Height="44"
-                    Margin="0,248,920,402"
+                    Margin="0,136,920,514"
                     AllowDrop="True"
                     Background="#FF0000 "
                     Click="Button_Certificates"
@@ -144,9 +145,8 @@
                     FontSize="18"
                     Foreground="#002F6C" />
                 <Button
-                    Width="278"
                     Height="44"
-                    Margin="0,136,920,514"
+                    Margin="0,248,920,402"
                     AllowDrop="True"
                     Background="#FF0000 "
                     Click="Button_Shipment"
