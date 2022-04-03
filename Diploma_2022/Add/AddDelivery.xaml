@@ -240,11 +240,10 @@
             Foreground="White" />
         <DatePicker
             x:Name="DatePicker"
-            Grid.Column="2"
-            Grid.ColumnSpan="2"
-            Width="182"
+            Grid.Column="3"
+            Width="33"
             Height="30"
-            Margin="292,529,0,0"
+            Margin="147,498,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             DisplayDate="2022-03-23"

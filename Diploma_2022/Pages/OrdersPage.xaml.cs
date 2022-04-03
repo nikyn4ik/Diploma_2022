@@ -45,7 +45,7 @@ namespace Diploma_2022.Pages
             SqlDataAdapter order = new SqlDataAdapter(cmd);
             order.Fill(dt);
             OrdersGrid.ItemsSource = dt.DefaultView;
-            sqlConnection.Close();
+            //sqlConnection.Close();
         }
 
         private void Buttontopack(object sender, RoutedEventArgs e)
@@ -69,7 +69,7 @@ namespace Diploma_2022.Pages
             catch (Exception ex)
             {
 
-                MessageBox.Show("Данный заказ уже быа отправлен в упаковку", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Данный заказ уже был отправлен в упаковку", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
@@ -98,24 +98,22 @@ namespace Diploma_2022.Pages
                 }
             }
 
-        //protected void update()
-        //{
-        //    SqlConnection sqlConnection = new SqlConnection();
-        //    sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
-        //    sqlConnection.Open();
-        //    SqlCommand cmd = new SqlCommand();
-        //    cmd.CommandText = "SELECT * FROM [dbo].[orders]";
-        //    cmd.Connection = sqlConnection;
-        //    SqlDataAdapter order = new SqlDataAdapter(cmd);
-        //    order.Fill(dt);
-        //    OrdersGrid.ItemsSource = dt.DefaultView;
-        //    sqlConnection.Close();
-        //}
+        protected void update()
+        {
+            SqlConnection sqlConnection = new SqlConnection();
+            sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
+            sqlConnection.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = "SELECT * FROM [dbo].[orders]";
+            cmd.Connection = sqlConnection;
+            SqlDataAdapter order = new SqlDataAdapter(cmd);
+            order.Fill(dt);
+            OrdersGrid.ItemsSource = dt.DefaultView;
+            sqlConnection.Close();
+        }
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            Add.AddOrder taskWindow = new Add.AddOrder();
-            taskWindow.Show();
-            //update();
         }
+
     }
 }

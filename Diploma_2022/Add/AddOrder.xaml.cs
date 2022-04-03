@@ -24,30 +24,27 @@ namespace Diploma_2022.Add
     /// </summary>
     public partial class AddOrder : Window
     {
+        SqlConnection sqlConnection = new SqlConnection(@"Data Source=SPUTNIK; Initial Catalog=diploma_db; Integrated Security=True");
+        SqlDataReader db;
+
         public AddOrder()
         {
             InitializeComponent();
-            SqlConnection sqlConnection = new SqlConnection(@"Data Source=SPUTNIK; Initial Catalog=diploma_db; Integrated Security=True");
         }
-
         private void Button_add(object sender, RoutedEventArgs e)
         {
-            SqlConnection sqlConnection = new SqlConnection();
-            sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
-            {
-                sqlConnection.Open();
-                string query = ("INSERT INTO [dbo].[orders] VALUES (@consignee)");
-                SqlCommand createCommand = new SqlCommand(query, sqlConnection);
-                createCommand.Parameters.AddWithValue("@consignee", consignee.Text);
-                createCommand.ExecuteNonQuery();
-                MessageBox.Show("Сохранено!", "Severstal Infocom", MessageBoxButton.OK);
-                sqlConnection.Close();
-            }
-            }
+            //SqlConnection sqlConnection = new SqlConnection();
+            //sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
+            //{
+            //    sqlConnection.Open();
+            //    string query = "UPDATE [dbo].[orders] SET consignee=@consignee  WHERE id_order=@id";
+            //    SqlCommand createCommand = new SqlCommand(query, sqlConnection);
+            //    createCommand.Parameters.AddWithValue("@consignee", consignee.Text);
+            //    createCommand.ExecuteNonQuery();
+            //    MessageBox.Show("Сохранено!", "Severstal Infocom", MessageBoxButton.OK);
+            //    sqlConnection.Close();
+            //    this.Close();
+            //}
         }
-
-        //private void date_of_entrance_TextChanged(object sender, TextChangedEventArgs e)
-        //{
-        //    DateTime date_of_entrance = (DateTime)this.DatePicker.SelectedDate;
-        //}
     }
+}

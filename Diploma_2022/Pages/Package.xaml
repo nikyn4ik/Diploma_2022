@@ -98,10 +98,18 @@
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding date_package}"
-                    Header="Дата упаковки"
-                    IsReadOnly="True" />
+                    Header="Дата упаковки" />
             </DataGrid.Columns>
         </DataGrid>
+        <TextBox
+            x:Name="pole"
+            Grid.Row="1"
+            Grid.Column="2"
+            Width="106"
+            Margin="257,0,0,0"
+            HorizontalAlignment="Left"
+            TextChanged="polee_TextChanged"
+            TextWrapping="Wrap" />
         <Button
             x:Name="outputdoc"
             Grid.Row="5"
@@ -109,16 +117,18 @@
             Width="208"
             Height="49"
             Margin="0,9,231,0"
+            HorizontalAlignment="Right"
             VerticalAlignment="Top"
             Background="#FF0000"
             Click="outButton_Click"
             Content="Вывод PDF"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
-            Foreground="#FFFFFF" HorizontalAlignment="Right" />
+            Foreground="#FFFFFF" />
         <Button
             x:Name="addButton"
             Grid.Row="5"
+            Grid.Column="1"
             Width="224"
             Height="49"
             Margin="0,9,0,0"
@@ -126,10 +136,25 @@
             VerticalAlignment="Top"
             Background="#002F6C"
             Click="AddButton_Click"
-            Content="Добавление"
+            Content="Редактирование"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
-            Foreground="#FFFFFF" Grid.Column="1" />
+            Foreground="#FFFFFF" />
+        <Button
+            Grid.Row="1"
+            Grid.Column="2"
+            Width="84"
+            Height="29"
+            Margin="378,0,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Background="#002F6C"
+            Click="Button_Click_search"
+            Content="Поиск"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="14"
+            Foreground="#FFFFFF"
+            RenderTransformOrigin="0.545,1.183" />
         <Button
             x:Name="toshipment"
             Grid.Row="5"

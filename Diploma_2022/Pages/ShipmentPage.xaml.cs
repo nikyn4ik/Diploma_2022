@@ -64,7 +64,7 @@ namespace Diploma_2022.Pages
             try
             {
                 SqlConnection cmds = new SqlConnection(ConnectionString);
-                string cmd = "SELECT * FROM [dbo].[shipment] WHERE id_shipment like '" + pole.Text + "%'";
+                string cmd = "SELECT * FROM [dbo].[shipment] WHERE id_order like '" + pole.Text + "%'";
                 cmds.Open();
                 SqlCommand sqlcom = new SqlCommand(cmd, cmds);
                 SqlDataAdapter shipments = new SqlDataAdapter(sqlcom);
@@ -80,31 +80,29 @@ namespace Diploma_2022.Pages
             }
         }
 
-        private void cert_Click(object sender, RoutedEventArgs e)
-        {
-            Hide();
-            var window = new Certificates();
-            window.ShowDialog();
-            Show();
-        }
-
         private void go_to_dostav_Click(object sender, RoutedEventArgs e)
         {
-            if (ShipmentGrid.SelectedItems.Count > 0)
+            try
+            {
+              if (ShipmentGrid.SelectedItems.Count > 0)
             {
                 DataRowView drv = (DataRowView)ShipmentGrid.SelectedItem;
                 string shipmentId = drv.Row[0].ToString();
                 sqlConnection.Open();
-                SqlCommand cmd = new SqlCommand("INSERT INTO [dbo].[delivery](product_standard, name_storage, id_order) VALUES((SELECT id_order FROM shipment WHERE id_shipment = @id))", sqlConnection);
+                SqlCommand cmd = new SqlCommand("INSERT INTO [dbo].[delivery] (id_order) VALUES((SELECT id_order FROM package WHERE id_order = @id))", sqlConnection);
                 cmd.Parameters.AddWithValue("@id", shipmentId);
                 cmd.ExecuteNonQuery();
                 Shipment_DataGrid_SelectionChanged();
-                MessageBox.Show("Заявка из отгрузки успешно отправлена в доставку!", "Severstal Infocom");
-                var window = new Add.AddDelivery();
-                window.ShowDialog();
-                Show();
-            }
+                MessageBox.Show("Заказ успешно отправлен в доставку!", "Severstal Infocom");
+                sqlConnection.Close();
         }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Данный заказ уже быа отправлен в доставку", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+}
 
         private void outButton_Click(object sender, RoutedEventArgs e)
         {

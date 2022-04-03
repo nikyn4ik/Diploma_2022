@@ -1,5 +1,5 @@
 ﻿<Window
-    x:Class="Diploma_2022.Add.AddPackage"
+    x:Class="Diploma_2022.Add.AddShipment"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -33,7 +33,7 @@
             <RowDefinition Height="55*" />
         </Grid.RowDefinitions>
         <TextBox
-            x:Name="id_model"
+            x:Name="shipment_total_amount_tons"
             Grid.Row="1"
             Grid.RowSpan="2"
             Grid.Column="3"
@@ -43,7 +43,7 @@
             Foreground="#FF0000"
             TextWrapping="Wrap" />
         <TextBox
-            x:Name="color_package"
+            x:Name="number_of_shipments_per_month_tons"
             Grid.Row="2"
             Grid.RowSpan="2"
             Grid.Column="3"
@@ -54,7 +54,7 @@
             Foreground="#FF0000"
             TextWrapping="Wrap" />
         <TextBox
-            x:Name="date_package"
+            x:Name="date_of_shipments"
             Grid.Row="3"
             Grid.RowSpan="2"
             Grid.Column="3"
@@ -63,7 +63,7 @@
             FontSize="18"
             Foreground="#FF0000"
             Text="{Binding ElementName=DatePicker, Path=SelectedDate, StringFormat=d}"
-            TextChanged="date_package_TextChanged"
+            TextChanged="date_of_shipments_TextChanged"
             TextWrapping="Wrap" />
         <Label
             Grid.Row="1"
@@ -74,7 +74,7 @@
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
-            Content="Модель"
+            Content="Количество отгрузки (тонн)"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
             Foreground="#FFFFFF" />
@@ -111,7 +111,7 @@
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
-            Content="Цвет"
+            Content="Отгрузка (тонн) в месяц"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
             Foreground="#FFFFFF" />
@@ -124,7 +124,7 @@
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
-            Content="Дата упаковки"
+            Content="Дата отгрузки"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
             Foreground="#FFFFFF" />
@@ -137,7 +137,7 @@
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#FFFFFF"
-            Content="Редактирование заказа в упаковке"
+            Content="Редактирование заказа в отгрузке"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="22"
             Foreground="#002F6C" />

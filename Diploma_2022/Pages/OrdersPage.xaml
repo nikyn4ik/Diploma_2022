@@ -65,8 +65,6 @@
 
             </StackPanel>
         </Border>
-
-
         <DataGrid
             Name="OrdersGrid"
             Grid.Row="4"
@@ -81,36 +79,33 @@
             CanUserSortColumns="False"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="12"
-            IsReadOnly="False">
+            IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn
+                    x:Name="id_order"
                     Width="*"
                     Binding="{Binding id_order}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="12"
-                    Header="Id заказа"
-                    IsReadOnly="True" />
+                    Header="Id заказа" />
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding name_product}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="12"
-                    Header="Продукт"
-                    IsReadOnly="True" />
+                    Header="Продукт" />
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding syst_c3}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="12"
-                    Header="СИСТ №СЗ"
-                    IsReadOnly="True" />
+                    Header="СИСТ №СЗ" />
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding log_c3}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="12"
-                    Header="ЛОГ № СЗ"
-                    IsReadOnly="True" />
+                    Header="ЛОГ № СЗ" />
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding consignee}"
@@ -128,22 +123,19 @@
                     Binding="{Binding thickness_mm}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="12"
-                    Header="Толщина [мм]"
-                    IsReadOnly="True" />
+                    Header="Толщина [мм]" />
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding width_mm}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="12"
-                    Header="Ширина [мм]"
-                    IsReadOnly="True" />
+                    Header="Ширина [мм]" />
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding length_mm}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="12"
-                    Header="Длина [мм]"
-                    IsReadOnly="True" />
+                    Header="Длина [мм]" />
             </DataGrid.Columns>
         </DataGrid>
         <Button
