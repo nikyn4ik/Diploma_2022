@@ -73,5 +73,9 @@ namespace Diploma_2022.Add
             }
             sqlConnection.Close();
         }
+        private void id_ord_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+
+        }
     }
 }

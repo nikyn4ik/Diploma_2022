@@ -37,60 +37,60 @@
             Grid.Row="1"
             Grid.RowSpan="2"
             Grid.Column="3"
-            Margin="0,59,18,19"
+            Margin="0,59,18,0"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="18"
             Foreground="#FF0000"
-            TextWrapping="Wrap" />
+            TextWrapping="Wrap" Height="40" VerticalAlignment="Top" />
         <TextBox
             x:Name="color_package"
             Grid.Row="2"
             Grid.RowSpan="2"
             Grid.Column="3"
             Height="40"
-            Margin="0,59,18,19"
+            Margin="0,59,18,0"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="18"
             Foreground="#FF0000"
-            TextWrapping="Wrap" />
+            TextWrapping="Wrap" VerticalAlignment="Top" />
         <TextBox
             x:Name="date_package"
             Grid.Row="3"
             Grid.RowSpan="2"
             Grid.Column="3"
-            Margin="0,59,18,19"
+            Margin="0,59,32,0"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="18"
             Foreground="#FF0000"
             Text="{Binding ElementName=DatePicker, Path=SelectedDate, StringFormat=d}"
             TextChanged="date_package_TextChanged"
-            TextWrapping="Wrap" />
+            TextWrapping="Wrap" Height="40" VerticalAlignment="Top" />
         <Label
             Grid.Row="1"
             Grid.RowSpan="2"
             Grid.Column="1"
             Height="40"
-            Margin="0,59,0,19"
+            Margin="0,59,0,0"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
             Content="Модель"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
-            Foreground="#FFFFFF" />
+            Foreground="#FFFFFF" VerticalAlignment="Top" />
         <Label
             Grid.RowSpan="2"
             Grid.ColumnSpan="2"
             Width="218"
             Height="40"
-            Margin="10,59,1,19"
+            Margin="10,59,1,0"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
             Content="Id заказа"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
-            Foreground="#FFFFFF" />
+            Foreground="#FFFFFF" VerticalAlignment="Top" />
         <Label
             Grid.Column="1"
             Width="218"
@@ -107,27 +107,27 @@
             Grid.Row="3"
             Grid.Column="1"
             Height="40"
-            Margin="0,1,0,18"
+            Margin="0,1,0,0"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
             Content="Цвет"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
-            Foreground="#FFFFFF" />
+            Foreground="#FFFFFF" VerticalAlignment="Top" />
         <Label
             Grid.Row="3"
             Grid.RowSpan="2"
             Grid.ColumnSpan="2"
             Height="40"
-            Margin="10,59,1,19"
+            Margin="10,59,1,0"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
             Content="Дата упаковки"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
-            Foreground="#FFFFFF" />
+            Foreground="#FFFFFF" VerticalAlignment="Top" />
         <Label
             Grid.Column="1"
             Grid.ColumnSpan="3"
@@ -143,22 +143,22 @@
             Foreground="#002F6C" />
         <DatePicker
             x:Name="DatePicker"
-            Grid.Row="4"
+            Grid.Row="3"
             Grid.Column="3"
-            Margin="177,1,27,19"
+            Margin="200,59,0,0"
             DisplayDate="2022-04-04"
             FirstDayOfWeek="Monday"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14" />
+            FontSize="14" Height="39" VerticalAlignment="Top" HorizontalAlignment="Left" Width="32" Grid.RowSpan="2" />
         <ComboBox
             x:Name="id_ord"
             Grid.Row="1"
             Grid.Column="3"
             Height="40"
-            Margin="0,1,18,18"
+            Margin="0,1,18,0"
             DataContextChanged="id_ord_DataContextChanged"
             RenderTransformOrigin="0.5,0.5"
-            SelectionChanged="ComboBox_SelectionChanged">
+            SelectionChanged="ComboBox_SelectionChanged" VerticalAlignment="Top">
             <ComboBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform />

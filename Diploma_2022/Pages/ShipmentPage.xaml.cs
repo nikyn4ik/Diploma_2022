@@ -108,5 +108,11 @@ namespace Diploma_2022.Pages
         {
 
         }
+
+        private void edit_Click(object sender, RoutedEventArgs e)
+        {
+            Add.AddShipment taskWindow = new Add.AddShipment();
+            taskWindow.Show();
+        }
     }
 }

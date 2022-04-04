@@ -196,12 +196,12 @@
             Foreground="#FFFFFF"
             RenderTransformOrigin="0.545,1.183" />
         <Button
-            x:Name="addButton"
+            x:Name="editButton"
             Grid.Row="5"
             Grid.Column="2"
             Margin="23,10,15,0"
             Background="#002F6C"
-            Click="add_Click"
+            Click="edit_Click"
             Content="Редактирование"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
