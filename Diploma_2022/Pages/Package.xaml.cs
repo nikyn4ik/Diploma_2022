@@ -33,7 +33,6 @@ namespace Diploma_2022.Pages
         {
             InitializeComponent();
             Package_DataGrid_SelectionChanged();
-            PackageGrid.ItemsSource= list;  
             var ppp = CodePagesEncodingProvider.Instance;   
             Encoding.RegisterProvider(ppp);     
         }
@@ -74,18 +73,23 @@ namespace Diploma_2022.Pages
         }
         private void outButton_Click(object sender, RoutedEventArgs e)
         {
-            pdfout();
+            var selectedIndex = PackageGrid.SelectedIndex;
+            if (selectedIndex != -1)
+             PDFOut(selectedIndex);
+            else MessageBox.Show("Выберите нужную строчку!", "Severstal Infocom");
         }
-        private void pdfout()
+        private void PDFOut(int cellId)
         {
+            object item = PackageGrid.SelectedItem;
+            string ID = (PackageGrid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
             using var doc = new Document();
-            PdfWriter.GetInstance(doc, new FileStream("Package.pdf", FileMode.Create));
+            PdfWriter.GetInstance(doc, new FileStream("Package" + ID + ".pdf", FileMode.Create));
             doc.Open();
 
             var baseFont = BaseFont.CreateFont(@"C:\Windows\Fonts\arial.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
             var font = new Font(baseFont, Font.DEFAULTSIZE, Font.NORMAL); //создание базовых font/шрифтов
             var table = new PdfPTable(PackageGrid.Columns.Count);// создание таблицы
-            var cell = new PdfPCell(new Phrase("БД " + "Упаковка.pdf" + ", таблица№" + 1, font))// создание первой ячейки с фразой, которую мы хотим
+            var cell = new PdfPCell(new Phrase("PACKAGE ORDER " + " # " + ID))// создание первой ячейки с фразой, которую мы хотим
             {
                 Colspan = PackageGrid.Columns.Count,
                 HorizontalAlignment = 1,
@@ -95,19 +99,20 @@ namespace Diploma_2022.Pages
 
             for (int j = 0; j < PackageGrid.Columns.Count; j++)//проходимся циклом по каж.сtolбцу 
             {
-                cell = new PdfPCell(new Phrase("gay"));
-                cell.BackgroundColor = BaseColor.LIGHT_GRAY;
+                cell = new PdfPCell(new Phrase(PackageGrid.Columns[j].Header.ToString()));
+                var headerCell = cell.Phrase[0].ToString();
+                cell = new PdfPCell(new Phrase(headerCell, font));
+                cell.BackgroundColor = BaseColor.BLACK;
+                font.Color = BaseColor.WHITE;
                 table.AddCell(cell);
             }
-            foreach (var pack in list)
+            for (int j = 0; j < PackageGrid.Columns.Count; j++)//проходимся циклом по каж.сtolбцу 
             {
-                table.AddCell(new Phrase(pack.id_order.ToString(), font));
-
-                table.AddCell(new Phrase(pack.id_model.ToString(), font));
-
-                table.AddCell(new Phrase(pack.color_package, font));
-
-                table.AddCell(new Phrase(pack.date_package.ToString(), font));
+                string sr = (PackageGrid.SelectedCells[j].Column.GetCellContent(item) as TextBlock).Text;
+                cell = new PdfPCell(new Phrase(sr, font));
+                cell.BackgroundColor = BaseColor.LIGHT_GRAY;
+                font.Color = BaseColor.WHITE;
+                table.AddCell(cell);
             }
 
             doc.Add(table);
@@ -116,10 +121,6 @@ namespace Diploma_2022.Pages
 
         }
 
-        private void PackageGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {

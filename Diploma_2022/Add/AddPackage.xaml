@@ -123,11 +123,11 @@
             x:Name="DatePicker"
             Grid.Row="7"
             Grid.Column="3"
-            Margin="204,6,89,13"
+            Margin="203,0,0,6"
             DisplayDate="2022-04-04"
             FirstDayOfWeek="Monday"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14" />
+            FontSize="14" HorizontalAlignment="Left" Width="35" />
         <ComboBox
             x:Name="id_ord"
             Grid.Row="1"

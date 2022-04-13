@@ -116,11 +116,11 @@
             x:Name="DatePicker"
             Grid.Row="7"
             Grid.Column="3"
-            Margin="206,0,89,19"
+            Margin="206,0,0,7"
             DisplayDate="2022-04-04"
             FirstDayOfWeek="Monday"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14" />
+            FontSize="14" HorizontalAlignment="Left" Width="32" />
         <ComboBox
             x:Name="storage"
             Grid.Row="5"
@@ -128,7 +128,7 @@
             Margin="0,0,0,6"
             DataContextChanged="storage_DataContextChanged"
             RenderTransformOrigin="0.5,0.5"
-            SelectionChanged="ComboBox_SelectionChanged" HorizontalAlignment="Left" Width="238"/>
+            SelectionChanged="storage_ComboBox_SelectionChanged" HorizontalAlignment="Left" Width="238"/>
         <ComboBox
             x:Name="id_ord"
             Grid.Column="3"
@@ -136,7 +136,7 @@
             Margin="0,69,0,8"
             DataContextChanged="id_ord_DataContextChanged"
             RenderTransformOrigin="0.5,0.5"
-            SelectionChanged="ComboBox_SelectionChanged" Grid.RowSpan="2" Width="238" HorizontalAlignment="Left">
+            SelectionChanged="id_order_ComboBox_SelectionChanged" Grid.RowSpan="2" Width="238" HorizontalAlignment="Left">
             <ComboBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform />

@@ -80,8 +80,7 @@
             CanUserReorderColumns="False"
             CanUserResizeRows="False"
             CanUserSortColumns="False"
-            IsReadOnly="True"
-            SelectionChanged="PackageGrid_SelectionChanged" AutoGenerateColumns="False">
+            IsReadOnly="True" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Width="*"

@@ -29,7 +29,6 @@ namespace Diploma_2022.Add
         public AddShipment()
         {
             InitializeComponent();
-            checkorder();
         }
 
         private void Button_add(object sender, RoutedEventArgs e)
@@ -56,20 +55,15 @@ namespace Diploma_2022.Add
             DateTime date_of_shipments = (DateTime)this.DatePicker.SelectedDate;
         }
 
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void storage_ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            checkorder();
-        }
-
-        private void checkorder()
-        {
-            SqlCommand cmd = new SqlCommand("SELECT id_order FROM [dbo]. shipment", sqlConnection);
+            SqlCommand cmd = new SqlCommand("SELECT id_storage FROM [dbo].[storage]", sqlConnection);
             sqlConnection.Open();
             cmd.CommandType = CommandType.Text;
             db = cmd.ExecuteReader();
             while (db.Read())
             {
-                id_ord.Items.Add(db.GetValue(0));
+                storage.Items.Add(db.GetValue(0));
             }
             sqlConnection.Close();
         }
@@ -81,6 +75,19 @@ namespace Diploma_2022.Add
         private void storage_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
 
+        }
+
+        private void id_order_ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SqlCommand cmd = new SqlCommand("SELECT id_order FROM [dbo].[orders]", sqlConnection);
+            sqlConnection.Open();
+            cmd.CommandType = CommandType.Text;
+            db = cmd.ExecuteReader();
+            while (db.Read())
+            {
+                id_ord.Items.Add(db.GetValue(0));
+            }
+            sqlConnection.Close();
         }
     }
 }
