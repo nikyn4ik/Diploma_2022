@@ -25,6 +25,7 @@ namespace Diploma_2022.Pages
     public partial class ShipmentPage : Window
     {
         SqlConnection sqlConnection = new SqlConnection(@"Data Source=SPUTNIK; Initial Catalog=diploma_db; Integrated Security=True");
+        DataTable dt = new DataTable("diploma_db");
 
         public ShipmentPage()
         {
@@ -34,6 +35,17 @@ namespace Diploma_2022.Pages
         }
         private void Shipment_DataGrid_SelectionChanged()
         {
+            //SqlConnection sqlConnection = new SqlConnection();
+            //sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
+            //sqlConnection.Open();
+            //SqlCommand cmd = new SqlCommand();
+            //cmd.CommandText = "SELECT * FROM [dbo].[shipment]";
+            //cmd.Connection = sqlConnection;
+            //SqlDataAdapter shipment = new SqlDataAdapter(cmd);
+            //DataTable dt = new DataTable("diploma_db");
+            //shipment.Fill(dt);
+            //ShipmentGrid.ItemsSource = dt.DefaultView;
+            //sqlConnection.Close();
             SqlConnection sqlConnection = new SqlConnection();
             sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
             sqlConnection.Open();
@@ -41,10 +53,8 @@ namespace Diploma_2022.Pages
             cmd.CommandText = "SELECT * FROM [dbo].[shipment]";
             cmd.Connection = sqlConnection;
             SqlDataAdapter shipment = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable("diploma_db");
             shipment.Fill(dt);
             ShipmentGrid.ItemsSource = dt.DefaultView;
-            sqlConnection.Close();
         }
         private void dateships(object sender, RoutedEventArgs e)/* (!!!)*/
         {
@@ -84,25 +94,24 @@ namespace Diploma_2022.Pages
         {
             try
             {
-              if (ShipmentGrid.SelectedItems.Count > 0)
-            {
-                DataRowView drv = (DataRowView)ShipmentGrid.SelectedItem;
-                string shipmentId = drv.Row[0].ToString();
-                sqlConnection.Open();
-                SqlCommand cmd = new SqlCommand("INSERT INTO [dbo].[delivery] (id_order) VALUES((SELECT id_order FROM package WHERE id_order = @id))", sqlConnection);
-                cmd.Parameters.AddWithValue("@id", shipmentId);
-                cmd.ExecuteNonQuery();
-                Shipment_DataGrid_SelectionChanged();
-                MessageBox.Show("Заказ успешно отправлен в доставку!", "Severstal Infocom");
-                sqlConnection.Close();
-        }
+                if (ShipmentGrid.SelectedItems.Count > 0)
+                {
+                    sqlConnection.Open();
+                    DataRowView drv = (DataRowView)ShipmentGrid.SelectedItem;
+                    string ID_Orders = drv.Row[0].ToString();
+                    SqlCommand cmd = new SqlCommand("INSERT INTO [dbo].[delivery] (id_order) ((SELECT id_order FROM shipment WHERE id_order=@id))", sqlConnection);
+                    cmd.Parameters.AddWithValue("@id", ID_Orders);
+                    cmd.ExecuteNonQuery();
+                    Shipment_DataGrid_SelectionChanged();
+                    MessageBox.Show("Заказ успешно отправлен в доставку!", "Severstal Infocom");
+                }
             }
             catch (Exception ex)
             {
 
-                MessageBox.Show("Данный заказ уже быа отправлен в доставку", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Данный заказ ранее уже был отправлен в доставку", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-}
+            }
 
         private void outButton_Click(object sender, RoutedEventArgs e)
         {
@@ -113,6 +122,11 @@ namespace Diploma_2022.Pages
         {
             Add.AddShipment taskWindow = new Add.AddShipment();
             taskWindow.Show();
+        }
+
+        private void ShipmentGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

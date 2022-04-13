@@ -33,18 +33,24 @@ namespace Diploma_2022.Add
         }
         private void Button_add(object sender, RoutedEventArgs e)
         {
-            //SqlConnection sqlConnection = new SqlConnection();
-            //sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
-            //{
-            //    sqlConnection.Open();
-            //    string query = "UPDATE [dbo].[orders] SET consignee=@consignee  WHERE id_order=@id";
-            //    SqlCommand createCommand = new SqlCommand(query, sqlConnection);
-            //    createCommand.Parameters.AddWithValue("@consignee", consignee.Text);
-            //    createCommand.ExecuteNonQuery();
-            //    MessageBox.Show("Сохранено!", "Severstal Infocom", MessageBoxButton.OK);
-            //    sqlConnection.Close();
-            //    this.Close();
-            //}
+            SqlConnection sqlConnection = new SqlConnection();
+            sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
+            {
+                sqlConnection.Open();
+                string query = "UPDATE [dbo].[orders] SET consignee=@consignee  WHERE id_order=@id";
+                SqlCommand createCommand = new SqlCommand(query, sqlConnection);
+                createCommand.Parameters.AddWithValue("@consignee", consignee.Text);
+                createCommand.ExecuteNonQuery();
+                MessageBox.Show("Сохранено!", "Severstal Infocom", MessageBoxButton.OK);
+                sqlConnection.Close();
+                this.Close();
+            }
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            qua.Items.Add("Да");
+            qua.Items.Add("Нет");
         }
     }
 }

@@ -19,9 +19,9 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="11*" />
-            <ColumnDefinition Width="218*" />
-            <ColumnDefinition Width="90*" />
-            <ColumnDefinition Width="231*" />
+            <ColumnDefinition Width="232*" />
+            <ColumnDefinition Width="67*" />
+            <ColumnDefinition Width="240*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="84*" />
@@ -34,26 +34,49 @@
             x:Name="consignee"
             Grid.RowSpan="2"
             Grid.Column="3"
-            Width="204"
-            Margin="0,84,0,5"
+            Width="222"
+            Margin="0,84,0,0"
             HorizontalAlignment="Left"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="18"
             Foreground="#FF0000"
-            TextWrapping="Wrap" />
+            TextWrapping="Wrap" Height="34" VerticalAlignment="Top" />
+        <ComboBox
+            x:Name="qua"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="14"
+            Grid.Row="1"
+            Grid.Column="3"
+            Height="37"
+            Margin="0,0,18,3"
+            RenderTransformOrigin="0.5,0.5"
+            SelectionChanged="ComboBox_SelectionChanged" VerticalAlignment="Bottom" Grid.RowSpan="2"/>
         <Label
             Grid.RowSpan="2"
             Grid.Column="1"
-            Width="218"
-            Margin="0,84,0,4"
-            HorizontalAlignment="Center"
+            Width="232"
+            Margin="0,84,0,0"
+            HorizontalAlignment="Left"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
             Content="Грузополучатель"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
-            Foreground="#FFFFFF" />
+            Foreground="#FFFFFF" Height="35" VerticalAlignment="Top" />
+        <Label
+            Grid.RowSpan="2"
+            Grid.Column="1"
+            Width="234"
+            Margin="0,0,0,3"
+            HorizontalAlignment="Center"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Background="#002F6C"
+            Content="Пройдена проверка на качество?"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="14"
+            Foreground="#FFFFFF" Grid.Row="1" Height="35" VerticalAlignment="Bottom" />
         <Label
             Grid.Column="1"
             Grid.ColumnSpan="3"

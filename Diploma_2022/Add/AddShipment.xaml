@@ -43,17 +43,6 @@
             Foreground="#FF0000"
             TextWrapping="Wrap" />
         <TextBox
-            x:Name="number_of_shipments_per_month_tons"
-            Grid.Row="2"
-            Grid.RowSpan="2"
-            Grid.Column="3"
-            Height="40"
-            Margin="0,59,18,19"
-            FontFamily="Microsoft JhengHei UI Light"
-            FontSize="18"
-            Foreground="#FF0000"
-            TextWrapping="Wrap" />
-        <TextBox
             x:Name="date_of_shipments"
             Grid.Row="3"
             Grid.RowSpan="2"
@@ -111,7 +100,7 @@
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
-            Content="Отгрузка (тонн) в месяц"
+            Content="Склад"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
             Foreground="#FFFFFF" />
@@ -151,14 +140,22 @@
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14" />
         <ComboBox
-            x:Name="id_ord"
-            Grid.Row="1"
+            x:Name="storage"
+            Grid.Row="2"
             Grid.Column="3"
             Height="40"
-            Margin="0,1,18,18"
+            Margin="0,59,18,19"
+            DataContextChanged="storage_DataContextChanged"
+            RenderTransformOrigin="0.5,0.5"
+            SelectionChanged="ComboBox_SelectionChanged" Grid.RowSpan="2"/>
+        <ComboBox
+            x:Name="id_ord"
+            Grid.Column="3"
+            Height="40"
+            Margin="0,59,18,19"
             DataContextChanged="id_ord_DataContextChanged"
             RenderTransformOrigin="0.5,0.5"
-            SelectionChanged="ComboBox_SelectionChanged">
+            SelectionChanged="ComboBox_SelectionChanged" Grid.RowSpan="2">
             <ComboBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform />

@@ -38,11 +38,11 @@ namespace Diploma_2022.Add
             sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
             {
                 sqlConnection.Open();
-                string query = "UPDATE [dbo].[shipment] SET shipment_total_amount_tons=@shipment_total_amount_tons, number_of_shipments_per_month_tons=@number_of_shipments_per_month_tons, date_of_shipments=@date_of_shipments WHERE id_order=@id";
+                string query = "UPDATE [dbo].[shipment] SET shipment_total_amount_tons=@shipment_total_amount_tons, id_storage=@storage, date_of_shipments=@date_of_shipments WHERE id_order=@id";
                 SqlCommand createCommand = new SqlCommand(query, sqlConnection);
                 createCommand.Parameters.AddWithValue("@id", id_ord.Text);
                 createCommand.Parameters.AddWithValue("@shipment_total_amount_tons", shipment_total_amount_tons.Text);
-                createCommand.Parameters.AddWithValue("@number_of_shipments_per_month_tons", number_of_shipments_per_month_tons.Text);
+                createCommand.Parameters.AddWithValue("@storage", storage.Text);
                 createCommand.Parameters.AddWithValue("@date_of_shipments", Convert.ToDateTime(date_of_shipments.Text));
                 createCommand.ExecuteNonQuery();
                 MessageBox.Show("Сохранено!", "Severstal Infocom", MessageBoxButton.OK);
@@ -74,6 +74,11 @@ namespace Diploma_2022.Add
             sqlConnection.Close();
         }
         private void id_ord_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+
+        }
+
+        private void storage_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
 
         }

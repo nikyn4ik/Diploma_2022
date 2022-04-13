@@ -73,7 +73,6 @@
             Grid.ColumnSpan="3"
             Height="494"
             Margin="10,10,1,11"
-            AutoGenerateColumns="False"
             Background="Snow"
             CanUserAddRows="False"
             CanUserDeleteRows="False"
@@ -81,7 +80,7 @@
             CanUserResizeRows="False"
             CanUserSortColumns="False"
             IsReadOnly="True"
-            SelectionChanged="PackageGrid_SelectionChanged">
+            SelectionChanged="PackageGrid_SelectionChanged" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Width="*"
@@ -115,10 +114,8 @@
             Grid.Row="5"
             Grid.Column="2"
             Width="208"
-            Height="49"
             Margin="0,9,231,0"
             HorizontalAlignment="Right"
-            VerticalAlignment="Top"
             Background="#FF0000"
             Click="outButton_Click"
             Content="Вывод PDF"

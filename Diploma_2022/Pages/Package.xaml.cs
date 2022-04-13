@@ -15,6 +15,9 @@ using System.Data.SqlClient;
 using System.Data;
 using System.IO;
 using System.Configuration;
+using OfficeOpenXml;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 
 namespace Diploma_2022.Pages
 {
@@ -25,10 +28,14 @@ namespace Diploma_2022.Pages
     {
         SqlConnection sqlConnection = new SqlConnection(@"Data Source=SPUTNIK; Initial Catalog=diploma_db; Integrated Security=True");
         DataTable dt = new DataTable("diploma_db");
+        List<Models.Package> list = new();
         public Package()
         {
             InitializeComponent();
             Package_DataGrid_SelectionChanged();
+            PackageGrid.ItemsSource= list;  
+            var ppp = CodePagesEncodingProvider.Instance;   
+            Encoding.RegisterProvider(ppp);     
         }
         private void Package_DataGrid_SelectionChanged()
         {
@@ -39,9 +46,7 @@ namespace Diploma_2022.Pages
             cmd.CommandText = "SELECT * FROM [dbo].[package]";
             cmd.Connection = sqlConnection;
             SqlDataAdapter pack = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable("diploma_db");
             pack.Fill(dt);
-            pack.Update(dt);
             PackageGrid.ItemsSource = dt.DefaultView;
         }
         private void Buttontoshipment(object sender, RoutedEventArgs e)
@@ -63,11 +68,50 @@ namespace Diploma_2022.Pages
             catch (Exception ex)
             {
 
-                MessageBox.Show("Данный заказ уже быа отправлен в отгрузку", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Данный заказ ранее уже был отправлен в отгрузку", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
         private void outButton_Click(object sender, RoutedEventArgs e)
         {
+            pdfout();
+        }
+        private void pdfout()
+        {
+            using var doc = new Document();
+            PdfWriter.GetInstance(doc, new FileStream("Package.pdf", FileMode.Create));
+            doc.Open();
+
+            var baseFont = BaseFont.CreateFont(@"C:\Windows\Fonts\arial.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+            var font = new Font(baseFont, Font.DEFAULTSIZE, Font.NORMAL); //создание базовых font/шрифтов
+            var table = new PdfPTable(PackageGrid.Columns.Count);// создание таблицы
+            var cell = new PdfPCell(new Phrase("БД " + "Упаковка.pdf" + ", таблица№" + 1, font))// создание первой ячейки с фразой, которую мы хотим
+            {
+                Colspan = PackageGrid.Columns.Count,
+                HorizontalAlignment = 1,
+                Border = 0
+            };
+            table.AddCell(cell);
+
+            for (int j = 0; j < PackageGrid.Columns.Count; j++)//проходимся циклом по каж.сtolбцу 
+            {
+                cell = new PdfPCell(new Phrase("gay"));
+                cell.BackgroundColor = BaseColor.LIGHT_GRAY;
+                table.AddCell(cell);
+            }
+            foreach (var pack in list)
+            {
+                table.AddCell(new Phrase(pack.id_order.ToString(), font));
+
+                table.AddCell(new Phrase(pack.id_model.ToString(), font));
+
+                table.AddCell(new Phrase(pack.color_package, font));
+
+                table.AddCell(new Phrase(pack.date_package.ToString(), font));
+            }
+
+            doc.Add(table);
+            doc.Close();
+            MessageBox.Show("Pdf-документ сохранен", "Severstal Infocom");
 
         }
 

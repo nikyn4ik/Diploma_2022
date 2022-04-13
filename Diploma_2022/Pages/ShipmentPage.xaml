@@ -85,7 +85,7 @@
             CanUserSortColumns="False"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="12"
-            IsReadOnly="True">
+            IsReadOnly="True" SelectionChanged="ShipmentGrid_SelectionChanged">
 
             <DataGrid.Columns>
                 <DataGridTextColumn
@@ -120,10 +120,10 @@
                     Header="Отгр. кол-во за месяц [тонны]" />
                 <DataGridTextColumn
                     Width="*"
-                    Binding="{Binding product_standard}"
+                    Binding="{Binding storage}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="12"
-                    Header="Сертифицирован?" />
+                    Header="Склад" />
             </DataGrid.Columns>
         </DataGrid>
 
@@ -159,11 +159,10 @@
             x:Name="go_to_dostav_Button"
             Grid.Row="5"
             Grid.Column="1"
-            Grid.ColumnSpan="2"
-            Width="231"
+            Width="233"
             Height="48"
-            Margin="0,10,270,0"
-            HorizontalAlignment="Right"
+            Margin="0,10,0,0"
+            HorizontalAlignment="Center"
             VerticalAlignment="Top"
             Background="#FF0000"
             Click="go_to_dostav_Click"

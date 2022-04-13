@@ -45,7 +45,6 @@ namespace Diploma_2022.Pages
             SqlDataAdapter order = new SqlDataAdapter(cmd);
             order.Fill(dt);
             OrdersGrid.ItemsSource = dt.DefaultView;
-            //sqlConnection.Close();
         }
 
         private void Buttontopack(object sender, RoutedEventArgs e)
@@ -58,7 +57,6 @@ namespace Diploma_2022.Pages
                     DataRowView drv = (DataRowView)OrdersGrid.SelectedItem;
                     string ID_Orders = drv.Row[0].ToString();
                     SqlCommand cmd = new SqlCommand("INSERT INTO [dbo].[package] (id_order) ((SELECT id_order FROM orders WHERE id_order=@id))", sqlConnection);
-                    //SqlCommand cmd = new SqlCommand("INSERT INTO [dbo].[shipment] (id_shipment, name_product, date_of_shipments, consignee) ((SELECT id_order, name_product, date_of_adoption, consignee FROM orders WHERE id_order=@id))", sqlConnection);
                     cmd.Parameters.AddWithValue("@id", ID_Orders);
                     cmd.ExecuteNonQuery();
                     OrdersDataGrid_SelectionChanged();
@@ -86,7 +84,7 @@ namespace Diploma_2022.Pages
                     case MessageBoxResult.Yes:
                         MessageBox.Show("Заказ отправлен в брак", "Severstal Infocom");
                         this.Hide();
-                        DataRowView drv = (DataRowView)OrdersGrid.SelectedItem; //if (ShipmentGrid.SelectedItems.Count > 0)
+                        DataRowView drv = (DataRowView)OrdersGrid.SelectedItem;
                         string opder = drv.Row[0].ToString();
                         sqlConnection.Open();
                         SqlCommand cmd = new SqlCommand("DELETE FROM orders WHERE id_order=@id", sqlConnection);
@@ -113,6 +111,9 @@ namespace Diploma_2022.Pages
         }
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
+            var window = new Add.AddOrder();
+            window.ShowDialog();
+            Show();
         }
 
     }
