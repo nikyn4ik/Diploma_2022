@@ -48,49 +48,60 @@ namespace Diploma_2022.Add
 
         private void outpdfButton(object sender, RoutedEventArgs e)
         {
-            using var doc = new Document();
-            PdfWriter.GetInstance(doc, new FileStream("Order.pdf", FileMode.Create));
-            sqlConnection.Open();
-            doc.Open();
+                var selectedIndex = DeliveryGrid.SelectedIndex;
+                if (selectedIndex != -1)
+                PDFOut(selectedIndex);
+                else MessageBox.Show("Выберите нужную строчку!", "Severstal Infocom");
+            }
 
-            var sql = "SELECT * FROM [dbo]. storage";
-            var cmd = new SqlCommand(sql, sqlConnection);
+            private void PDFOut(int cellId)
+            {
+                object item = DeliveryGrid.SelectedItem;
+                string ID = (DeliveryGrid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                using var doc = new Document();
+                PdfWriter.GetInstance(doc, new FileStream("Delivery" + ID + ".pdf", FileMode.Create));
+                doc.Open();
 
-            var baseFont = BaseFont.CreateFont(@"C:\Windows\Fonts\arial.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
-            var font = new Font(baseFont, Font.DEFAULTSIZE, Font.NORMAL); //создание базовых font/шрифтов
-            var table = new PdfPTable(DeliveryGrid.Columns.Count);// создание таблицы
-            var cell = new PdfPCell(new Phrase("БД " + "Склад.pdf" + ", таблица№" + 1, font))// создание первой ячейки с фразой, которую мы хотим
-            {
-                Colspan = DeliveryGrid.Columns.Count,
-                HorizontalAlignment = 1,
-                Border = 0
-            };
-            table.AddCell(cell);
-            for (int j = 0; j < DeliveryGrid.Columns.Count; j++)//проходимся циклом по каж.слобцу 
-            {
-                cell = new PdfPCell(new Phrase(DeliveryGrid.Columns[j].ToString(), font));
-                cell.BackgroundColor = BaseColor.LIGHT_GRAY;
+                var baseFont = BaseFont.CreateFont(@"C:\Windows\Fonts\arial.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+                var font = new Font(baseFont, Font.DEFAULTSIZE, Font.NORMAL); //создание базовых font/шрифтов
+                var table = new PdfPTable(DeliveryGrid.Columns.Count);// создание таблицы
+                var cell = new PdfPCell(new Phrase("DELIVERY ORDER " + " # " + ID))// создание первой ячейки с фразой, которую мы хотим
+                {
+                    Colspan = DeliveryGrid.Columns.Count,
+                    HorizontalAlignment = 1,
+                    Border = 0
+                };
                 table.AddCell(cell);
-            }
-            foreach (var storages in list)
-            {
-                table.AddCell(new Phrase(storages.id_storage.ToString(), font));
-                table.AddCell(new Phrase(storages.name_storage, font));
-                table.AddCell(new Phrase(storages.address, font));
-                table.AddCell(new Phrase(storages.phone_storage, font));
-                table.AddCell(new Phrase(storages.remainder, font));
-                table.AddCell(new Phrase(storages.date_add_storage.ToString(), font));
-            }
 
-            doc.Add(table);
-            doc.Close();
-            MessageBox.Show("Pdf-документ сохранен", "Severstal Infocom");
-            sqlConnection.Close();
-        }
+                for (int j = 0; j < DeliveryGrid.Columns.Count; j++)//проходимся циклом по каж.сtolбцу 
+                {
+                    cell = new PdfPCell(new Phrase(DeliveryGrid.Columns[j].Header.ToString()));
+                    var headerCell = cell.Phrase[0].ToString();
+                    cell = new PdfPCell(new Phrase(headerCell, font));
+                    cell.BackgroundColor = BaseColor.BLACK;
+                    font.Color = BaseColor.WHITE;
+                    table.AddCell(cell);
+                }
+                for (int j = 0; j < DeliveryGrid.Columns.Count; j++)//проходимся циклом по каж.сtolбцу 
+                {
+                    string sr = (DeliveryGrid.SelectedCells[j].Column.GetCellContent(item) as TextBlock).Text;
+                    cell = new PdfPCell(new Phrase(sr, font));
+                    cell.BackgroundColor = BaseColor.LIGHT_GRAY;
+                    font.Color = BaseColor.WHITE;
+                    table.AddCell(cell);
+                }
+
+                doc.Add(table);
+                doc.Close();
+                MessageBox.Show("PDF-документ сохранен", "Severstal Infocom");
+            }
 
         private void out_excel_button(object sender, RoutedEventArgs e)
         {
             ExportToExcel();
+                var selectedIndex = DeliveryGrid.SelectedIndex;
+                if (selectedIndex != -1) ;
+                else MessageBox.Show("Выберите нужную строчку!", "Severstal Infocom");
         }
         private void ExportToExcel()
         {
@@ -100,33 +111,61 @@ namespace Diploma_2022.Add
             var ws = package.Workbook.Worksheets.Add("new sheet");
             sqlConnection.Open();
 
-            var sql = "SELECT * FROM storage";
+            var sql = "SELECT orders.id_order, package.id_model, package.color_package, qua_certificate.standard_per_mark, qua_certificate.access_standart, qua_certificate.product_standard, shipment.shipment_total_amount_tons, orders.consignee, storage.name_storage, package.date_package, qua_certificate.date_add_certificate, shipment.date_of_shipments, delivery.date_of_delivery FROM orders, package, qua_certificate, shipment, storage, delivery";
             var cmd = new SqlCommand(sql, sqlConnection);
             var reader = cmd.ExecuteReader();
             int count = 2;
 
-            ws.Cells["A1"].Value = "Id склад";
-            ws.Cells["B1"].Value = "Имя";
-            ws.Cells["C1"].Value = "Адрес";
-            ws.Cells["D1"].Value = "Телефон";
-            ws.Cells["E1"].Value = "Дата";
-            ws.Cells["F1"].Value = "SAP код";
-            ws.Cells["G1"].Value = "Остаток";
+            ws.Cells["A1"].Value = "ID заказа";
+            ws.Cells["B1"].Value = "ID модель (упаковка)";
+            ws.Cells["C1"].Value = "Цвет (упаковка)";
+            ws.Cells["D1"].Value = "Стандарт на марку (сертификация)";
+            ws.Cells["E1"].Value = "Проверка на качество (сертификация)";
+            ws.Cells["F1"].Value = "Стандарты продукта (сертификация)";
+            ws.Cells["G1"].Value = "Кол-во тонн (отгрузка)"; //
+            ws.Cells["H1"].Value = "Грузоперевозчик (заказ)";
+            ws.Cells["I1"].Value = "Склад (склад)";
+            ws.Cells["J1"].Value = "Дата упаковки (упаковка)";
+            ws.Cells["K1"].Value = "Дата сертификации (сертификация)";
+            ws.Cells["L1"].Value = "Дата отгрузки (отгрузка)";
+            ws.Cells["M1"].Value = "Дата доставки (доставка)";
+            ws.Cells["N1"].Value = "Статус заказа (заказ)";
+            ws.Cells["O1"].Value = "Ранняя отгрузка (доставка)";
+
 
             while (reader.Read())
             {
-                ws.Cells[$"A{count}"].Value = reader.GetValue("id_storage");
-                ws.Cells[$"B{count}"].Value = reader.GetValue("name_storage");
-                ws.Cells[$"C{count}"].Value = reader.GetValue("address");
-                ws.Cells[$"D{count}"].Value = reader.GetValue("phone_storage");
-                ws.Cells[$"E{count}"].Value = reader.GetValue("date_of_entrance");
-                ws.Cells[$"E{count}"].Style.Numberformat.Format = "yyyy-mm-dd";
-                ws.Cells[$"F{count}"].Value = reader.GetValue("SAP_product_code");
-                ws.Cells[$"G{count}"].Value = reader.GetValue("remainder");
+                ws.Cells[$"A{count}"].Value = reader.GetValue("id_order");
+                ws.Cells[$"B{count}"].Value = reader.GetValue("id_model");
+                ws.Cells[$"C{count}"].Value = reader.GetValue("color_package");
+                ws.Cells[$"D{count}"].Value = reader.GetValue("standard_per_mark");
+                ws.Cells[$"E{count}"].Value = reader.GetValue("access_standart");
+                ws.Cells[$"F{count}"].Value = reader.GetValue("product_standard");
+                ws.Cells[$"G{count}"].Value = reader.GetValue("shipment_total_amount_tons");
+                ws.Cells[$"H{count}"].Value = reader.GetValue("consignee");
+                ws.Cells[$"I{count}"].Value = reader.GetValue("name_storage");
+
+                ws.Cells[$"J{count}"].Value = reader.GetValue("date_package");
+                ws.Cells[$"J{count}"].Style.Numberformat.Format = "yyyy-mm-dd";
+
+                ws.Cells[$"K{count}"].Value = reader.GetValue("date_add_certificate");
+                ws.Cells[$"K{count}"].Style.Numberformat.Format = "yyyy-mm-dd";
+
+                ws.Cells[$"L{count}"].Value = reader.GetValue("date_of_shipments");
+                ws.Cells[$"L{count}"].Style.Numberformat.Format = "yyyy-mm-dd";
+
+
+                ws.Cells[$"M{count}"].Value = reader.GetValue("date_of_delivery");
+                ws.Cells[$"M{count}"].Style.Numberformat.Format = "yyyy-mm-dd";
+
+
+                ws.Cells[$"N{count}"].Value = reader.GetValue("status_order");
+
+                ws.Cells[$"O{count}"].Value = reader.GetValue("early_delivery");
                 count++;
             }
             package.Save();
-            MessageBox.Show("Excel-таблица сохранена", "Severstal Infocom");
+            MessageBox.Show("EXCEL-таблица сохранена", "Severstal Infocom");
             sqlConnection.Close();
         }
 
@@ -162,10 +201,11 @@ namespace Diploma_2022.Add
             sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
             {
                 sqlConnection.Open();
-                String query = "UPDATE [dbo].[delivery],[dbo].[orders] SET delivery.date_of_delivery=@date_of_delivery, orders.status=@status_task  WHERE id_order=@id";
+                String query = "UPDATE [dbo].[delivery],[dbo].[orders] SET delivery.date_of_delivery=@date_of_delivery, delivery.early_delivery=@early_delivery, orders.status=@status_task  WHERE id_order=@id";
                 SqlCommand createCommand = new SqlCommand(query, sqlConnection);
                 createCommand.Parameters.AddWithValue("@date_of_delivery", DateDelivery.Text);
                 createCommand.Parameters.AddWithValue("@status_task", status.Text);
+                createCommand.Parameters.AddWithValue("@early_delivery", early_delivery.Text);
                 createCommand.ExecuteNonQuery();
                 MessageBox.Show("Сохранено!", "Severstal Infocom", MessageBoxButton.OK);
                 sqlConnection.Close();
@@ -177,6 +217,12 @@ namespace Diploma_2022.Add
         {
             status.Items.Add("Да");
             status.Items.Add("Нет");
+        }
+
+        private void early_delivery_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            early_delivery.Items.Add("Да");
+            early_delivery.Items.Add("Нет");
         }
     }
 }

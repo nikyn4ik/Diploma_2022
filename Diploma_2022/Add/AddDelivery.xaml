@@ -106,7 +106,7 @@
             Foreground="#FFFFFF" />
         <Button
             Grid.Column="2"
-            Width="276"
+            Width="234"
             Height="60"
             Margin="0,575,0,0"
             HorizontalAlignment="Center"
@@ -135,9 +135,8 @@
         <TextBox
             x:Name="DateDelivery"
             Grid.Column="4"
-            Width="182"
-            Height="50"
-            Margin="34,498,10,0"
+            Height="51"
+            Margin="0,498,10,0"
             VerticalAlignment="Top"
             Background="#FFFFFF"
             FontFamily="Microsoft JhengHei UI Light"
@@ -151,12 +150,36 @@
             x:Name="status"
             Width="182"
             Height="51"
-            Margin="19,498,0,0"
+            Margin="14,498,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="16"
             Foreground="#002F6C" SelectionChanged="status_SelectionChanged" Grid.Column="1" />
+
+        <ComboBox
+            x:Name="early_delivery"
+            Width="182"
+            Height="50"
+            Margin="14,580,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="16"
+            Foreground="#002F6C" SelectionChanged="early_delivery_SelectionChanged" Grid.Column="1" />
+        <Label
+            Width="191"
+            Height="51"
+            Margin="12,584,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Background="#002F6C"
+            Content="Ранняя отгрузка?"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="16"
+            Foreground="White" />
         <Label
             Width="191"
             Height="51"
@@ -169,11 +192,11 @@
             Content="Статус заказа"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="16"
-            Foreground="White" Grid.ColumnSpan="2" />
+            Foreground="White" />
         <DatePicker
             x:Name="DatePicker"
             Grid.Column="4"
-            Margin="183,498,10,117"
+            Margin="172,498,10,96"
             DisplayDate="2022-03-23"
             FirstDayOfWeek="Monday"
             FontFamily="Microsoft JhengHei UI Light"
