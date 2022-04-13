@@ -6,6 +6,7 @@
     xmlns:local="clr-namespace:Diploma_2022.Pages"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Severstal Infocom"
+    Icon="/Images\icon.ico"
     Width="1200"
     Height="700"
     ResizeMode="NoResize"
@@ -126,21 +127,6 @@
                     Header="Склад" />
             </DataGrid.Columns>
         </DataGrid>
-
-        <Button
-            x:Name="dateship"
-            Grid.Row="2"
-            Grid.RowSpan="3"
-            Grid.Column="3"
-            Height="48"
-            Margin="228,5,2,0"
-            VerticalAlignment="Top"
-            Background="#002F6C"
-            Click="dateships"
-            Content="Указать дату отгрузки"
-            FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14"
-            Foreground="#FFFFFF" />
         <Button
             x:Name="outputdoc"
             Grid.Row="5"

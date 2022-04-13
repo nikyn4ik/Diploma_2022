@@ -13,34 +13,18 @@
 
     <Window.Background>
 
-        <ImageBrush ImageSource="C:\Users\nikab\source\repos\Diploma_2022\Diploma_2022\Images\lebedevsevers.jpg" />
+        <ImageBrush ImageSource="/Images/add.jpg" />
 
     </Window.Background>
     <Grid>
-        <Border
-            Width="680"
-            Margin="0,0,0,613"
-            HorizontalAlignment="Center"
-            Background="#002F6C"
-            BorderThickness="0,0,0,0"
-            CornerRadius="10">
-            <StackPanel
-                Width="392"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center">
-
-                <TextBlock
-                    Width="342"
-                    Margin="0,0,0,0"
-                    HorizontalAlignment="Center"
-                    FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="28"
-                    Foreground="White"
-                    Text="Добавление сертификата"
-                    TextAlignment="Center" />
-
-            </StackPanel>
-        </Border>
+        <Label
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Background="#FFFFFF"
+            Content="Добавление сертификата"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="35"
+            Foreground="#002F6C" Height="56" VerticalAlignment="Top" />
 
         <DataGrid
             Name="CertificatesGrid"
@@ -72,26 +56,10 @@
                     Header="Стандарт на продукцию" />
             </DataGrid.Columns>
         </DataGrid>
-
-        <Border>
-            <Button
-                Width="588"
-                Height="82"
-                Margin="602,527,0,0"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                Background="#FF0000"
-                BorderThickness="0,0,0,0"
-                Click="Button_add"
-                Content="Загрузить в таблицу"
-                FontFamily="Microsoft JhengHei UI Light"
-                FontSize="26"
-                Foreground="#FFFFFF" />
-        </Border>
         <Label
             Width="191"
             Height="52"
-            Margin="12,434,0,0"
+            Margin="10,434,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
@@ -99,7 +67,7 @@
             Background="#002F6C"
             Content="Стандарт на марку"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14"
+            FontSize="17"
             Foreground="White" />
         <Label
             Width="191"
@@ -112,12 +80,12 @@
             Background="#002F6C"
             Content="Стандарт на допуск"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14"
+            FontSize="17"
             Foreground="White" />
         <Label
-            Width="191"
+            Width="190"
             Height="51"
-            Margin="621,434,0,0"
+            Margin="620,434,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
@@ -125,7 +93,7 @@
             Background="#002F6C"
             Content="Стандарт на продукцию"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14"
+            FontSize="15"
             Foreground="White" />
         <TextBox
             x:Name="standard_per_mark"
@@ -160,5 +128,14 @@
             FontSize="12"
             Foreground="#FF0000"
             TextAlignment="Left" />
+        <Button
+                Margin="612,527,0,75"
+                Background="#FF0000"
+                BorderThickness="0,0,0,0"
+                Click="Button_add"
+                Content="Загрузить в таблицу"
+                FontFamily="Microsoft JhengHei UI Light"
+                FontSize="26"
+                Foreground="#FFFFFF" />
     </Grid>
 </Window>

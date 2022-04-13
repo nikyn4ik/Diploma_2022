@@ -6,6 +6,7 @@
     xmlns:local="clr-namespace:Diploma_2022.Pages"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Severstal Infocom"
+    Icon="/Images\icon.ico"
     Width="1200"
     Height="700"
     WindowStartupLocation="CenterScreen"
@@ -162,7 +163,7 @@
             VerticalAlignment="Top"
             Background="#002F6C"
             Click="AddButton_Click"
-            Content="Добавление грузополучателя"
+            Content="Изменение"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
             Foreground="#FFFFFF" />

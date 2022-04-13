@@ -59,5 +59,10 @@ namespace Diploma_2022.Add
                 StorageGrid.DataContext = dt;
                 StorageGrid.ItemsSource = dt.DefaultView;
         }
+
+        private void dataaddsklad_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            DateTime dataaddsklad = (DateTime)this.DatePicker.SelectedDate;
+        }
     }
     }

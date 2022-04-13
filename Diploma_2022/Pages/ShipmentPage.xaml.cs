@@ -56,12 +56,6 @@ namespace Diploma_2022.Pages
             shipment.Fill(dt);
             ShipmentGrid.ItemsSource = dt.DefaultView;
         }
-        private void dateships(object sender, RoutedEventArgs e)/* (!!!)*/
-        {
-            var window = new Add.AddCalendarDateShipment();
-            window.ShowDialog();
-            Show();
-        }
 
         private void polee_TextChanged(object sender, TextChangedEventArgs e)
         {

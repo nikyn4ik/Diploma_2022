@@ -6,8 +6,9 @@
     xmlns:local="clr-namespace:Diploma_2022.Add"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Severstal Infocom"
-    Width="550"
-    Height="270"
+    Icon="/Images\icon.ico"
+    Width="750"
+    Height="470"
     ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
@@ -24,84 +25,93 @@
             <ColumnDefinition Width="240*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="84*" />
-            <RowDefinition Height="39*" />
-            <RowDefinition Height="38*" />
-            <RowDefinition Height="48*" />
-            <RowDefinition Height="45*" />
+            <RowDefinition Height="91*" />
+            <RowDefinition Height="91*" />
+            <RowDefinition Height="91*" />
+            <RowDefinition Height="63*" />
+            <RowDefinition Height="53*"/>
+            <RowDefinition Height="66*" />
         </Grid.RowDefinitions>
         <TextBox
             x:Name="consignee"
-            Grid.RowSpan="2"
             Grid.Column="3"
-            Width="222"
-            Margin="0,84,0,0"
-            HorizontalAlignment="Left"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="18"
             Foreground="#FF0000"
-            TextWrapping="Wrap" Height="34" VerticalAlignment="Top" />
+            TextWrapping="Wrap" Margin="0,0,0,33" Grid.Row="1" Width="234" HorizontalAlignment="Left" />
         <ComboBox
             x:Name="qua"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
-            Grid.Row="1"
+            Grid.Row="2"
             Grid.Column="3"
-            Height="37"
-            Margin="0,0,18,3"
-            RenderTransformOrigin="0.5,0.5"
-            SelectionChanged="ComboBox_SelectionChanged" VerticalAlignment="Bottom" Grid.RowSpan="2"/>
+            Margin="0,0,0,32"
+            RenderTransformOrigin="0.5,0.5" SelectionChanged="qua_SelectionChanged" Width="234" HorizontalAlignment="Left"/>
+        <ComboBox
+            x:Name="status"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="14"
+            Grid.Row="2"
+            Grid.Column="3"
+            Margin="0,90,0,5"
+            RenderTransformOrigin="0.5,0.5" SelectionChanged="status_SelectionChanged" Grid.RowSpan="2" Width="234" HorizontalAlignment="Left" Height="58" />
+
         <Label
-            Grid.RowSpan="2"
             Grid.Column="1"
-            Width="232"
-            Margin="0,84,0,0"
-            HorizontalAlignment="Left"
+            Width="234"
+            HorizontalAlignment="Right"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
             Content="Грузополучатель"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
-            Foreground="#FFFFFF" Height="35" VerticalAlignment="Top" />
+            Foreground="#FFFFFF" Grid.Row="1" Margin="0,0,41,33" Height="58" />
         <Label
-            Grid.RowSpan="2"
             Grid.Column="1"
             Width="234"
-            Margin="0,0,0,3"
-            HorizontalAlignment="Center"
+            Margin="0,0,41,32"
+            HorizontalAlignment="Right"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
             Content="Пройдена проверка на качество?"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
-            Foreground="#FFFFFF" Grid.Row="1" Height="35" VerticalAlignment="Bottom" />
+            Foreground="#FFFFFF" Grid.Row="2" Height="58" />
         <Label
             Grid.Column="1"
-            Grid.ColumnSpan="3"
-            Height="36"
-            Margin="0,0,10,0"
+            Width="234"
+            HorizontalAlignment="Center"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Background="#002F6C"
+            Content="Статус заказа"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="14"
+            Foreground="#FFFFFF" Grid.Row="2" Margin="0,90,0,5" Grid.RowSpan="2" />
+        <Label
+            Grid.ColumnSpan="4"
+            Height="56"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#FFFFFF"
             Content="Добавление грузополучателя"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="22"
+            FontSize="35"
             Foreground="#002F6C" />
         <Button
-            Grid.Row="3"
-            Grid.RowSpan="2"
+            Grid.Row="4"
             Grid.Column="1"
             Grid.ColumnSpan="3"
-            Margin="165,48,174,0"
+            Margin="221,53,232,0"
             Background="#FF0000"
             BorderThickness="0,0,0,0"
             Click="Button_add"
             Content="Загрузить в таблицу"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
-            Foreground="#FFFFFF" />
+            Foreground="#FFFFFF" Grid.RowSpan="2" Height="65" VerticalAlignment="Stretch" />
     </Grid>
 </Window>

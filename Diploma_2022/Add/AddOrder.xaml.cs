@@ -47,7 +47,14 @@ namespace Diploma_2022.Add
             }
         }
 
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+
+        private void status_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            qua.Items.Add("Заказ на выполнении");
+            qua.Items.Add("Заказ выполнен");
+        }
+
+        private void qua_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             qua.Items.Add("Да");
             qua.Items.Add("Нет");

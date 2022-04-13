@@ -7,8 +7,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     Title="Severstal Infocom"
-    Width="550"
-    Height="370"
+    Icon="/Images\icon.ico"
+    Width="750"
+    Height="470"
     ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
@@ -20,145 +21,122 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="11*" />
-            <ColumnDefinition Width="218*" />
-            <ColumnDefinition Width="85*" />
-            <ColumnDefinition Width="236*" />
+            <ColumnDefinition Width="232*" />
+            <ColumnDefinition Width="67*" />
+            <ColumnDefinition Width="240*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="55*" />
-            <RowDefinition Height="55*" />
-            <RowDefinition Height="55*" />
-            <RowDefinition Height="55*" />
-            <RowDefinition Height="55*" />
-            <RowDefinition Height="55*" />
+            <RowDefinition Height="58*" />
+            <RowDefinition Height="48*" />
+            <RowDefinition Height="21*"/>
+            <RowDefinition Height="48*" />
+            <RowDefinition Height="21*" />
+            <RowDefinition Height="48*"/>
+            <RowDefinition Height="21*"/>
+            <RowDefinition Height="48*"/>
+            <RowDefinition Height="61*" />
         </Grid.RowDefinitions>
         <TextBox
             x:Name="id_model"
-            Grid.Row="1"
-            Grid.RowSpan="2"
+            Grid.Row="3"
             Grid.Column="3"
-            Margin="0,59,18,0"
+            Margin="0,4,18,0"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="18"
             Foreground="#FF0000"
-            TextWrapping="Wrap" Height="40" VerticalAlignment="Top" />
+            TextWrapping="Wrap" Height="52" VerticalAlignment="Top" HorizontalAlignment="Left" Width="238" />
         <TextBox
             x:Name="color_package"
-            Grid.Row="2"
-            Grid.RowSpan="2"
+            Grid.Row="5"
             Grid.Column="3"
-            Height="40"
-            Margin="0,59,18,0"
+            Height="52"
+            Margin="0,0,18,0"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="18"
             Foreground="#FF0000"
-            TextWrapping="Wrap" VerticalAlignment="Top" />
+            TextWrapping="Wrap" VerticalAlignment="Top" Width="238" HorizontalAlignment="Left" />
         <TextBox
             x:Name="date_package"
-            Grid.Row="3"
-            Grid.RowSpan="2"
+            Grid.Row="7"
             Grid.Column="3"
-            Margin="0,59,32,0"
+            Margin="0,0,32,0"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="18"
             Foreground="#FF0000"
             Text="{Binding ElementName=DatePicker, Path=SelectedDate, StringFormat=d}"
             TextChanged="date_package_TextChanged"
-            TextWrapping="Wrap" Height="40" VerticalAlignment="Top" />
+            TextWrapping="Wrap" Height="52" VerticalAlignment="Top" Width="238" HorizontalAlignment="Left" />
         <Label
-            Grid.Row="1"
-            Grid.RowSpan="2"
+            Grid.Row="3"
             Grid.Column="1"
-            Height="40"
-            Margin="0,59,0,0"
+            Margin="38,1,42,0"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
             Content="Модель"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
-            Foreground="#FFFFFF" VerticalAlignment="Top" />
-        <Label
-            Grid.RowSpan="2"
-            Grid.ColumnSpan="2"
-            Width="218"
-            Height="40"
-            Margin="10,59,1,0"
-            HorizontalContentAlignment="Center"
-            VerticalContentAlignment="Center"
-            Background="#002F6C"
-            Content="Id заказа"
-            FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14"
-            Foreground="#FFFFFF" VerticalAlignment="Top" />
+            Foreground="#FFFFFF" Width="236" />
         <Label
             Grid.Column="1"
-            Width="218"
-            Margin="0,66,0,5"
-            HorizontalAlignment="Center"
+            Margin="38,1,44,1"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
             Content="ID заказа"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
-            Foreground="#FFFFFF" />
+            Foreground="#FFFFFF" Grid.Row="1" />
         <Label
-            Grid.Row="3"
+            Grid.Row="5"
             Grid.Column="1"
-            Height="40"
-            Margin="0,1,0,0"
+            Margin="38,0,40,6"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
             Content="Цвет"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
-            Foreground="#FFFFFF" VerticalAlignment="Top" />
+            Foreground="#FFFFFF" />
         <Label
-            Grid.Row="3"
-            Grid.RowSpan="2"
-            Grid.ColumnSpan="2"
-            Height="40"
-            Margin="10,59,1,0"
+            Grid.Row="7"
+            Margin="38,0,44,1"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
             Content="Дата упаковки"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
-            Foreground="#FFFFFF" VerticalAlignment="Top" />
+            Foreground="#FFFFFF" Grid.Column="1" />
         <Label
-            Grid.Column="1"
-            Grid.ColumnSpan="3"
-            Height="36"
-            Margin="0,0,10,0"
+            Grid.ColumnSpan="4"
+            Height="56"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#FFFFFF"
             Content="Редактирование заказа в упаковке"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="22"
+            FontSize="35"
             Foreground="#002F6C" />
         <DatePicker
             x:Name="DatePicker"
-            Grid.Row="3"
+            Grid.Row="7"
             Grid.Column="3"
-            Margin="200,59,0,0"
+            Margin="204,6,89,13"
             DisplayDate="2022-04-04"
             FirstDayOfWeek="Monday"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14" Height="39" VerticalAlignment="Top" HorizontalAlignment="Left" Width="32" Grid.RowSpan="2" />
+            FontSize="14" />
         <ComboBox
             x:Name="id_ord"
             Grid.Row="1"
             Grid.Column="3"
-            Height="40"
+            Height="52"
             Margin="0,1,18,0"
             DataContextChanged="id_ord_DataContextChanged"
             RenderTransformOrigin="0.5,0.5"
-            SelectionChanged="ComboBox_SelectionChanged" VerticalAlignment="Top">
+            SelectionChanged="ComboBox_SelectionChanged" VerticalAlignment="Top" Width="238" HorizontalAlignment="Left">
             <ComboBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform />
@@ -169,17 +147,16 @@
             </ComboBox.RenderTransform>
         </ComboBox>
         <Button
-            Grid.Row="4"
-            Grid.RowSpan="2"
+            Grid.Row="8"
             Grid.Column="1"
             Grid.ColumnSpan="3"
-            Margin="163,59,176,0"
+            Margin="219,1,0,0"
             Background="#FF0000"
             BorderThickness="0,0,0,0"
             Click="Button_add"
             Content="Сохранить"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
-            Foreground="#FFFFFF" />
+            Foreground="#FFFFFF" Width="282" HorizontalAlignment="Left" />
     </Grid>
 </Window>

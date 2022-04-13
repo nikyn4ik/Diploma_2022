@@ -6,6 +6,7 @@
     xmlns:local="clr-namespace:Diploma_2022.Add"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Severstal Infocom"
+    Icon="/Images\icon.ico"
     Width="1200"
     Height="700"
     WindowStartupLocation="CenterScreen"
@@ -13,33 +14,20 @@
 
     <Window.Background>
 
-        <ImageBrush ImageSource="\Images\lebedevsevers.jpg" />
+        <ImageBrush ImageSource="/Images/add.jpg" />
 
     </Window.Background>
     <Grid>
-        <Border
-            Width="680"
-            Margin="0,0,0,613"
-            HorizontalAlignment="Center"
-            Background="#002F6C"
-            BorderThickness="0,0,0,0"
-            CornerRadius="10">
-            <StackPanel
-                Width="392"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center">
-
-                <TextBlock
-                    Width="334"
-                    Margin="0,0,-11,0"
-                    HorizontalAlignment="Center"
-                    FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="28"
-                    Foreground="White"
-                    Text="Создание нового склада" />
-
-            </StackPanel>
-        </Border>
+        <Label
+            Height="56"
+            VerticalAlignment="Top"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Background="#FFFFFF"
+            Content="Создание склада"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="35"
+            Foreground="#002F6C" />
         <DataGrid
             Name="StorageGrid"
             Margin="12,80,12,364"
@@ -79,7 +67,7 @@
             </DataGrid.Columns>
         </DataGrid>
         <Label
-            Width="191"
+            Width="215"
             Height="51"
             Margin="10,342,0,0"
             HorizontalAlignment="Left"
@@ -89,10 +77,10 @@
             Background="#002F6C"
             Content="Имя"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14"
+            FontSize="18"
             Foreground="White" />
         <Label
-            Width="191"
+            Width="215"
             Height="51"
             Margin="10,416,0,0"
             HorizontalAlignment="Left"
@@ -102,11 +90,11 @@
             Background="#002F6C"
             Content="Адрес"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14"
+            FontSize="18"
             Foreground="White" />
         <Label
-            Width="191"
-            Height="52"
+            Width="215"
+            Height="51"
             Margin="10,490,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
@@ -115,10 +103,10 @@
             Background="#002F6C"
             Content="Телефон"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14"
+            FontSize="18"
             Foreground="White" />
         <Label
-            Width="192"
+            Width="215"
             Height="51"
             Margin="12,556,0,0"
             HorizontalAlignment="Left"
@@ -128,10 +116,10 @@
             Background="#002F6C"
             Content="Дата создания склада"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14"
+            FontSize="18"
             Foreground="White" />
         <Label
-            Width="191"
+            Width="215"
             Height="51"
             Margin="600,342,0,0"
             HorizontalAlignment="Left"
@@ -141,13 +129,13 @@
             Background="#002F6C"
             Content="Остаток"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14"
+            FontSize="18"
             Foreground="White" />
 
         <TextBox
             x:Name="namesclad"
             Height="51"
-            Margin="228,342,642,0"
+            Margin="244,342,626,0"
             VerticalAlignment="Top"
             Background="#FFFFFF"
             FontFamily="Microsoft JhengHei UI Light"
@@ -158,7 +146,7 @@
             x:Name="addresssklad"
             Width="330"
             Height="51"
-            Margin="228,416,642,0"
+            Margin="244,416,626,0"
             VerticalAlignment="Top"
             Background="#FFFFFF"
             FontFamily="Microsoft JhengHei UI Light"
@@ -169,7 +157,7 @@
             x:Name="phonesklad"
             Width="330"
             Height="51"
-            Margin="228,490,642,0"
+            Margin="244,490,626,0"
             VerticalAlignment="Top"
             Background="#FFFFFF"
             FontFamily="Microsoft JhengHei UI Light"
@@ -191,13 +179,13 @@
             x:Name="dataaddsklad"
             Width="330"
             Height="50"
-            Margin="228,558,643,0"
+            Margin="244,556,626,0"
             VerticalAlignment="Top"
             Background="#FFFFFF"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
             Foreground="#002F6C"
-            TextAlignment="Left" />
+            TextAlignment="Left" TextChanged="dataaddsklad_TextChanged" />
         <Button
             Width="588"
             Height="82"
@@ -211,6 +199,13 @@
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="26"
             Foreground="#FFFFFF" />
+        <DatePicker
+            x:Name="DatePicker"
+            Margin="542,559,626,74"
+            DisplayDate="2022-04-04"
+            FirstDayOfWeek="Monday"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="14" />
 
     </Grid>
 </Window>

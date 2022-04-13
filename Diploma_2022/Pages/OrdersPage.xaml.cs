@@ -91,7 +91,6 @@ namespace Diploma_2022.Pages
                         cmd.Parameters.AddWithValue("@id", opder);
                         cmd.ExecuteNonQuery();
                         OrdersDataGrid_SelectionChanged();
-                        window.Show();
                         break;
                 }
             }

@@ -6,6 +6,7 @@
     xmlns:local="clr-namespace:Diploma_2022"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Severstal Infocom"
+    Icon="/Images\icon.ico"
     Width="1200"
     Height="710"
     Closing="Window_Closing"

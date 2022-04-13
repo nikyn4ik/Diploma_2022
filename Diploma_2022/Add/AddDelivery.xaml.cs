@@ -34,28 +34,6 @@ namespace Diploma_2022.Add
             DeliveryGrid.ItemsSource = dt.DefaultView;
         }
 
-        private void product_standart_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            product_stan.Items.Add("Да");
-        }
-
-        private void Storage_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            delivstor();
-        }
-        private void delivstor()
-        {
-            SqlCommand cmd = new SqlCommand("SELECT name_storage FROM [dbo].storage", sqlConnection);
-            sqlConnection.Open();
-            cmd.CommandType = CommandType.Text;
-            db = cmd.ExecuteReader();
-            while (db.Read())
-            {
-                Storage.Items.Add(db.GetValue(0));
-            }
-            sqlConnection.Close();
-        }
-
         private void DateDelivery_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             sqlConnection.Open();
@@ -66,12 +44,6 @@ namespace Diploma_2022.Add
             MessageBox.Show("Сохранено!", "Severstal Infocom", MessageBoxButton.OK);
             sqlConnection.Close();
             showdata();
-        }
-
-        private void Done_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            Done.Items.Add("Да");
-            Done.Items.Add("Нет");
         }
 
         private void outpdfButton(object sender, RoutedEventArgs e)
@@ -190,16 +162,21 @@ namespace Diploma_2022.Add
             sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
             {
                 sqlConnection.Open();
-                String query = "UPDATE [dbo].[delivery] SET product_standard=@product_standard, name_storage=@name_storage, date_of_delivery=@date_of_delivery  WHERE id_order=@id";
+                String query = "UPDATE [dbo].[delivery],[dbo].[orders] SET delivery.date_of_delivery=@date_of_delivery, orders.status=@status_task  WHERE id_order=@id";
                 SqlCommand createCommand = new SqlCommand(query, sqlConnection);
-                createCommand.Parameters.AddWithValue("@product_standard", product_stan.Text);
-                createCommand.Parameters.AddWithValue("@name_storage", Storage.Text);
                 createCommand.Parameters.AddWithValue("@date_of_delivery", DateDelivery.Text);
+                createCommand.Parameters.AddWithValue("@status_task", status.Text);
                 createCommand.ExecuteNonQuery();
                 MessageBox.Show("Сохранено!", "Severstal Infocom", MessageBoxButton.OK);
                 sqlConnection.Close();
                 showdata();
             }
+        }
+
+        private void status_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            status.Items.Add("Да");
+            status.Items.Add("Нет");
         }
     }
 }
