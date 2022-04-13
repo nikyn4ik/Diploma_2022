@@ -35,17 +35,6 @@ namespace Diploma_2022.Pages
         }
         private void Shipment_DataGrid_SelectionChanged()
         {
-            //SqlConnection sqlConnection = new SqlConnection();
-            //sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
-            //sqlConnection.Open();
-            //SqlCommand cmd = new SqlCommand();
-            //cmd.CommandText = "SELECT * FROM [dbo].[shipment]";
-            //cmd.Connection = sqlConnection;
-            //SqlDataAdapter shipment = new SqlDataAdapter(cmd);
-            //DataTable dt = new DataTable("diploma_db");
-            //shipment.Fill(dt);
-            //ShipmentGrid.ItemsSource = dt.DefaultView;
-            //sqlConnection.Close();
             SqlConnection sqlConnection = new SqlConnection();
             sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
             sqlConnection.Open();
@@ -98,6 +87,7 @@ namespace Diploma_2022.Pages
                     cmd.ExecuteNonQuery();
                     Shipment_DataGrid_SelectionChanged();
                     MessageBox.Show("Заказ успешно отправлен в доставку!", "Severstal Infocom");
+                    sqlConnection.Close();
                 }
             }
             catch (Exception ex)

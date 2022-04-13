@@ -63,6 +63,7 @@ namespace Diploma_2022.Pages
                     cmd.ExecuteNonQuery();
                     Package_DataGrid_SelectionChanged();
                     MessageBox.Show("Заказ успешно отправлен в отгрузку!", "Severstal Infocom");
+                    sqlConnection.Close();
                 }
             }
             catch (Exception ex)
