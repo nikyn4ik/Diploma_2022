@@ -1,0 +1,159 @@
+﻿<Window x:Class="Diploma_2022.Add.AddCertifToOrder"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Diploma_2022.Add"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    Title="Severstal Infocom"
+    Icon="/Images\icon.ico"
+    Width="750"
+    Height="470"
+    ResizeMode="NoResize"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+    <Window.Background>
+
+        <ImageBrush ImageSource="/Images/add.jpg" />
+
+    </Window.Background>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="11*" />
+            <ColumnDefinition Width="232*" />
+            <ColumnDefinition Width="67*" />
+            <ColumnDefinition Width="240*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="58*" />
+            <RowDefinition Height="48*" />
+            <RowDefinition Height="21*"/>
+            <RowDefinition Height="48*" />
+            <RowDefinition Height="21*" />
+            <RowDefinition Height="48*"/>
+            <RowDefinition Height="21*"/>
+            <RowDefinition Height="48*"/>
+            <RowDefinition Height="61*" />
+        </Grid.RowDefinitions>
+        <TextBox
+            x:Name="product_standard"
+            Grid.Row="5"
+            Grid.Column="3"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="18"
+            Foreground="#FF0000"
+            TextWrapping="Wrap" Height="52" VerticalAlignment="Top" HorizontalAlignment="Left" Width="238" />
+        <TextBox
+            x:Name="standard_mark"
+            Grid.Row="3"
+            Grid.Column="3"
+            Margin="0,6,0,0"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="18"
+            Foreground="#FF0000"
+            TextWrapping="Wrap" Height="52" VerticalAlignment="Top" HorizontalAlignment="Left" Width="238" />
+        <TextBox
+            x:Name="date_add_certificate"
+            Grid.Row="7"
+            Grid.Column="3"
+            Margin="0,0,32,0"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="18"
+            Foreground="#FF0000"
+            Text="{Binding ElementName=DatePicker, Path=SelectedDate, StringFormat=d}"
+            TextChanged="date_add_certificate_TextChanged"
+            TextWrapping="Wrap" Height="52" VerticalAlignment="Top" Width="238" HorizontalAlignment="Left" />
+        <Label
+            Grid.Row="3"
+            Grid.Column="1"
+            Margin="38,1,42,0"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Background="#002F6C"
+            Content="Стандарт на марку"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="14"
+            Foreground="#FFFFFF" Width="236" />
+        <Label
+            Grid.Column="1"
+            Margin="38,1,44,1"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Background="#002F6C"
+            Content="Проверка на качество пройдена?"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="14"
+            Foreground="#FFFFFF" Grid.Row="1" />
+        <Label
+            Grid.Row="5"
+            Grid.Column="1"
+            Margin="38,0,40,6"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Background="#002F6C"
+            Content="Стандарт продукта"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="14"
+            Foreground="#FFFFFF" />
+        <Label
+            Grid.Row="7"
+            Margin="38,0,44,1"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Background="#002F6C"
+            Content="Дата выдачи сертификации"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="14"
+            Foreground="#FFFFFF" Grid.Column="1" />
+        <Label
+            Grid.ColumnSpan="4"
+            Height="56"
+            VerticalAlignment="Top"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Background="#FFFFFF"
+            Content="Сертификация"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="35"
+            Foreground="#002F6C" />
+        <DatePicker
+            x:Name="DatePicker"
+            Grid.Row="7"
+            Grid.Column="3"
+            Margin="204,6,89,13"
+            DisplayDate="2022-04-04"
+            FirstDayOfWeek="Monday"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="14" />
+        <ComboBox
+            x:Name="access_standart"
+            Grid.Row="1"
+            Grid.Column="3"
+            Height="52"
+            Margin="0,1,18,0"
+            DataContextChanged="ac_standart_DataContextChanged"
+            RenderTransformOrigin="0.5,0.5"
+            SelectionChanged="ComboBox_SelectionChanged" VerticalAlignment="Top" Width="238" HorizontalAlignment="Left">
+            <ComboBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform />
+                    <SkewTransform AngleY="0.47" />
+                    <RotateTransform />
+                    <TranslateTransform Y="0.492" />
+                </TransformGroup>
+            </ComboBox.RenderTransform>
+        </ComboBox>
+        <Button
+            Grid.Row="8"
+            Grid.Column="1"
+            Grid.ColumnSpan="3"
+            Margin="219,1,0,0"
+            Background="#FF0000"
+            BorderThickness="0,0,0,0"
+            Click="Button_add"
+            Content="Сохранить"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="14"
+            Foreground="#FFFFFF" Width="282" HorizontalAlignment="Left" />
+    </Grid>
+</Window>

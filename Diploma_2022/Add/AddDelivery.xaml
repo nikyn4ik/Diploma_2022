@@ -95,7 +95,7 @@
             Grid.Column="2"
             Width="95"
             Height="51"
-            Margin="206,498,0,0"
+            Margin="165,498,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Background="#002F6C"

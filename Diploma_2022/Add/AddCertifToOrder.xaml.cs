@@ -20,27 +20,32 @@ using System.Globalization;
 namespace Diploma_2022.Add
 {
     /// <summary>
-    /// Логика взаимодействия для AddOrder.xaml
+    /// Логика взаимодействия для AddCertifToOrder.xaml
     /// </summary>
-    public partial class AddOrder : Window
+    public partial class AddCertifToOrder : Window
     {
         SqlConnection sqlConnection = new SqlConnection(@"Data Source=SPUTNIK; Initial Catalog=diploma_db; Integrated Security=True");
         SqlDataReader db;
-
-        public AddOrder()
+        public AddCertifToOrder()
         {
             InitializeComponent();
         }
+        private void date_add_certificate_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            DateTime date_add_certificate = (DateTime)this.DatePicker.SelectedDate;
+        }
+
         private void Button_add(object sender, RoutedEventArgs e)
         {
             SqlConnection sqlConnection = new SqlConnection();
             sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
             {
                 sqlConnection.Open();
-                string query = "UPDATE [dbo].[orders] SET consignee=@consignee, status=@status_order  WHERE id_order=@id";
+                string query = "UPDATE [dbo].[qua_certificate] SET standard_mark=@standard_per_mark, access_standart=@access_standart, date_add_certificate=@date_add_certificate WHERE id_order=@id";
                 SqlCommand createCommand = new SqlCommand(query, sqlConnection);
-                createCommand.Parameters.AddWithValue("@consignee", consignee.Text);
-                createCommand.Parameters.AddWithValue("@status_order", status.Text);
+                createCommand.Parameters.AddWithValue("@standard_per_mark", standard_mark.Text);
+                createCommand.Parameters.AddWithValue("@access_standart", access_standart.Text);
+                createCommand.Parameters.AddWithValue("@date_add_certificate", Convert.ToDateTime(date_add_certificate.Text));
                 createCommand.ExecuteNonQuery();
                 MessageBox.Show("Сохранено!", "Severstal Infocom", MessageBoxButton.OK);
                 sqlConnection.Close();
@@ -48,17 +53,14 @@ namespace Diploma_2022.Add
             }
         }
 
-
-        private void status_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ac_standart_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            qua.Items.Add("Заказ на выполнении");
-            qua.Items.Add("Заказ выполнен");
+
         }
 
-        private void qua_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            qua.Items.Add("Да");
-            qua.Items.Add("Нет");
+
         }
     }
 }

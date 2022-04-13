@@ -115,5 +115,11 @@ namespace Diploma_2022.Pages
             Show();
         }
 
+        private void AddButton_cert(object sender, RoutedEventArgs e)
+        {
+            var window = new Add.AddCertifToOrder();
+            window.ShowDialog();
+            Show();
+        }
     }
 }
