@@ -36,7 +36,7 @@ namespace Diploma_2022.Pages
         private void DeliveryGrid_SelectionChanged()
         {
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "SELECT * FROM [dbo].[delivery], [dbo].[shipment]";
+            cmd.CommandText = "SELECT * FROM [dbo].[delivery], [dbo].[shipment], [dbo].[orders]";
             cmd.Connection = sqlConnection;
             SqlDataAdapter deliv = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable("diploma_db");
@@ -81,7 +81,9 @@ namespace Diploma_2022.Pages
         private void editButton(object sender, RoutedEventArgs e)
         {
             Hide();
-            var window = new Add.AddDelivery();
+            object item = DeliveryGrid.SelectedItem;
+            string idOrder = (DeliveryGrid.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
+            var window = new Add.AddDelivery(Convert.ToInt32(idOrder));
             window.ShowDialog();
             Show();
         }

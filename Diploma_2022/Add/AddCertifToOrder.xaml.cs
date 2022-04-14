@@ -26,9 +26,12 @@ namespace Diploma_2022.Add
     {
         SqlConnection sqlConnection = new SqlConnection(@"Data Source=SPUTNIK; Initial Catalog=diploma_db; Integrated Security=True");
         SqlDataReader db;
-        public AddCertifToOrder()
+        int IdOrder;
+        public AddCertifToOrder(int idOrder)
         {
             InitializeComponent();
+            fillComboBoxStandart();
+            IdOrder = idOrder;
         }
         private void date_add_certificate_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -41,11 +44,12 @@ namespace Diploma_2022.Add
             sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
             {
                 sqlConnection.Open();
-                string query = "UPDATE [dbo].[qua_certificate] SET standard_mark=@standard_per_mark, access_standart=@access_standart, date_add_certificate=@date_add_certificate WHERE id_order=@id";
+                string query = "UPDATE [dbo].[qua_certificate] SET standard_per_mark=@standard_per_mark, access_standart=@access_standart, date_add_certificate=@date_add_certificate WHERE id_order=@id";
                 SqlCommand createCommand = new SqlCommand(query, sqlConnection);
                 createCommand.Parameters.AddWithValue("@standard_per_mark", standard_mark.Text);
                 createCommand.Parameters.AddWithValue("@access_standart", access_standart.Text);
                 createCommand.Parameters.AddWithValue("@date_add_certificate", Convert.ToDateTime(date_add_certificate.Text));
+                createCommand.Parameters.AddWithValue("@id", IdOrder.ToString());
                 createCommand.ExecuteNonQuery();
                 MessageBox.Show("Сохранено!", "Severstal Infocom", MessageBoxButton.OK);
                 sqlConnection.Close();
@@ -61,6 +65,12 @@ namespace Diploma_2022.Add
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void fillComboBoxStandart()
+        {
+            access_standart.Items.Add("Да");
+            access_standart.Items.Add("Нет");
         }
     }
 }

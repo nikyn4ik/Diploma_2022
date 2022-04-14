@@ -15,7 +15,8 @@ using System.Data.SqlClient;
 using System.Data;
 using System.IO;
 using System.Configuration;
-
+using System.Collections.ObjectModel;
+using Diploma_2022.Models;
 
 namespace Diploma_2022.Pages
 {
@@ -26,12 +27,13 @@ namespace Diploma_2022.Pages
     {
         SqlConnection sqlConnection = new SqlConnection(@"Data Source=SPUTNIK; Initial Catalog=diploma_db; Integrated Security=True");
         DataTable dt = new DataTable("diploma_db");
+        ObservableCollection<Orders> orders = new ObservableCollection<Orders>();
 
         public OrdersPage()
         {
             InitializeComponent();
             OrdersDataGrid_SelectionChanged();
-
+            orders = new ObservableCollection<Orders>();
         }
 
         private void OrdersDataGrid_SelectionChanged()
@@ -40,10 +42,16 @@ namespace Diploma_2022.Pages
             sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
             sqlConnection.Open();
             SqlCommand cmd = new SqlCommand();
+            DataTable tap = new DataTable();
             cmd.CommandText = "SELECT * FROM [dbo].[orders]";
             cmd.Connection = sqlConnection;
             SqlDataAdapter order = new SqlDataAdapter(cmd);
+            new SqlDataAdapter(cmd.CommandText, sqlConnection).Fill(tap);
             order.Fill(dt);
+            List<int> result = new List<int>();
+            result = tap.Rows.OfType<DataRow>().Select(dr => dr.Field<int>("id_order")).ToList();
+            orders = new ObservableCollection<Orders>();
+            
             OrdersGrid.ItemsSource = dt.DefaultView;
         }
 
@@ -59,7 +67,7 @@ namespace Diploma_2022.Pages
                     SqlCommand cmd = new SqlCommand("INSERT INTO [dbo].[package] (id_order) ((SELECT id_order FROM orders WHERE id_order=@id))", sqlConnection);
                     cmd.Parameters.AddWithValue("@id", ID_Orders);
                     cmd.ExecuteNonQuery();
-                    OrdersDataGrid_SelectionChanged();
+
                     MessageBox.Show("Заказ успешно отправлен в упаковку!", "Severstal Infocom");
                     sqlConnection.Close();
                 }
@@ -97,6 +105,8 @@ namespace Diploma_2022.Pages
 
         protected void update()
         {
+            OrdersGrid.Items.Clear();
+
             SqlConnection sqlConnection = new SqlConnection();
             sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
             sqlConnection.Open();
@@ -110,14 +120,24 @@ namespace Diploma_2022.Pages
         }
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            var window = new Add.AddOrder();
-            window.ShowDialog();
-            Show();
+            object item = OrdersGrid.SelectedItem;
+            if (item == null)
+                MessageBox.Show("Выберите строчку");
+            else
+            {
+                string ID = (OrdersGrid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                var window = new Add.AddOrder(Convert.ToInt32(ID));
+                window.ShowDialog();
+                Show();
+            }
+                
         }
 
         private void AddButton_cert(object sender, RoutedEventArgs e)
         {
-            var window = new Add.AddCertifToOrder();
+            object item = OrdersGrid.SelectedItem;
+            string ID = (OrdersGrid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+            var window = new Add.AddCertifToOrder(Convert.ToInt32(ID));
             window.ShowDialog();
             Show();
         }

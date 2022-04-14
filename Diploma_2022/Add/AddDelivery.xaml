@@ -20,8 +20,8 @@
     </Window.Background>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="646*"/>
-            <RowDefinition Height="39*"/>
+            <RowDefinition Height="95*"/>
+            <RowDefinition Height="5*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="203*" />
@@ -58,19 +58,19 @@
                     Header="id отгрузки" />
                 <DataGridTextColumn
                     Width="*"
-                    Binding="{Binding consignee}"
+                    Binding="{Binding id_order}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="12"
-                    Header="Продукт" />
+                    Header="ID Заказ" />
                 <DataGridTextColumn
                     Width="*"
-                    Binding="{Binding date_of_shipments}"
+                    Binding="{Binding date_of_delivery}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="12"
-                    Header="Дата отгрузки" />
+                    Header="Дата доставки" />
                 <DataGridTextColumn
                     Width="*"
-                    Binding="{Binding early_shipment}"
+                    Binding="{Binding early_delivery}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="12"
                     Header="Ранняя отгрузка" />
@@ -81,7 +81,7 @@
             Grid.Column="2"
             Width="95"
             Height="51"
-            Margin="25,498,0,0"
+            Margin="25,500,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Background="#002F6C"
@@ -95,7 +95,7 @@
             Grid.Column="2"
             Width="95"
             Height="51"
-            Margin="165,498,0,0"
+            Margin="165,500,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Background="#002F6C"
@@ -107,22 +107,21 @@
         <Button
             Grid.Column="2"
             Width="234"
-            Height="60"
-            Margin="0,575,0,0"
+            Height="51"
+            Margin="0,582,0,0"
             HorizontalAlignment="Center"
-            VerticalAlignment="Top"
             Background="#FF0000"
             BorderThickness="0,0,0,0"
             Click="Button_add"
             Content="Загрузить в таблицу"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="17"
-            Foreground="#FFFFFF" />
+            Foreground="#FFFFFF" VerticalAlignment="Top" />
         <Label
             Grid.Column="3"
             Width="191"
             Height="51"
-            Margin="0,498,0,0"
+            Margin="0,500,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
@@ -136,7 +135,7 @@
             x:Name="DateDelivery"
             Grid.Column="4"
             Height="51"
-            Margin="0,498,10,0"
+            Margin="0,500,10,0"
             VerticalAlignment="Top"
             Background="#FFFFFF"
             FontFamily="Microsoft JhengHei UI Light"
@@ -147,56 +146,30 @@
             TextChanged="DateDelivery_TextChanged" />
 
         <ComboBox
-            x:Name="status"
-            Width="182"
-            Height="51"
-            Margin="14,498,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            FontFamily="Microsoft JhengHei UI Light"
-            FontSize="16"
-            Foreground="#002F6C" SelectionChanged="status_SelectionChanged" Grid.Column="1" />
-
-        <ComboBox
             x:Name="early_delivery"
             Width="182"
-            Height="50"
-            Margin="14,580,0,0"
+            Height="51"
+            Margin="10,503,0,0"
             HorizontalAlignment="Left"
-            VerticalAlignment="Top"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="16"
-            Foreground="#002F6C" SelectionChanged="early_delivery_SelectionChanged" Grid.Column="1" />
+            Foreground="#002F6C" Grid.Column="1" VerticalAlignment="Top" />
         <Label
             Width="191"
             Height="51"
-            Margin="12,584,0,0"
+            Margin="18,500,0,0"
             HorizontalAlignment="Left"
-            VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
-            Content="Ранняя отгрузка?"
+            Content="Ранняя отгрузка"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="16"
-            Foreground="White" />
-        <Label
-            Width="191"
-            Height="51"
-            Margin="12,498,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            HorizontalContentAlignment="Center"
-            VerticalContentAlignment="Center"
-            Background="#002F6C"
-            Content="Статус заказа"
-            FontFamily="Microsoft JhengHei UI Light"
-            FontSize="16"
-            Foreground="White" />
+            Foreground="White" VerticalAlignment="Top" />
         <DatePicker
             x:Name="DatePicker"
             Grid.Column="4"
-            Margin="172,498,10,96"
+            Margin="166,498,10,96"
             DisplayDate="2022-03-23"
             FirstDayOfWeek="Monday"
             FontFamily="Microsoft JhengHei UI Light"

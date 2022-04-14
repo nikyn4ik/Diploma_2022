@@ -136,6 +136,12 @@
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="12"
                     Header="Длина [мм]" />
+                <DataGridTextColumn
+                    Width="*"
+                    Binding="{Binding status_order}"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="12"
+                    Header="Статус" />
             </DataGrid.Columns>
         </DataGrid>
         <Button

@@ -121,7 +121,7 @@
                     Header="Отгр. кол-во за месяц [тонны]" />
                 <DataGridTextColumn
                     Width="*"
-                    Binding="{Binding storage}"
+                    Binding="{Binding id_storage}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="12"
                     Header="Склад" />

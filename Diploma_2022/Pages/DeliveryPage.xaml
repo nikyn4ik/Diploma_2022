@@ -95,7 +95,7 @@
                     Binding="{Binding consignee}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="12"
-                    Header="Продукт" />
+                    Header="Грузополучатель" />
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding date_of_delivery}"
@@ -110,7 +110,7 @@
                     Header="Ранняя отгрузка" />
                 <DataGridTextColumn
                     Width="*"
-                    Binding="{Binding early_shipment}"
+                    Binding="{Binding id_storage}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="12"
                     Header="Склад" />

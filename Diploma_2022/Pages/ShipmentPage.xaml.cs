@@ -85,10 +85,12 @@ namespace Diploma_2022.Pages
                     sqlConnection.Open();
                     DataRowView drv = (DataRowView)ShipmentGrid.SelectedItem;
                     string ID_Orders = drv.Row[0].ToString();
-                    SqlCommand cmd = new SqlCommand("INSERT INTO [dbo].[delivery] (id_order) ((SELECT id_order FROM shipment WHERE id_order=@id))", sqlConnection);
+                    SqlCommand cmd = new SqlCommand("INSERT INTO [dbo].[delivery] (id_order, id_storage) ((SELECT id_order, id_storage FROM shipment WHERE id_order=@id))", sqlConnection);
                     cmd.Parameters.AddWithValue("@id", ID_Orders);
                     cmd.ExecuteNonQuery();
-                    Shipment_DataGrid_SelectionChanged();
+                    SqlCommand cmd2 = new SqlCommand("UPDATE [dbo].[delivery] SET consignee=@consignee WHERE id_order=@id", sqlConnection);
+                    cmd2.Parameters.AddWithValue("@id", ID_Orders);
+                    cmd2.ExecuteNonQuery();
                     MessageBox.Show("Заказ успешно отправлен в доставку!", "Severstal Infocom");
                     sqlConnection.Close();
                 }

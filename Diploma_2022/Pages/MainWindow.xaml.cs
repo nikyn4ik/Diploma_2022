@@ -74,19 +74,15 @@ namespace Diploma_2022
             switch (result)
             {
                 case MessageBoxResult.No:
-                    Hide();
-                    var window = new MainWindow();
-                    MessageBox.Show("Вы в Системе!", "Severstal Infocom");
-                    window.ShowDialog();
+                    e.Cancel = true;
                     break;
-
                 case MessageBoxResult.Yes:
                     MessageBox.Show("До свидания!", "Severstal Infocom");
                     this.Hide();
                     lg.Show();
                     break;
             }
-            }
+        }
 
         private void Button_doc(object sender, RoutedEventArgs e)
         {

@@ -21,9 +21,13 @@ namespace Diploma_2022.Add
         List<Models.Storage> list = new();
         SqlConnection sqlConnection = new SqlConnection(@"Data Source=SPUTNIK; Initial Catalog=diploma_db; Integrated Security=True");
         SqlDataReader db;
-        public AddDelivery()
+        int IdOrder;
+        public AddDelivery(int idOrder)
         {
             InitializeComponent();
+            fillComboBoxSearly_delivery();
+            IdOrder = idOrder;
+            showdata();
         }
         public void showdata()
         {
@@ -43,7 +47,6 @@ namespace Diploma_2022.Add
             createCommand.ExecuteNonQuery();
             MessageBox.Show("Сохранено!", "Severstal Infocom", MessageBoxButton.OK);
             sqlConnection.Close();
-            showdata();
         }
 
         private void outpdfButton(object sender, RoutedEventArgs e)
@@ -52,9 +55,9 @@ namespace Diploma_2022.Add
                 if (selectedIndex != -1)
                 PDFOut(selectedIndex);
                 else MessageBox.Show("Выберите нужную строчку!", "Severstal Infocom");
-            }
+        }
 
-            private void PDFOut(int cellId)
+        private void PDFOut(int cellId)
             {
                 object item = DeliveryGrid.SelectedItem;
                 string ID = (DeliveryGrid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
@@ -100,7 +103,7 @@ namespace Diploma_2022.Add
         {
             ExportToExcel();
                 var selectedIndex = DeliveryGrid.SelectedIndex;
-                if (selectedIndex != -1) ;
+                if (selectedIndex != -1);
                 else MessageBox.Show("Выберите нужную строчку!", "Severstal Infocom");
         }
         private void ExportToExcel()
@@ -201,25 +204,17 @@ namespace Diploma_2022.Add
             sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
             {
                 sqlConnection.Open();
-                String query = "UPDATE [dbo].[delivery],[dbo].[orders] SET delivery.date_of_delivery=@date_of_delivery, delivery.early_delivery=@early_delivery, orders.status=@status_task  WHERE id_order=@id";
+                String query = "UPDATE [dbo].[delivery] SET date_of_delivery=@date_of_delivery, early_delivery=@early_delivery  WHERE id_order=@id";
                 SqlCommand createCommand = new SqlCommand(query, sqlConnection);
                 createCommand.Parameters.AddWithValue("@date_of_delivery", DateDelivery.Text);
-                createCommand.Parameters.AddWithValue("@status_task", status.Text);
                 createCommand.Parameters.AddWithValue("@early_delivery", early_delivery.Text);
+                createCommand.Parameters.AddWithValue("@id", IdOrder.ToString());
                 createCommand.ExecuteNonQuery();
                 MessageBox.Show("Сохранено!", "Severstal Infocom", MessageBoxButton.OK);
                 sqlConnection.Close();
-                showdata();
             }
         }
-
-        private void status_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            status.Items.Add("Да");
-            status.Items.Add("Нет");
-        }
-
-        private void early_delivery_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void fillComboBoxSearly_delivery()
         {
             early_delivery.Items.Add("Да");
             early_delivery.Items.Add("Нет");

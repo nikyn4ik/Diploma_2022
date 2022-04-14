@@ -60,7 +60,6 @@ namespace Diploma_2022.Pages
                     SqlCommand cmd = new SqlCommand("INSERT INTO [dbo].[shipment] (id_order) ((SELECT id_order FROM package WHERE id_order=@id))", sqlConnection);
                     cmd.Parameters.AddWithValue("@id", ID_Orders);
                     cmd.ExecuteNonQuery();
-                    Package_DataGrid_SelectionChanged();
                     MessageBox.Show("Заказ успешно отправлен в отгрузку!", "Severstal Infocom");
                     sqlConnection.Close();
                 }

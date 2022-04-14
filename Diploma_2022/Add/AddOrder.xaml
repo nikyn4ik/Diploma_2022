@@ -46,7 +46,7 @@
             Grid.Row="2"
             Grid.Column="3"
             Margin="0,90,0,5"
-            RenderTransformOrigin="0.5,0.5" SelectionChanged="status_SelectionChanged" Grid.RowSpan="2" Width="234" HorizontalAlignment="Left" Height="58" />
+            RenderTransformOrigin="0.5,0.5" Grid.RowSpan="2" Width="234" HorizontalAlignment="Left" Height="58" />
 
         <Label
             Grid.Column="1"

@@ -62,8 +62,8 @@ namespace Diploma_2022
                     {
                     var Login = login.Text;
                     var Password = password.Password;
-                      var window = new MainWindow();
-                     window.lplogin.Text = Login;
+                    var window = new MainWindow();
+                    window.lplogin.Text = Login;
 
 
                      MessageBox.Show(
@@ -71,7 +71,7 @@ namespace Diploma_2022
                          "Severstal Infocom",
                          MessageBoxButton.OK,
                          MessageBoxImage.Information);
-                        window.Show();//!!!!!!!!!!!
+                        window.Show();
                         this.Hide();
                     }
                     else 
@@ -86,10 +86,6 @@ namespace Diploma_2022
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-
             }
         }
         private void Login_OnMouseDown(object sender, MouseButtonEventArgs e)

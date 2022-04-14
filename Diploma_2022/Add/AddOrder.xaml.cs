@@ -27,9 +27,13 @@ namespace Diploma_2022.Add
         SqlConnection sqlConnection = new SqlConnection(@"Data Source=SPUTNIK; Initial Catalog=diploma_db; Integrated Security=True");
         SqlDataReader db;
 
-        public AddOrder()
+        int IdOrder;
+
+        public AddOrder(int idOrder)
         {
             InitializeComponent();
+            fillComboBoxStatus();
+            IdOrder = idOrder;
         }
         private void Button_add(object sender, RoutedEventArgs e)
         {
@@ -37,19 +41,50 @@ namespace Diploma_2022.Add
             sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
             {
                 sqlConnection.Open();
-                string query = "UPDATE [dbo].[orders] SET consignee=@consignee, status=@status_order  WHERE id_order=@id";
-                SqlCommand createCommand = new SqlCommand(query, sqlConnection);
-                createCommand.Parameters.AddWithValue("@consignee", consignee.Text);
-                createCommand.Parameters.AddWithValue("@status_order", status.Text);
-                createCommand.ExecuteNonQuery();
-                MessageBox.Show("Сохранено!", "Severstal Infocom", MessageBoxButton.OK);
-                sqlConnection.Close();
-                this.Close();
+                string query = "";
+                if (consignee.Text != "" && status.Text != "")
+                {
+                    query = "UPDATE [dbo].[orders] SET consignee=@consignee, status_order=@status_order  WHERE id_order=@id";
+                    SqlCommand createCommand = new SqlCommand(query, sqlConnection);
+                    createCommand.Parameters.AddWithValue("@consignee", consignee.Text);
+                    createCommand.Parameters.AddWithValue("@status_order", status.Text);
+                    createCommand.Parameters.AddWithValue("@id", IdOrder.ToString());
+                    updateOrder(createCommand);
+                }
+                else if (consignee.Text != "" && status.Text == "")
+                {
+                    query = "UPDATE [dbo].[orders] SET consignee=@consignee WHERE id_order=@id";
+                    SqlCommand createCommand = new SqlCommand(query, sqlConnection);
+                    createCommand.Parameters.AddWithValue("@consignee", consignee.Text);
+                    createCommand.Parameters.AddWithValue("@id", IdOrder.ToString());
+                    updateOrder(createCommand);
+                }
+                else if (consignee.Text == "" && status.Text != "")
+                {
+                    query = "UPDATE [dbo].[orders] SET status_order=@status_order WHERE id_order=@id";
+                    SqlCommand createCommand = new SqlCommand(query, sqlConnection);
+                    createCommand.Parameters.AddWithValue("@status_order", status.Text);
+                    createCommand.Parameters.AddWithValue("@id", IdOrder.ToString());
+                    updateOrder(createCommand);
+                }
+                else 
+                {
+                    MessageBox.Show("Введите значения", "Severstal Infocom");
+                    sqlConnection.Close();
+                }
+                    
             }
         }
 
+        private void updateOrder(SqlCommand createCommand) 
+        {
+            createCommand.ExecuteNonQuery();
+            MessageBox.Show("Сохранено!", "Severstal Infocom", MessageBoxButton.OK);
+            sqlConnection.Close();
+            this.Close();
+        }
 
-        private void status_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void fillComboBoxStatus() 
         {
             status.Items.Add("Заказ на выполнении");
             status.Items.Add("Заказ выполнен");

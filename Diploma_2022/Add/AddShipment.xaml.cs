@@ -29,6 +29,8 @@ namespace Diploma_2022.Add
         public AddShipment()
         {
             InitializeComponent();
+            id_orderSelect();
+            storageSelect();
         }
 
         private void Button_add(object sender, RoutedEventArgs e)
@@ -79,6 +81,11 @@ namespace Diploma_2022.Add
 
         private void id_order_ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            
+        }
+
+        private void id_orderSelect() 
+        {
             SqlCommand cmd = new SqlCommand("SELECT id_order FROM [dbo].[orders]", sqlConnection);
             sqlConnection.Open();
             cmd.CommandType = CommandType.Text;
@@ -86,6 +93,19 @@ namespace Diploma_2022.Add
             while (db.Read())
             {
                 id_ord.Items.Add(db.GetValue(0));
+            }
+            sqlConnection.Close();
+        }
+
+        private void storageSelect()
+        {
+            SqlCommand cmd = new SqlCommand("SELECT id_storage FROM [dbo].[storage]", sqlConnection);
+            sqlConnection.Open();
+            cmd.CommandType = CommandType.Text;
+            db = cmd.ExecuteReader();
+            while (db.Read())
+            {
+                storage.Items.Add(db.GetValue(0));
             }
             sqlConnection.Close();
         }
