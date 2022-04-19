@@ -22,5 +22,12 @@ namespace Diploma_2022.Models
         public float length_max_mm { get; set; }
         public string name_product { get; set; }
         public string status_order { get; set; }
+        public string consignee { get; set; }
+        public int id_payer { get; set; }
+        public int id_consignee { get; set; }
+        public string mark { get; set; }
+        public string standart_mark { get; set; }
+        public int id_storage { get; set; }
+        public int id_qua_certificate { get; set; }
     }
 }

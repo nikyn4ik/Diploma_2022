@@ -107,10 +107,10 @@
             x:Name="DatePicker"
             Grid.Row="5"
             Grid.Column="3"
-            Margin="271,10,0,10"
+            Margin="272,10,0,10"
             FirstDayOfWeek="Monday"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14" HorizontalAlignment="Left" Width="35" RenderTransformOrigin="0.427,0.34" SelectedDateChanged="DatePicker_SelectedDateChanged" />
+            FontSize="14" RenderTransformOrigin="0.427,0.34" SelectedDateChanged="DatePicker_SelectedDateChanged" HorizontalAlignment="Left" Width="34" />
         <Button
             Grid.Row="6"
             Grid.Column="1"
