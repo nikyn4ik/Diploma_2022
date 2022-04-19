@@ -8,8 +8,8 @@
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     Title="Severstal Infocom"
     Icon="/Images\icon.ico"
-    Width="1200"
-    Height="700"
+    Width="750"
+    Height="470"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
 
@@ -20,15 +20,20 @@
     </Window.Background>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="95*"/>
-            <RowDefinition Height="5*"/>
+            <RowDefinition Height="61*"/>
+            <RowDefinition Height="39*"/>
+            <RowDefinition Height="57*"/>
+            <RowDefinition Height="23*"/>
+            <RowDefinition Height="58*"/>
+            <RowDefinition Height="45*"/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="97*"/>
+            <RowDefinition Height="24*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="203*" />
-            <ColumnDefinition Width="190*"/>
-            <ColumnDefinition Width="276*" />
-            <ColumnDefinition Width="292*" />
-            <ColumnDefinition Width="203*" />
+            <ColumnDefinition Width="11*" />
+            <ColumnDefinition Width="687*"/>
+            <ColumnDefinition Width="11*"/>
         </Grid.ColumnDefinitions>
         <Label
             Height="56"
@@ -39,141 +44,93 @@
             Content="Формирование доставки"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="35"
-            Foreground="#002F6C" Grid.ColumnSpan="5" />
-        <DataGrid
-            Name="DeliveryGrid"
-            Grid.ColumnSpan="5"
-            Margin="12,80,8,154"
-            AutoGenerateColumns="False"
-            FontFamily="Microsoft JhengHei UI Light"
-            FontSize="12"
-            IsReadOnly="True"
-            SelectionChanged="DeliveryGrid_SelectionChanged">
-            <DataGrid.Columns>
-                <DataGridTextColumn
-                    Width="*"
-                    Binding="{Binding id_delivery}"
-                    FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="12"
-                    Header="id отгрузки" />
-                <DataGridTextColumn
-                    Width="*"
-                    Binding="{Binding id_order}"
-                    FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="12"
-                    Header="ID Заказ" />
-                <DataGridTextColumn
-                    Width="*"
-                    Binding="{Binding date_of_delivery}"
-                    FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="12"
-                    Header="Дата доставки" />
-                <DataGridTextColumn
-                    Width="*"
-                    Binding="{Binding early_delivery}"
-                    FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="12"
-                    Header="Ранняя отгрузка" />
-            </DataGrid.Columns>
-        </DataGrid>
+            Foreground="#002F6C" Grid.ColumnSpan="3" />
         <Button
             x:Name="OutPDF"
-            Grid.Column="2"
-            Width="95"
+            Width="101"
             Height="51"
-            Margin="25,500,0,0"
+            Margin="215,0,0,0"
             HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Background="#002F6C"
+            VerticalAlignment="Center"
+            Background="#909090 "
             Click="outpdfButton"
             Content="PDF"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="17"
-            Foreground="#FFFFFF" />
+            FontSize="20"
+            Foreground="#FFFFFF" Grid.Row="6" Grid.Column="1" />
         <Button
             x:Name="outexcel"
-            Grid.Column="2"
-            Width="95"
+            Width="101"
             Height="51"
-            Margin="165,500,0,0"
+            Margin="420,0,0,0"
             HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Background="#002F6C"
+            VerticalAlignment="Center"
+            Background="#909090 "
             Click="out_excel_button"
             Content="Excel"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="17"
-            Foreground="#FFFFFF" />
+            FontSize="20"
+            Foreground="#FFFFFF" Grid.Row="6" Grid.Column="1" />
         <Button
-            Grid.Column="2"
-            Width="234"
-            Height="51"
-            Margin="0,582,0,0"
-            HorizontalAlignment="Center"
+            Width="306"
+            Height="57"
+            Margin="215,40,0,0"
+            HorizontalAlignment="Left"
             Background="#FF0000"
             BorderThickness="0,0,0,0"
             Click="Button_add"
-            Content="Загрузить в таблицу"
+            Content="Сохранить"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="17"
-            Foreground="#FFFFFF" VerticalAlignment="Top" />
+            FontSize="20"
+            Foreground="#FFFFFF" Grid.Row="7" Grid.Column="1" />
         <Label
-            Grid.Column="3"
-            Width="191"
-            Height="51"
-            Margin="0,500,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
+            Width="316"
+            Height="57"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
             Content="Дата доставки"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="16"
-            Foreground="White" />
+            FontSize="20"
+            Foreground="White" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="1" />
         <TextBox
             x:Name="DateDelivery"
-            Grid.Column="4"
-            Height="51"
-            Margin="0,500,10,0"
-            VerticalAlignment="Top"
+            Height="38"
+            Margin="420,10,0,10"
             Background="#FFFFFF"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="16"
             Foreground="#002F6C"
             Text="{Binding ElementName=DatePicker, Path=SelectedDate, StringFormat=d}"
             TextAlignment="Left"
-            TextChanged="DateDelivery_TextChanged" />
+            TextChanged="DateDelivery_TextChanged" Grid.Row="4" HorizontalAlignment="Left" Width="306" Grid.Column="1" />
 
         <ComboBox
             x:Name="early_delivery"
-            Width="182"
-            Height="51"
-            Margin="10,503,0,0"
+            Width="306"
+            Height="38"
+            Margin="420,10,0,9"
             HorizontalAlignment="Left"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="16"
-            Foreground="#002F6C" Grid.Column="1" VerticalAlignment="Top" />
+            Foreground="#002F6C" Grid.Row="2" Grid.Column="1" />
         <Label
-            Width="191"
-            Height="51"
-            Margin="18,500,0,0"
-            HorizontalAlignment="Left"
+            Width="316"
+            Height="57"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
             Content="Ранняя отгрузка"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="16"
-            Foreground="White" VerticalAlignment="Top" />
+            FontSize="20"
+            Foreground="White" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="1" />
         <DatePicker
             x:Name="DatePicker"
-            Grid.Column="4"
-            Margin="166,498,10,96"
+            Margin="696,9,0,11"
             DisplayDate="2022-03-23"
             FirstDayOfWeek="Monday"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14" />
+            FontSize="14" Grid.Row="4" HorizontalAlignment="Left" Width="30" Grid.Column="1" />
 
     </Grid>
 </Window>

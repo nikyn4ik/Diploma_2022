@@ -23,41 +23,39 @@ namespace Diploma_2022.Add
     /// </summary>
     public partial class AddStorage : Window
     {
+        SqlConnection sqlConnection = new SqlConnection(@"Data Source=SPUTNIK; Initial Catalog=diploma_db; Integrated Security=True");
+        SqlDataReader db;
         public AddStorage()
         {
             InitializeComponent();
-            SqlConnection sqlConnection = new SqlConnection(@"Data Source=SPUTNIK; Initial Catalog=diploma_db; Integrated Security=True");
         }
         private void Button_add(object sender, RoutedEventArgs e)
         {
-            SqlConnection sqlConnection = new SqlConnection();
-            sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
-            //try
+            sqlConnection.Open();
+            string query = "";
+            if (namesclad.Text != "" && addresssklad.Text != "" && phonesklad.Text != "" && ostatok.Text != "" && dataaddsklad.Text != "")
             {
-                sqlConnection.Open();
-                String query = "INSERT INTO [dbo]. storage values(@name_storage, @address, @phone_storage, @remainder, @date_add_storage);";
+                query = "INSERT INTO [dbo]. storage values(@name_storage, @address, @phone_storage, @remainder, @date_add_storage);";
                 SqlCommand createCommand = new SqlCommand(query, sqlConnection);
                 createCommand.Parameters.AddWithValue("@name_storage", namesclad.Text);
                 createCommand.Parameters.AddWithValue("@address", addresssklad.Text);
                 createCommand.Parameters.AddWithValue("@phone_storage", phonesklad.Text);
                 createCommand.Parameters.AddWithValue("@remainder", ostatok.Text);
-                createCommand.Parameters.AddWithValue("@date_add_storage", namesclad.Text);
-                createCommand.ExecuteNonQuery();
-                MessageBox.Show("Сохранено!", "Severstal Infocom", MessageBoxButton.OK);
+                createCommand.Parameters.AddWithValue("@date_add_storage", Convert.ToDateTime(dataaddsklad.Text));
+                update(createCommand);
+            }
+            else
+            {
+                MessageBox.Show("Введите значения", "Severstal Infocom", MessageBoxButton.OK);
                 sqlConnection.Close();
-                showdata();
-
             }
         }
-
-            public void showdata()
-            {
-            SqlConnection sqlConnection = new SqlConnection(@"Data Source=SPUTNIK; Initial Catalog=diploma_db; Integrated Security=True");
-            SqlDataAdapter adpt = new SqlDataAdapter("SELECT * FROM [dbo].[storage]", sqlConnection);
-               DataTable dt = new DataTable();
-                adpt.Fill(dt);
-                StorageGrid.DataContext = dt;
-                StorageGrid.ItemsSource = dt.DefaultView;
+        private void update(SqlCommand createCommand)
+        {
+            createCommand.ExecuteNonQuery();
+            MessageBox.Show("Сохранено!", "Severstal Infocom", MessageBoxButton.OK);
+            sqlConnection.Close();
+            this.Close();
         }
 
         private void dataaddsklad_TextChanged(object sender, TextChangedEventArgs e)

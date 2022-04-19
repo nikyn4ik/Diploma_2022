@@ -154,8 +154,16 @@ namespace Diploma_2022.Pages
 
         private void edit_Click(object sender, RoutedEventArgs e)
         {
-            Add.AddShipment taskWindow = new Add.AddShipment();
-            taskWindow.Show();
+            object item = ShipmentGrid.SelectedItem;
+            if (item == null)
+                MessageBox.Show("Выберите строчку", "Severstal Infocom");
+            else
+            {
+                string ID = (ShipmentGrid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                var window = new Add.AddShipment(Convert.ToInt32(ID));
+                window.ShowDialog();
+                Show();
+            }
         }
 
         private void ShipmentGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)

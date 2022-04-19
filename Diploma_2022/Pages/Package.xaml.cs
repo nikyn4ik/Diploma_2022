@@ -123,8 +123,16 @@ namespace Diploma_2022.Pages
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            Add.AddPackage taskWindow = new Add.AddPackage();
-            taskWindow.Show();
+            object item = PackageGrid.SelectedItem;
+            if (item == null)
+                MessageBox.Show("Выберите строчку", "Severstal Infocom");
+            else
+            {
+                string ID = (PackageGrid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                var window = new Add.AddPackage(Convert.ToInt32(ID));
+                window.ShowDialog();
+                Show();
+            }
         }
 
         private void Button_Click_search(object sender, RoutedEventArgs e)
@@ -143,13 +151,13 @@ namespace Diploma_2022.Pages
                 pack.Update(dt);
                 cmds.Close();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Не найдено в системе.", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
-        private void polee_TextChanged(object sender, TextChangedEventArgs e)
+            private void polee_TextChanged(object sender, TextChangedEventArgs e)
         {
             PackageGrid.Items.Refresh();
         }

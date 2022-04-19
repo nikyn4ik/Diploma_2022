@@ -19,10 +19,11 @@
     </Window.Background>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="11*" />
-            <ColumnDefinition Width="232*" />
-            <ColumnDefinition Width="67*" />
-            <ColumnDefinition Width="240*" />
+            <ColumnDefinition Width="15*" />
+            <ColumnDefinition Width="316*" />
+            <ColumnDefinition Width="91*" />
+            <ColumnDefinition Width="312*" />
+            <ColumnDefinition Width="11*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="58*" />
@@ -41,72 +42,69 @@
             Grid.Column="3"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="18"
-            Foreground="#FF0000"
-            TextWrapping="Wrap" Height="52" VerticalAlignment="Top" HorizontalAlignment="Left" Width="238" />
+            Foreground="Black"
+            TextWrapping="Wrap" HorizontalAlignment="Center" Width="314" Margin="0,10,0,10" />
         <TextBox
             x:Name="standard_mark"
             Grid.Row="3"
             Grid.Column="3"
-            Margin="0,6,0,0"
+            Margin="0,12,0,8"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="18"
-            Foreground="#FF0000"
-            TextWrapping="Wrap" Height="52" VerticalAlignment="Top" HorizontalAlignment="Left" Width="238" />
+            Foreground="Black"
+            TextWrapping="Wrap" HorizontalAlignment="Center" Width="314" />
         <TextBox
             x:Name="date_add_certificate"
             Grid.Row="7"
             Grid.Column="3"
-            Margin="0,0,32,0"
+            Margin="0,10,0,10"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="18"
-            Foreground="#FF0000"
+            Foreground="Black"
             Text="{Binding ElementName=DatePicker, Path=SelectedDate, StringFormat=d}"
             TextChanged="date_add_certificate_TextChanged"
-            TextWrapping="Wrap" Height="52" VerticalAlignment="Top" Width="238" HorizontalAlignment="Left" />
+            TextWrapping="Wrap" Width="315" HorizontalAlignment="Center" />
         <Label
             Grid.Row="3"
             Grid.Column="1"
-            Margin="38,1,42,0"
+            Margin="0,2,0,0"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
             Content="Стандарт на марку"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14"
-            Foreground="#FFFFFF" Width="236" />
+            FontSize="17"
+            Foreground="#FFFFFF" Height="57" Width="316" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.RowSpan="2" />
         <Label
             Grid.Column="1"
-            Margin="38,1,44,1"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
             Content="Проверка на качество пройдена?"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14"
-            Foreground="#FFFFFF" Grid.Row="1" />
+            FontSize="17"
+            Foreground="#FFFFFF" Grid.Row="1" Height="57" Width="316" VerticalAlignment="Center" HorizontalAlignment="Center" />
         <Label
             Grid.Row="5"
             Grid.Column="1"
-            Margin="38,0,40,6"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
             Content="Стандарт продукта"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14"
-            Foreground="#FFFFFF" />
+            FontSize="17"
+            Foreground="#FFFFFF" Height="57" Width="316" VerticalAlignment="Center" HorizontalAlignment="Center" />
         <Label
             Grid.Row="7"
-            Margin="38,0,44,1"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
             Content="Дата выдачи сертификации"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14"
-            Foreground="#FFFFFF" Grid.Column="1" />
+            FontSize="17"
+            Foreground="#FFFFFF" Grid.Column="1" Width="316" Height="57" VerticalAlignment="Center" HorizontalAlignment="Center" />
         <Label
-            Grid.ColumnSpan="4"
+            Grid.ColumnSpan="5"
             Height="56"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
@@ -120,20 +118,16 @@
             x:Name="DatePicker"
             Grid.Row="7"
             Grid.Column="3"
-            Margin="204,6,89,13"
+            Margin="279,10,0,10"
             DisplayDate="2022-04-04"
             FirstDayOfWeek="Monday"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14" />
+            FontSize="14" HorizontalAlignment="Left" Width="35" Grid.ColumnSpan="2" />
         <ComboBox
             x:Name="access_standart"
             Grid.Row="1"
             Grid.Column="3"
-            Height="52"
-            Margin="0,1,18,0"
-            DataContextChanged="ac_standart_DataContextChanged"
-            RenderTransformOrigin="0.5,0.5"
-            SelectionChanged="ComboBox_SelectionChanged" VerticalAlignment="Top" Width="238" HorizontalAlignment="Left">
+            RenderTransformOrigin="0.5,0.5" Width="315" HorizontalAlignment="Center" Margin="0,12,0,10">
             <ComboBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform />
@@ -147,13 +141,13 @@
             Grid.Row="8"
             Grid.Column="1"
             Grid.ColumnSpan="3"
-            Margin="219,1,0,0"
+            Margin="0,10,0,7"
             Background="#FF0000"
             BorderThickness="0,0,0,0"
             Click="Button_add"
             Content="Сохранить"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14"
-            Foreground="#FFFFFF" Width="282" HorizontalAlignment="Left" />
+            FontSize="20"
+            Foreground="#FFFFFF" Width="282" HorizontalAlignment="Center" />
     </Grid>
 </Window>

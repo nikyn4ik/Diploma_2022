@@ -82,26 +82,17 @@ namespace Diploma_2022.Pages
 
         private void brakButton_Click(object sender, RoutedEventArgs e)
         {
-                var window = new OrdersPage();
-                MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите отправить заказ в брак?", "Sevestal Infocom", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-                switch (result)
-                {
-                    case MessageBoxResult.No:
-                        MessageBox.Show("Заказ НЕ был отправлен в брак", "Severstal Infocom");
-                        break;
-                    case MessageBoxResult.Yes:
-                        MessageBox.Show("Заказ отправлен в брак", "Severstal Infocom");
-                        this.Hide();
-                        DataRowView drv = (DataRowView)OrdersGrid.SelectedItem;
-                        string opder = drv.Row[0].ToString();
-                        sqlConnection.Open();
-                        SqlCommand cmd = new SqlCommand("DELETE FROM orders WHERE id_order=@id", sqlConnection);
-                        cmd.Parameters.AddWithValue("@id", opder);
-                        cmd.ExecuteNonQuery();
-                        OrdersDataGrid_SelectionChanged();
-                        break;
-                }
+            object item = OrdersGrid.SelectedItem;
+            if (item == null)
+                MessageBox.Show("Выберите строчку", "Severstal Infocom");
+            else
+            {
+                string ID = (OrdersGrid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                var window = new Add.ReasonForSendingDefectProduct(Convert.ToInt32(ID));
+                window.ShowDialog();
+                Show();
             }
+        }
 
         protected void update()
         {
@@ -122,7 +113,7 @@ namespace Diploma_2022.Pages
         {
             object item = OrdersGrid.SelectedItem;
             if (item == null)
-                MessageBox.Show("Выберите строчку");
+                MessageBox.Show("Выберите строчку", "Severstal Infocom");
             else
             {
                 string ID = (OrdersGrid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
@@ -135,11 +126,38 @@ namespace Diploma_2022.Pages
 
         private void AddButton_cert(object sender, RoutedEventArgs e)
         {
+            object items = OrdersGrid.SelectedItem;
+            if (items == null)
+                MessageBox.Show("Выберите строчку", "Severstal Infocom");
+            else
+            {
             object item = OrdersGrid.SelectedItem;
             string ID = (OrdersGrid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
             var window = new Add.AddCertifToOrder(Convert.ToInt32(ID));
             window.ShowDialog();
             Show();
+            }
+        }
+
+        private void polee_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            OrdersGrid.Items.Refresh();
+        }
+
+        private void Button_Click_search(object sender, RoutedEventArgs e)
+        {
+            string ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
+            {
+                SqlConnection cmds = new SqlConnection(ConnectionString);
+                string cmd = "SELECT * FROM [dbo].[orders] WHERE id_order like '" + pole.Text + "%'";
+                cmds.Open();
+                SqlCommand sqlcom = new SqlCommand(cmd, cmds);
+                SqlDataAdapter order = new SqlDataAdapter(sqlcom);
+                order.Fill(dt);
+                OrdersGrid.ItemsSource = dt.DefaultView;
+                order.Update(dt);
+                cmds.Close();
+            }
         }
     }
 }

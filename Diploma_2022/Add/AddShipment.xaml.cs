@@ -26,30 +26,41 @@ namespace Diploma_2022.Add
     {
         SqlConnection sqlConnection = new SqlConnection(@"Data Source=SPUTNIK; Initial Catalog=diploma_db; Integrated Security=True");
         SqlDataReader db;
-        public AddShipment()
+
+        int IdOrder;
+        public AddShipment(int idOrder)
         {
             InitializeComponent();
-            id_orderSelect();
             storageSelect();
+            IdOrder = idOrder;
         }
 
         private void Button_add(object sender, RoutedEventArgs e)
         {
-            SqlConnection sqlConnection = new SqlConnection();
-            sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
+            sqlConnection.Open();
+            string query = "";
+            if (shipment_total_amount_tons.Text != "" && storage.Text != "" && date_of_shipments.Text != "")
             {
-                sqlConnection.Open();
-                string query = "UPDATE [dbo].[shipment] SET shipment_total_amount_tons=@shipment_total_amount_tons, id_storage=@storage, date_of_shipments=@date_of_shipments WHERE id_order=@id";
+                query = "UPDATE [dbo].[shipment] SET shipment_total_amount_tons=@shipment_total_amount_tons, id_storage=@id_storage, date_of_shipments=@date_of_shipments WHERE id_order=@id";
                 SqlCommand createCommand = new SqlCommand(query, sqlConnection);
-                createCommand.Parameters.AddWithValue("@id", id_ord.Text);
                 createCommand.Parameters.AddWithValue("@shipment_total_amount_tons", shipment_total_amount_tons.Text);
                 createCommand.Parameters.AddWithValue("@storage", storage.Text);
                 createCommand.Parameters.AddWithValue("@date_of_shipments", Convert.ToDateTime(date_of_shipments.Text));
-                createCommand.ExecuteNonQuery();
-                MessageBox.Show("Сохранено!", "Severstal Infocom", MessageBoxButton.OK);
-                sqlConnection.Close();
-                this.Close();
+                createCommand.Parameters.AddWithValue("@id", IdOrder.ToString());
+                update(createCommand);
             }
+            else
+            {
+                MessageBox.Show("Введите значения", "Severstal Infocom", MessageBoxButton.OK);
+                sqlConnection.Close();
+            }
+        }
+        private void update(SqlCommand createCommand)
+        {
+            createCommand.ExecuteNonQuery();
+            MessageBox.Show("Сохранено!", "Severstal Infocom", MessageBoxButton.OK);
+            sqlConnection.Close();
+            this.Close();
         }
 
         private void date_of_shipments_TextChanged(object sender, TextChangedEventArgs e)
@@ -69,33 +80,6 @@ namespace Diploma_2022.Add
             }
             sqlConnection.Close();
         }
-        private void id_ord_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-
-        }
-
-        private void storage_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-
-        }
-
-        private void id_order_ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            
-        }
-
-        private void id_orderSelect() 
-        {
-            SqlCommand cmd = new SqlCommand("SELECT id_order FROM [dbo].[orders]", sqlConnection);
-            sqlConnection.Open();
-            cmd.CommandType = CommandType.Text;
-            db = cmd.ExecuteReader();
-            while (db.Read())
-            {
-                id_ord.Items.Add(db.GetValue(0));
-            }
-            sqlConnection.Close();
-        }
 
         private void storageSelect()
         {
@@ -109,5 +93,6 @@ namespace Diploma_2022.Add
             }
             sqlConnection.Close();
         }
+
     }
 }

@@ -26,6 +26,7 @@ namespace Diploma_2022.Add
     {
         SqlConnection sqlConnection = new SqlConnection(@"Data Source=SPUTNIK; Initial Catalog=diploma_db; Integrated Security=True");
         SqlDataReader db;
+
         int IdOrder;
         public AddCertifToOrder(int idOrder)
         {
@@ -40,31 +41,30 @@ namespace Diploma_2022.Add
 
         private void Button_add(object sender, RoutedEventArgs e)
         {
-            SqlConnection sqlConnection = new SqlConnection();
-            sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
+            sqlConnection.Open();
+            string query = "";
+            if (standard_mark.Text != "" && access_standart.Text != "")
             {
-                sqlConnection.Open();
-                string query = "UPDATE [dbo].[qua_certificate] SET standard_per_mark=@standard_per_mark, access_standart=@access_standart, date_add_certificate=@date_add_certificate WHERE id_order=@id";
+                query = "UPDATE [dbo].[qua_certificate] SET standard_per_mark=@standard_per_mark, access_standart=@access_standart, date_add_certificate=@date_add_certificate WHERE id_order=@id";
                 SqlCommand createCommand = new SqlCommand(query, sqlConnection);
                 createCommand.Parameters.AddWithValue("@standard_per_mark", standard_mark.Text);
                 createCommand.Parameters.AddWithValue("@access_standart", access_standart.Text);
                 createCommand.Parameters.AddWithValue("@date_add_certificate", Convert.ToDateTime(date_add_certificate.Text));
                 createCommand.Parameters.AddWithValue("@id", IdOrder.ToString());
-                createCommand.ExecuteNonQuery();
-                MessageBox.Show("Сохранено!", "Severstal Infocom", MessageBoxButton.OK);
+                updateCert(createCommand);
+            }
+            else
+            {
+                MessageBox.Show("Введите значения", "Severstal Infocom", MessageBoxButton.OK);
                 sqlConnection.Close();
-                this.Close();
             }
         }
-
-        private void ac_standart_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        private void updateCert(SqlCommand createCommand)
         {
-
-        }
-
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
+            createCommand.ExecuteNonQuery();
+            MessageBox.Show("Сохранено!", "Severstal Infocom", MessageBoxButton.OK);
+            sqlConnection.Close();
+            this.Close();
         }
 
         private void fillComboBoxStandart()

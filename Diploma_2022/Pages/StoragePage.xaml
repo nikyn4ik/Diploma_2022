@@ -21,7 +21,8 @@
 
     <Grid Height="684" VerticalAlignment="Bottom">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="497*" />
+            <ColumnDefinition Width="215*" />
+            <ColumnDefinition Width="256*"/>
             <ColumnDefinition Width="224*" />
             <ColumnDefinition Width="256*" />
             <ColumnDefinition Width="215*" />
@@ -41,7 +42,7 @@
         <DataGrid
             Name="StorageGrid"
             Grid.Row="4"
-            Grid.ColumnSpan="4"
+            Grid.ColumnSpan="5"
             Height="494"
             Margin="10,0,1,0"
             VerticalAlignment="Top"
@@ -54,7 +55,7 @@
             CanUserSortColumns="False"
             ColumnWidth="*"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="12"
+            FontSize="15"
             IsReadOnly="False"
             SelectionChanged="StorageGrid_SelectionChanged">
 
@@ -63,7 +64,7 @@
                     Width="*"
                     Binding="{Binding id_storage}"
                     FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="12"
+                    FontSize="13"
                     Header="ID склад"
                     IsReadOnly="True" />
 
@@ -71,7 +72,7 @@
                     Width="*"
                     Binding="{Binding name_storage}"
                     FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="12"
+                    FontSize="13"
                     Header="Наименование"
                     IsReadOnly="True" />
 
@@ -79,7 +80,7 @@
                     Width="*"
                     Binding="{Binding address}"
                     FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="12"
+                    FontSize="13"
                     Header="Адрес"
                     IsReadOnly="True" />
 
@@ -87,14 +88,14 @@
                     Width="*"
                     Binding="{Binding remainder}"
                     FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="12"
+                    FontSize="13"
                     Header="Остаток" />
 
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding date_add_storage}"
                     FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="12"
+                    FontSize="13"
                     Header="Дата добавления склада"
                     IsReadOnly="True" />
             </DataGrid.Columns>
@@ -103,12 +104,12 @@
         <Button
             x:Name="delete"
             Grid.Row="5"
-            Grid.Column="2"
+            Grid.Column="3"
             Width="208"
             Height="50"
-            Margin="38,0,0,0"
+            Margin="53,8,0,0"
             HorizontalAlignment="Left"
-            VerticalAlignment="Center"
+            VerticalAlignment="Top"
             Background="#FF0000"
             Click="deleteButton"
             Content="Удаление склада из базы"
@@ -121,7 +122,7 @@
             Grid.Row="5"
             Width="208"
             Height="50"
-            Margin="0,0,41,8"
+            Margin="0,0,53,0"
             HorizontalAlignment="Right"
             VerticalAlignment="Bottom"
             Background="#002F6C"
@@ -129,16 +130,16 @@
             Content="Добавление склада"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
-            Foreground="#FFFFFF" />
+            Foreground="#FFFFFF" Grid.Column="1" />
         <Button
             x:Name="update"
             Grid.Row="5"
-            Grid.Column="1"
+            Grid.Column="2"
             Width="208"
             Height="50"
-            Margin="5,0,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
+            Margin="0,8,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
             Background="#002F6C"
             Click="UpdButton"
             Content="Обновление таблицы"
@@ -149,38 +150,37 @@
             x:Name="pole"
             Grid.Row="1"
             Grid.RowSpan="2"
-            Grid.Column="2"
-            Grid.ColumnSpan="2"
-            Width="105.607826810991"
-            Margin="255,2,110,15"
+            Grid.Column="3"
+            Width="115"
+            Margin="261,13,105,0"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="12"
             TextChanged="polee_TextChanged"
-            TextWrapping="Wrap" />
+            TextWrapping="Wrap" Height="36" Grid.ColumnSpan="2" />
         <Button
             Grid.Row="1"
             Grid.RowSpan="2"
-            Grid.Column="3"
-            Height="32"
-            Margin="130,2,1,0"
+            Grid.Column="4"
+            Height="36"
+            Margin="0,13,2,0"
             VerticalAlignment="Top"
             Background="#002F6C"
             Click="Button_Click_search"
             Content="Поиск"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
-            Foreground="#FFFFFF" />
+            Foreground="#FFFFFF" Width="84" HorizontalAlignment="Right" />
         <Border
             Grid.RowSpan="4"
             Grid.ColumnSpan="3"
             Width="680"
             Height="72"
-            Margin="272,0,0,0"
+            Margin="40,0,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             Background="#002F6C"
             BorderThickness="0,0,0,0"
-            CornerRadius="10">
+            CornerRadius="10" Grid.Column="1">
             <StackPanel
                 Width="392"
                 Height="41"

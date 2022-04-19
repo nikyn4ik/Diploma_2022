@@ -43,18 +43,8 @@ namespace Diploma_2022.Add
                 createCommand.ExecuteNonQuery();
                 MessageBox.Show("Сохранено!", "Severstal Infocom", MessageBoxButton.OK);
                 sqlConnection.Close();
-                showdata();
 
             }
-        }
-        public void showdata()
-        {
-            SqlConnection sqlConnection = new SqlConnection(@"Data Source=SPUTNIK; Initial Catalog=diploma_db; Integrated Security=True");
-            SqlDataAdapter adpt = new SqlDataAdapter("SELECT * FROM [dbo].[qua_certificate]", sqlConnection);
-            DataTable dt = new DataTable();
-            adpt.Fill(dt);
-            CertificatesGrid.DataContext = dt;
-            CertificatesGrid.ItemsSource = dt.DefaultView;
         }
 
     }

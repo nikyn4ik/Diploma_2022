@@ -74,42 +74,42 @@
             AutoGenerateColumns="False"
             Background="Snow"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="12"
+            FontSize="15"
             IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding id_qua_certificate}"
                     FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="12"
+                    FontSize="13"
                     Header="Id сертификата"
                     IsReadOnly="True" />
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding standard_per_mark}"
                     FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="12"
+                    FontSize="13"
                     Header="Стандарт на марку"
                     IsReadOnly="True" />
                 <DataGridTextColumn
                     Width="*"
-                    Binding="{Binding tolerance_standart}"
+                    Binding="{Binding access_standart}"
                     FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="12"
+                    FontSize="13"
                     Header="Стандарт на допуск "
                     IsReadOnly="True" />
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding product_standard}"
                     FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="12"
+                    FontSize="13"
                     Header="Стандарт на продукцию"
                     IsReadOnly="True" />
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding date_add_certificate}"
                     FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="12"
+                    FontSize="13"
                     Header="Дата добавления" />
             </DataGrid.Columns>
         </DataGrid>
@@ -163,22 +163,18 @@
             x:Name="pole"
             Grid.Row="1"
             Grid.Column="2"
-            Grid.ColumnSpan="2"
-            Margin="255,0,110,0"
+            Margin="256,12,100,0"
             TextChanged="polee_TextChanged"
-            TextWrapping="Wrap" />
+            TextWrapping="Wrap" Grid.RowSpan="2" />
         <Button
             Grid.Row="1"
             Grid.Column="2"
-            Width="83.8209825145711"
-            Height="27"
-            Margin="386,0,1,0"
-            VerticalAlignment="Center"
+            Margin="0,12,1,1"
             Background="#002F6C"
             Click="Button_Click_search"
             Content="Поиск"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
-            Foreground="#FFFFFF" />
+            Foreground="#FFFFFF" Grid.RowSpan="2" HorizontalAlignment="Right" Width="84" />
     </Grid>
 </Window>

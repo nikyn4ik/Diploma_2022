@@ -20,36 +20,34 @@ using System.Globalization;
 namespace Diploma_2022.Add
 {
     /// <summary>
-    /// Логика взаимодействия для AddPackage.xaml
+    /// Логика взаимодействия для ReasonForSendingDefectProduct.xaml
     /// </summary>
-    public partial class AddPackage : Window
+    public partial class ReasonForSendingDefectProduct : Window
     {
         SqlConnection sqlConnection = new SqlConnection(@"Data Source=SPUTNIK; Initial Catalog=diploma_db; Integrated Security=True");
         SqlDataReader db;
-
         int IdOrder;
-        public AddPackage(int idOrder)
+        public ReasonForSendingDefectProduct(int idOrder)
         {
             InitializeComponent();
             IdOrder = idOrder;
         }
 
-        private void date_package_TextChanged(object sender, TextChangedEventArgs e)
+        private void date_of_defect_product_TextChanged(object sender, TextChangedEventArgs e)
         {
-            DateTime date_package = (DateTime)this.DatePicker.SelectedDate;
+            DateTime date_of_defect_product = (DateTime)this.DatePicker.SelectedDate;
         }
 
         private void Button_add(object sender, RoutedEventArgs e)
         {
             sqlConnection.Open();
             string query = "";
-            if (color_package.Text != "" && date_package.Text != "" && id_model.Text != "")
+            if (reasonbrak.Text != "" && date_of_defect_product.Text != "")
             {
-                query = "UPDATE [dbo].[package] SET id_model=@id_model, color_package=@color_package, date_package=@date_package WHERE id_order=@id";
+                query = "UPDATE [dbo].[defect_product] SET reasons_for_sending=@reasons_for_sending, product_for_sending=@product_for_sending WHERE id_order=@id";
                 SqlCommand createCommand = new SqlCommand(query, sqlConnection);
-                createCommand.Parameters.AddWithValue("@id_model", id_model.Text);
-                createCommand.Parameters.AddWithValue("@color_package", color_package.Text);
-                createCommand.Parameters.AddWithValue("@date_package", Convert.ToDateTime(date_package.Text));
+                createCommand.Parameters.AddWithValue("@standard_per_mark", reasonbrak.Text);
+                createCommand.Parameters.AddWithValue("@product_for_sending", Convert.ToDateTime(date_of_defect_product.Text));
                 createCommand.Parameters.AddWithValue("@id", IdOrder.ToString());
                 update(createCommand);
             }
@@ -59,18 +57,12 @@ namespace Diploma_2022.Add
                 sqlConnection.Close();
             }
         }
-
         private void update(SqlCommand createCommand)
         {
             createCommand.ExecuteNonQuery();
             MessageBox.Show("Сохранено!", "Severstal Infocom", MessageBoxButton.OK);
             sqlConnection.Close();
             this.Close();
-        }
-
-        private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
-        {
-            DatePicker.SelectedDate = DateTime.Now;
         }
     }
 }

@@ -85,7 +85,7 @@
             CanUserResizeRows="False"
             CanUserSortColumns="False"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="12"
+            FontSize="15"
             IsReadOnly="True" SelectionChanged="ShipmentGrid_SelectionChanged">
 
             <DataGrid.Columns>
@@ -93,37 +93,37 @@
                     Width="*"
                     Binding="{Binding id_shipment}"
                     FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="12"
+                    FontSize="13"
                     Header="id отгрузки" />
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding id_order}"
                     FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="12"
+                    FontSize="13"
                     Header="id заказа" />
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding date_of_shipments}"
                     FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="12"
+                    FontSize="13"
                     Header="Дата отгрузки" />
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding shipment_total_amount_tons}"
                     FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="12"
+                    FontSize="13"
                     Header="Отгр.кол-во всего [тонны]" />
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding number_of_shipments_per_month_tons}"
                     FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="12"
+                    FontSize="13"
                     Header="Отгр. кол-во за месяц [тонны]" />
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding id_storage}"
                     FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="12"
+                    FontSize="13"
                     Header="Склад" />
             </DataGrid.Columns>
         </DataGrid>
@@ -160,26 +160,26 @@
             x:Name="pole"
             Grid.Row="1"
             Grid.Column="4"
-            Width="106"
-            Margin="25,0,0,0"
+            Width="115"
+            Margin="18,13,0,0"
             HorizontalAlignment="Left"
             TextChanged="polee_TextChanged"
-            TextWrapping="Wrap" />
+            TextWrapping="Wrap" Height="36" Grid.RowSpan="2" />
         <Button
             Grid.Row="1"
             Grid.Column="4"
             Width="84"
-            Height="29"
-            Margin="145,0,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
+            Height="36"
+            Margin="0,13,0,0"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
             Background="#002F6C"
             Click="Button_Click_search"
             Content="Поиск"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
             Foreground="#FFFFFF"
-            RenderTransformOrigin="0.545,1.183" />
+            RenderTransformOrigin="0.545,1.183" Grid.RowSpan="2" />
         <Button
             x:Name="editButton"
             Grid.Row="5"

@@ -77,7 +77,6 @@ namespace Diploma_2022
                     e.Cancel = true;
                     break;
                 case MessageBoxResult.Yes:
-                    MessageBox.Show("До свидания!", "Severstal Infocom");
                     this.Hide();
                     lg.Show();
                     break;

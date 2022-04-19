@@ -74,6 +74,8 @@
             Grid.ColumnSpan="3"
             Height="494"
             Margin="10,10,1,11"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="15"
             Background="Snow"
             CanUserAddRows="False"
             CanUserDeleteRows="False"
@@ -85,30 +87,38 @@
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding id_order}"
-                    Header="Id заказа" />
+                    Header="Id заказа" 
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="13"/>
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding id_model}"
-                    Header="Модель" />
+                    Header="Модель" 
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="13"/>
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding color_package}"
-                    Header="Цвет" />
+                    Header="Цвет" 
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="13"/>
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding date_package}"
-                    Header="Дата упаковки" />
+                    Header="Дата упаковки" 
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="13"/>
             </DataGrid.Columns>
         </DataGrid>
         <TextBox
             x:Name="pole"
             Grid.Row="1"
             Grid.Column="2"
-            Width="106"
-            Margin="257,0,0,0"
+            Width="115"
+            Margin="254,13,0,0"
             HorizontalAlignment="Left"
             TextChanged="polee_TextChanged"
-            TextWrapping="Wrap" />
+            TextWrapping="Wrap" Height="36" Grid.RowSpan="2" />
         <Button
             x:Name="outputdoc"
             Grid.Row="5"
@@ -141,17 +151,17 @@
             Grid.Row="1"
             Grid.Column="2"
             Width="84"
-            Height="29"
-            Margin="378,0,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
+            Height="36"
+            Margin="0,13,1,0"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
             Background="#002F6C"
             Click="Button_Click_search"
             Content="Поиск"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
             Foreground="#FFFFFF"
-            RenderTransformOrigin="0.545,1.183" />
+            RenderTransformOrigin="0.545,1.183" Grid.RowSpan="2" />
         <Button
             x:Name="toshipment"
             Grid.Row="5"

@@ -6,8 +6,9 @@
     xmlns:local="clr-namespace:Diploma_2022.Add"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Severstal Infocom"
-    Width="1200"
-    Height="700"
+    Icon="/Images\icon.ico"
+    Width="750"
+    Height="470"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
 
@@ -17,6 +18,24 @@
 
     </Window.Background>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="64*"/>
+            <RowDefinition Height="41*"/>
+            <RowDefinition Height="60*"/>
+            <RowDefinition Height="24*"/>
+            <RowDefinition Height="61*"/>
+            <RowDefinition Height="24*"/>
+            <RowDefinition Height="60*"/>
+            <RowDefinition Height="48*"/>
+            <RowDefinition Height="61*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="11*" />
+            <ColumnDefinition Width="317*"/>
+            <ColumnDefinition Width="137*"/>
+            <ColumnDefinition Width="273*"/>
+            <ColumnDefinition Width="11*"/>
+        </Grid.ColumnDefinitions>
         <Label
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
@@ -24,118 +43,65 @@
             Content="Добавление сертификата"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="35"
-            Foreground="#002F6C" Height="56" VerticalAlignment="Top" />
-
-        <DataGrid
-            Name="CertificatesGrid"
-            Margin="12,80,12,328"
-            AutoGenerateColumns="False"
-            Background="Snow"
-            CanUserAddRows="False"
-            CanUserDeleteRows="False"
-            CanUserReorderColumns="False"
-            CanUserResizeColumns="False"
-            CanUserResizeRows="False"
-            CanUserSortColumns="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn
-                    Width="*"
-                    Binding="{Binding id_qua_certificate}"
-                    Header="Id сертификата" />
-                <DataGridTextColumn
-                    Width="*"
-                    Binding="{Binding standard_per_mark}"
-                    Header="Стандарт на марку" />
-                <DataGridTextColumn
-                    Width="*"
-                    Binding="{Binding tolerance_standart}"
-                    Header="Стандарт на допуск " />
-                <DataGridTextColumn
-                    Width="*"
-                    Binding="{Binding product_standard}"
-                    Header="Стандарт на продукцию" />
-            </DataGrid.Columns>
-        </DataGrid>
+            Foreground="#002F6C" Height="56" VerticalAlignment="Top" Grid.ColumnSpan="5" />
         <Label
-            Width="191"
-            Height="52"
-            Margin="10,434,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
+            Height="57"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
             Content="Стандарт на марку"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="17"
-            Foreground="White" />
+            FontSize="20"
+            Foreground="White" Grid.Row="2" VerticalAlignment="Top" Width="316" Margin="11,0,1,0" Grid.ColumnSpan="2" />
         <Label
-            Width="191"
-            Height="51"
-            Margin="12,527,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
             Content="Стандарт на допуск"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="17"
-            Foreground="White" />
+            FontSize="20"
+            Foreground="White" Grid.Row="4" Width="316" Height="57" VerticalAlignment="Top" Margin="11,0,1,0" Grid.ColumnSpan="2" />
         <Label
-            Width="190"
-            Height="51"
-            Margin="620,434,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
             Content="Стандарт на продукцию"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="15"
-            Foreground="White" />
+            FontSize="20"
+            Foreground="White" Grid.Row="6" Width="316" Height="57" VerticalAlignment="Top" Margin="11,0,1,0" Grid.ColumnSpan="2" />
         <TextBox
             x:Name="standard_per_mark"
-            Width="330"
-            Height="51"
-            Margin="246,434,624,0"
-            VerticalAlignment="Top"
+            Margin="0,9,0,14"
             Background="#FFFFFF"
-            FontFamily="Segoe UI"
-            FontSize="12"
-            Foreground="#FF0000"
-            TextAlignment="Left" />
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="16"
+            Foreground="Black"
+            TextAlignment="Left" Grid.Row="2" HorizontalAlignment="Center" Width="273" Height="38" Grid.Column="3" />
         <TextBox
             x:Name="tolerance_standart"
-            Width="330"
-            Height="51"
-            Margin="246,527,624,0"
-            VerticalAlignment="Top"
+            Height="38"
+            Margin="0,9,0,15"
             Background="#FFFFFF"
-            FontFamily="Segoe UI"
-            FontSize="12"
-            Foreground="#FF0000"
-            TextAlignment="Left" />
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="16"
+            Foreground="Black"
+            TextAlignment="Left" Grid.Row="4" Width="273" HorizontalAlignment="Center" Grid.Column="3" />
         <TextBox
             x:Name="product_standard"
-            Width="330"
-            Height="51"
-            Margin="858,434,12,0"
-            VerticalAlignment="Top"
+            Margin="0,12,0,11"
             Background="#FFFFFF"
-            FontFamily="Segoe UI"
-            FontSize="12"
-            Foreground="#FF0000"
-            TextAlignment="Left" />
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="16"
+            Foreground="Black"
+            TextAlignment="Left" Grid.Row="6" HorizontalAlignment="Center" Width="273" Height="38" Grid.Column="3" />
         <Button
-                Margin="612,527,0,75"
+                Margin="219,0,174,5"
                 Background="#FF0000"
                 BorderThickness="0,0,0,0"
                 Click="Button_add"
-                Content="Загрузить в таблицу"
+                Content="Сохранить"
                 FontFamily="Microsoft JhengHei UI Light"
-                FontSize="26"
-                Foreground="#FFFFFF" />
+                FontSize="20"
+                Foreground="#FFFFFF" Grid.Row="8" Height="57" Grid.Column="1" Grid.ColumnSpan="3" />
     </Grid>
 </Window>

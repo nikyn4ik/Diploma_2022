@@ -75,44 +75,44 @@
             CanUserResizeRows="False"
             CanUserSortColumns="False"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="12"
+            FontSize="15"
             IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding id_delivery}"
                     FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="12"
+                    FontSize="13"
                     Header="id доставки" />
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding id_order}"
                     FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="12"
+                    FontSize="13"
                     Header="id заказа" />
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding consignee}"
                     FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="12"
+                    FontSize="13"
                     Header="Грузополучатель" />
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding date_of_delivery}"
                     FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="12"
+                    FontSize="13"
                     Header="Дата доставки" />
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding early_shipment}"
                     FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="12"
+                    FontSize="13"
                     Header="Ранняя отгрузка" />
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding id_storage}"
                     FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="12"
+                    FontSize="13"
                     Header="Склад" />
             </DataGrid.Columns>
         </DataGrid>
@@ -167,20 +167,20 @@
             x:Name="pole"
             Grid.Row="1"
             Grid.Column="2"
-            Margin="255,0,101,0"
+            Margin="255,13,101,0"
             TextChanged="polee_TextChanged"
-            TextWrapping="Wrap" />
+            TextWrapping="Wrap" Width="114.607826810991" Grid.RowSpan="2" />
         <Button
             Grid.Row="1"
             Grid.Column="2"
-            Height="27"
-            Margin="387,0,0,0"
-            VerticalAlignment="Center"
+            Height="36"
+            Margin="0,13,0,0"
+            VerticalAlignment="Top"
             Background="#002F6C"
             Click="Button_Click_search"
             Content="Поиск"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
-            Foreground="#FFFFFF" />
+            Foreground="#FFFFFF" Width="83.6078268109908" Grid.RowSpan="2" HorizontalAlignment="Right" />
     </Grid>
 </Window>
