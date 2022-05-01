@@ -1,21 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using OfficeOpenXml;
+using System;
+using System.Windows;
+using System.Windows.Controls;
 using System.Data.SqlClient;
 using System.Data;
 using System.IO;
 using System.Configuration;
-using OfficeOpenXml;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 
@@ -95,7 +95,7 @@ namespace Diploma_2022.Pages
                     sqlConnection.Close();
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
                 MessageBox.Show("Данный заказ ранее уже был отправлен в доставку", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -114,7 +114,8 @@ namespace Diploma_2022.Pages
             object item = ShipmentGrid.SelectedItem;
             string ID = (ShipmentGrid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
             using var doc = new Document();
-            PdfWriter.GetInstance(doc, new FileStream("Shipment" + ID + ".pdf", FileMode.Create));
+            PdfWriter.GetInstance(doc, new FileStream( "Shipment" + ID + ".pdf", FileMode.Create));
+            //string outputFile = Path.Combine(@"PDF\", doc);
             doc.Open();
 
             var baseFont = BaseFont.CreateFont(@"C:\Windows\Fonts\arial.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
@@ -164,11 +165,6 @@ namespace Diploma_2022.Pages
                 window.ShowDialog();
                 Show();
             }
-        }
-
-        private void ShipmentGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }

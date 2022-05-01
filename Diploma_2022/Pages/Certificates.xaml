@@ -93,13 +93,6 @@
                     IsReadOnly="True" />
                 <DataGridTextColumn
                     Width="*"
-                    Binding="{Binding access_standart}"
-                    FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="13"
-                    Header="Стандарт на допуск "
-                    IsReadOnly="True" />
-                <DataGridTextColumn
-                    Width="*"
                     Binding="{Binding product_standard}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="13"

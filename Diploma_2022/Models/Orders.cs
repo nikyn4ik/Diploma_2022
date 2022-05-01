@@ -29,5 +29,6 @@ namespace Diploma_2022.Models
         public string standart_mark { get; set; }
         public int id_storage { get; set; }
         public int id_qua_certificate { get; set; }
+        public string access_standart { get; set; }
     }
 }

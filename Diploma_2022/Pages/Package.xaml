@@ -92,14 +92,14 @@
                     FontSize="13"/>
                 <DataGridTextColumn
                     Width="*"
-                    Binding="{Binding id_model}"
-                    Header="Модель" 
+                    Binding="{Binding type_model}"
+                    Header="Тип" 
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="13"/>
                 <DataGridTextColumn
                     Width="*"
-                    Binding="{Binding color_package}"
-                    Header="Цвет" 
+                    Binding="{Binding mark_package}"
+                    Header="Маркировка" 
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="13"/>
                 <DataGridTextColumn

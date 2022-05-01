@@ -92,12 +92,6 @@
                     Header="id заказа" />
                 <DataGridTextColumn
                     Width="*"
-                    Binding="{Binding consignee}"
-                    FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="13"
-                    Header="Грузополучатель" />
-                <DataGridTextColumn
-                    Width="*"
                     Binding="{Binding date_of_delivery}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="13"

@@ -1,23 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Data.SqlClient;
+using System.Data;
+using System.IO;
+using System.Configuration;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.Data.SqlClient;
-using System.Data;
-using System.IO;
-using System.Configuration;
 using OfficeOpenXml;
-using iTextSharp.text;
-using iTextSharp.text.pdf;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Diploma_2022.Pages
 {
@@ -36,7 +36,7 @@ namespace Diploma_2022.Pages
         private void DeliveryGrid_SelectionChanged()
         {
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "SELECT * FROM [dbo].[delivery], [dbo].[shipment], [dbo].[orders]";
+            cmd.CommandText = "SELECT * FROM [dbo].[delivery]";
             cmd.Connection = sqlConnection;
             SqlDataAdapter deliv = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable("diploma_db");
@@ -80,12 +80,16 @@ namespace Diploma_2022.Pages
 
         private void editButton(object sender, RoutedEventArgs e)
         {
-            Hide();
             object item = DeliveryGrid.SelectedItem;
-            string idOrder = (DeliveryGrid.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
-            var window = new Add.AddDelivery(Convert.ToInt32(idOrder));
-            window.ShowDialog();
-            Show();
+            if (item == null)
+                MessageBox.Show("Выберите строчку", "Severstal Infocom");
+            else
+            {
+                string ID = (DeliveryGrid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                var window = new Add.AddDelivery(Convert.ToInt32(ID));
+                window.ShowDialog();
+                Show();
+            }
         }
 
         private void outButton_Click(object sender, RoutedEventArgs e)

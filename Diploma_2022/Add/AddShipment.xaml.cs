@@ -1,18 +1,18 @@
 ﻿using System;
+using System.Windows;
+using System.Windows.Controls;
+using System.Data.SqlClient;
+using System.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.Data.SqlClient;
-using System.Data;
 using System.IO;
 using System.Configuration;
 using System.Globalization;
@@ -25,13 +25,13 @@ namespace Diploma_2022.Add
     public partial class AddShipment : Window
     {
         SqlConnection sqlConnection = new SqlConnection(@"Data Source=SPUTNIK; Initial Catalog=diploma_db; Integrated Security=True");
-        SqlDataReader db;
 
         int IdOrder;
         public AddShipment(int idOrder)
         {
             InitializeComponent();
             storageSelect();
+            transportSelect();
             IdOrder = idOrder;
         }
 
@@ -39,14 +39,15 @@ namespace Diploma_2022.Add
         {
             sqlConnection.Open();
             string query = "";
-            if (shipment_total_amount_tons.Text != "" && storage.Text != "" && date_of_shipments.Text != "")
+            if (shipment_total_amount_tons.Text != "" && storage.Text != "" && date_of_shipments.Text != "" && transport.Text != "")
             {
-                query = "UPDATE [dbo].[shipment] SET shipment_total_amount_tons=@shipment_total_amount_tons, id_storage=@id_storage, date_of_shipments=@date_of_shipments WHERE id_order=@id";
+                query = "UPDATE [dbo].[shipment] SET shipment_total_amount_tons=@shipment_total_amount_tons, id_storage=@id_storage, id_transport=@id_transport, date_of_shipments=@date_of_shipments WHERE id_order=@id";//
                 SqlCommand createCommand = new SqlCommand(query, sqlConnection);
-                createCommand.Parameters.AddWithValue("@shipment_total_amount_tons", shipment_total_amount_tons.Text);
-                createCommand.Parameters.AddWithValue("@storage", storage.Text);
-                createCommand.Parameters.AddWithValue("@date_of_shipments", Convert.ToDateTime(date_of_shipments.Text));
                 createCommand.Parameters.AddWithValue("@id", IdOrder.ToString());
+                createCommand.Parameters.AddWithValue("@shipment_total_amount_tons", shipment_total_amount_tons.Text);
+                createCommand.Parameters.AddWithValue("@id_storage", storage.Text);
+                createCommand.Parameters.AddWithValue("@id_transport", transport.Text);
+                createCommand.Parameters.AddWithValue("@date_of_shipments", Convert.ToDateTime(date_of_shipments.Text));
                 update(createCommand);
             }
             else
@@ -70,29 +71,42 @@ namespace Diploma_2022.Add
 
         private void storage_ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SqlCommand cmd = new SqlCommand("SELECT id_storage FROM [dbo].[storage]", sqlConnection);
-            sqlConnection.Open();
-            cmd.CommandType = CommandType.Text;
-            db = cmd.ExecuteReader();
-            while (db.Read())
-            {
-                storage.Items.Add(db.GetValue(0));
-            }
-            sqlConnection.Close();
+            storageSelect();
         }
 
         private void storageSelect()
         {
-            SqlCommand cmd = new SqlCommand("SELECT id_storage FROM [dbo].[storage]", sqlConnection);
+            SqlCommand cmd = new SqlCommand("SELECT name_storage, address FROM [dbo].[storage]", sqlConnection);
             sqlConnection.Open();
-            cmd.CommandType = CommandType.Text;
-            db = cmd.ExecuteReader();
-            while (db.Read())
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            adapter.Fill(ds);
+            //cmd.CommandType = CommandType.Text;
+            //db = cmd.ExecuteReader();
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
             {
-                storage.Items.Add(db.GetValue(0));
+                storage.Items.Add(ds.Tables[0].Rows[i][0] + " | " + ds.Tables[0].Rows[i][1]);
             }
             sqlConnection.Close();
         }
 
+        private void transportSelect()
+        {
+            SqlCommand cmd = new SqlCommand("SELECT name_transport, railway_number_transport FROM [dbo].[transport]", sqlConnection);
+            sqlConnection.Open();
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            adapter.Fill(ds);
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+            {
+                transport.Items.Add(ds.Tables[0].Rows[i][0] + " | " + ds.Tables[0].Rows[i][1]);
+            }
+            sqlConnection.Close();
+        }
+
+        private void transport_ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            transportSelect();
+        }
     }
 }

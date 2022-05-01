@@ -1,18 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Data.SqlClient;
 using System.Data;
-using System.Configuration;
 using OfficeOpenXml;
+using System.IO;
+using System.Linq;
+using System.Configuration;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
-using System.IO;
-
+using Diploma_2022.Pages;
+using Diploma_2022.Models;
+using System.Text;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Diploma_2022.Add
 {
@@ -25,7 +26,7 @@ namespace Diploma_2022.Add
         public AddDelivery(int idOrder)
         {
             InitializeComponent();
-            fillComboBoxSearly_delivery();
+            //fillComboBoxSearly_delivery();
             IdOrder = idOrder;
         }
 
@@ -132,57 +133,75 @@ namespace Diploma_2022.Add
             this.Close();
         }
 
-        private void fillComboBoxSearly_delivery()
-        {
-            early_delivery.Items.Add("Да");
-            early_delivery.Items.Add("Нет");
-        }
+        //private void fillComboBoxSearly_delivery()
+        //{
+        //    early_delivery.Items.Add("Да");
+        //    early_delivery.Items.Add("Нет");
+        //}
 
-        private void outpdfButton(object sender, RoutedEventArgs e)
-        {
-            //    object item = Pages.DeliveryPage.DeliveryGrid.SelectedItem;
-            //    string ID = (PackageGrid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-            //    using var doc = new Document();
-            //    PdfWriter.GetInstance(doc, new FileStream("Package" + ID + ".pdf", FileMode.Create));
-            //    doc.Open();
+        //private void outpdfButton(object sender, RoutedEventArgs e)
+        //{
+        //    object item = DeliveryPage.DeliveryGrid.SelectedItem;
+        //    string ID = (PackageGrid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+        //    using var doc = new Document();
+        //    PdfWriter.GetInstance(doc, new FileStream("Package" + ID + ".pdf", FileMode.Create));
+        //    doc.Open();
 
-            //    var baseFont = BaseFont.CreateFont(@"C:\Windows\Fonts\arial.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
-            //    var font = new Font(baseFont, Font.DEFAULTSIZE, Font.NORMAL); //создание базовых font/шрифтов
-            //    var table = new PdfPTable(PackageGrid.Columns.Count);// создание таблицы
-            //    var cell = new PdfPCell(new Phrase("PACKAGE ORDER " + " # " + ID))// создание первой ячейки с фразой, которую мы хотим
-            //    {
-            //        Colspan = PackageGrid.Columns.Count,
-            //        HorizontalAlignment = 1,
-            //        Border = 0
-            //    };
-            //    table.AddCell(cell);
+        //    var baseFont = BaseFont.CreateFont(@"C:\Windows\Fonts\arial.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+        //    var font = new Font(baseFont, Font.DEFAULTSIZE, Font.NORMAL); //создание базовых font/шрифтов
+        //    var table = new PdfPTable(PackageGrid.Columns.Count);// создание таблицы
+        //    var cell = new PdfPCell(new Phrase("PACKAGE ORDER " + " # " + ID))// создание первой ячейки с фразой, которую мы хотим
+        //    {
+        //        Colspan = PackageGrid.Columns.Count,
+        //        HorizontalAlignment = 1,
+        //        Border = 0
+        //    };
+        //    table.AddCell(cell);
 
-            //    for (int j = 0; j < PackageGrid.Columns.Count; j++)//проходимся циклом по каж.сtolбцу 
-            //    {
-            //        cell = new PdfPCell(new Phrase(PackageGrid.Columns[j].Header.ToString()));
-            //        var headerCell = cell.Phrase[0].ToString();
-            //        cell = new PdfPCell(new Phrase(headerCell, font));
-            //        cell.BackgroundColor = BaseColor.BLACK;
-            //        font.Color = BaseColor.WHITE;
-            //        table.AddCell(cell);
-            //    }
-            //    for (int j = 0; j < PackageGrid.Columns.Count; j++)//проходимся циклом по каж.сtolбцу 
-            //    {
-            //        string sr = (PackageGrid.SelectedCells[j].Column.GetCellContent(item) as TextBlock).Text;
-            //        cell = new PdfPCell(new Phrase(sr, font));
-            //        cell.BackgroundColor = BaseColor.LIGHT_GRAY;
-            //        font.Color = BaseColor.WHITE;
-            //        table.AddCell(cell);
-            //    }
+        //    for (int j = 0; j < PackageGrid.Columns.Count; j++)//проходимся циклом по каж.сtolбцу 
+        //    {
+        //        cell = new PdfPCell(new Phrase(PackageGrid.Columns[j].Header.ToString()));
+        //        var headerCell = cell.Phrase[0].ToString();
+        //        cell = new PdfPCell(new Phrase(headerCell, font));
+        //        cell.BackgroundColor = BaseColor.BLACK;
+        //        font.Color = BaseColor.WHITE;
+        //        table.AddCell(cell);
+        //    }
+        //    for (int j = 0; j < PackageGrid.Columns.Count; j++)//проходимся циклом по каж.сtolбцу 
+        //    {
+        //        string sr = (PackageGrid.SelectedCells[j].Column.GetCellContent(item) as TextBlock).Text;
+        //        cell = new PdfPCell(new Phrase(sr, font));
+        //        cell.BackgroundColor = BaseColor.LIGHT_GRAY;
+        //        font.Color = BaseColor.WHITE;
+        //        table.AddCell(cell);
+        //    }
 
-            //    doc.Add(table);
-            //    doc.Close();
-            //    MessageBox.Show("Pdf-документ сохранен", "Severstal Infocom");
-        }
+        //    doc.Add(table);
+        //    doc.Close();
+        //    MessageBox.Show("Pdf-документ сохранен", "Severstal Infocom");
+        //}
 
         private void out_excel_button(object sender, RoutedEventArgs e)
         {
             ExportToExcel();
+        }
+
+        private void early_delivery_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
+            SqlConnection sqlConnection = new SqlConnection(ConnectionString);
+            string query = "INSERT INTO [dbo].[delivery] values (@early_delivery)";
+            SqlCommand createCommand = new SqlCommand(query,sqlConnection);
+            sqlConnection.Open();
+            createCommand.Parameters.AddWithValue("@early_delivery", early_delivery.Text.ToString());
+            createCommand.ExecuteNonQuery();
+            MessageBox.Show("Комбоесть!", "Severstal Infocom", MessageBoxButton.OK);
+            sqlConnection.Close();
+        }
+
+        private void outpdfButton(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

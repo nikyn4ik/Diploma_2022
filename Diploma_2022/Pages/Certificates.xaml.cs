@@ -1,21 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Data.SqlClient;
+using System.Data;
+using System.Configuration;
+using System.Collections.ObjectModel;
+using System;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.Data.SqlClient;
-using System.Data;
 using System.IO;
-using System.Configuration;
-using System.Collections.ObjectModel;
 using Diploma_2022.Models;
 
 namespace Diploma_2022.Pages
@@ -103,6 +103,17 @@ namespace Diploma_2022.Pages
 
         private void UpdButton(object sender, RoutedEventArgs e)
         {
+            sqlConnection.Open();
+            foreach (var cert in certificates) 
+            {
+                var command = new SqlCommand("UPDATE qua_certificate SET id_qua_certificate=@id_qua_certificate,standard_per_mark=@standard_per_mark, product_standard=@product_standard, date_add_certificate=@date_add_certificate WHERE id_qua_certificate=@id_qua_certificate");
+                command.Parameters.AddWithValue("@id_qua_certificate", cert.CertificatesGrid);
+                command.Parameters.AddWithValue("@standard_per_mark", cert.CertificatesGrid);
+                command.Parameters.AddWithValue("@product_standard", cert.CertificatesGrid);
+                command.Parameters.AddWithValue("@date_add_certificate", cert.CertificatesGrid);
+                command.ExecuteNonQuery();  
+            }  
+            sqlConnection.Close();
         }
     }
 }

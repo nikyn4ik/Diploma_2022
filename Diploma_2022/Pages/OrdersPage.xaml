@@ -70,12 +70,7 @@
             Grid.ColumnSpan="3"
             Margin="10,10,10,0"
             AutoGenerateColumns="False"
-            Background="Snow"
-            CanUserAddRows="False"
-            CanUserDeleteRows="False"
-            CanUserReorderColumns="False"
-            CanUserResizeRows="False"
-            CanUserSortColumns="False"
+            Background="White"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="15"
             IsReadOnly="True">
@@ -110,13 +105,13 @@
                     Binding="{Binding consignee}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="13"
-                    Header="Грузополучатель" />
+                    Header="Грузополуч." />
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding date_of_entrance}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="13"
-                    Header="Дата поступления" />
+                    Header="Дата поступл." />
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding thickness_mm}"
@@ -141,25 +136,23 @@
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="13"
                     Header="Статус" />
+                <DataGridTextColumn
+                    Width="*"
+                    Binding="{Binding reasons_for_sending}"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="13"
+                    Header="Брак" />
             </DataGrid.Columns>
         </DataGrid>
         <TextBox
             x:Name="pole"
             Grid.Row="1"
             Grid.Column="2"
-            Margin="232,11,108,2"
+            Margin="232,11,10,2"
             TextChanged="polee_TextChanged"
-            TextWrapping="Wrap" Grid.RowSpan="2" Width="114.607826810991" />
-        <Button
-            Grid.Row="1"
-            Grid.Column="2"
-            Margin="0,11,10,2"
-            Background="#002F6C"
-            Click="Button_Click_search"
-            Content="Поиск"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14"
-            Foreground="#FFFFFF" Grid.RowSpan="2" Width="84" HorizontalAlignment="Right" />
+            FontSize="20" Grid.RowSpan="2" />
+
         <Button
             x:Name="topack"
             Grid.Row="1"
@@ -169,9 +162,9 @@
             HorizontalAlignment="Left"
             Background="#FF0000"
             Click="Buttontopack"
-            Content="Отправить заказ в упаковку"
+            Content="Отправка в упаковку"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="16"
+            FontSize="20"
             Foreground="#FFFFFF" />
         <Button
             x:Name="addButton"
@@ -188,7 +181,7 @@
             FontSize="20"
             Foreground="#FFFFFF" />
         <Button
-            x:Name="addcert"
+            x:Name="addattestation"
             Grid.Row="5"
             Width="295"
             Height="48"
@@ -196,8 +189,8 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Background="#002F6C"
-            Click="AddButton_cert"
-            Content="Сертификация"
+            Click="AddButton_attestation"
+            Content="Аттестация"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
             Foreground="#FFFFFF" Grid.Column="2" />
@@ -206,14 +199,13 @@
             Grid.Row="5"
             Grid.Column="1"
             Height="48"
-            Margin="28,10,28,0"
+            Margin="20,10,20,0"
             VerticalAlignment="Top"
             Background="#FF0000"
             Click="brakButton_Click"
             Content="Отправить заказ в брак"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="16"
+            FontSize="20"
             Foreground="#FFFFFF" />
-
     </Grid>
 </Window>

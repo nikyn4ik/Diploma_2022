@@ -27,14 +27,16 @@
 
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="684" />
+                <RowDefinition Height="639.04" />
+                <RowDefinition Height="35.5"/>
+                <RowDefinition Height="9.46"/>
             </Grid.RowDefinitions>
 
             <StackPanel
                 Margin="0,0,920,-10"
                 Background="#002F6C"
                 Orientation="Vertical"
-                RenderTransformOrigin="0.503,0.539">
+                RenderTransformOrigin="0.503,0.539" Grid.RowSpan="3">
                 <TextBlock
                     Width="274"
                     Height="74"
@@ -52,7 +54,7 @@
             <Grid
                 Width="1198"
                 Margin="0,0,0,-10"
-                HorizontalAlignment="Center">
+                HorizontalAlignment="Center" Grid.RowSpan="3">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition Width="0*" />
@@ -67,22 +69,21 @@
                     Stretch="Uniform"
                     StretchDirection="Both"
                     Visibility="Visible" />
-                <TextBlock
+                <Label
                     x:Name="lplogin"
-                    Height="32"
-                    Margin="197,0,920,23"
-                    VerticalAlignment="Bottom"
                     Background="#FFFFFF"
+                    Height="43"
+                    VerticalAlignment="Bottom"
                     FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="24"
-                    FontWeight="Normal"
-                    Foreground="#FF0000"
-                    TextAlignment="Center" />
+                    FontSize="17"
+                    Foreground="#002F6C" HorizontalAlignment="Left" 
+                    Width="84" Margin="194,0,0,16"
+                    HorizontalContentAlignment="Center" VerticalContentAlignment="Top"/>
 
                 <Label
-                    Width="197"
-                    Height="32"
-                    Margin="0,639,0,0"
+                    Width="194"
+                    Height="43"
+                    Margin="0,635,0,0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     HorizontalContentAlignment="Left"

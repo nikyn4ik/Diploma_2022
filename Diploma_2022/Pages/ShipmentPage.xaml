@@ -86,7 +86,7 @@
             CanUserSortColumns="False"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="15"
-            IsReadOnly="True" SelectionChanged="ShipmentGrid_SelectionChanged">
+            IsReadOnly="True">
 
             <DataGrid.Columns>
                 <DataGridTextColumn
@@ -139,7 +139,7 @@
             Click="outButton_Click"
             Content="Вывод PDF"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14"
+            FontSize="16"
             Foreground="#FFFFFF" />
         <Button
             x:Name="go_to_dostav_Button"
@@ -152,9 +152,9 @@
             VerticalAlignment="Top"
             Background="#FF0000"
             Click="go_to_dostav_Click"
-            Content="Отправить из отгрузки в доставку"
+            Content="Отправить в доставку"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14"
+            FontSize="16"
             Foreground="#FFFFFF" />
         <TextBox
             x:Name="pole"
@@ -189,7 +189,7 @@
             Click="edit_Click"
             Content="Редактирование"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14"
+            FontSize="16"
             Foreground="#FFFFFF"
             RenderTransformOrigin="0.498,0.646" />
     </Grid>

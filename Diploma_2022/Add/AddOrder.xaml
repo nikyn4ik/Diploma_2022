@@ -71,6 +71,36 @@
             FontSize="20"
             Foreground="#FFFFFF" Grid.Row="4" VerticalAlignment="Center" Height="57" HorizontalAlignment="Center" />
         <Label
+            Grid.Column="1"
+            Width="316"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Background="#002F6C"
+            Content="Дата принятия"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="20"
+            Foreground="#FFFFFF" Grid.Row="3" VerticalAlignment="Top" Height="57" HorizontalAlignment="Center" />
+        <TextBox
+            x:Name="date_of_adoption"
+            Grid.Row="3"
+            Grid.Column="3"
+            Margin="0,9,0,44"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="18"
+            Foreground="Black"
+            Text="{Binding ElementName=DatePicker, Path=SelectedDate, StringFormat=d}"
+            TextChanged="date_of_adoption_TextChanged"
+            TextWrapping="Wrap" Width="306" HorizontalAlignment="Center" Height="38" />
+        <DatePicker
+            x:Name="DatePicker"
+            Grid.Row="3"
+            Grid.Column="3"
+            Margin="271,10,11,44"
+            DisplayDate="2022-04-04"
+            FirstDayOfWeek="Monday"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="14" Grid.ColumnSpan="2" />
+        <Label
             Grid.ColumnSpan="5"
             Height="56"
             VerticalAlignment="Top"

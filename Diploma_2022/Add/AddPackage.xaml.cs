@@ -1,17 +1,17 @@
 ﻿using System;
+using System.Windows;
+using System.Windows.Controls;
+using System.Data.SqlClient;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.Data.SqlClient;
 using System.Data;
 using System.IO;
 using System.Configuration;
@@ -43,12 +43,12 @@ namespace Diploma_2022.Add
         {
             sqlConnection.Open();
             string query = "";
-            if (color_package.Text != "" && date_package.Text != "" && id_model.Text != "")
+            if (mark_package.Text != "" && date_package.Text != "" && type_model.Text != "")
             {
-                query = "UPDATE [dbo].[package] SET id_model=@id_model, color_package=@color_package, date_package=@date_package WHERE id_order=@id";
+                query = "UPDATE [dbo].[package] SET type_model=@type_model, mark_package=@mark_package, date_package=@date_package WHERE id_order=@id";
                 SqlCommand createCommand = new SqlCommand(query, sqlConnection);
-                createCommand.Parameters.AddWithValue("@id_model", id_model.Text);
-                createCommand.Parameters.AddWithValue("@color_package", color_package.Text);
+                createCommand.Parameters.AddWithValue("@type_model", type_model.Text);
+                createCommand.Parameters.AddWithValue("@mark_package", mark_package.Text);
                 createCommand.Parameters.AddWithValue("@date_package", Convert.ToDateTime(date_package.Text));
                 createCommand.Parameters.AddWithValue("@id", IdOrder.ToString());
                 update(createCommand);

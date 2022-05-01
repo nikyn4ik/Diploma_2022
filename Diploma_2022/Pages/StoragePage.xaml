@@ -83,6 +83,14 @@
                     FontSize="13"
                     Header="Адрес"
                     IsReadOnly="True" />
+                
+                <DataGridTextColumn
+                    Width="*"
+                    Binding="{Binding FIO_responsible_person}"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="13"
+                    Header="ФИО ответственного"
+                    IsReadOnly="True" />
 
                 <DataGridTextColumn
                     Width="*"

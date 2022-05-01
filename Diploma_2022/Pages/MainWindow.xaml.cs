@@ -1,9 +1,10 @@
-﻿using System;
+﻿using System.Windows;
+using Diploma_2022.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -21,15 +22,18 @@ namespace Diploma_2022
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public string FIO;
+        public MainWindow(string fIO_work)
         {
             InitializeComponent();
+            FIO = fIO_work; 
+            lplogin.Content = fIO_work;
         }
 
         private void Button_Shipment(object sender, RoutedEventArgs e)
         {
             Hide();
-            var window = new Pages.ShipmentPage();
+            var window = new ShipmentPage();
             window.ShowDialog();
             Show();
         }
@@ -37,7 +41,7 @@ namespace Diploma_2022
         private void Button_Storage(object sender, RoutedEventArgs e)
         {
             Hide();
-            var window = new Pages.StoragePage();
+            var window = new StoragePage();
             window.ShowDialog();
             Show();
         }
@@ -45,7 +49,7 @@ namespace Diploma_2022
         private void Button_Certificates(object sender, RoutedEventArgs e)
         {
             Hide();
-            var window = new Pages.Certificates();
+            var window = new Certificates();
             window.ShowDialog();
             Show();
         }
@@ -53,7 +57,7 @@ namespace Diploma_2022
         private void Button_order(object sender, RoutedEventArgs e)
         {
             Hide();
-            var window = new Pages.OrdersPage();
+            var window = new OrdersPage(FIO);
             window.ShowDialog();
             Show();
         }
@@ -61,7 +65,7 @@ namespace Diploma_2022
         private void Button_Delivery(object sender, RoutedEventArgs e)
         {
             Hide();
-            var window = new Pages.DeliveryPage();
+            var window = new DeliveryPage();
             window.ShowDialog();
             Show();
         }

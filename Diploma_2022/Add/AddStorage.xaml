@@ -53,7 +53,7 @@
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
-            Content="Имя"
+            Content="Название"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
             Foreground="White" Grid.Row="1" Grid.Column="1" />
@@ -91,7 +91,7 @@
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
-            Content="Дата создания склада"
+            Content="Дата создания"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
             Foreground="White" Grid.Row="4" HorizontalAlignment="Center" Grid.Column="1" />
@@ -100,7 +100,7 @@
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
-            Content="Остаток"
+            Content="ФИО ответственного"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
             Foreground="White" Grid.Row="5" Height="57" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" />
@@ -134,7 +134,7 @@
             TextAlignment="Left" Grid.Row="3" HorizontalAlignment="Center" Grid.Column="3" Height="38" />
 
         <TextBox
-            x:Name="ostatok"
+            x:Name="FIO_responsible"
             Width="306"
             Margin="0,13,0,14"
             Background="#FFFFFF"

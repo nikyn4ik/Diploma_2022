@@ -1,17 +1,17 @@
 ﻿using System;
+using System.Windows;
+using System.Windows.Input;
+using System.Data.SqlClient;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.Data.SqlClient;
 
 
 namespace Diploma_2022
@@ -24,7 +24,7 @@ namespace Diploma_2022
         public Login()
         {
             InitializeComponent();
-            if((Keyboard.GetKeyStates(Key.CapsLock) & KeyStates.Toggled)==KeyStates.Toggled)
+            if ((Keyboard.GetKeyStates(Key.CapsLock) & KeyStates.Toggled)==KeyStates.Toggled)
             {
                 capsLabel.Visibility = Visibility.Visible;  
             }
@@ -49,7 +49,7 @@ namespace Diploma_2022
                 if (sqlConnection.State == System.Data.ConnectionState.Closed)
                     sqlConnection.Open();
 
-                var query = "SELECT COUNT(*) FROM [dbo].[authorization] WHERE Login=@lg AND Password=@pass"; //@1
+                var query = "SELECT COUNT(*) FROM [dbo].[authorization] WHERE Login=@lg AND Password=@pass";
 
                 SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
 
@@ -57,17 +57,27 @@ namespace Diploma_2022
                 sqlCommand.Parameters.AddWithValue("@pass", System.Data.SqlDbType.NVarChar).Value = password.Password;
 
                 int count = Convert.ToInt32(sqlCommand.ExecuteScalar());
+                sqlConnection.Close();
 
                     if (count == 1)
                     {
+                    sqlConnection.Open();
+                    var query1 = "SELECT FIO FROM [dbo].[authorization] WHERE Login=@lg AND Password=@pass";
+                    SqlCommand sqlCommand1 = new SqlCommand(query1, sqlConnection);
+                    sqlCommand1.Parameters.AddWithValue("@lg", System.Data.SqlDbType.NVarChar).Value = login.Text;
+                    sqlCommand1.Parameters.AddWithValue("@pass", System.Data.SqlDbType.NVarChar).Value = password.Password;
+                    var reader = sqlCommand1.ExecuteReader();
+                    var FIO = "";
+                    if (reader.Read())
+                    {
+                         FIO = reader["FIO"].ToString(); 
+                    }
                     var Login = login.Text;
                     var Password = password.Password;
-                    var window = new MainWindow();
-                    window.lplogin.Text = Login;
+                    var window = new MainWindow(FIO);
 
-
-                     MessageBox.Show(
-                         "Добро пожаловать" + ", " + login.Text,
+                    MessageBox.Show(
+                         "Добро пожаловать" + ", " + FIO, //login.Text,
                          "Severstal Infocom",
                          MessageBoxButton.OK,
                          MessageBoxImage.Information);
@@ -76,7 +86,7 @@ namespace Diploma_2022
                     }
                     else 
                     {
-                        MessageBox.Show(
+                    MessageBox.Show(
                             "Введен неверный логин или пароль.",
                             "Severstal Infocom", 
                             MessageBoxButton.OK, 

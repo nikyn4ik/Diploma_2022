@@ -1,22 +1,22 @@
 ﻿using System;
+using System.Windows;
+using System.Windows.Controls;
+using System.Data.SqlClient;
+using System.Data;
+using System.Configuration;
+using System.Collections.ObjectModel;
+using Diploma_2022.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.Data.SqlClient;
-using System.Data;
 using System.IO;
-using System.Configuration;
-using System.Collections.ObjectModel;
-using Diploma_2022.Models;
 
 namespace Diploma_2022.Pages
 {
@@ -25,15 +25,17 @@ namespace Diploma_2022.Pages
     /// </summary>
     public partial class OrdersPage : Window
     {
+        public string FIO;
         SqlConnection sqlConnection = new SqlConnection(@"Data Source=SPUTNIK; Initial Catalog=diploma_db; Integrated Security=True");
         DataTable dt = new DataTable("diploma_db");
         ObservableCollection<Orders> orders = new ObservableCollection<Orders>();
 
-        public OrdersPage()
+        public OrdersPage(string fIO_work)
         {
             InitializeComponent();
             OrdersDataGrid_SelectionChanged();
             orders = new ObservableCollection<Orders>();
+            FIO = fIO_work;
         }
 
         private void OrdersDataGrid_SelectionChanged()
@@ -51,7 +53,7 @@ namespace Diploma_2022.Pages
             List<int> result = new List<int>();
             result = tap.Rows.OfType<DataRow>().Select(dr => dr.Field<int>("id_order")).ToList();
             orders = new ObservableCollection<Orders>();
-            
+
             OrdersGrid.ItemsSource = dt.DefaultView;
         }
 
@@ -72,7 +74,7 @@ namespace Diploma_2022.Pages
                     sqlConnection.Close();
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
                 MessageBox.Show("Данный заказ уже был отправлен в упаковку", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -121,42 +123,43 @@ namespace Diploma_2022.Pages
                 window.ShowDialog();
                 Show();
             }
-                
+
         }
 
-        private void AddButton_cert(object sender, RoutedEventArgs e)
+        private void AddButton_attestation(object sender, RoutedEventArgs e)
         {
             object items = OrdersGrid.SelectedItem;
             if (items == null)
                 MessageBox.Show("Выберите строчку", "Severstal Infocom");
             else
             {
-            object item = OrdersGrid.SelectedItem;
-            string ID = (OrdersGrid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-            var window = new Add.AddCertifToOrder(Convert.ToInt32(ID));
-            window.ShowDialog();
-            Show();
+                object item = OrdersGrid.SelectedItem;
+                string ID = (OrdersGrid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                var window = new Add.AddAttestationToOrder(Convert.ToInt32(ID));
+                window.ShowDialog();
+                Show();
             }
         }
-
         private void polee_TextChanged(object sender, TextChangedEventArgs e)
         {
-            OrdersGrid.Items.Refresh();
-        }
-
-        private void Button_Click_search(object sender, RoutedEventArgs e)
-        {
-            string ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
+            for (int i = 0; i < OrdersGrid.Items.Count; i++)
             {
-                SqlConnection cmds = new SqlConnection(ConnectionString);
-                string cmd = "SELECT * FROM [dbo].[orders] WHERE id_order like '" + pole.Text + "%'";
-                cmds.Open();
-                SqlCommand sqlcom = new SqlCommand(cmd, cmds);
-                SqlDataAdapter order = new SqlDataAdapter(sqlcom);
-                order.Fill(dt);
-                OrdersGrid.ItemsSource = dt.DefaultView;
-                order.Update(dt);
-                cmds.Close();
+                string cellContent = dt.Rows[i][0].ToString();
+                try
+                {
+                    if (cellContent != null && cellContent.Substring(0, pole.Text.Length).Equals(pole.Text))
+                    {
+                        object item = OrdersGrid.Items[i];
+                        OrdersGrid.SelectedItem = item;
+                        OrdersGrid.ScrollIntoView(item);
+                        //OrdersGrid.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+                        break;
+                    }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Не найдено", "Severstal Infocom");
+                }
             }
         }
     }

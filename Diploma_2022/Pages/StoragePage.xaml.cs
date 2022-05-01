@@ -48,25 +48,34 @@ namespace Diploma_2022.Pages
 
         private void deleteButton(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить данный склад из базы?", "Sevestal Infocom", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-            switch (result)
+            object item = StorageGrid.SelectedItem;
+            if (item == null)
             {
-                case MessageBoxResult.No:
-                    break;
+                MessageBox.Show("Выберите строчку", "Severstal Infocom");
+            }
+
+            else
+            {
+                MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить данный склад из базы?", "Sevestal Infocom", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                switch (result)
+                {
+                    case MessageBoxResult.No:
+                        break;
 
                     case MessageBoxResult.Yes:
-                    if (StorageGrid.SelectedItems.Count > 0)
-                    {
-                        DataRowView drv = (DataRowView)StorageGrid.SelectedItem;
-                        string storage = drv.Row[0].ToString();
-                        sqlConnection.Open();
-                        SqlCommand cmd = new SqlCommand("DELETE FROM storage WHERE id_storage=@id", sqlConnection);
-                        cmd.Parameters.AddWithValue("@id", storage);
-                        cmd.ExecuteNonQuery();
-                        Storage_DataGrid_SelectionChanged();
-                    }
-                    MessageBox.Show("Удален!", "Severstal Infocom");
-                    break;
+                        if (StorageGrid.SelectedItems.Count > 0)
+                        {
+                            DataRowView drv = (DataRowView)StorageGrid.SelectedItem;
+                            string storage = drv.Row[0].ToString();
+                            sqlConnection.Open();
+                            SqlCommand cmd = new SqlCommand("DELETE FROM storage WHERE id_storage=@id", sqlConnection);
+                            cmd.Parameters.AddWithValue("@id", storage);
+                            cmd.ExecuteNonQuery();
+                            Storage_DataGrid_SelectionChanged();
+                        }
+                        MessageBox.Show("Удален!", "Severstal Infocom");
+                        break;
+                }
             }
         }
 
