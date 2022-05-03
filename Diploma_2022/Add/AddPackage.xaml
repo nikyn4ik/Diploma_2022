@@ -42,7 +42,7 @@
             Grid.Column="3"
             Margin="0,9,0,9"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="16"
+            FontSize="18"
             Foreground="#002F6C"
             TextWrapping="Wrap" HorizontalAlignment="Center" Width="306" Height="38" />
         <TextBox
@@ -51,7 +51,7 @@
             Grid.Column="3"
             Margin="0,9,0,7"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="16"
+            FontSize="18"
             Foreground="#002F6C"
             TextWrapping="Wrap" Width="306" HorizontalAlignment="Center" Height="38" />
         <TextBox
@@ -60,9 +60,9 @@
             Grid.Column="3"
             Margin="0,8,0,10"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="16"
+            FontSize="18"
             Foreground="#002F6C"
-            Text="{Binding ElementName=DatePicker, Path=SelectedDate, StringFormat=d}"
+            Text="{Binding ElementName=DatePicker, Path=DisplayDate, StringFormat=d}"
             TextChanged="date_package_TextChanged"
             TextWrapping="Wrap" Width="306" HorizontalAlignment="Center" Height="38" />
         <Label
@@ -110,7 +110,7 @@
             Margin="272,10,0,10"
             FirstDayOfWeek="Monday"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14" RenderTransformOrigin="0.427,0.34" SelectedDateChanged="DatePicker_SelectedDateChanged" HorizontalAlignment="Left" Width="34" />
+            FontSize="18" RenderTransformOrigin="0.427,0.34" HorizontalAlignment="Left" Width="34" />
         <Button
             Grid.Row="6"
             Grid.Column="1"

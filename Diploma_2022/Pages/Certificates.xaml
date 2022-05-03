@@ -68,11 +68,9 @@
             Name="CertificatesGrid"
             Grid.Row="4"
             Grid.ColumnSpan="3"
-            Height="494"
-            Margin="10,0,1,0"
-            VerticalAlignment="Center"
+            Margin="10,0,1,1"
             AutoGenerateColumns="False"
-            Background="Snow"
+            Background="White"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="15"
             IsReadOnly="True">
@@ -158,6 +156,8 @@
             Grid.Column="2"
             Margin="256,12,100,0"
             TextChanged="polee_TextChanged"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="20"
             TextWrapping="Wrap" Grid.RowSpan="2" />
         <Button
             Grid.Row="1"
@@ -166,6 +166,7 @@
             Background="#002F6C"
             Click="Button_Click_search"
             Content="Поиск"
+            IsDefault="true"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
             Foreground="#FFFFFF" Grid.RowSpan="2" HorizontalAlignment="Right" Width="84" />

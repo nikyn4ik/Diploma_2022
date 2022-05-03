@@ -55,7 +55,7 @@
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="18"
             Foreground="Black"
-            Text="{Binding ElementName=DatePicker, Path=SelectedDate, StringFormat=d}"
+            Text="{Binding ElementName=DatePicker, Path=DisplayDate, StringFormat=d}"
             TextChanged="date_of_shipments_TextChanged"
             TextWrapping="Wrap" Height="42.2889189189189" />
         <Label
@@ -113,7 +113,6 @@
             Grid.Row="7"
             Grid.Column="3"
             Margin="274,8,0,10"
-            DisplayDate="2022-04-04"
             FirstDayOfWeek="Monday"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14" HorizontalAlignment="Left" Width="32" />
@@ -123,6 +122,8 @@
             Grid.Column="3"
             Margin="1,8,10,8"
             RenderTransformOrigin="0.5,0.5"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="18"
             SelectionChanged="storage_ComboBox_SelectionChanged" Height="42.2889189189189" Grid.ColumnSpan="2"/>
         <ComboBox
             x:Name="transport"
@@ -130,6 +131,8 @@
             Grid.Column="3"
             Margin="0,8,0,8"
             RenderTransformOrigin="0.5,0.5"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="18"
             SelectionChanged="transport_ComboBox_SelectionChanged" Height="42.2889189189189"/>
         <Button
             Grid.Row="9"

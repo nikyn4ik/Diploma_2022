@@ -111,7 +111,7 @@
             Margin="0,14,0,13"
             Background="#FFFFFF"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14"
+            FontSize="18"
             Foreground="#002F6C"
             TextAlignment="Left" Grid.Row="1" HorizontalAlignment="Center" Grid.Column="3" Height="38" />
         <TextBox
@@ -120,7 +120,7 @@
             Margin="0,14,0,13"
             Background="#FFFFFF"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14"
+            FontSize="18"
             Foreground="#002F6C"
             TextAlignment="Left" Grid.Row="2" HorizontalAlignment="Center" Grid.Column="3" Height="38" />
         <TextBox
@@ -129,7 +129,7 @@
             Margin="0,14,0,14"
             Background="#FFFFFF"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14"
+            FontSize="18"
             Foreground="#002F6C"
             TextAlignment="Left" Grid.Row="3" HorizontalAlignment="Center" Grid.Column="3" Height="38" />
 
@@ -139,7 +139,7 @@
             Margin="0,13,0,14"
             Background="#FFFFFF"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14"
+            FontSize="18"
             Foreground="#002F6C"
             TextAlignment="Left" Grid.Row="5" HorizontalAlignment="Center" Grid.Column="3" Height="38" />
         <TextBox
@@ -148,7 +148,8 @@
             Margin="0,16,0,11"
             Background="#FFFFFF"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14"
+            FontSize="18"
+            Text="{Binding ElementName=DatePicker, Path=DisplayDate, StringFormat=d}"
             Foreground="#002F6C"
             TextAlignment="Left" TextChanged="dataaddsklad_TextChanged" Grid.Row="4" HorizontalAlignment="Center" Grid.Column="3" Height="38" />
 
@@ -166,7 +167,6 @@
             x:Name="DatePicker"
             Grid.Row="4"
             Margin="274,18,0,13"
-            DisplayDate="2022-04-04"
             FirstDayOfWeek="Monday"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14" HorizontalAlignment="Left" Width="32" Grid.Column="3" Grid.ColumnSpan="2"/>

@@ -9,6 +9,8 @@ using System.IO;
 using System.Configuration;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using Diploma_2022.Add;
+using Diploma_2022.Models;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Data;
@@ -33,7 +35,7 @@ namespace Diploma_2022.Pages
         {
             InitializeComponent();
             Package_DataGrid_SelectionChanged();
-            var ppp = CodePagesEncodingProvider.Instance;   
+            var ppp = CodePagesEncodingProvider.Instance;
             Encoding.RegisterProvider(ppp);     
         }
         private void Package_DataGrid_SelectionChanged()
@@ -48,26 +50,64 @@ namespace Diploma_2022.Pages
             pack.Fill(dt);
             PackageGrid.ItemsSource = dt.DefaultView;
         }
-        private void Buttontoshipment(object sender, RoutedEventArgs e)
+
+        private void Button_Click_search(object sender, RoutedEventArgs e)
         {
+            string ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
             try
             {
-                if (PackageGrid.SelectedItems.Count > 0)
+                SqlConnection cmds = new SqlConnection(ConnectionString);
+                string cmd = "SELECT * FROM [dbo].[package] WHERE id_order like '" + pole.Text + "%'";
+                cmds.Open();
+                SqlCommand sqlcom = new SqlCommand(cmd, cmds);
+                SqlDataAdapter pack = new SqlDataAdapter(sqlcom);
+                DataTable dt = new DataTable("package");
+                pack.Fill(dt);
+                PackageGrid.ItemsSource = dt.DefaultView;
+                pack.Update(dt);
+                cmds.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Не найдено в системе.", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void polee_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            PackageGrid.Items.Refresh();
+        }
+
+        private void Buttontoshipment(object sender, RoutedEventArgs e)
+        {
+           sqlConnection.Open();
+           object item = PackageGrid.SelectedItem;
+           if (item == null)
+                MessageBox.Show("Выберите строчку", "Severstal Infocom");
+            else
+            {
+                DataRowView drv = (DataRowView)PackageGrid.SelectedItem;
+                string ID_Orders = drv.Row[0].ToString();
+                var select = "SELECT COUNT(*) FROM [dbo].[shipment] WHERE id_order=@id";
+                SqlCommand sqlCommand = new SqlCommand(select, sqlConnection);
+                sqlCommand.Parameters.AddWithValue("@id", ID_Orders);
+                int count = Convert.ToInt32(sqlCommand.ExecuteScalar());
+                sqlConnection.Close();
+
+                if (count != null)
                 {
                     sqlConnection.Open();
-                    DataRowView drv = (DataRowView)PackageGrid.SelectedItem;
-                    string ID_Orders = drv.Row[0].ToString();
-                    SqlCommand cmd = new SqlCommand("INSERT INTO [dbo].[shipment] (id_order) ((SELECT id_order FROM package WHERE id_order=@id))", sqlConnection);
+                    SqlCommand cmd = new SqlCommand("INSERT INTO shipment (id_order) ((SELECT id_order FROM package WHERE id_order=@id))", sqlConnection);
                     cmd.Parameters.AddWithValue("@id", ID_Orders);
                     cmd.ExecuteNonQuery();
+
                     MessageBox.Show("Заказ успешно отправлен в отгрузку!", "Severstal Infocom");
                     sqlConnection.Close();
                 }
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show("Данный заказ ранее уже был отправлен в отгрузку", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
+                else
+                {
+                    MessageBox.Show("Данный заказ ранее уже был отправлен в отгрузку", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
             }
         }
         private void outButton_Click(object sender, RoutedEventArgs e)
@@ -119,8 +159,6 @@ namespace Diploma_2022.Pages
             MessageBox.Show("Pdf-документ сохранен", "Severstal Infocom");
 
         }
-
-
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             object item = PackageGrid.SelectedItem;
@@ -129,37 +167,10 @@ namespace Diploma_2022.Pages
             else
             {
                 string ID = (PackageGrid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-                var window = new Add.AddPackage(Convert.ToInt32(ID));
+                var window = new AddPackage(Convert.ToInt32(ID));
                 window.ShowDialog();
                 Show();
             }
-        }
-
-        private void Button_Click_search(object sender, RoutedEventArgs e)
-        {
-            string ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
-            try
-            {
-                SqlConnection cmds = new SqlConnection(ConnectionString);
-                string cmd = "SELECT * FROM [dbo].[package] WHERE id_order like '" + pole.Text + "%'";
-                cmds.Open();
-                SqlCommand sqlcom = new SqlCommand(cmd, cmds);
-                SqlDataAdapter pack = new SqlDataAdapter(sqlcom);
-                DataTable dt = new DataTable("package");
-                pack.Fill(dt);
-                PackageGrid.ItemsSource = dt.DefaultView;
-                pack.Update(dt);
-                cmds.Close();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Не найдено в системе.", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-            private void polee_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            PackageGrid.Items.Refresh();
         }
     }
     }

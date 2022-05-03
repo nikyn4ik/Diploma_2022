@@ -7,6 +7,8 @@ using System.IO;
 using System.Configuration;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using Diploma_2022.Models;
+using Diploma_2022.Add;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -47,7 +49,7 @@ namespace Diploma_2022.Pages
         private void UpdButton(object sender, RoutedEventArgs e)
         {
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "SELECT * FROM [dbo].[delivery], [dbo].[shipment]";
+            cmd.CommandText = "SELECT * FROM [dbo].[delivery]";
             cmd.Connection = sqlConnection;
             SqlDataAdapter deliv = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable("diploma_db");
@@ -82,7 +84,7 @@ namespace Diploma_2022.Pages
         {
             object item = DeliveryGrid.SelectedItem;
             if (item == null)
-                MessageBox.Show("Выберите строчку", "Severstal Infocom");
+                MessageBox.Show("Выберите нужную строчку", "Severstal Infocom");
             else
             {
                 string ID = (DeliveryGrid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;

@@ -40,6 +40,7 @@
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="16"
             Foreground="Black"
+            
             TextWrapping="Wrap"
             Margin="0,10,0,11" Grid.Row="1" Width="306" HorizontalAlignment="Center" Height="38"  />
         <ComboBox
@@ -88,7 +89,7 @@
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="18"
             Foreground="Black"
-            Text="{Binding ElementName=DatePicker, Path=SelectedDate, StringFormat=d}"
+            Text="{Binding ElementName=DatePicker, Path=DisplayDate, StringFormat=d}"
             TextChanged="date_of_adoption_TextChanged"
             TextWrapping="Wrap" Width="306" HorizontalAlignment="Center" Height="38" />
         <DatePicker
@@ -96,7 +97,6 @@
             Grid.Row="3"
             Grid.Column="3"
             Margin="271,10,11,44"
-            DisplayDate="2022-04-04"
             FirstDayOfWeek="Monday"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14" Grid.ColumnSpan="2" />

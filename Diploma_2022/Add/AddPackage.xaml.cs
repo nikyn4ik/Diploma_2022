@@ -36,7 +36,7 @@ namespace Diploma_2022.Add
 
         private void date_package_TextChanged(object sender, TextChangedEventArgs e)
         {
-            DateTime date_package = (DateTime)this.DatePicker.SelectedDate;
+            DateTime date_package = (DateTime)this.DatePicker.DisplayDate;
         }
 
         private void Button_add(object sender, RoutedEventArgs e)
@@ -66,11 +66,6 @@ namespace Diploma_2022.Add
             MessageBox.Show("Сохранено!", "Severstal Infocom", MessageBoxButton.OK);
             sqlConnection.Close();
             this.Close();
-        }
-
-        private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
-        {
-            DatePicker.SelectedDate = DateTime.Now;
         }
     }
 }

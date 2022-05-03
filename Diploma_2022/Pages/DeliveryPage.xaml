@@ -63,17 +63,11 @@
 
         <DataGrid
             Name="DeliveryGrid"
+            Background="#FFFFFF"
             Grid.Row="4"
             Grid.ColumnSpan="4"
-            Height="494"
             Margin="10,0,1,0"
-            VerticalAlignment="Center"
             AutoGenerateColumns="False"
-            CanUserAddRows="False"
-            CanUserDeleteRows="False"
-            CanUserReorderColumns="False"
-            CanUserResizeRows="False"
-            CanUserSortColumns="False"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="15"
             IsReadOnly="True">
@@ -98,10 +92,10 @@
                     Header="Дата доставки" />
                 <DataGridTextColumn
                     Width="*"
-                    Binding="{Binding early_shipment}"
+                    Binding="{Binding early_delivery}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="13"
-                    Header="Ранняя отгрузка" />
+                    Header="Ранняя доставка" />
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding id_storage}"
@@ -163,6 +157,8 @@
             Grid.Column="2"
             Margin="255,13,101,0"
             TextChanged="polee_TextChanged"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="20"
             TextWrapping="Wrap" Width="114.607826810991" Grid.RowSpan="2" />
         <Button
             Grid.Row="1"
@@ -173,6 +169,7 @@
             Background="#002F6C"
             Click="Button_Click_search"
             Content="Поиск"
+            IsDefault="true"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
             Foreground="#FFFFFF" Width="83.6078268109908" Grid.RowSpan="2" HorizontalAlignment="Right" />

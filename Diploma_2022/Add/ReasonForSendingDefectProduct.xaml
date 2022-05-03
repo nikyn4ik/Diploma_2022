@@ -51,7 +51,7 @@
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="18"
             Foreground="Black"
-            Text="{Binding ElementName=DatePicker, Path=SelectedDate, StringFormat=d}"
+            Text="{Binding ElementName=DatePicker, Path=DisplayDate, StringFormat=d}"
             TextChanged="date_of_defect_product_TextChanged"
             TextWrapping="Wrap" Width="306" HorizontalAlignment="Center" Height="38" />
         <Label
@@ -90,7 +90,6 @@
             Grid.Row="4"
             Grid.Column="3"
             Margin="271,12,0,12"
-            DisplayDate="2022-04-04"
             FirstDayOfWeek="Monday"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14" />

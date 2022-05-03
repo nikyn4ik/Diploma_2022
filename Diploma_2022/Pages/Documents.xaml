@@ -70,11 +70,10 @@
             Name="DocGrid"
             Grid.Row="4"
             Grid.ColumnSpan="4"
-            Height="494"
+            Height="516"
             Margin="10,0,1,0"
-            VerticalAlignment="Center"
             AutoGenerateColumns="False"
-            Background="Snow"
+            Background="White"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="15"
             IsReadOnly="True">
@@ -140,7 +139,7 @@
             Grid.ColumnSpan="2"
             Margin="256,13,100,0"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="12"
+            FontSize="20"
             TextChanged="polee_TextChanged"
             TextWrapping="Wrap" Width="114.607826810991" Height="36" Grid.RowSpan="2" />
         <Button
@@ -152,6 +151,7 @@
             Background="#002F6C"
             Click="Button_Click_search"
             Content="Поиск"
+            IsDefault="true"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
             Foreground="#FFFFFF" Width="83.6078268109908" Grid.RowSpan="2" />

@@ -43,20 +43,13 @@
             Name="StorageGrid"
             Grid.Row="4"
             Grid.ColumnSpan="5"
-            Height="494"
             Margin="10,0,1,0"
-            VerticalAlignment="Top"
             AutoGenerateColumns="False"
-            Background="Snow"
-            CanUserAddRows="False"
-            CanUserDeleteRows="False"
-            CanUserReorderColumns="False"
-            CanUserResizeRows="False"
-            CanUserSortColumns="False"
+            Background="White"
             ColumnWidth="*"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="15"
-            IsReadOnly="False"
+            IsReadOnly="True"
             SelectionChanged="StorageGrid_SelectionChanged">
 
             <DataGrid.Columns>
@@ -83,7 +76,7 @@
                     FontSize="13"
                     Header="Адрес"
                     IsReadOnly="True" />
-                
+
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding FIO_responsible_person}"
@@ -162,7 +155,7 @@
             Width="115"
             Margin="261,13,105,0"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="12"
+            FontSize="20"
             TextChanged="polee_TextChanged"
             TextWrapping="Wrap" Height="36" Grid.ColumnSpan="2" />
         <Button
@@ -175,6 +168,7 @@
             Background="#002F6C"
             Click="Button_Click_search"
             Content="Поиск"
+            IsDefault="true"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
             Foreground="#FFFFFF" Width="84" HorizontalAlignment="Right" />

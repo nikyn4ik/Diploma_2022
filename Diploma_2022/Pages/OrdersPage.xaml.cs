@@ -6,6 +6,7 @@ using System.Data;
 using System.Configuration;
 using System.Collections.ObjectModel;
 using Diploma_2022.Models;
+using Diploma_2022.Add;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -57,15 +58,62 @@ namespace Diploma_2022.Pages
             OrdersGrid.ItemsSource = dt.DefaultView;
         }
 
+        private void UpdateButton_Click(object sender, RoutedEventArgs e)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = "SELECT * FROM [dbo].[orders]";
+            cmd.Connection = sqlConnection;
+            SqlDataAdapter ord = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable("diploma_db");
+            ord.Fill(dt);
+            OrdersGrid.ItemsSource = dt.DefaultView;
+            sqlConnection.Close();
+        }
+
         private void Buttontopack(object sender, RoutedEventArgs e)
         {
-            try
+            sqlConnection.Open();
+            object item = OrdersGrid.SelectedItem;
+            if (item == null)
+                MessageBox.Show("Выберите строчку", "Severstal Infocom");
+            else
             {
-                if (OrdersGrid.SelectedItems.Count > 0)
+                DataRowView drv = (DataRowView)OrdersGrid.SelectedItem; // проверка на нахождение заказа в  браке
+                string ID_Orders = drv.Row[0].ToString();
+                var selectbrak = "SELECT COUNT(*) FROM [dbo].[defect_product] WHERE id_order=@id";
+                SqlCommand sqlCommand1 = new SqlCommand(selectbrak, sqlConnection);
+                sqlCommand1.Parameters.AddWithValue("@id", ID_Orders);
+                int count1 = Convert.ToInt32(sqlCommand1.ExecuteScalar());
+                sqlConnection.Close();
+
+                sqlConnection.Open(); // проверка на повторную отправку в упаковку
+                var select = "SELECT COUNT(*) FROM [dbo].[package] WHERE id_order=@id";
+                SqlCommand sqlCommand = new SqlCommand(select, sqlConnection);
+                sqlCommand.Parameters.AddWithValue("@id", ID_Orders);
+                int count = Convert.ToInt32(sqlCommand.ExecuteScalar());
+                sqlConnection.Close();
+
+
+                sqlConnection.Open(); // проверка на пройденную сертификацию
+                string ID_cert = drv.Row[0].ToString();
+                var select2 = "SELECT COUNT(*) FROM [dbo].[orders] WHERE id_qua_certificate=@id_cert";
+                SqlCommand sqlCommand2 = new SqlCommand(select2, sqlConnection);
+                sqlCommand2.Parameters.AddWithValue("@id_cert", ID_cert);
+                int count2 = Convert.ToInt32(sqlCommand2.ExecuteScalar());
+                sqlConnection.Close();
+
+                if (count2!= null) // проверка на пройденную сертификацию
+                {
+                    MessageBox.Show("Не пройдена аттестация!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+                
+                if (count1 == 1) // проверка на нахождение заказа в  браке
+                {
+                    MessageBox.Show("Данный заказ находится в браке!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+                else if (count == 0) // проверка на повторную отправку в упаковку
                 {
                     sqlConnection.Open();
-                    DataRowView drv = (DataRowView)OrdersGrid.SelectedItem;
-                    string ID_Orders = drv.Row[0].ToString();
                     SqlCommand cmd = new SqlCommand("INSERT INTO [dbo].[package] (id_order) ((SELECT id_order FROM orders WHERE id_order=@id))", sqlConnection);
                     cmd.Parameters.AddWithValue("@id", ID_Orders);
                     cmd.ExecuteNonQuery();
@@ -73,26 +121,39 @@ namespace Diploma_2022.Pages
                     MessageBox.Show("Заказ успешно отправлен в упаковку!", "Severstal Infocom");
                     sqlConnection.Close();
                 }
-            }
-            catch (Exception)
-            {
-
-                MessageBox.Show("Данный заказ уже был отправлен в упаковку", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-        }
-
+                else
+                {
+                 MessageBox.Show("Данный заказ уже был отправлен в упаковку!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
+               }
+             }
+         }
 
         private void brakButton_Click(object sender, RoutedEventArgs e)
         {
+            sqlConnection.Open();
             object item = OrdersGrid.SelectedItem;
             if (item == null)
                 MessageBox.Show("Выберите строчку", "Severstal Infocom");
             else
             {
                 string ID = (OrdersGrid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-                var window = new Add.ReasonForSendingDefectProduct(Convert.ToInt32(ID));
-                window.ShowDialog();
-                Show();
+                var window = new ReasonForSendingDefectProduct(Convert.ToInt32(ID),(FIO));
+                DataRowView drv = (DataRowView)OrdersGrid.SelectedItem;
+                string ID_Orders = drv.Row[0].ToString();
+                var select = "SELECT COUNT(*) FROM [dbo].[defect_product] WHERE id_order=@id";
+                SqlCommand sqlCommand = new SqlCommand(select, sqlConnection);
+                sqlCommand.Parameters.AddWithValue("@id", ID_Orders);
+                int count = Convert.ToInt32(sqlCommand.ExecuteScalar());
+                sqlConnection.Close();
+                if (count == 0)
+                {
+                    window.ShowDialog();
+                    Show();
+                }
+                else
+                {
+                    MessageBox.Show("Данный заказ уже находится в браке", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
             }
         }
 
@@ -119,7 +180,7 @@ namespace Diploma_2022.Pages
             else
             {
                 string ID = (OrdersGrid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-                var window = new Add.AddOrder(Convert.ToInt32(ID));
+                var window = new AddOrder(Convert.ToInt32(ID));
                 window.ShowDialog();
                 Show();
             }
@@ -135,7 +196,7 @@ namespace Diploma_2022.Pages
             {
                 object item = OrdersGrid.SelectedItem;
                 string ID = (OrdersGrid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-                var window = new Add.AddAttestationToOrder(Convert.ToInt32(ID));
+                var window = new AddAttestationToOrder(Convert.ToInt32(ID));
                 window.ShowDialog();
                 Show();
             }
@@ -163,4 +224,4 @@ namespace Diploma_2022.Pages
             }
         }
     }
-}
+  }

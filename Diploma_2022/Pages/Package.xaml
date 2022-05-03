@@ -72,16 +72,10 @@
             Name="PackageGrid"
             Grid.Row="4"
             Grid.ColumnSpan="3"
-            Height="494"
-            Margin="10,10,1,11"
+            Margin="10,0,1,0"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="15"
-            Background="Snow"
-            CanUserAddRows="False"
-            CanUserDeleteRows="False"
-            CanUserReorderColumns="False"
-            CanUserResizeRows="False"
-            CanUserSortColumns="False"
+            Background="White"
             IsReadOnly="True" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn
@@ -118,6 +112,8 @@
             Margin="254,13,0,0"
             HorizontalAlignment="Left"
             TextChanged="polee_TextChanged"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="20"
             TextWrapping="Wrap" Height="36" Grid.RowSpan="2" />
         <Button
             x:Name="outputdoc"
@@ -155,11 +151,12 @@
             Margin="0,13,1,0"
             HorizontalAlignment="Right"
             VerticalAlignment="Top"
+            IsDefault="true"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="14"
             Background="#002F6C"
             Click="Button_Click_search"
             Content="Поиск"
-            FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14"
             Foreground="#FFFFFF"
             RenderTransformOrigin="0.545,1.183" Grid.RowSpan="2" />
         <Button

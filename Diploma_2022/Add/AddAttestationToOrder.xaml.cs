@@ -27,8 +27,8 @@ namespace Diploma_2022.Add
     {
         SqlConnection sqlConnection = new SqlConnection(@"Data Source=SPUTNIK; Initial Catalog=diploma_db; Integrated Security=True");
         SqlDataReader db;
-        //public IObservableCollection<Certificates> Cert { get; set; } = new();
         int IdOrder;
+        public string FIO;
         public AddAttestationToOrder(int idOrder)
         {
             InitializeComponent();
@@ -39,7 +39,7 @@ namespace Diploma_2022.Add
         }
         private void date_add_attest_TextChanged(object sender, TextChangedEventArgs e)
         {
-            DateTime date_add_attest = (DateTime)this.DatePicker.SelectedDate;
+            DateTime date_add_attest = (DateTime)this.DatePicker.DisplayDate;
         }
 
         private void Button_add(object sender, RoutedEventArgs e)
@@ -48,27 +48,33 @@ namespace Diploma_2022.Add
             string query = "";
             if (standard_mark.Text != "" && access_standart.Text != "" && product_standard.Text != "" && date_add_attest.Text != "")
             {
-                query = "UPDATE [dbo].[orders] SET standard_per_mark=@standard_per_mark, product_standard=@product_standard,access_standart=@access_standart, date_add_certificate=@date_add_certificate WHERE id_order=@id";
+                var query1 = "SELECT id_qua_certificate FROM [dbo].[qua_certificate] WHERE standard_per_mark=@standard_per_mark";
+                SqlCommand sqlCommand1 = new SqlCommand(query1, sqlConnection);
+                sqlCommand1.Parameters.AddWithValue("@standard_per_mark", SqlDbType.NVarChar).Value = standard_mark.Text;
+                var reader = sqlCommand1.ExecuteReader();
+
+                var data = "";
+                if (reader.Read())
+                {
+                    data = reader["id_qua_certificate"].ToString();
+                }
+                sqlConnection.Close();
+                query = "UPDATE [dbo].[orders] SET id_qua_certificate=@id_sert, access_standart=@access WHERE id_order=@id";
                 SqlCommand createCommand = new SqlCommand(query, sqlConnection);
                 createCommand.Parameters.AddWithValue("@id", IdOrder.ToString());
-                createCommand.Parameters.AddWithValue("@standard_per_mark", standard_mark.Text);
-                createCommand.Parameters.AddWithValue("@product_standard", product_standard.Text);
-                createCommand.Parameters.AddWithValue("@access_standart", access_standart.Text);
-                createCommand.Parameters.AddWithValue("@date_add_certificate", Convert.ToDateTime(date_add_attest.Text));
-                updateAtest(createCommand);
+                createCommand.Parameters.AddWithValue("@id_sert", data);
+                createCommand.Parameters.AddWithValue("@access", access_standart.Text);
+                sqlConnection.Open();
+                createCommand.ExecuteNonQuery();
+                MessageBox.Show("Сохранено!", "Severstal Infocom", MessageBoxButton.OK);
+                sqlConnection.Close();
+                this.Close();
             }
             else
             {
                 MessageBox.Show("Введите значения", "Severstal Infocom", MessageBoxButton.OK);
                 sqlConnection.Close();
             }
-        }
-        private void updateAtest(SqlCommand createCommand)
-        {
-            createCommand.ExecuteNonQuery();
-            MessageBox.Show("Сохранено!", "Severstal Infocom", MessageBoxButton.OK);
-            sqlConnection.Close();
-            this.Close();
         }
 
         private void fillComboBoxStandart()

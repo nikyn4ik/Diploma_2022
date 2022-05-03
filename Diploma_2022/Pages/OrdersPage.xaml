@@ -148,7 +148,7 @@
             x:Name="pole"
             Grid.Row="1"
             Grid.Column="2"
-            Margin="232,11,10,2"
+            Margin="232,11,73,2"
             TextChanged="polee_TextChanged"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20" Grid.RowSpan="2" />
@@ -180,6 +180,20 @@
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
             Foreground="#FFFFFF" />
+        <Button
+            x:Name="UPDButton"
+            Grid.Row="1"
+            Width="58"
+            Height="37"
+            Margin="387,10,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Background="#002F6C"
+            Click="UpdateButton_Click"
+            Content="UPD"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="20"
+            Foreground="#FF0000" Grid.Column="2" Grid.RowSpan="2" />
         <Button
             x:Name="addattestation"
             Grid.Row="5"

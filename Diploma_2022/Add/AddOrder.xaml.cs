@@ -100,7 +100,7 @@ namespace Diploma_2022.Add
 
         private void date_of_adoption_TextChanged(object sender, TextChangedEventArgs e)
         {
-            DateTime date_of_adoption = (DateTime)this.DatePicker.SelectedDate;
+            DateTime date_of_adoption = (DateTime)this.DatePicker.DisplayDate;
         }
     }
 }
