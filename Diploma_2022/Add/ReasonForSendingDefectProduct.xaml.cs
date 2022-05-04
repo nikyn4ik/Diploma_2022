@@ -46,6 +46,13 @@ namespace Diploma_2022.Add
         {
             sqlConnection.Open();
             string query = "";
+            if (Convert.ToDateTime(DatePicker.Text) < DateTime.Today)
+            {
+                MessageBox.Show("Дата меньше текущей", "Severstal Infocom", MessageBoxButton.OK);
+                sqlConnection.Close();
+
+                return;
+            }
             if (reasonbrak.Text != "" && DatePicker.Text != "")
             {
                 query = "INSERT INTO defect_product (id_order, FIO, reasons_for_sending, product_for_sending) VALUES (@id, @FIO, @reasons_for_sending, @product_for_sending)";

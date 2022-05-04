@@ -154,23 +154,39 @@ namespace Diploma_2022.Pages
 
         private void ExportToExcel()
         {
+            sqlConnection.Open();
             if (!Directory.Exists("EXCEL"))
                 Directory.CreateDirectory("EXCEL");
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             using var stream = new FileStream("EXCEL\\ORDER.xlsx", FileMode.Create);
             using var package = new ExcelPackage(stream);
             var ws = package.Workbook.Worksheets.Add("ORDER"); //id order
-            sqlConnection.Open();
+            DataRowView drv = (DataRowView)DeliveryGrid.SelectedItem; //""
+            string ID_Orders = drv.Row[1].ToString();
 
-            var sql = "SELECT orders.id_order, orders.syst_c3, orders.log_c3, orders.thickness_mm, orders.width_mm, orders.length_mm, orders.name_product, orders.consignee, orders.status_order, " +
-                "orders.id_payer, orders.access_standart, orders.id_qua_certificate, qua_certificate.standard_per_mark, qua_certificate.product_standard, qua_certificate.date_add_certificate, " +
-                "package.mark_package, package.type_model, package.date_package, shipment.id_transport, shipment.shipment_total_amount_tons, shipment.date_of_shipments, shipment.id_storage, " +
-                "transport.name_transport, transport.number_transport, storage.name_storage, storage.address, storage.phone_storage, storage.FIO_responsible_person, delivery.id_delivery, " +
-                "delivery.early_delivery, delivery.date_of_delivery " +
-                "FROM orders, qua_certificate, package, shipment, transport, storage, delivery";
-            var cmd = new SqlCommand(sql, sqlConnection);
+            var sql = "SELECT * FROM orders WHERE id_order='@id' SELECT * FROM package WHERE id_order='@id' SELECT * FROM shipment WHERE id_order='@id' SELECT * FROM delivery WHERE id_order='@id'";
+            SqlCommand cmd = new SqlCommand(sql, sqlConnection);
+            cmd.Parameters.AddWithValue("@id", ID_Orders);
             var reader = cmd.ExecuteReader();
             int count = 2;
+
+            //if (!Directory.Exists("EXCEL"))
+            //    Directory.CreateDirectory("EXCEL");
+            //ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            //using var stream = new FileStream("EXCEL\\ORDER.xlsx", FileMode.Create);
+            //using var package = new ExcelPackage(stream);
+            //var ws = package.Workbook.Worksheets.Add("ORDER"); //id order
+            //sqlConnection.Open();
+
+            //var sql = "SELECT orders.id_order, orders.syst_c3, orders.log_c3, orders.thickness_mm, orders.width_mm, orders.length_mm, orders.name_product, orders.consignee, orders.status_order, " +
+            //    "orders.id_payer, orders.access_standart, orders.id_qua_certificate, qua_certificate.standard_per_mark, qua_certificate.product_standard, qua_certificate.date_add_certificate, " +
+            //    "package.mark_package, package.type_model, package.date_package, shipment.id_transport, shipment.shipment_total_amount_tons, shipment.date_of_shipments, shipment.id_storage, " +
+            //    "transport.name_transport, transport.number_transport, storage.name_storage, storage.address, storage.phone_storage, storage.FIO_responsible_person, delivery.id_delivery, " +
+            //    "delivery.early_delivery, delivery.date_of_delivery " +
+            //    "FROM orders, qua_certificate, package, shipment, transport, storage, delivery";
+            //var cmd = new SqlCommand(sql, sqlConnection);
+            //var reader = cmd.ExecuteReader();
+            //int count = 2;
 
             //order
             ws.Cells["A1"].Value = "ID заказа";

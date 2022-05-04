@@ -81,67 +81,73 @@
                     Binding="{Binding id_order}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="13"
-                    Header="Id заказа" />
+                    Header="Id" />
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding name_product}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="13"
-                    Header="Продукт" />
+                    Header="Продукт"/>
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding syst_c3}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="13"
-                    Header="СИСТ №СЗ" />
+                    Header="СИСТ №СЗ"/>
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding log_c3}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="13"
-                    Header="ЛОГ № СЗ" />
+                    Header="ЛОГ № СЗ"/>
+                <DataGridTextColumn
+                    Width="*"
+                    Binding="{Binding id_qua_certificate}"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="13"
+                    Header="Аттестация"/>
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding consignee}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="13"
-                    Header="Грузополуч." />
+                    Header="Грузополучатель"/>
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding date_of_entrance}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="13"
-                    Header="Дата поступл." />
+                    Header="Дата поступления"/>
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding thickness_mm}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="13"
-                    Header="Толщина [мм]" />
+                    Header="Толщина [мм]"/>
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding width_mm}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="13"
-                    Header="Ширина [мм]" />
+                    Header="Ширина [мм]"/>
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding length_mm}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="13"
-                    Header="Длина [мм]" />
+                    Header="Длина [мм]"/>
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding status_order}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="13"
-                    Header="Статус" />
+                    Header="Статус"/>
                 <DataGridTextColumn
                     Width="*"
-                    Binding="{Binding reasons_for_sending}"
+                    Binding="{Binding access_standart}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="13"
-                    Header="Брак" />
+                    Header="Пройден стандарт"/>
             </DataGrid.Columns>
         </DataGrid>
         <TextBox
@@ -154,14 +160,13 @@
             FontSize="20" Grid.RowSpan="2" Width="115" />
 
         <Button
-            x:Name="topack"
             Grid.Row="1"
             Grid.RowSpan="3"
             Width="221"
             Margin="10,10,0,10"
             HorizontalAlignment="Left"
             Background="#FF0000"
-            Click="Buttontopack"
+            Click="Button_add"
             Content="Отправка в упаковку"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"

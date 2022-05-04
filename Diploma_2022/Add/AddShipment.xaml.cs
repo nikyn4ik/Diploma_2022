@@ -33,6 +33,8 @@ namespace Diploma_2022.Add
             storageSelect();
             transportSelect();
             IdOrder = idOrder;
+            DatePicker.DisplayDate = DateTime.Today;
+            DatePicker.Text = DateTime.Today.ToString();
         }
 
         private void ChangeSelectedItems() 
@@ -48,9 +50,16 @@ namespace Diploma_2022.Add
         {
             sqlConnection.Open();
             string query = "";
-            if (shipment_total_amount_tons.Text != "" && storage.Text != "" && date_of_shipments.Text != "" && transport.Text != "")
+            if (Convert.ToDateTime(DatePicker.Text) < DateTime.Today)
             {
-                query = "UPDATE [dbo].[shipment] SET shipment_total_amount_tons=@shipment_total_amount_tons, id_storage=@id_storage, id_transport=@id_transport, date_of_shipments=@date_of_shipments WHERE id_order=@id";//
+                MessageBox.Show("Дата меньше текущей", "Severstal Infocom", MessageBoxButton.OK);
+                sqlConnection.Close();
+
+                return;
+            }
+            if (shipment_total_amount_tons.Text != "" && storage.Text != "" && DatePicker.Text != "" && transport.Text != "")
+            {
+                query = "UPDATE [dbo].[shipment] SET shipment_total_amount_tons=@shipment_total_amount_tons, id_storage=@id_storage, id_transport=@id_transport, date_of_shipments=@date_of_shipments WHERE id_order=@id";
                 SqlCommand createCommand = new SqlCommand(query, sqlConnection);
 
                 ChangeSelectedItems();
@@ -59,7 +68,7 @@ namespace Diploma_2022.Add
                 createCommand.Parameters.AddWithValue("@shipment_total_amount_tons", shipment_total_amount_tons.Text);
                 createCommand.Parameters.AddWithValue("@id_storage", SelectedIdStorage.id_storage);
                 createCommand.Parameters.AddWithValue("@id_transport", SelectedIdTransport.id_transport);
-                createCommand.Parameters.AddWithValue("@date_of_shipments", Convert.ToDateTime(date_of_shipments.Text));
+                createCommand.Parameters.AddWithValue("@date_of_shipments", Convert.ToDateTime(DatePicker.Text));
                 update(createCommand);
             }
             else
@@ -76,11 +85,6 @@ namespace Diploma_2022.Add
             this.Close();
         }
 
-        private void date_of_shipments_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            DateTime date_of_shipments = (DateTime)this.DatePicker.DisplayDate;
-        }
-
         private void storageSelect()
         {
             SqlCommand cmd = new SqlCommand("SELECT name_storage, address, id_storage FROM [dbo].[storage]", sqlConnection);
@@ -88,8 +92,6 @@ namespace Diploma_2022.Add
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             DataSet ds = new DataSet();
             adapter.Fill(ds);
-            //cmd.CommandType = CommandType.Text;
-            //db = cmd.ExecuteReader();
             for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
             {
                 storage.Items.Add(ds.Tables[0].Rows[i][0] + " | " + ds.Tables[0].Rows[i][1]);

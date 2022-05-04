@@ -70,7 +70,7 @@ namespace Diploma_2022.Pages
             sqlConnection.Close();
         }
 
-        private void Buttontopack(object sender, RoutedEventArgs e)
+        private void Button_add(object sender, RoutedEventArgs e)
         {
             sqlConnection.Open();
             object item = OrdersGrid.SelectedItem;
@@ -93,23 +93,22 @@ namespace Diploma_2022.Pages
                 int count = Convert.ToInt32(sqlCommand.ExecuteScalar());
                 sqlConnection.Close();
 
+                //sqlConnection.Open(); // проверка на пройденную сертификацию
+                //var select2 = "SELECT (id_qua_certificate) FROM [dbo].[orders] WHERE id_order=@id";
+                //SqlCommand sqlCommand2 = new SqlCommand(select2, sqlConnection);
+                //sqlCommand2.Parameters.AddWithValue("@id", ID_Orders);
+                //int count2 = Convert.ToInt32(sqlCommand2.ExecuteScalar());
+                //sqlConnection.Close();
 
-                sqlConnection.Open(); // проверка на пройденную сертификацию
-                string ID_cert = drv.Row[0].ToString();
-                var select2 = "SELECT COUNT(*) FROM [dbo].[orders] WHERE id_qua_certificate=@id_cert";
-                SqlCommand sqlCommand2 = new SqlCommand(select2, sqlConnection);
-                sqlCommand2.Parameters.AddWithValue("@id_cert", ID_cert);
-                int count2 = Convert.ToInt32(sqlCommand2.ExecuteScalar());
-                sqlConnection.Close();
-
-                if (count2!= null) // проверка на пройденную сертификацию
-                {
-                    MessageBox.Show("Не пройдена аттестация!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
+                //if (count2 ==null) // проверка на пройденную сертификацию гг
+                //{
+                //    MessageBox.Show("Не пройдена аттестация!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
+                //}
                 
                 if (count1 == 1) // проверка на нахождение заказа в  браке
                 {
-                    MessageBox.Show("Данный заказ находится в браке!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("Данный заказ находится в браке или не пройдена аттестация!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    update();
                 }
                 else if (count == 0) // проверка на повторную отправку в упаковку
                 {
@@ -120,11 +119,13 @@ namespace Diploma_2022.Pages
 
                     MessageBox.Show("Заказ успешно отправлен в упаковку!", "Severstal Infocom");
                     sqlConnection.Close();
+                    update();
                 }
                 else
                 {
                  MessageBox.Show("Данный заказ уже был отправлен в упаковку!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
-               }
+                 update();
+                }
              }
          }
 
@@ -196,6 +197,7 @@ namespace Diploma_2022.Pages
                 var window = new AddAttestationToOrder(Convert.ToInt32(ID));
                 window.ShowDialog();
                 Show();
+                update();
             }
         }
         private void polee_TextChanged(object sender, TextChangedEventArgs e)

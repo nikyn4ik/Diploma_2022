@@ -121,6 +121,8 @@
             x:Name="access_standart"
             Grid.Row="1"
             Grid.Column="2"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="18"
             RenderTransformOrigin="0.5,0.5" Margin="91,12,11,10" Grid.ColumnSpan="3">
             <ComboBox.RenderTransform>
                 <TransformGroup>

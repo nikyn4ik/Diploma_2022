@@ -33,6 +33,13 @@ namespace Diploma_2022.Add
         {
             sqlConnection.Open();
             string query = "";
+            if (Convert.ToDateTime(DatePicker.Text) < DateTime.Today)
+            {
+                MessageBox.Show("Дата меньше текущей", "Severstal Infocom", MessageBoxButton.OK);
+                sqlConnection.Close();
+
+                return;
+            }
             if (namesclad.Text != "" && addresssklad.Text != "" && phonesklad.Text != "" && FIO_responsible.Text != "" && dataaddsklad.Text != "")
             {
                 query = "INSERT INTO [dbo]. storage values(@name_storage, @address, @phone_storage, @FIO_responsible_person, @date_add_storage);";

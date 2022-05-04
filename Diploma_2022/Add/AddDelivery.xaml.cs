@@ -40,7 +40,13 @@ namespace Diploma_2022.Add
             {
             sqlConnection.Open();
             string query = "";
+            if (Convert.ToDateTime(DatePicker.Text) < DateTime.Today) 
+            {
+                MessageBox.Show("Дата меньше текущей", "Severstal Infocom", MessageBoxButton.OK);
+                sqlConnection.Close();
 
+                return;
+            }
             if (DatePicker.Text != "" && early_delivery.Text != "" && status.Text != "")
             {
                 query = "UPDATE [dbo].[delivery] SET date_of_delivery=@date_of_delivery, early_delivery=@early_delivery WHERE id_order=@id";

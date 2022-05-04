@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Diploma_2022.Models
 {
-    internal class Certificates
+    public class Certificates
     {
         public int id_qua_certificate { get; set; }
 

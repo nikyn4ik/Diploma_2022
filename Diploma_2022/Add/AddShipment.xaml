@@ -47,17 +47,6 @@
             FontSize="18"
             Foreground="Black"
             TextWrapping="Wrap" />
-        <TextBox
-            x:Name="date_of_shipments"
-            Grid.Row="7"
-            Grid.Column="3"
-            Margin="0,8,0,8"
-            FontFamily="Microsoft JhengHei UI Light"
-            FontSize="18"
-            Foreground="Black"
-            Text="{Binding ElementName=DatePicker, Path=DisplayDate, StringFormat=d}"
-            TextChanged="date_of_shipments_TextChanged"
-            TextWrapping="Wrap" Height="42.2889189189189" />
         <Label
             Grid.Row="1"
             Height="59"
@@ -112,10 +101,10 @@
             x:Name="DatePicker"
             Grid.Row="7"
             Grid.Column="3"
-            Margin="274,8,0,10"
+            Margin="0,8,1,10"
             FirstDayOfWeek="Monday"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14" HorizontalAlignment="Left" Width="32" />
+            FontSize="18" />
         <ComboBox
             x:Name="storage"
             Grid.Row="3"
@@ -146,6 +135,6 @@
             Content="Сохранить"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
-            Foreground="#FFFFFF" Width="282" HorizontalAlignment="Center" />
+            Foreground="#FFFFFF" Width="282" HorizontalAlignment="Center" Margin="0,0,0,4" />
     </Grid>
 </Window>

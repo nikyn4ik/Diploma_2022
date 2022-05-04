@@ -65,15 +65,13 @@ namespace Diploma_2022.Add
                     data = reader["id_qua_certificate"].ToString();
                 }
                 sqlConnection.Close();
+                sqlConnection.Open();
                 query = "UPDATE [dbo].[orders] SET id_qua_certificate=@id_sert, access_standart=@access WHERE id_order=@id";
                 SqlCommand createCommand = new SqlCommand(query, sqlConnection);
                 createCommand.Parameters.AddWithValue("@id", IdOrder.ToString());
                 createCommand.Parameters.AddWithValue("@id_sert", data);
                 createCommand.Parameters.AddWithValue("@access", access_standart.Text);
-                sqlConnection.Open();
-                createCommand.ExecuteNonQuery();
-                MessageBox.Show("Сохранено!", "Severstal Infocom", MessageBoxButton.OK);
-                sqlConnection.Close();
+                update(createCommand);
                 this.Close();
             }
             else
@@ -81,7 +79,14 @@ namespace Diploma_2022.Add
                 MessageBox.Show("Введите значения", "Severstal Infocom", MessageBoxButton.OK);
                 sqlConnection.Close();
             }
+        }
 
+        private void update(SqlCommand createCommand)
+        {
+            createCommand.ExecuteNonQuery();
+            MessageBox.Show("Сохранено!", "Severstal Infocom", MessageBoxButton.OK);
+            sqlConnection.Close();
+            this.Close();
         }
 
         private void fillComboBoxStandart()
