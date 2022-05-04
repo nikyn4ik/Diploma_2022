@@ -119,21 +119,6 @@
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
             Foreground="#FFFFFF" />
-        <Button
-            x:Name="update"
-            Grid.Row="5"
-            Grid.Column="2"
-            Width="208"
-            Height="48"
-            Margin="28,0,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
-            Background="#002F6C"
-            Click="UpdButton"
-            Content="Обновление таблицы"
-            FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14"
-            Foreground="#FFFFFF" />
 
         <Button
             x:Name="addButton"

@@ -36,17 +36,23 @@ namespace Diploma_2022.Add
             standard_mark_Select();
             product_standard_Select();
             IdOrder = idOrder;
-        }
-        private void date_add_attest_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            DateTime date_add_attest = (DateTime)this.DatePicker.DisplayDate;
+            DatePicker.DisplayDate = DateTime.Today;
+            DatePicker.Text = DateTime.Today.ToString();
+            
         }
 
         private void Button_add(object sender, RoutedEventArgs e)
         {
             sqlConnection.Open();
             string query = "";
-            if (standard_mark.Text != "" && access_standart.Text != "" && product_standard.Text != "" && date_add_attest.Text != "")
+            if (Convert.ToDateTime(DatePicker.Text) < DateTime.Today) 
+            {
+                MessageBox.Show("Дата меньше текущей", "Severstal Infocom", MessageBoxButton.OK);
+                sqlConnection.Close();
+
+                return;
+            }
+            if (standard_mark.Text != "" && access_standart.Text != "" && product_standard.Text != "" && DatePicker.Text != "")
             {
                 var query1 = "SELECT id_qua_certificate FROM [dbo].[qua_certificate] WHERE standard_per_mark=@standard_per_mark";
                 SqlCommand sqlCommand1 = new SqlCommand(query1, sqlConnection);
@@ -75,6 +81,7 @@ namespace Diploma_2022.Add
                 MessageBox.Show("Введите значения", "Severstal Infocom", MessageBoxButton.OK);
                 sqlConnection.Close();
             }
+
         }
 
         private void fillComboBoxStandart()

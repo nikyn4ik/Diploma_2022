@@ -81,25 +81,14 @@
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
             Foreground="#FFFFFF" Grid.Row="3" VerticalAlignment="Top" Height="57" HorizontalAlignment="Center" />
-        <TextBox
-            x:Name="date_of_adoption"
-            Grid.Row="3"
-            Grid.Column="3"
-            Margin="0,9,0,44"
-            FontFamily="Microsoft JhengHei UI Light"
-            FontSize="18"
-            Foreground="Black"
-            Text="{Binding ElementName=DatePicker, Path=DisplayDate, StringFormat=d}"
-            TextChanged="date_of_adoption_TextChanged"
-            TextWrapping="Wrap" Width="306" HorizontalAlignment="Center" Height="38" />
         <DatePicker
             x:Name="DatePicker"
             Grid.Row="3"
-            Grid.Column="3"
-            Margin="271,10,11,44"
+            Grid.Column="2"
+            Margin="104,10,11,44"
             FirstDayOfWeek="Monday"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14" Grid.ColumnSpan="2" />
+            FontSize="18" Grid.ColumnSpan="3" />
         <Label
             Grid.ColumnSpan="5"
             Height="56"

@@ -41,11 +41,23 @@ namespace Diploma_2022.Pages
             storage.Fill(dt);
             StorageGrid.ItemsSource = dt.DefaultView;
         }
+        protected void update()
+        {
+            sqlConnection.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = "SELECT * FROM [dbo].[storage]";
+            cmd.Connection = sqlConnection;
+            SqlDataAdapter stor = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable("diploma_db");
+            stor.Fill(dt);
+            StorageGrid.ItemsSource = dt.DefaultView;
+            sqlConnection.Close();
+        }
         private void AddButton(object sender, RoutedEventArgs e)
         {
-            Add.AddStorage taskWindow = new Add.AddStorage();
+            Add.AddStorage taskWindow = new AddStorage();
             taskWindow.Show();
-            Storage_DataGrid_SelectionChanged();
+            update();
         }
 
         private void deleteButton(object sender, RoutedEventArgs e)
@@ -80,12 +92,6 @@ namespace Diploma_2022.Pages
                 }
             }
         }
-
-        private void UpdButton(object sender, RoutedEventArgs e)
-        {
-            StorageGrid.Items.Refresh();
-
-        }
         private void Button_Click_search(object sender, RoutedEventArgs e)
         {
             string ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
@@ -113,9 +119,5 @@ namespace Diploma_2022.Pages
             StorageGrid.Items.Refresh();
         }
 
-        private void StorageGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
     }
     }

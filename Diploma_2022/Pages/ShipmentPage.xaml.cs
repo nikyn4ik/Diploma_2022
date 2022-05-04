@@ -78,7 +78,7 @@ namespace Diploma_2022.Pages
             }
         }
 
-        private void go_to_dostav_Click(object sender, RoutedEventArgs e)
+        private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             sqlConnection.Open();
             object item = ShipmentGrid.SelectedItem;
@@ -87,40 +87,23 @@ namespace Diploma_2022.Pages
             else
             {
                 DataRowView drv = (DataRowView)ShipmentGrid.SelectedItem;
-                string ID_Orders = drv.Row[0].ToString();
+                string ID_Orders = drv.Row[1].ToString();
                 var select = "SELECT COUNT(*) FROM [dbo].[delivery] WHERE id_order=@id";
                 SqlCommand sqlCommand = new SqlCommand(select, sqlConnection);
                 sqlCommand.Parameters.AddWithValue("@id", ID_Orders);
                 int count = Convert.ToInt32(sqlCommand.ExecuteScalar());
                 sqlConnection.Close();
 
-                sqlConnection.Open(); // проверка на редактирование
-                DataRowView drv1 = (DataRowView)ShipmentGrid.SelectedItem;
-                string ID_Storage = drv1.Row[0].ToString();
-                var select1 = "SELECT COUNT(*) FROM [dbo].[delivery] WHERE id_storage=@id";
-                SqlCommand sqlCommand1 = new SqlCommand(select1, sqlConnection);
-                sqlCommand1.Parameters.AddWithValue("@id", ID_Storage);
-                int count1 = Convert.ToInt32(sqlCommand1.ExecuteScalar());
-                sqlConnection.Close();
-
-                if (count1 != null) // проверка
-                {
-                    MessageBox.Show("Не указан склад / транспорт!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
-
-                else if(count == 0)
+                if(count == 0)
                 {
                     sqlConnection.Open();
                     SqlCommand cmd = new SqlCommand("INSERT INTO [dbo].[delivery] (id_order, id_storage) ((SELECT id_order, id_storage FROM shipment WHERE id_order=@id))", sqlConnection);
                     cmd.Parameters.AddWithValue("@id", ID_Orders);
                     cmd.ExecuteNonQuery();
 
-                    //SqlCommand cmd2 = new SqlCommand("UPDATE [dbo].[delivery] SET consignee=@consignee WHERE id_order=@id", sqlConnection);
-                    //cmd2.Parameters.AddWithValue("@id", ID_Orders);
-                    //cmd2.ExecuteNonQuery();
-
                     MessageBox.Show("Заказ успешно отправлен в доставку!", "Severstal Infocom");
                     sqlConnection.Close();
+                    update();
                 }
                 else
                 {
@@ -128,7 +111,18 @@ namespace Diploma_2022.Pages
                 }
             }
         }
-
+        protected void update()
+        {
+            sqlConnection.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = "SELECT * FROM [dbo].[shipment]";
+            cmd.Connection = sqlConnection;
+            SqlDataAdapter ship = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable("diploma_db");
+            ship.Fill(dt);
+            ShipmentGrid.ItemsSource = dt.DefaultView;
+            sqlConnection.Close();
+        }
         private void outButton_Click(object sender, RoutedEventArgs e)
         {
             var selectedIndex = ShipmentGrid.SelectedIndex;
@@ -187,7 +181,7 @@ namespace Diploma_2022.Pages
                 MessageBox.Show("Выберите строчку", "Severstal Infocom");
             else
             {
-                string ID = (ShipmentGrid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                string ID = (ShipmentGrid.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
                 var window = new AddShipment(Convert.ToInt32(ID));
                 window.ShowDialog();
                 Show();

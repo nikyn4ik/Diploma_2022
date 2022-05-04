@@ -20,15 +20,16 @@
     </Window.Background>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="61*"/>
-            <RowDefinition Height="39*"/>
-            <RowDefinition Height="57*"/>
-            <RowDefinition Height="23*"/>
-            <RowDefinition Height="58*"/>
-            <RowDefinition Height="45*"/>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="97*"/>
+            <RowDefinition Height="63*"/>
             <RowDefinition Height="24*"/>
+            <RowDefinition Height="58*"/>
+            <RowDefinition Height="24*"/>
+            <RowDefinition Height="58*"/>
+            <RowDefinition Height="24*"/>
+            <RowDefinition Height="58*"/>
+            <RowDefinition Height="42*"/>
+            <RowDefinition Height="58*"/>
+            <RowDefinition Height="25*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="12*" />
@@ -47,86 +48,73 @@
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="35"
             Foreground="#002F6C" Grid.ColumnSpan="5" />
+
         <Button
-            x:Name="OutPDF"
-            Width="101"
-            Height="51"
-            Margin="216,0,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
-            Background="#909090 "
-            Click="outpdfButton"
-            Content="PDF"
-            FontFamily="Microsoft JhengHei UI Light"
-            FontSize="20"
-            Foreground="#FFFFFF" Grid.Row="6" Grid.Column="1" />
-        <Button
-            x:Name="outexcel"
-            Width="101"
-            Height="51"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
-            Background="#909090 "
-            Click="out_excel_button"
-            Content="Excel"
-            FontFamily="Microsoft JhengHei UI Light"
-            FontSize="20"
-            Foreground="#FFFFFF" Grid.Row="6" Grid.Column="3" />
-        <Button
-            Height="57"
-            Margin="215,40,205,0"
+            Margin="215,44,205,26"
             Background="#FF0000"
             BorderThickness="0,0,0,0"
             Click="Button_add"
             Content="Сохранить"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
-            Foreground="#FFFFFF" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="3" />
+            Foreground="#FFFFFF" Grid.Row="7" Grid.Column="1" 
+            Grid.ColumnSpan="3" Grid.RowSpan="3" />
         <Label
             Width="316"
-            Height="57"
+            Height="61"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
             Content="Дата доставки"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
-            Foreground="White" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" />
-        <TextBox
-            x:Name="DateDelivery"
-            Height="38"
-            Margin="0,10,1,10"
-            Background="#FFFFFF"
+            Foreground="White" Grid.Row="4" VerticalAlignment="Center" 
+            HorizontalAlignment="Center" Grid.Column="1" />
+        <Label
+            Grid.Column="1"
+            Width="316"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Background="#002F6C"
+            Content="Статус заказа"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="16"
-            Foreground="#002F6C"
-            Text="{Binding ElementName=DatePicker, Path=DisplayDate, StringFormat=d}"
-            TextAlignment="Left"
-            TextChanged="DateDelivery_TextChanged" Grid.Row="4" Grid.Column="3" />
+            FontSize="20"
+            Foreground="#FFFFFF" Grid.Row="6" VerticalAlignment="Center" 
+            Height="61" HorizontalAlignment="Center" />
 
         <ComboBox
             x:Name="early_delivery"
             Height="38"
-            Margin="0,10,1,9"
+            Margin="0,11,1,12"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="16"
             Foreground="#002F6C" Grid.Row="2" Grid.Column="3" />
+        <ComboBox
+            x:Name="status"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="16"
+            Grid.Row="6"
+            Foreground="Black"
+            Grid.Column="3"
+            Margin="1,11,0,11"
+            RenderTransformOrigin="0.5,0.5" Height="38" />
         <Label
             Width="316"
-            Height="57"
+            Height="61"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
             Content="Ранняя отгрузка"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
-            Foreground="White" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" />
+            Foreground="White" Grid.Row="2" VerticalAlignment="Center" 
+            HorizontalAlignment="Center" Grid.Column="1" />
         <DatePicker
             x:Name="DatePicker"
-            Margin="274,10,0,10"
+            Margin="0,10,0,14"
             FirstDayOfWeek="Monday"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14" Grid.Row="4" Grid.Column="3" HorizontalAlignment="Left" Width="32" />
+            FontSize="18" Grid.Row="4" Grid.Column="3" HorizontalAlignment="Center" Width="306" />
 
     </Grid>
 </Window>

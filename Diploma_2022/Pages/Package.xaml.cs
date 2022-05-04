@@ -35,8 +35,8 @@ namespace Diploma_2022.Pages
         {
             InitializeComponent();
             Package_DataGrid_SelectionChanged();
-            var ppp = CodePagesEncodingProvider.Instance;
-            Encoding.RegisterProvider(ppp);     
+            //var ppp = CodePagesEncodingProvider.Instance;
+            //Encoding.RegisterProvider(ppp);     
         }
         private void Package_DataGrid_SelectionChanged()
         {
@@ -72,7 +72,18 @@ namespace Diploma_2022.Pages
                 MessageBox.Show("Не найдено в системе.", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
+        protected void update()
+        {
+            sqlConnection.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = "SELECT * FROM [dbo].[package]";
+            cmd.Connection = sqlConnection;
+            SqlDataAdapter ord = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable("diploma_db");
+            ord.Fill(dt);
+            PackageGrid.ItemsSource = dt.DefaultView;
+            sqlConnection.Close();
+        }
         private void polee_TextChanged(object sender, TextChangedEventArgs e)
         {
             PackageGrid.Items.Refresh();
@@ -87,14 +98,14 @@ namespace Diploma_2022.Pages
             else
             {
                 DataRowView drv = (DataRowView)PackageGrid.SelectedItem;
-                string ID_Orders = drv.Row[0].ToString();
+                string ID_Orders = drv.Row[1].ToString();
                 var select = "SELECT COUNT(*) FROM [dbo].[shipment] WHERE id_order=@id";
                 SqlCommand sqlCommand = new SqlCommand(select, sqlConnection);
                 sqlCommand.Parameters.AddWithValue("@id", ID_Orders);
                 int count = Convert.ToInt32(sqlCommand.ExecuteScalar());
                 sqlConnection.Close();
 
-                if (count != null)
+                if (count == 0)
                 {
                     sqlConnection.Open();
                     SqlCommand cmd = new SqlCommand("INSERT INTO shipment (id_order) ((SELECT id_order FROM package WHERE id_order=@id))", sqlConnection);
@@ -170,6 +181,7 @@ namespace Diploma_2022.Pages
                 var window = new AddPackage(Convert.ToInt32(ID));
                 window.ShowDialog();
                 Show();
+                update();
             }
         }
     }

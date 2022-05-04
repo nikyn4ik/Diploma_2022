@@ -32,24 +32,21 @@ namespace Diploma_2022.Add
         {
             InitializeComponent();
             IdOrder = idOrder;
-        }
-
-        private void date_package_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            DateTime date_package = (DateTime)this.DatePicker.DisplayDate;
+            DatePicker.DisplayDate = DateTime.Today;
+            DatePicker.Text = DateTime.Today.ToString();
         }
 
         private void Button_add(object sender, RoutedEventArgs e)
         {
             sqlConnection.Open();
             string query = "";
-            if (mark_package.Text != "" && date_package.Text != "" && type_model.Text != "")
+            if (mark_package.Text != "" && DatePicker.Text != "" && type_model.Text != "")
             {
                 query = "UPDATE [dbo].[package] SET type_model=@type_model, mark_package=@mark_package, date_package=@date_package WHERE id_order=@id";
                 SqlCommand createCommand = new SqlCommand(query, sqlConnection);
                 createCommand.Parameters.AddWithValue("@type_model", type_model.Text);
                 createCommand.Parameters.AddWithValue("@mark_package", mark_package.Text);
-                createCommand.Parameters.AddWithValue("@date_package", Convert.ToDateTime(date_package.Text));
+                createCommand.Parameters.AddWithValue("@date_package", Convert.ToDateTime(DatePicker.Text));
                 createCommand.Parameters.AddWithValue("@id", IdOrder.ToString());
                 update(createCommand);
             }

@@ -33,6 +33,8 @@ namespace Diploma_2022.Add
             InitializeComponent();
             IdOrder = idOrder;
             FIO = fIO_work;
+            DatePicker.DisplayDate = DateTime.Today;
+            DatePicker.Text = DateTime.Today.ToString();
         }
 
         private void date_of_defect_product_TextChanged(object sender, TextChangedEventArgs e)
@@ -44,14 +46,14 @@ namespace Diploma_2022.Add
         {
             sqlConnection.Open();
             string query = "";
-            if (reasonbrak.Text != "" && date_of_defect_product.Text != "")
+            if (reasonbrak.Text != "" && DatePicker.Text != "")
             {
                 query = "INSERT INTO defect_product (id_order, FIO, reasons_for_sending, product_for_sending) VALUES (@id, @FIO, @reasons_for_sending, @product_for_sending)";
                 SqlCommand createCommand = new SqlCommand(query, sqlConnection);
                 createCommand.Parameters.AddWithValue("@id", IdOrder.ToString());
                 createCommand.Parameters.AddWithValue("@FIO", FIO.ToString());
                 createCommand.Parameters.AddWithValue("@reasons_for_sending", reasonbrak.Text);
-                createCommand.Parameters.AddWithValue("@product_for_sending", Convert.ToDateTime(date_of_defect_product.Text));
+                createCommand.Parameters.AddWithValue("@product_for_sending", Convert.ToDateTime(DatePicker.Text));
                 update(createCommand);
             }
             else

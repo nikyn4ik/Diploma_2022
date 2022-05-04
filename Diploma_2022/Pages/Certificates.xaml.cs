@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using System.Data.SqlClient;
 using System.Data;
 using System.Configuration;
+using Diploma_2022.Add;
 using System.Collections.ObjectModel;
 using System;
 using System.Text;
@@ -37,9 +38,9 @@ namespace Diploma_2022.Pages
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            Add.AddCertificates taskWindow = new Add.AddCertificates();
+            AddCertificates taskWindow = new AddCertificates();
             taskWindow.Show();
-            Certificates_DataGrid_SelectionChanged();
+            update();
         }
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
@@ -74,6 +75,18 @@ namespace Diploma_2022.Pages
             certificates = new ObservableCollection<Certificates>();
             CertificatesGrid.ItemsSource = dt.DefaultView;
         }
+        protected void update()
+        {
+            sqlConnection.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = "SELECT * FROM [dbo].[qua_certificate]";
+            cmd.Connection = sqlConnection;
+            SqlDataAdapter cert = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable("diploma_db");
+            cert.Fill(dt);
+            CertificatesGrid.ItemsSource = dt.DefaultView;
+            sqlConnection.Close();
+        }
 
         private void polee_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -82,38 +95,39 @@ namespace Diploma_2022.Pages
 
         private void Button_Click_search(object sender, RoutedEventArgs e)
         {
-            //string ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
-            //try
-            //{
-            //    SqlConnection cmds = new SqlConnection(ConnectionString);
-            //    string cmd = "SELECT * FROM [dbo].[qua_certificate] WHERE id_qua_certificate like '" + pole.Text + "%'";
-            //    cmds.Open();
-            //    SqlCommand sqlcom = new SqlCommand(cmd, cmds);
-            //    SqlDataAdapter certificat = new SqlDataAdapter(sqlcom);
-            //    certificat.Fill(dt);
-            //    CertificatesGrid.ItemsSource = dt.DefaultView;
-            //    certificat.Update(dt);
-            //    cmds.Close();
-            //}
-            //catch (Exception)
-            //{
-            //    MessageBox.Show("Не найдено в системе.", "Severstal Infocom",MessageBoxButton.OK, MessageBoxImage.Error);
-            //}
+            string ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
+            try
+            {
+                SqlConnection cmds = new SqlConnection(ConnectionString);
+                string cmd = "SELECT * FROM [dbo].[qua_certificate] WHERE id_qua_certificate like '" + pole.Text + "%'";
+                cmds.Open();
+                SqlCommand sqlcom = new SqlCommand(cmd, cmds);
+                SqlDataAdapter cert = new SqlDataAdapter(sqlcom);
+                DataTable dt = new DataTable("qua_certificate");
+                cert.Fill(dt);
+                CertificatesGrid.ItemsSource = dt.DefaultView;
+                cert.Update(dt);
+                cmds.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Не найдено в системе.", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
-        private void UpdButton(object sender, RoutedEventArgs e)
-        {
-            sqlConnection.Open();
-            foreach (var cert in certificates) 
-            {
-                var command = new SqlCommand("UPDATE qua_certificate SET id_qua_certificate=@id_qua_certificate,standard_per_mark=@standard_per_mark, product_standard=@product_standard, date_add_certificate=@date_add_certificate WHERE id_qua_certificate=@id_qua_certificate");
-                command.Parameters.AddWithValue("@id_qua_certificate", cert.CertificatesGrid);
-                command.Parameters.AddWithValue("@standard_per_mark", cert.CertificatesGrid);
-                command.Parameters.AddWithValue("@product_standard", cert.CertificatesGrid);
-                command.Parameters.AddWithValue("@date_add_certificate", cert.CertificatesGrid);
-                command.ExecuteNonQuery();  
-            }  
-            sqlConnection.Close();
-        }
+        //private void UpdButton(object sender, RoutedEventArgs e)
+        //{
+        //    sqlConnection.Open();
+        //    foreach (var cert in certificates) 
+        //    {
+        //        var command = new SqlCommand("UPDATE qua_certificate SET id_qua_certificate=@id_qua_certificate,standard_per_mark=@standard_per_mark, product_standard=@product_standard, date_add_certificate=@date_add_certificate WHERE id_qua_certificate=@id_qua_certificate");
+        //        command.Parameters.AddWithValue("@id_qua_certificate", cert.CertificatesGrid);
+        //        command.Parameters.AddWithValue("@standard_per_mark", cert.CertificatesGrid);
+        //        command.Parameters.AddWithValue("@product_standard", cert.CertificatesGrid);
+        //        command.Parameters.AddWithValue("@date_add_certificate", cert.CertificatesGrid);
+        //        command.ExecuteNonQuery();  
+        //    }  
+        //    sqlConnection.Close();
+        //}
     }
 }

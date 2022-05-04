@@ -120,16 +120,18 @@
             x:Name="storage"
             Grid.Row="3"
             Grid.Column="3"
-            Margin="1,8,10,8"
+            Margin="1,8,0,8"
+            Foreground="Black"
             RenderTransformOrigin="0.5,0.5"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="18"
-            SelectionChanged="storage_ComboBox_SelectionChanged" Height="42.2889189189189" Grid.ColumnSpan="2"/>
+            Height="42.2889189189189"/>
         <ComboBox
             x:Name="transport"
             Grid.Row="5"
             Grid.Column="3"
             Margin="0,8,0,8"
+            Foreground="Black"
             RenderTransformOrigin="0.5,0.5"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="18"

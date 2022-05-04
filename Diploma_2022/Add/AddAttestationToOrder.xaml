@@ -56,17 +56,6 @@
             FontSize="18"
             Foreground="Black"
             Height="38"/>
-        <TextBox
-            x:Name="date_add_attest"
-            Grid.Row="7"
-            Grid.Column="2"
-            Margin="91,10,11,10"
-            FontFamily="Microsoft JhengHei UI Light"
-            FontSize="18"
-            Foreground="Black"
-            Text="{Binding ElementName=DatePicker, Path=SelectedDate, StringFormat=d}"
-            TextChanged="date_add_attest_TextChanged"
-            TextWrapping="Wrap" Grid.ColumnSpan="3" />
         <Label
             Grid.Row="3"
             Grid.Column="1"
@@ -124,11 +113,10 @@
             x:Name="DatePicker"
             Grid.Row="7"
             Grid.Column="3"
-            Margin="277,10,2,10"
-            DisplayDate="2022-04-04"
+            Margin="0,10,2,10"
             FirstDayOfWeek="Monday"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14" />
+            FontSize="18" />
         <ComboBox
             x:Name="access_standart"
             Grid.Row="1"

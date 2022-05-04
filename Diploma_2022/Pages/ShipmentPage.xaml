@@ -136,7 +136,6 @@
             FontSize="16"
             Foreground="#FFFFFF" />
         <Button
-            x:Name="go_to_dostav_Button"
             Grid.Row="5"
             Grid.Column="1"
             Width="233"
@@ -145,7 +144,7 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
             Background="#FF0000"
-            Click="go_to_dostav_Click"
+            Click="AddButton_Click"
             Content="Отправить в доставку"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="16"

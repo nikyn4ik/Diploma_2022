@@ -49,8 +49,7 @@
             ColumnWidth="*"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="15"
-            IsReadOnly="True"
-            SelectionChanged="StorageGrid_SelectionChanged">
+            IsReadOnly="True">
 
             <DataGrid.Columns>
                 <DataGridTextColumn
@@ -132,21 +131,6 @@
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
             Foreground="#FFFFFF" Grid.Column="1" />
-        <Button
-            x:Name="update"
-            Grid.Row="5"
-            Grid.Column="2"
-            Width="208"
-            Height="50"
-            Margin="0,8,0,0"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Top"
-            Background="#002F6C"
-            Click="UpdButton"
-            Content="Обновление таблицы"
-            FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14"
-            Foreground="#FFFFFF" />
         <TextBox
             x:Name="pole"
             Grid.Row="1"

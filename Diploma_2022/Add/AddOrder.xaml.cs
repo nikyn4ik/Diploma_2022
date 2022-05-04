@@ -34,6 +34,8 @@ namespace Diploma_2022.Add
             InitializeComponent();
             fillComboBoxStatus();
             IdOrder = idOrder;
+            DatePicker.DisplayDate = DateTime.Today;
+            DatePicker.Text = DateTime.Today.ToString();
         }
         private void Button_add(object sender, RoutedEventArgs e)
         {
@@ -42,7 +44,7 @@ namespace Diploma_2022.Add
             {
                 sqlConnection.Open();
                 string query = "";
-                if (consignee.Text != "" && status.Text != "" && date_of_adoption.Text != "")
+                if (consignee.Text != "" && status.Text != "" && DatePicker.Text != "")
                 {
                     query = "UPDATE [dbo].[orders] SET consignee=@consignee, status_order=@status_order  WHERE id_order=@id";
                     SqlCommand createCommand = new SqlCommand(query, sqlConnection);
@@ -59,7 +61,7 @@ namespace Diploma_2022.Add
                     createCommand.Parameters.AddWithValue("@id", IdOrder.ToString());
                     updateOrder(createCommand);
                 }
-                else if (consignee.Text == "" && date_of_adoption.Text != "")
+                else if (consignee.Text == "" && DatePicker.Text != "")
                 {
                     query = "UPDATE [dbo].[orders] SET status_order=@status_order WHERE id_order=@id";
                     SqlCommand createCommand = new SqlCommand(query, sqlConnection);
@@ -67,11 +69,11 @@ namespace Diploma_2022.Add
                     createCommand.Parameters.AddWithValue("@id", IdOrder.ToString());
                     updateOrder(createCommand);
                 }
-                else if (consignee.Text == "" && status.Text != "" && date_of_adoption.Text != "")
+                else if (consignee.Text == "" && status.Text != "" && DatePicker.Text != "")
                 {
                     query = "UPDATE [dbo].[orders] SET date_of_adoption=@date_of_adoption WHERE id_order=@id";
                     SqlCommand createCommand = new SqlCommand(query, sqlConnection);
-                    createCommand.Parameters.AddWithValue("@date_of_adoption", Convert.ToDateTime(date_of_adoption.Text));
+                    createCommand.Parameters.AddWithValue("@date_of_adoption", Convert.ToDateTime(DatePicker.Text));
                     createCommand.Parameters.AddWithValue("@id", IdOrder.ToString());
                     updateOrder(createCommand);
                 }

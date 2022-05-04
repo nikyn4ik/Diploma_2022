@@ -16,10 +16,9 @@
     </Window.Background>
     <Grid Height="684" VerticalAlignment="Bottom">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="512*" />
-            <ColumnDefinition Width="208*" />
-            <ColumnDefinition Width="471*" />
-            <ColumnDefinition Width="9*" />
+            <ColumnDefinition />
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="23*" />
@@ -32,15 +31,14 @@
         </Grid.RowDefinitions>
         <Border
             Grid.RowSpan="4"
-            Grid.ColumnSpan="3"
             Width="680"
             Height="72"
-            Margin="272,0,0,0"
+            Margin="32,0,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             Background="#002F6C"
             BorderThickness="0,0,0,0"
-            CornerRadius="10">
+            CornerRadius="10" Grid.Column="1">
             <StackPanel
                 Width="392"
                 Height="41"
@@ -65,12 +63,11 @@
             Name="DeliveryGrid"
             Background="#FFFFFF"
             Grid.Row="4"
-            Grid.ColumnSpan="4"
-            Margin="10,0,1,0"
+            Margin="10,0,10,0"
             AutoGenerateColumns="False"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="15"
-            IsReadOnly="True">
+            IsReadOnly="True" Grid.ColumnSpan="3">
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Width="*"
@@ -107,64 +104,53 @@
         <Button
             x:Name="outputdoc"
             Grid.Row="5"
-            Grid.RowSpan="2"
-            Grid.Column="1"
-            Width="208"
-            Height="49"
-            Margin="0,10,0,0"
-            HorizontalAlignment="Center"
+            Height="48"
+            Margin="70,10,420,0"
             VerticalAlignment="Top"
             Background="#FF0000"
             Click="outButton_Click"
-            Content="Вывод PDF"
+            Content="PDF"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14"
-            Foreground="#FFFFFF" />
+            FontSize="20"
+            Foreground="#FFFFFF" Grid.Column="1" />
         <Button
-            x:Name="update"
+            x:Name="outexcel"
             Grid.Row="5"
-            Grid.Column="2"
-            Width="208"
-            Height="49"
-            Margin="0,9,235,0"
-            HorizontalAlignment="Right"
+            Height="48"
+            Margin="420,9,70,0"
             VerticalAlignment="Top"
-            Background="#002F6C"
-            Click="UpdButton"
-            Content="Обновление таблицы"
+            Background="#FF0000"
+            Click="out_excel_button"
+            Content="Excel"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14"
-            Foreground="#FFFFFF" />
+            FontSize="20"
+            Foreground="#FFFFFF" Grid.Column="1" />
 
         <Button
             x:Name="editdeliv"
             Grid.Row="5"
-            Width="208"
             Height="48"
-            Margin="0,10,41,0"
-            HorizontalAlignment="Right"
+            Margin="10,9,0,0"
             VerticalAlignment="Top"
             Background="#002F6C"
             Click="editButton"
-            Content="Оформление доставки"
+            Content="Оформление"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14"
+            FontSize="20"
             Foreground="#FFFFFF" />
 
         <TextBox
             x:Name="pole"
             Grid.Row="1"
-            Grid.Column="2"
-            Margin="255,13,101,0"
+            Margin="15,13,110,0"
             TextChanged="polee_TextChanged"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
-            TextWrapping="Wrap" Width="114.607826810991" Grid.RowSpan="2" />
+            TextWrapping="Wrap" Width="114.607826810991" Grid.RowSpan="2" Grid.Column="2" />
         <Button
             Grid.Row="1"
-            Grid.Column="2"
             Height="36"
-            Margin="0,13,0,0"
+            Margin="0,13,10,0"
             VerticalAlignment="Top"
             Background="#002F6C"
             Click="Button_Click_search"
@@ -172,6 +158,6 @@
             IsDefault="true"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
-            Foreground="#FFFFFF" Width="83.6078268109908" Grid.RowSpan="2" HorizontalAlignment="Right" />
+            Foreground="#FFFFFF" Width="83" Grid.RowSpan="2" HorizontalAlignment="Right" Grid.Column="2" />
     </Grid>
 </Window>
