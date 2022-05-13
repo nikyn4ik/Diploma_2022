@@ -5,5 +5,5 @@
 Данный модуль был разработан с целью уменьшения временных затрат и повышения производительности предприятия, упрощение работы сотрудникам и созданием модуля ERP-системы для управления бизнес-процессами (отчётность, поставки, операции) и управлять ими. 
 
 Требования к запуску:
-- Visual Studio 2022 | ([минимальные сист.требования] (https://docs.microsoft.com/en-us/visualstudio/releases/2022/system-requirements))
-- Microsoft SQL Server | (обновленная база данных находится [здесь](https://github.com/nikyn4ik/DB22)) | ([минимальные сист.требования] (https://docs.microsoft.com/en-us/sql/sql-server/install/hardware-and-software-requirements-for-installing-sql-server-2019?view=sql-server-ver15))
+- Visual Studio 2022 | ( ы [минимальные сист.требования](https://docs.microsoft.com/en-us/visualstudio/releases/2022/system-requirements))
+- Microsoft SQL Server | (обновленная база данных находится [здесь](https://github.com/nikyn4ik/DB22)) | ( ы [минимальные сист.требования](https://docs.microsoft.com/en-us/sql/sql-server/install/hardware-and-software-requirements-for-installing-sql-server-2019?view=sql-server-ver15))
