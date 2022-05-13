@@ -5,4 +5,4 @@
 
 Требования к запуску:
 - Visual Studio 2022
-- Microsoft SQL Server (обновленная база данных находится [здесь](nikyn4ik/DB22))
+- Microsoft SQL Server (обновленная база данных находится [здесь](https://github.com/nikyn4ik/Diploma_2022))
