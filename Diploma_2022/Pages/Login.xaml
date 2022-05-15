@@ -54,10 +54,10 @@
                     Foreground="White" />
                 <TextBox
                     x:Name="login"
+                    Foreground="black"
                     Background="White"
                     FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="18"
-                    Foreground="black" />
+                    FontSize="18"/>
 
 
                 <Label
@@ -106,7 +106,7 @@
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="14"
                     Foreground="#FFFFFF"
-                    IsDefault="true" />
+                    IsDefault="true"/>
 
             </StackPanel>
         </Border>

@@ -3,17 +3,7 @@ using System.Windows.Controls;
 using System.Data.SqlClient;
 using System.Data;
 using System.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using System.Diagnostics;
 using System.IO;
 using Diploma_2022.Models;
 using Diploma_2022.Add;
@@ -47,7 +37,7 @@ namespace Diploma_2022.Pages
 
         private void outButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Process.Start("explorer.exe", @"C:\Users\nikab\source\repos\Diploma_2022\Diploma_2022\bin\Debug\net5.0-windows\PDF");
         }
 
         private void UpdButton(object sender, RoutedEventArgs e)

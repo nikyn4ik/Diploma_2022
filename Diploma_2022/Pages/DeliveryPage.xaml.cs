@@ -10,16 +10,6 @@ using iTextSharp.text.pdf;
 using OfficeOpenXml;
 using Diploma_2022.Models;
 using Diploma_2022.Add;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Diploma_2022.Pages
 {
@@ -62,7 +52,6 @@ namespace Diploma_2022.Pages
         {
             DeliveryGrid.Items.Refresh();
         }
-
         private void Button_Click_search(object sender, RoutedEventArgs e)
         {
             string ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
@@ -79,7 +68,6 @@ namespace Diploma_2022.Pages
                 cmds.Close();
             }
         }
-
         private void editButton(object sender, RoutedEventArgs e)
         {
             object item = DeliveryGrid.SelectedItem;
@@ -94,7 +82,6 @@ namespace Diploma_2022.Pages
                 update();
             }
         }
-
         private void outButton_Click(object sender, RoutedEventArgs e)
         {
             var selectedIndex = DeliveryGrid.SelectedIndex;
@@ -104,46 +91,292 @@ namespace Diploma_2022.Pages
         }
         private void PDFOut(int cellId)
         {
-            if (!Directory.Exists("PDF"))
-                Directory.CreateDirectory("PDF");
-            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             object item = DeliveryGrid.SelectedItem;
+            DataRowView drv = (DataRowView)DeliveryGrid.SelectedItem;
+            string ID_Orders = drv.Row[1].ToString();
             string ID = (DeliveryGrid.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
-            using var doc = new Document();
-            PdfWriter.GetInstance(doc, new FileStream("PDF\\Delivery" + ID + ".pdf", FileMode.Create));
-            doc.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = "SELECT * FROM orders WHERE id_order=@id (SELECT * FROM package WHERE id_order=@id) (SELECT * FROM shipment WHERE id_order=@id) (SELECT * FROM delivery WHERE id_order=@id)";
+            cmd.Parameters.AddWithValue("@id", ID_Orders);
+            cmd.Connection = sqlConnection;
+            sqlConnection.Open();
 
-            var baseFont = BaseFont.CreateFont(@"C:\Windows\Fonts\arial.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
-            var font = new Font(baseFont, Font.DEFAULTSIZE, Font.NORMAL); //создание базовых font/шрифтов
-            var table = new PdfPTable(DeliveryGrid.Columns.Count);// создание таблицы
-            var cell = new PdfPCell(new Phrase("DELIVERY ORDER " + " # " + ID))// создание первой ячейки с фразой, которую мы хотим
+            SqlDataReader dr = null;
+            dr = cmd.ExecuteReader();
+            while (dr.Read())
             {
-                Colspan = DeliveryGrid.Columns.Count,
-                HorizontalAlignment = 1,
-                Border = 0
-            };
-            table.AddCell(cell);
+                int i = 0;
 
-            for (int j = 0; j < DeliveryGrid.Columns.Count; j++)//проходимся циклом по каж.сtolбцу 
-            {
-                cell = new PdfPCell(new Phrase(DeliveryGrid.Columns[j].Header.ToString()));
-                var headerCell = cell.Phrase[0].ToString();
-                cell = new PdfPCell(new Phrase(headerCell, font));
-                cell.BackgroundColor = BaseColor.BLACK;
-                font.Color = BaseColor.WHITE;
-                table.AddCell(cell);
+                string ttf = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "ARIAL.TTF");
+                var baseFont = BaseFont.CreateFont(ttf, BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+                var font = new Font(baseFont, Font.DEFAULTSIZE, Font.NORMAL);
+                Document doc1 = new Document(PageSize.A4);
+                PdfWriter.GetInstance(doc1, new FileStream("PDF\\Заказ " + ID + ".pdf", FileMode.Create));
+                doc1.Open();
+
+                Chunk c1 = new Chunk(" " + "                                         Сервисный металлоцентр СМЦ-Колпино", font);
+                Chunk c2 = new Chunk(" " + "                         ", font);
+
+                Chunk c3 = new Chunk(" " + "Россия, Колпино, Санкт-Петербург, Территория промзоны 'Ижорские завод', д.90, лит. Д, помещение 1-Н", font);
+                Chunk c4 = new Chunk(" " + "                         ", font);
+
+                Chunk c5 = new Chunk(" " + "                                                      Информация о заказе", font);
+                Chunk c6 = new Chunk(" " + "                         ", font);
+
+                Chunk c7 = new Chunk(" " + "ID заказа:   " + dr[0], font);
+                Chunk c8 = new Chunk(" " + "Аттестация пройдена?:  " + dr[20], font);
+                Chunk c9 = new Chunk(" " + "Заказчик:  " + dr[15], font);
+                Chunk c10 = new Chunk(" " + "СИСТ-С3:  " + dr[1], font);
+                Chunk c11 = new Chunk(" " + "ЛОГ-СЗ:  " + dr[2], font);
+                Chunk c12 = new Chunk(" " + "Продукт:  " + dr[12], font);
+                Chunk c13 = new Chunk(" " + "Толщина продукта:  " + dr[6], font);
+                Chunk c14 = new Chunk(" " + "Длина продукта:  " + dr[7], font);
+                Chunk c15 = new Chunk(" " + "Ширина продукта:  " + dr[8], font);
+                Chunk c16 = new Chunk(" " + "Грузоперевозчик:  " + dr[13], font);
+                Chunk c17 = new Chunk(" " + "Статус заказа:  " + dr[14], font);
+
+                Chunk c18 = new Chunk(" " + "                         ", font);
+                Chunk c19 = new Chunk(" " + "                                         Сертификация", font);
+                Chunk c20 = new Chunk(" " + "Стандарт на марку:  " + dr[1], font);
+                Chunk c21 = new Chunk(" " + "Стандарт продукта:  " + dr[2], font);
+                Chunk c22 = new Chunk(" " + "Дата аттестации:  " + dr[3], font);
+
+                Chunk c23 = new Chunk(" " + "                         ", font);
+                Chunk c24 = new Chunk(" " + "                                         Транспорт", font);
+                Chunk c25 = new Chunk(" " + "Транспорт:  " + dr[1], font);
+                Chunk c26 = new Chunk(" " + "Номер:  " + dr[2], font);
+
+                Chunk c27 = new Chunk(" " + "                         ", font);
+                Chunk c28 = new Chunk(" " + "                                         Склад", font);
+                Chunk c29 = new Chunk(" " + "Наименование:  " + dr[1], font);
+                Chunk c30 = new Chunk(" " + "Адрес:  " + dr[2], font);
+                Chunk c31 = new Chunk(" " + "Телефон:  " + dr[3], font);
+                Chunk c32 = new Chunk(" " + "ФИО ответственного за склад:  " + dr[6], font);
+
+                Chunk c33 = new Chunk(" " + "                         ", font);
+                Chunk c34 = new Chunk(" " + "                                         Доставка", font);
+                Chunk c35 = new Chunk(" " + "Ранняя доставка:  " + dr[3], font);
+                Chunk c36 = new Chunk(" " + "Дата доставки:  " + dr[2], font);
+                Chunk c37 = new Chunk(" " + " ", font);
+                Chunk c38 = new Chunk(" " + " ", font);
+
+
+                Phrase ph1 = new Phrase();
+                ph1.Font = new Font(Font.FontFamily.TIMES_ROMAN, 17, Font.BOLD, BaseColor.BLACK);
+                Phrase ph2 = new Phrase();
+                Phrase ph3 = new Phrase();
+                ph3.Font = new Font(Font.FontFamily.TIMES_ROMAN, 17, Font.BOLD, BaseColor.BLACK);
+                Phrase ph4 = new Phrase();
+                Phrase ph5 = new Phrase();
+                ph5.Font = new Font(Font.FontFamily.TIMES_ROMAN, 17, Font.BOLD, BaseColor.BLACK);
+                Phrase ph6 = new Phrase();
+                Phrase ph7 = new Phrase();
+                Phrase ph8 = new Phrase();
+                Phrase ph9 = new Phrase();
+                Phrase ph10 = new Phrase();
+                Phrase ph11 = new Phrase();
+                Phrase ph12 = new Phrase();
+                Phrase ph13 = new Phrase();
+                Phrase ph14 = new Phrase();
+                Phrase ph15 = new Phrase();
+                Phrase ph16 = new Phrase();
+                Phrase ph17 = new Phrase();
+                Phrase ph18 = new Phrase();
+                Phrase ph19 = new Phrase();
+                ph19.Font = new Font(Font.FontFamily.TIMES_ROMAN, 17, Font.BOLD, BaseColor.BLACK);
+                Phrase ph20 = new Phrase();
+                Phrase ph21 = new Phrase();
+                Phrase ph22 = new Phrase();
+                Phrase ph23 = new Phrase();
+                Phrase ph24 = new Phrase();
+                ph24.Font = new Font(Font.FontFamily.TIMES_ROMAN, 17, Font.BOLD, BaseColor.BLACK);
+                Phrase ph25 = new Phrase();
+                Phrase ph26 = new Phrase();
+                Phrase ph27 = new Phrase();
+                Phrase ph28 = new Phrase();
+                ph28.Font = new Font(Font.FontFamily.TIMES_ROMAN, 17, Font.BOLD, BaseColor.BLACK);
+                Phrase ph29 = new Phrase();
+                Phrase ph30 = new Phrase();
+                Phrase ph31 = new Phrase();
+                Phrase ph32 = new Phrase();
+
+                Phrase ph33 = new Phrase();
+                ph33.Font = new Font(Font.FontFamily.TIMES_ROMAN, 17, Font.BOLD, BaseColor.BLACK);
+                Phrase ph34 = new Phrase();
+                ph34.Font = new Font(Font.FontFamily.TIMES_ROMAN, 17, Font.BOLD, BaseColor.BLACK);
+                Phrase ph35 = new Phrase();
+                Phrase ph36 = new Phrase();
+
+                Phrase ph37 = new Phrase();
+                Phrase ph38 = new Phrase();
+
+                ph1.Add(c1);
+                ph2.Add(c2);
+                ph4.Add(c4);
+                ph3.Add(c3);
+                ph5.Add(c5);
+                ph6.Add(c6);
+                ph7.Add(c7);
+                ph8.Add(c8);
+                ph9.Add(c9);
+                ph10.Add(c10);
+                ph1.Add(c11);
+                ph2.Add(c12);
+                ph4.Add(c13);
+                ph3.Add(c14);
+                ph5.Add(c15);
+                ph6.Add(c16);
+                ph7.Add(c17);
+                ph8.Add(c18);
+                ph9.Add(c19);
+                ph10.Add(c20);
+                ph10.Add(c21);
+                ph10.Add(c22);
+                ph10.Add(c23);
+                ph10.Add(c24);
+                ph9.Add(c25);
+                ph10.Add(c26);
+                ph10.Add(c27);
+                ph10.Add(c28);
+                ph10.Add(c29);
+                ph10.Add(c30);
+                ph10.Add(c31);
+                ph10.Add(c32);
+                ph10.Add(c33);
+                ph10.Add(c34);
+                ph10.Add(c35);
+                ph10.Add(c36);
+
+                ph10.Add(c37);
+                ph10.Add(c38);
+
+
+                Paragraph p1 = new Paragraph();
+                p1.Add(ph1);
+                Paragraph p2 = new Paragraph();
+                p2.Add(ph2);
+                Paragraph p4 = new Paragraph();
+                p4.Add(ph4);
+                Paragraph p3 = new Paragraph();
+                p3.Add(ph3);
+                Paragraph p5 = new Paragraph();
+                p5.Add(ph5);
+                Paragraph p6 = new Paragraph();
+                p6.Add(ph6);
+                Paragraph p7 = new Paragraph();
+                p7.Add(ph7);
+                Paragraph p8 = new Paragraph();
+                p8.Add(ph8);
+                Paragraph p9 = new Paragraph();
+                p9.Add(ph9);
+                Paragraph p10 = new Paragraph();
+                p10.Add(ph10);
+                Paragraph p11 = new Paragraph();
+                p11.Add(ph11);
+                Paragraph p12 = new Paragraph();
+                p12.Add(ph12);
+                Paragraph p13 = new Paragraph();
+                p13.Add(ph13);
+                Paragraph p14 = new Paragraph();
+                p14.Add(ph14);
+                Paragraph p15 = new Paragraph();
+                p15.Add(ph15);
+                Paragraph p16 = new Paragraph();
+                p16.Add(ph16);
+                Paragraph p17 = new Paragraph();
+                p17.Add(ph17);
+                Paragraph p18 = new Paragraph();
+                p18.Add(ph18);
+                Paragraph p19 = new Paragraph();
+                p19.Add(ph19);
+                Paragraph p20 = new Paragraph();
+                p20.Add(ph20);
+                Paragraph p21 = new Paragraph();
+                p21.Add(ph21);
+                Paragraph p22 = new Paragraph();
+                p22.Add(ph22);
+                Paragraph p23 = new Paragraph();
+                p23.Add(ph23);
+                Paragraph p24 = new Paragraph();
+                p24.Add(ph24);
+                Paragraph p25 = new Paragraph();
+                p25.Add(ph25);
+                Paragraph p26 = new Paragraph();
+                p26.Add(ph26);
+                Paragraph p27 = new Paragraph();
+                p27.Add(ph27);
+                Paragraph p28 = new Paragraph();
+                p28.Add(ph28);
+                Paragraph p29 = new Paragraph();
+                p29.Add(ph29);
+                Paragraph p30 = new Paragraph();
+                p30.Add(ph30);
+                Paragraph p31 = new Paragraph();
+                p31.Add(ph31);
+                Paragraph p32 = new Paragraph();
+                p32.Add(ph32);
+                Paragraph p33 = new Paragraph();
+                p33.Add(ph33);
+                Paragraph p34 = new Paragraph();
+                p34.Add(ph34);
+                Paragraph p35 = new Paragraph();
+                p35.Add(ph35);
+                Paragraph p36 = new Paragraph();
+                p36.Add(ph36);
+
+                Paragraph p37 = new Paragraph();
+                p37.Add(ph37);
+                Paragraph p38 = new Paragraph();
+                p38.Add(ph38);
+
+
+                doc1.Add(p1);
+                doc1.Add(p2);
+                doc1.Add(p4);
+                doc1.Add(p3);
+                doc1.Add(p5);
+                doc1.Add(p6);
+                doc1.Add(p7);
+                doc1.Add(p8);
+                doc1.Add(p9);
+                doc1.Add(p10);
+                doc1.Add(p11);
+                doc1.Add(p12);
+                doc1.Add(p13);
+                doc1.Add(p14);
+                doc1.Add(p15);
+                doc1.Add(p16);
+                doc1.Add(p17);
+                doc1.Add(p18);
+                doc1.Add(p19);
+                doc1.Add(p20);
+                doc1.Add(p21);
+                doc1.Add(p22);
+                doc1.Add(p23);
+                doc1.Add(p24);
+                doc1.Add(p25);
+                doc1.Add(p26);
+                doc1.Add(p27);
+                doc1.Add(p28);
+                doc1.Add(p29);
+                doc1.Add(p30);
+                doc1.Add(p31);
+                doc1.Add(p32);
+                doc1.Add(p33);
+                doc1.Add(p34);
+                doc1.Add(p35);
+                doc1.Add(p36);
+
+                doc1.Add(p37);
+                doc1.Add(p38);
+
+                doc1.CloseDocument();
+                doc1.Close();
+                doc1.Dispose();
+                ++i;
             }
-            for (int j = 0; j < DeliveryGrid.Columns.Count; j++)//проходимся циклом по каж.сtolбцу 
-            {
-                string sr = (DeliveryGrid.SelectedCells[j].Column.GetCellContent(item) as TextBlock).Text;
-                cell = new PdfPCell(new Phrase(sr, font));
-                cell.BackgroundColor = BaseColor.LIGHT_GRAY;
-                font.Color = BaseColor.WHITE;
-                table.AddCell(cell);
-            }
-
-            doc.Add(table);
-            doc.Close();
+            dr.Close();
+            sqlConnection.Close();
             MessageBox.Show("PDF-документ сохранен", "Severstal Infocom");
         }
 
@@ -164,7 +397,7 @@ namespace Diploma_2022.Pages
             DataRowView drv = (DataRowView)DeliveryGrid.SelectedItem; //""
             string ID_Orders = drv.Row[1].ToString();
 
-            var sql = "SELECT * FROM orders WHERE id_order='@id' SELECT * FROM package WHERE id_order='@id' SELECT * FROM shipment WHERE id_order='@id' SELECT * FROM delivery WHERE id_order='@id'";
+            var sql = "SELECT * FROM orders WHERE id_order=@id (SELECT * FROM package WHERE id_order=@id) (SELECT * FROM shipment WHERE id_order=@id) (SELECT date_of_delivery,early_delivery FROM delivery WHERE id_order=@id)";
             SqlCommand cmd = new SqlCommand(sql, sqlConnection);
             cmd.Parameters.AddWithValue("@id", ID_Orders);
             var reader = cmd.ExecuteReader();
@@ -202,16 +435,16 @@ namespace Diploma_2022.Pages
             ws.Cells["K1"].Value = "Статус заказа";
             ws.Cells["L1"].Value = "Пройдена проверка на качество";
 
-            //qua_certificate
+            ////qua_certificate
             ws.Cells["M1"].Value = "Стандарт на марку";
             ws.Cells["N1"].Value = "Стандарт продукта";
             ws.Cells["O1"].Value = "Дата аттестации";
 
-            //transport
+            ////transport
             ws.Cells["P1"].Value = "Транспорт";
             ws.Cells["Q1"].Value = "Номер транспорта";
 
-            //storage
+            ////storage
             ws.Cells["R1"].Value = "Склад";
             ws.Cells["S1"].Value = "Адрес склада";
             ws.Cells["T1"].Value = "Телефон склада";
@@ -235,24 +468,24 @@ namespace Diploma_2022.Pages
                 ws.Cells[$"G{count}"].Value = reader.GetValue("length_mm");
                 ws.Cells[$"H{count}"].Value = reader.GetValue("width_mm");
                 ws.Cells[$"I{count}"].Value = reader.GetValue("name_product");
-                ws.Cells[$"J{count}"].Value = reader.GetValue("consignee");
+                ws.Cells[$"J{count}"].Value = reader.GetValue("name_consignee");
                 ws.Cells[$"K{count}"].Value = reader.GetValue("status_order");
                 ws.Cells[$"L{count}"].Value = reader.GetValue("access_standart");
 
 
-                //qua_certificate
-                ws.Cells[$"M{count}"].Value = reader.GetValue("standard_per_mark");
+                ////qua_certificate
+                ws.Cells[$"M{count}"].Value = reader.GetValue("standard_per_mark");//
                 ws.Cells[$"N{count}"].Value = reader.GetValue("product_standard");
                 ws.Cells[$"O{count}"].Value = reader.GetValue("date_add_certificate");
                 ws.Cells[$"O{count}"].Style.Numberformat.Format = "yyyy-mm-dd";
 
-                //transport
+                ////transport
                 ws.Cells[$"P{count}"].Value = reader.GetValue("name_transport");
                 ws.Cells[$"Q{count}"].Value = reader.GetValue("number_transport");
 
-                //storage
+                ////storage
                 ws.Cells[$"R{count}"].Value = reader.GetValue("name_storage");
-                ws.Cells[$"S{count}"].Value = reader.GetValue("address"); 
+                ws.Cells[$"S{count}"].Value = reader.GetValue("address");
                 ws.Cells[$"T{count}"].Value = reader.GetValue("phone_storage");
                 ws.Cells[$"U{count}"].Value = reader.GetValue("FIO_responsible_person");
 

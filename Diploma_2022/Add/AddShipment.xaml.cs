@@ -4,7 +4,6 @@ using System.Windows.Controls;
 using System.Data.SqlClient;
 using System.Data;
 using System.Collections.Generic;
-using System.Linq;
 
 using Diploma_2022.Models;
 

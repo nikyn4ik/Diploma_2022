@@ -92,18 +92,6 @@ namespace Diploma_2022.Pages
                 sqlCommand.Parameters.AddWithValue("@id", ID_Orders);
                 int count = Convert.ToInt32(sqlCommand.ExecuteScalar());
                 sqlConnection.Close();
-
-                //sqlConnection.Open(); // проверка на пройденную сертификацию
-                //var select2 = "SELECT (id_qua_certificate) FROM [dbo].[orders] WHERE id_order=@id";
-                //SqlCommand sqlCommand2 = new SqlCommand(select2, sqlConnection);
-                //sqlCommand2.Parameters.AddWithValue("@id", ID_Orders);
-                //int count2 = Convert.ToInt32(sqlCommand2.ExecuteScalar());
-                //sqlConnection.Close();
-
-                //if (count2 ==null) // проверка на пройденную сертификацию гг
-                //{
-                //    MessageBox.Show("Не пройдена аттестация!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
-                //}
                 
                 if (count1 == 1) // проверка на нахождение заказа в  браке
                 {

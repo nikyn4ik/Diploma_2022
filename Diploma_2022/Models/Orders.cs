@@ -36,7 +36,7 @@ namespace Diploma_2022.Models
 
         public string status_order { get; set; }
 
-        public string consignee { get; set; }
+        public string name_consignee { get; set; }
 
         public int id_payer { get; set; }
 

@@ -1,17 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using OfficeOpenXml;
-using Diploma_2022.Models;
-using Diploma_2022.Add;
-using System;
+﻿using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Data.SqlClient;
@@ -20,6 +7,7 @@ using System.IO;
 using System.Configuration;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using Diploma_2022.Add;
 
 
 namespace Diploma_2022.Pages
@@ -50,7 +38,6 @@ namespace Diploma_2022.Pages
             shipment.Fill(dt);
             ShipmentGrid.ItemsSource = dt.DefaultView;
         }
-
         private void polee_TextChanged(object sender, TextChangedEventArgs e)
         {
             ShipmentGrid.Items.Refresh();
@@ -185,6 +172,7 @@ namespace Diploma_2022.Pages
                 var window = new AddShipment(Convert.ToInt32(ID));
                 window.ShowDialog();
                 Show();
+                update();
             }
         }
     }

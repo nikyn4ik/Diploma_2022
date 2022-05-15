@@ -25,7 +25,6 @@ namespace Diploma_2022.Add
     public partial class AddPackage : Window
     {
         SqlConnection sqlConnection = new SqlConnection(@"Data Source=SPUTNIK; Initial Catalog=diploma_db; Integrated Security=True");
-        SqlDataReader db;
 
         int IdOrder;
         public AddPackage(int idOrder)

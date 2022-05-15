@@ -14,35 +14,29 @@
     mc:Ignorable="d">
     <Window.Background>
 
-        <ImageBrush ImageSource="\Images\ugs.jpg" />
+        <ImageBrush ImageSource="\Images\newbrand-bg2.jpg" />
 
     </Window.Background>
 
 
     <Grid Height="684" VerticalAlignment="Bottom">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="497*" />
-            <ColumnDefinition Width="224*" />
-            <ColumnDefinition Width="471*" />
-            <ColumnDefinition Width="9*" />
+            <ColumnDefinition Width="451*" />
+            <ColumnDefinition Width="288*" />
+            <ColumnDefinition Width="451*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="23*" />
-            <RowDefinition Height="29*" />
-            <RowDefinition Height="20*" />
-            <RowDefinition Height="22*" />
-            <RowDefinition Height="515*" />
+            <RowDefinition Height="11*" />
+            <RowDefinition Height="598*"/>
             <RowDefinition Height="58*" />
             <RowDefinition Height="17*" />
         </Grid.RowDefinitions>
         <Border
-            Grid.RowSpan="4"
+            Grid.RowSpan="2"
             Grid.ColumnSpan="3"
-            Width="680"
-            Height="72"
-            Margin="272,0,0,0"
+            Width="668"
+            Margin="272,10,0,527"
             HorizontalAlignment="Left"
-            VerticalAlignment="Center"
             Background="#002F6C"
             BorderThickness="0,0,0,0"
             CornerRadius="10">
@@ -70,13 +64,14 @@
 
         <DataGrid
             Name="PackageGrid"
-            Grid.Row="4"
+            Grid.Row="1"
             Grid.ColumnSpan="3"
-            Margin="10,0,1,0"
+            Margin="10,93,10,0"
+            AutoGenerateColumns="False"
+            Background="White"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="15"
-            Background="White"
-            IsReadOnly="True" AutoGenerateColumns="False">
+            BorderBrush="#002F6C" BorderThickness="2">
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Width="*"
@@ -108,69 +103,65 @@
             x:Name="pole"
             Grid.Row="1"
             Grid.Column="2"
-            Width="115"
-            Margin="254,13,0,0"
-            HorizontalAlignment="Left"
+            Margin="228,0,0,539"
             TextChanged="polee_TextChanged"
+            BorderBrush="#002F6C" BorderThickness="2"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="20"
-            TextWrapping="Wrap" Height="36" Grid.RowSpan="2" />
+            FontSize="20" Width="115" HorizontalAlignment="Left" Height="34" VerticalAlignment="Bottom" />
         <Button
             x:Name="outputdoc"
-            Grid.Row="5"
-            Grid.Column="2"
-            Width="208"
-            Margin="0,9,231,0"
-            HorizontalAlignment="Right"
-            Background="#FF0000"
             Click="outButton_Click"
-            Content="Вывод PDF"
+            Content="PDF"
+            Grid.Row="2"
+            Grid.Column="1"
+            Height="48"
+            Margin="290,10,0,0"
+            VerticalAlignment="Top"
+            Background="#FF0000"
+            BorderBrush="#002F6C" BorderThickness="2"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14"
-            Foreground="#FFFFFF" />
+            FontSize="20"
+            Foreground="#FFFFFF" Width="220" HorizontalAlignment="Left" Grid.ColumnSpan="2" />
         <Button
             x:Name="addButton"
-            Grid.Row="5"
-            Grid.Column="1"
-            Width="224"
-            Height="49"
-            Margin="0,9,0,0"
+            Click="AddButton_Click"
+            Content="Редактирование"
+            Grid.Row="2"
+            Width="220"
+            Height="48"
+            Margin="0,10,0,0"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
             Background="#002F6C"
-            Click="AddButton_Click"
-            Content="Редактирование"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14"
-            Foreground="#FFFFFF" />
+            FontSize="20"
+            Foreground="#FFFFFF" BorderBrush="#FF0000" BorderThickness="2" Grid.Column="1" />
         <Button
             Grid.Row="1"
-            Grid.Column="2"
-            Width="84"
-            Height="36"
-            Margin="0,13,1,0"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Top"
-            IsDefault="true"
-            FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14"
+            Height="34"
+            Margin="364,0,10,539"
+            VerticalAlignment="Bottom"
             Background="#002F6C"
             Click="Button_Click_search"
             Content="Поиск"
-            Foreground="#FFFFFF"
-            RenderTransformOrigin="0.545,1.183" Grid.RowSpan="2" />
-        <Button
-            x:Name="toshipment"
-            Grid.Row="5"
-            Width="208"
-            Height="49"
-            Margin="256,9,0,0"
-            HorizontalAlignment="Left"
-            Background="#FF0000"
-            Click="Buttontoshipment"
-            Content="Отправить заявку в отгрузку"
+            IsDefault="true"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
-            Foreground="#FFFFFF" />
+            Foreground="#FFFFFF"
+            Grid.Column="2" />
+        <Button
+            x:Name="toshipment"
+            Click="Buttontoshipment"
+            Content="В отгрузку"
+            Grid.Row="2"
+            Height="48"
+            Margin="235,10,0,0"
+            VerticalAlignment="Top"
+            Background="#FF0000"
+            BorderBrush="#002F6C" BorderThickness="2"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="20"
+            Foreground="#FFFFFF" Width="220" HorizontalAlignment="Left" Grid.ColumnSpan="2" />
+
     </Grid>
 </Window>

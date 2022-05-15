@@ -7,12 +7,21 @@
     <ApplicationIcon>Images\icon.ico</ApplicationIcon>
     <AssemblyName>$(MSBuildProjectName)</AssemblyName>
     <Copyright>Nika Ulasik</Copyright>
+    <DebugType>embedded</DebugType>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Media\**" />
+    <EmbeddedResource Remove="Media\**" />
+    <None Remove="Media\**" />
+    <Page Remove="Media\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <None Remove="Database1.mdf" />
     <None Remove="Database1_log.ldf" />
     <None Remove="Images\add.jpg" />
+    <None Remove="Images\background.jpg" />
     <None Remove="Images\exit.png" />
     <None Remove="Images\hnet.com-image.ico" />
     <None Remove="Images\icon.ico" />
@@ -27,6 +36,10 @@
     <None Remove="Images\warning1.png" />
     <None Remove="Pages\logout.png" />
     <None Remove="severstal_logo.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Remove="Styles.xaml" />
   </ItemGroup>
 
   <ItemGroup>

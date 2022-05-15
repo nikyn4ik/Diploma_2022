@@ -24,7 +24,6 @@ namespace Diploma_2022.Add
     public partial class AddStorage : Window
     {
         SqlConnection sqlConnection = new SqlConnection(@"Data Source=SPUTNIK; Initial Catalog=diploma_db; Integrated Security=True");
-        SqlDataReader db;
         public AddStorage()
         {
             InitializeComponent();

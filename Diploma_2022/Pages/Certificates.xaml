@@ -8,11 +8,12 @@
     Title="Severstal Infocom"
     Width="1200"
     Height="700"
+    ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
     <Window.Background>
 
-        <ImageBrush ImageSource="\Images\ugs.jpg" />
+        <ImageBrush ImageSource="\Images\newbrand-bg2.jpg" />
 
     </Window.Background>
 
@@ -20,26 +21,20 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="497*" />
             <ColumnDefinition Width="224*" />
-            <ColumnDefinition Width="471*" />
-            <ColumnDefinition Width="9*" />
+            <ColumnDefinition Width="480*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="23*" />
-            <RowDefinition Height="29*" />
-            <RowDefinition Height="20*" />
-            <RowDefinition Height="22*" />
-            <RowDefinition Height="515*" />
+            <RowDefinition Height="11*" />
+            <RowDefinition Height="586*" />
             <RowDefinition Height="58*" />
             <RowDefinition Height="17*" />
         </Grid.RowDefinitions>
         <Border
-            Grid.RowSpan="4"
+            Grid.RowSpan="2"
             Grid.ColumnSpan="3"
-            Width="680"
-            Height="72"
-            Margin="272,0,0,0"
+            Width="668"
+            Margin="272,10,0,527"
             HorizontalAlignment="Left"
-            VerticalAlignment="Center"
             Background="#002F6C"
             BorderThickness="0,0,0,0"
             CornerRadius="10">
@@ -49,16 +44,14 @@
                 Margin="0,20,0,0"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Top">
-
                 <TextBlock
                     Width="310"
                     Height="36"
-                    Margin="0,0,-11,0"
-                    HorizontalAlignment="Center"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="26"
                     Foreground="White"
-                    TextAlignment="Center"><Run Language="ru-ru" Text="Сертификация" /></TextBlock>
+                    TextAlignment="Center"
+                    Text="Сертификация" HorizontalAlignment="Center"/>
 
             </StackPanel>
         </Border>
@@ -66,13 +59,14 @@
 
         <DataGrid
             Name="CertificatesGrid"
-            Grid.Row="4"
+            Grid.Row="1"
             Grid.ColumnSpan="3"
-            Margin="10,0,1,1"
+            Margin="10,81,10,0"
             AutoGenerateColumns="False"
             Background="White"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="15"
+            BorderBrush="#002F6C" BorderThickness="2"
             IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn
@@ -106,54 +100,54 @@
         </DataGrid>
         <Button
             x:Name="deleteButton"
-            Grid.Row="5"
+            Grid.Row="2"
             Grid.Column="1"
-            Width="207"
-            Height="49"
-            Margin="10,0,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
+            Height="48"
+            Margin="0,10,260,0"
+            VerticalAlignment="Top"
             Background="#FF0000"
             Click="deleteButton_Click"
-            Content="Удалить сертификат"
+            Content="Удалить"
+            BorderBrush="#002F6C" BorderThickness="2"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14"
-            Foreground="#FFFFFF" />
+            FontSize="20"
+            Foreground="#FFFFFF" Width="220" HorizontalAlignment="Right" Grid.ColumnSpan="2" />
 
         <Button
             x:Name="addButton"
-            Grid.Row="5"
-            Width="208"
+            Grid.Row="2"
+            Width="220"
             Height="48"
-            Margin="272,0,0,0"
+            Margin="277,11,0,0"
             HorizontalAlignment="Left"
-            VerticalAlignment="Center"
+            VerticalAlignment="Top"
             Background="#002F6C"
             Click="AddButton_Click"
-            Content="Добавление Сертификата"
+            Content="Добавление"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14"
-            Foreground="#FFFFFF" />
+            FontSize="20"
+            Foreground="#FFFFFF" BorderBrush="#FF0000" BorderThickness="2" Grid.ColumnSpan="2" Grid.RowSpan="2" />
 
         <TextBox
             x:Name="pole"
             Grid.Row="1"
             Grid.Column="2"
-            Margin="256,12,100,0"
+            Margin="256,0,0,540"
             TextChanged="polee_TextChanged"
+            BorderBrush="#002F6C" BorderThickness="2"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="20"
-            TextWrapping="Wrap" Grid.RowSpan="2" />
+            FontSize="20" Width="115" HorizontalAlignment="Left" Height="34" VerticalAlignment="Bottom" />
         <Button
             Grid.Row="1"
             Grid.Column="2"
-            Margin="0,12,1,1"
+            Margin="389,0,10,540"
             Background="#002F6C"
             Click="Button_Click_search"
             Content="Поиск"
             IsDefault="true"
+            BorderBrush="#002F6C" BorderThickness="2"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
-            Foreground="#FFFFFF" Grid.RowSpan="2" HorizontalAlignment="Right" Width="84" />
+            Foreground="#FFFFFF" Height="34" VerticalAlignment="Bottom" />
     </Grid>
 </Window>

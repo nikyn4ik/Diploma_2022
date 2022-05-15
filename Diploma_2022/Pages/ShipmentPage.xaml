@@ -15,40 +15,31 @@
 
     <Window.Background>
 
-        <ImageBrush ImageSource="\Images\ugs.jpg" />
+        <ImageBrush ImageSource="\Images\newbrand-bg2.jpg" />
 
     </Window.Background>
 
     <Grid Height="684" VerticalAlignment="Bottom">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="230*" />
-            <ColumnDefinition Width="231*" />
+            <ColumnDefinition Width="461*" />
             <ColumnDefinition Width="271*" />
-            <ColumnDefinition Width="230*" />
-            <ColumnDefinition Width="230*" />
-            <ColumnDefinition Width="9*" />
+            <ColumnDefinition Width="469*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="23*" />
-            <RowDefinition Height="29*" />
-            <RowDefinition Height="20*" />
-            <RowDefinition Height="22*" />
-            <RowDefinition Height="515*" />
+            <RowDefinition Height="11*" />
+            <RowDefinition Height="586*" />
             <RowDefinition Height="58*" />
             <RowDefinition Height="17*" />
         </Grid.RowDefinitions>
         <Border
-            Grid.RowSpan="4"
-            Grid.Column="1"
+            Grid.RowSpan="2"
             Grid.ColumnSpan="3"
-            Width="680"
-            Height="72"
-            Margin="43,0,0,0"
+            Width="668"
+            Margin="283,10,0,526"
             HorizontalAlignment="Left"
-            VerticalAlignment="Center"
             Background="#002F6C"
             BorderThickness="0,0,0,0"
-            CornerRadius="10">
+            CornerRadius="10" Height="72">
             <StackPanel
                 Width="392"
                 Height="41"
@@ -64,23 +55,23 @@
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="26"
                     Foreground="White"
-                    TextAlignment="Center"><Run Language="ru-ru" Text="Отгрузка" /></TextBlock>
+                    Text="Отгрузка"
+                    TextAlignment="Center" />
 
             </StackPanel>
         </Border>
 
         <DataGrid
             Name="ShipmentGrid"
-            Grid.Row="4"
-            Grid.ColumnSpan="5"
-            Height="515"
-            Margin="10,0,1,0"
-            VerticalAlignment="Center"
+            Grid.Row="1"
+            Grid.ColumnSpan="3"
+            Margin="10,93,10,59"
             AutoGenerateColumns="False"
             Background="White"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="15"
-            IsReadOnly="True">
+            BorderBrush="#002F6C" BorderThickness="2"
+            IsReadOnly="True" Grid.RowSpan="2">
 
             <DataGrid.Columns>
                 <DataGridTextColumn
@@ -123,51 +114,44 @@
         </DataGrid>
         <Button
             x:Name="outputdoc"
-            Grid.Row="5"
-            Grid.Column="2"
-            Grid.ColumnSpan="2"
+            Grid.Row="2"
+            Grid.Column="1"
             Height="48"
-            Margin="269,10,0,0"
+            Margin="270,10,0,0"
             VerticalAlignment="Top"
             Background="#FF0000"
             Click="outButton_Click"
-            Content="Вывод PDF"
+            Content="PDF"
+            BorderBrush="#002F6C" BorderThickness="2"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="16"
-            Foreground="#FFFFFF" />
+            FontSize="20"
+            Foreground="#FFFFFF" Width="220" HorizontalAlignment="Left" Grid.ColumnSpan="2" />
         <Button
-            Grid.Row="5"
-            Grid.Column="1"
-            Width="233"
+            Grid.Row="2"
             Height="48"
-            Margin="0,10,0,0"
-            HorizontalAlignment="Center"
+            Margin="241,10,0,0"
             VerticalAlignment="Top"
             Background="#FF0000"
             Click="AddButton_Click"
-            Content="Отправить в доставку"
+            Content="В доставку"
+            BorderBrush="#002F6C" BorderThickness="2"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="16"
-            Foreground="#FFFFFF" />
+            FontSize="20"
+            Foreground="#FFFFFF" Width="220" HorizontalAlignment="Left" Grid.ColumnSpan="2" />
         <TextBox
             x:Name="pole"
             Grid.Row="1"
-            Grid.Column="4"
-            Width="115"
-            Margin="18,13,0,0"
-            HorizontalAlignment="Left"
+            Grid.Column="2"
+            Margin="240,0,0,537"
             TextChanged="polee_TextChanged"
+            BorderBrush="#002F6C" BorderThickness="2"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="20"
-            TextWrapping="Wrap" Height="36" Grid.RowSpan="2" />
+            FontSize="20" Width="115" HorizontalAlignment="Left" Height="34" VerticalAlignment="Bottom" />
         <Button
             Grid.Row="1"
-            Grid.Column="4"
-            Width="84"
-            Height="36"
-            Margin="0,13,0,0"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Top"
+            Height="34"
+            Margin="373,0,10,537"
+            VerticalAlignment="Bottom"
             Background="#002F6C"
             Click="Button_Click_search"
             Content="Поиск"
@@ -175,18 +159,20 @@
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
             Foreground="#FFFFFF"
-            RenderTransformOrigin="0.545,1.183" Grid.RowSpan="2" />
+            Grid.Column="2" />
+
         <Button
             x:Name="editButton"
-            Grid.Row="5"
-            Grid.Column="2"
-            Margin="23,10,15,0"
+            Grid.Row="2"
+            Width="220"
+            Height="48"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
             Background="#002F6C"
             Click="edit_Click"
             Content="Редактирование"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="16"
-            Foreground="#FFFFFF"
-            RenderTransformOrigin="0.498,0.646" />
+            FontSize="20"
+            Foreground="#FFFFFF" BorderBrush="#FF0000" BorderThickness="2" Grid.Column="1" Margin="0,10,0,0" />
     </Grid>
 </Window>
