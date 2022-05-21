@@ -36,13 +36,15 @@
         </Grid.RowDefinitions>
         <TextBox
             x:Name="reasonbrak"
-            Grid.Row="1"
+            Grid.Row="2"
             Grid.Column="3"
-            Margin="0,83,0,1"
+            Margin="0,13,0,14"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="18"
+            BorderBrush="Black"
             Foreground="Black"
-            TextWrapping="Wrap" Grid.RowSpan="2" />
+            Background="#F4F4F4"
+            TextWrapping="Wrap" Height="31" />
         <Label
             Grid.Row="2"
             HorizontalContentAlignment="Center"
@@ -78,8 +80,10 @@
             x:Name="DatePicker"
             Grid.Row="4"
             Grid.Column="3"
-            Margin="0,12,0,12"
             FirstDayOfWeek="Monday"
+            Foreground="Black"
+            BorderBrush="Black"
+            Background="#F4F4F4"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="18" />
         <Button
@@ -92,6 +96,6 @@
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
             Foreground="#FFFFFF" Grid.Column="1"
-            Grid.RowSpan="2" Grid.ColumnSpan="3" />
+            Grid.RowSpan="2" Grid.ColumnSpan="3" Width="282" Height="54" />
     </Grid>
 </Window>

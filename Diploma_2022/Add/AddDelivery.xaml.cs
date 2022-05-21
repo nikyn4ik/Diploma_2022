@@ -35,7 +35,6 @@ namespace Diploma_2022.Add
         private void Button_add(object sender, RoutedEventArgs e)
         {
             SqlConnection sqlConnection = new SqlConnection();
-            sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
             {
             sqlConnection.Open();
             string query = "";

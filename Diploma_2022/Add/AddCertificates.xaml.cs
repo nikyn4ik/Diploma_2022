@@ -23,16 +23,15 @@ namespace Diploma_2022.Add
     /// </summary>
     public partial class AddCertificates : Window
     {
+        SqlConnection sqlConnection = new SqlConnection(@"Data Source=SPUTNIK; Initial Catalog=diploma_db; Integrated Security=True");
         public AddCertificates()
         {
             InitializeComponent();
-            SqlConnection sqlConnection = new SqlConnection(@"Data Source=SPUTNIK; Initial Catalog=diploma_db; Integrated Security=True");
         }
 
         private void Button_add(object sender, RoutedEventArgs e)
         {
             SqlConnection sqlConnection = new SqlConnection();
-            sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
             {
                 sqlConnection.Open();
                 String query = "INSERT INTO [dbo].qua_certificate values(@standard_per_mark, @tolerance_standart, @product_standard); ";

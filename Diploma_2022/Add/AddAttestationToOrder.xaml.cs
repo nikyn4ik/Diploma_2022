@@ -38,7 +38,6 @@ namespace Diploma_2022.Add
             IdOrder = idOrder;
             DatePicker.DisplayDate = DateTime.Today;
             DatePicker.Text = DateTime.Today.ToString();
-            
         }
 
         private void Button_add(object sender, RoutedEventArgs e)
@@ -117,6 +116,24 @@ namespace Diploma_2022.Add
             while (db.Read())
             {
                 product_standard.Items.Add(db.GetValue(0));
+            }
+            sqlConnection.Close();
+
+        }
+
+        private void standard_mark_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (standard_mark.SelectedIndex > -1)
+            {
+                sqlConnection.Open();
+                var ind = Convert.ToString(standard_mark.SelectedValue);
+                var cmd = new SqlCommand("SELECT product_standard from qua_certificate WHERE standard_per_mark='" + ind.ToString() +" '", sqlConnection);
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    product_standard.SelectedItem=reader.GetString(0);
+                }
+                reader.Close();
             }
             sqlConnection.Close();
         }

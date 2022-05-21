@@ -66,6 +66,7 @@
             Background="White"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="15"
+            Foreground="Black"
             BorderBrush="#002F6C" BorderThickness="2"
             IsReadOnly="True">
             <DataGrid.Columns>
@@ -136,7 +137,10 @@
             TextChanged="polee_TextChanged"
             BorderBrush="#002F6C" BorderThickness="2"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="20" Width="115" HorizontalAlignment="Left" Height="34" VerticalAlignment="Bottom" />
+            FontSize="20" Width="115" HorizontalAlignment="Left" 
+            Foreground="Black"
+            Background="White"
+            Height="34" VerticalAlignment="Bottom"/>
         <Button
             Grid.Row="1"
             Grid.Column="2"

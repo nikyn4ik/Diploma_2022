@@ -70,6 +70,7 @@
             Background="White"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="15"
+            Foreground="Black"
             BorderBrush="#002F6C" BorderThickness="2"
             IsReadOnly="True" Grid.RowSpan="2">
 
@@ -145,6 +146,8 @@
             Margin="240,0,0,537"
             TextChanged="polee_TextChanged"
             BorderBrush="#002F6C" BorderThickness="2"
+            Foreground="Black"
+            Background="White"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20" Width="115" HorizontalAlignment="Left" Height="34" VerticalAlignment="Bottom" />
         <Button

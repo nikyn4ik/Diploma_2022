@@ -67,7 +67,7 @@
             AutoGenerateColumns="False"
             Background="White"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="15"
+            FontSize="13"
             BorderBrush="#002F6C" BorderThickness="2"
             IsReadOnly="True">
             <DataGrid.Columns>
@@ -153,6 +153,8 @@
             Margin="228,0,0,539"
             TextChanged="polee_TextChanged"
             BorderBrush="#002F6C" BorderThickness="2"
+            Foreground="Black"
+            Background="White"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20" Width="115" HorizontalAlignment="Left" Height="34" VerticalAlignment="Bottom" />
 

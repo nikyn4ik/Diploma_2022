@@ -107,51 +107,54 @@
 
         <TextBox
             x:Name="namesclad"
-            Width="306"
-            Margin="0,14,0,13"
-            Background="#FFFFFF"
+            Margin="0,18,1,16"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="18"
-            Foreground="#002F6C"
-            TextAlignment="Left" Grid.Row="1" HorizontalAlignment="Center" Grid.Column="3" Height="38" />
+            Foreground="Black"
+            BorderBrush="Black"
+            Background="#F4F4F4"
+            TextAlignment="Left" Grid.Row="1" Grid.Column="3" Height="31" />
         <TextBox
             x:Name="addresssklad"
-            Width="306"
-            Margin="0,14,0,13"
-            Background="#FFFFFF"
+            Margin="0,18,1,16"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="18"
-            Foreground="#002F6C"
-            TextAlignment="Left" Grid.Row="2" HorizontalAlignment="Center" Grid.Column="3" Height="38" />
+            Foreground="Black"
+            Background="#F4F4F4"
+            BorderBrush="Black"
+            TextAlignment="Left" Grid.Row="2" Grid.Column="3" Height="31" />
         <TextBox
             x:Name="phonesklad"
-            Width="306"
-            Margin="0,14,0,14"
-            Background="#FFFFFF"
+            Width="305"
+            Margin="0,17,0,18"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="18"
-            Foreground="#002F6C"
-            TextAlignment="Left" Grid.Row="3" HorizontalAlignment="Center" Grid.Column="3" Height="38" />
+            Foreground="Black"
+            Background="#F4F4F4"
+            BorderBrush="Black"
+            TextAlignment="Left" Grid.Row="3" HorizontalAlignment="Right" Grid.Column="3" Height="31" />
 
         <TextBox
             x:Name="FIO_responsible"
-            Width="306"
-            Margin="0,13,0,14"
-            Background="#FFFFFF"
+            Width="305"
+            Margin="0,16,0,18"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="18"
-            Foreground="#002F6C"
-            TextAlignment="Left" Grid.Row="5" HorizontalAlignment="Center" Grid.Column="3" Height="38" />
+            Foreground="Black"
+            BorderBrush="Black"
+            Background="#F4F4F4"
+            TextAlignment="Left" Grid.Row="5" HorizontalAlignment="Right" Grid.Column="3" Height="31" />
         <TextBox
             x:Name="dataaddsklad"
-            Width="306"
-            Margin="0,16,0,11"
-            Background="#FFFFFF"
+            Width="304"
+            Margin="0,19,1,15"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="18"
             Text="{Binding ElementName=DatePicker, Path=DisplayDate, StringFormat=d}"
-            Foreground="#002F6C"
-            TextAlignment="Left" TextChanged="dataaddsklad_TextChanged" Grid.Row="4" HorizontalAlignment="Center" Grid.Column="3" Height="38" />
+            Foreground="Black"
+            Background="#F4F4F4"
+            BorderBrush="Black"
+            TextAlignment="Left" TextChanged="dataaddsklad_TextChanged" Grid.Row="4" HorizontalAlignment="Right" Grid.Column="3" Height="31" />
 
         <Button
             Width="282"
@@ -162,7 +165,7 @@
             Content="Сохранить"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
-            Foreground="#FFFFFF" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,2,0,3" />
+            Foreground="#FFFFFF" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,2,0,3" Height="54" />
         <DatePicker 
             x:Name="DatePicker"
             Grid.Row="4"

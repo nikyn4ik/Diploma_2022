@@ -114,17 +114,21 @@ namespace Diploma_2022.Pages
                 PdfWriter.GetInstance(doc1, new FileStream("PDF\\Заказ " + ID + ".pdf", FileMode.Create));
                 doc1.Open();
 
-                Chunk c1 = new Chunk(" " + "                                         Сервисный металлоцентр СМЦ-Колпино", font);
-                Chunk c2 = new Chunk(" " + "                         ", font);
+                string imageURL = @"SeverstalPDF.jpg";
+                iTextSharp.text.Image jpg = iTextSharp.text.Image.GetInstance(imageURL);
+                jpg.ScaleToFit(300f, 280f);
+                jpg.SpacingBefore = 10f;
+                jpg.SpacingAfter = 1f;
+                jpg.Alignment = Element.ALIGN_CENTER;
 
+                Chunk c1 = new Chunk(" " + "                                        Сервисный металлоцентр СМЦ-Колпино", font);
+                Chunk c2 = new Chunk(" " + "                         ", font);
                 Chunk c3 = new Chunk(" " + "Россия, Колпино, Санкт-Петербург, Территория промзоны 'Ижорские завод', д.90, лит. Д, помещение 1-Н", font);
                 Chunk c4 = new Chunk(" " + "                         ", font);
-
-                Chunk c5 = new Chunk(" " + "                                                      Информация о заказе", font);
-                Chunk c6 = new Chunk(" " + "                         ", font);
-
+                Chunk c5 = new Chunk(" " + "                                                        Информация о заказе", font);
+                Chunk c6 = new Chunk(" " + "", font);
                 Chunk c7 = new Chunk(" " + "ID заказа:   " + dr[0], font);
-                Chunk c8 = new Chunk(" " + "Аттестация пройдена?:  " + dr[20], font);
+                Chunk c8 = new Chunk(" " + "Аттестация пройдена:  " + dr[20], font);
                 Chunk c9 = new Chunk(" " + "Заказчик:  " + dr[15], font);
                 Chunk c10 = new Chunk(" " + "СИСТ-С3:  " + dr[1], font);
                 Chunk c11 = new Chunk(" " + "ЛОГ-СЗ:  " + dr[2], font);
@@ -134,41 +138,36 @@ namespace Diploma_2022.Pages
                 Chunk c15 = new Chunk(" " + "Ширина продукта:  " + dr[8], font);
                 Chunk c16 = new Chunk(" " + "Грузоперевозчик:  " + dr[13], font);
                 Chunk c17 = new Chunk(" " + "Статус заказа:  " + dr[14], font);
-
                 Chunk c18 = new Chunk(" " + "                         ", font);
-                Chunk c19 = new Chunk(" " + "                                         Сертификация", font);
+                Chunk c19 = new Chunk("    " + "                                                              Сертификация", font);
                 Chunk c20 = new Chunk(" " + "Стандарт на марку:  " + dr[1], font);
                 Chunk c21 = new Chunk(" " + "Стандарт продукта:  " + dr[2], font);
                 Chunk c22 = new Chunk(" " + "Дата аттестации:  " + dr[3], font);
-
                 Chunk c23 = new Chunk(" " + "                         ", font);
-                Chunk c24 = new Chunk(" " + "                                         Транспорт", font);
+                Chunk c24 = new Chunk("       " + "                                                              Транспорт", font);
                 Chunk c25 = new Chunk(" " + "Транспорт:  " + dr[1], font);
                 Chunk c26 = new Chunk(" " + "Номер:  " + dr[2], font);
-
                 Chunk c27 = new Chunk(" " + "                         ", font);
-                Chunk c28 = new Chunk(" " + "                                         Склад", font);
+                Chunk c28 = new Chunk("         " + "                                                                Склад", font);
                 Chunk c29 = new Chunk(" " + "Наименование:  " + dr[1], font);
                 Chunk c30 = new Chunk(" " + "Адрес:  " + dr[2], font);
                 Chunk c31 = new Chunk(" " + "Телефон:  " + dr[3], font);
                 Chunk c32 = new Chunk(" " + "ФИО ответственного за склад:  " + dr[6], font);
-
                 Chunk c33 = new Chunk(" " + "                         ", font);
-                Chunk c34 = new Chunk(" " + "                                         Доставка", font);
+                Chunk c34 = new Chunk("       " + "                                                                Доставка", font);
                 Chunk c35 = new Chunk(" " + "Ранняя доставка:  " + dr[3], font);
                 Chunk c36 = new Chunk(" " + "Дата доставки:  " + dr[2], font);
                 Chunk c37 = new Chunk(" " + " ", font);
                 Chunk c38 = new Chunk(" " + " ", font);
 
-
                 Phrase ph1 = new Phrase();
-                ph1.Font = new Font(Font.FontFamily.TIMES_ROMAN, 17, Font.BOLD, BaseColor.BLACK);
+                ph1.Font = new Font(Font.FontFamily.TIMES_ROMAN, 35, Font.BOLD, BaseColor.BLACK);
                 Phrase ph2 = new Phrase();
                 Phrase ph3 = new Phrase();
-                ph3.Font = new Font(Font.FontFamily.TIMES_ROMAN, 17, Font.BOLD, BaseColor.BLACK);
+                ph3.Font = new Font(Font.FontFamily.TIMES_ROMAN, 15, Font.BOLD, BaseColor.BLACK);
                 Phrase ph4 = new Phrase();
                 Phrase ph5 = new Phrase();
-                ph5.Font = new Font(Font.FontFamily.TIMES_ROMAN, 17, Font.BOLD, BaseColor.BLACK);
+                ph5.Font = new Font(Font.FontFamily.TIMES_ROMAN, 20, Font.BOLD, BaseColor.BLACK);
                 Phrase ph6 = new Phrase();
                 Phrase ph7 = new Phrase();
                 Phrase ph8 = new Phrase();
@@ -183,82 +182,79 @@ namespace Diploma_2022.Pages
                 Phrase ph17 = new Phrase();
                 Phrase ph18 = new Phrase();
                 Phrase ph19 = new Phrase();
-                ph19.Font = new Font(Font.FontFamily.TIMES_ROMAN, 17, Font.BOLD, BaseColor.BLACK);
+                ph19.Font = new Font(Font.FontFamily.TIMES_ROMAN, 20, Font.BOLD, BaseColor.BLACK);
                 Phrase ph20 = new Phrase();
                 Phrase ph21 = new Phrase();
                 Phrase ph22 = new Phrase();
                 Phrase ph23 = new Phrase();
                 Phrase ph24 = new Phrase();
-                ph24.Font = new Font(Font.FontFamily.TIMES_ROMAN, 17, Font.BOLD, BaseColor.BLACK);
+                ph24.Font = new Font(Font.FontFamily.TIMES_ROMAN, 20, Font.BOLD, BaseColor.BLACK);
                 Phrase ph25 = new Phrase();
                 Phrase ph26 = new Phrase();
                 Phrase ph27 = new Phrase();
                 Phrase ph28 = new Phrase();
-                ph28.Font = new Font(Font.FontFamily.TIMES_ROMAN, 17, Font.BOLD, BaseColor.BLACK);
+                ph28.Font = new Font(Font.FontFamily.TIMES_ROMAN, 20, Font.BOLD, BaseColor.BLACK);
                 Phrase ph29 = new Phrase();
                 Phrase ph30 = new Phrase();
                 Phrase ph31 = new Phrase();
                 Phrase ph32 = new Phrase();
-
                 Phrase ph33 = new Phrase();
-                ph33.Font = new Font(Font.FontFamily.TIMES_ROMAN, 17, Font.BOLD, BaseColor.BLACK);
+                ph33.Font = new Font(Font.FontFamily.TIMES_ROMAN, 20, Font.BOLD, BaseColor.BLACK);
                 Phrase ph34 = new Phrase();
-                ph34.Font = new Font(Font.FontFamily.TIMES_ROMAN, 17, Font.BOLD, BaseColor.BLACK);
+                ph34.Font = new Font(Font.FontFamily.TIMES_ROMAN, 20, Font.BOLD, BaseColor.BLACK);
                 Phrase ph35 = new Phrase();
                 Phrase ph36 = new Phrase();
-
                 Phrase ph37 = new Phrase();
                 Phrase ph38 = new Phrase();
 
                 ph1.Add(c1);
                 ph2.Add(c2);
-                ph4.Add(c4);
                 ph3.Add(c3);
+                ph4.Add(c4);
                 ph5.Add(c5);
                 ph6.Add(c6);
                 ph7.Add(c7);
                 ph8.Add(c8);
                 ph9.Add(c9);
                 ph10.Add(c10);
-                ph1.Add(c11);
-                ph2.Add(c12);
-                ph4.Add(c13);
-                ph3.Add(c14);
-                ph5.Add(c15);
-                ph6.Add(c16);
-                ph7.Add(c17);
-                ph8.Add(c18);
-                ph9.Add(c19);
-                ph10.Add(c20);
-                ph10.Add(c21);
-                ph10.Add(c22);
-                ph10.Add(c23);
-                ph10.Add(c24);
-                ph9.Add(c25);
-                ph10.Add(c26);
-                ph10.Add(c27);
-                ph10.Add(c28);
-                ph10.Add(c29);
-                ph10.Add(c30);
-                ph10.Add(c31);
-                ph10.Add(c32);
-                ph10.Add(c33);
-                ph10.Add(c34);
-                ph10.Add(c35);
-                ph10.Add(c36);
-
-                ph10.Add(c37);
-                ph10.Add(c38);
+                ph11.Add(c11);
+                ph12.Add(c12);
+                ph13.Add(c13);
+                ph14.Add(c14);
+                ph15.Add(c15);
+                ph16.Add(c16);
+                ph17.Add(c17);
+                ph18.Add(c18);
+                ph19.Add(c19);
+                ph20.Add(c20);
+                ph21.Add(c21);
+                ph22.Add(c22);
+                ph23.Add(c23);
+                ph24.Add(c24);
+                ph25.Add(c25);
+                ph26.Add(c26);
+                ph27.Add(c27);
+                ph28.Add(c28);
+                ph29.Add(c29);
+                ph30.Add(c30);
+                ph31.Add(c31);
+                ph32.Add(c32);
+                ph33.Add(c33);
+                ph34.Add(c34);
+                ph35.Add(c35);
+                ph36.Add(c36);
+                ph37.Add(c37);
+                ph38.Add(c38);
 
 
                 Paragraph p1 = new Paragraph();
                 p1.Add(ph1);
                 Paragraph p2 = new Paragraph();
                 p2.Add(ph2);
-                Paragraph p4 = new Paragraph();
-                p4.Add(ph4);
                 Paragraph p3 = new Paragraph();
                 p3.Add(ph3);
+                Paragraph p4 = new Paragraph();
+                p4.Add(ph4);
                 Paragraph p5 = new Paragraph();
                 p5.Add(ph5);
                 Paragraph p6 = new Paragraph();
@@ -323,17 +319,16 @@ namespace Diploma_2022.Pages
                 p35.Add(ph35);
                 Paragraph p36 = new Paragraph();
                 p36.Add(ph36);
-
                 Paragraph p37 = new Paragraph();
                 p37.Add(ph37);
                 Paragraph p38 = new Paragraph();
                 p38.Add(ph38);
 
-
+                doc1.Add(jpg);
                 doc1.Add(p1);
                 doc1.Add(p2);
-                doc1.Add(p4);
                 doc1.Add(p3);
+                doc1.Add(p4);
                 doc1.Add(p5);
                 doc1.Add(p6);
                 doc1.Add(p7);
@@ -366,7 +361,6 @@ namespace Diploma_2022.Pages
                 doc1.Add(p34);
                 doc1.Add(p35);
                 doc1.Add(p36);
-
                 doc1.Add(p37);
                 doc1.Add(p38);
 

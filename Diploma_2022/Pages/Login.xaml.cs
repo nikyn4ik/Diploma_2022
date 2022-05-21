@@ -2,17 +2,6 @@
 using System.Windows;
 using System.Windows.Input;
 using System.Data.SqlClient;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-
 
 namespace Diploma_2022
 {
@@ -77,27 +66,28 @@ namespace Diploma_2022
                     var window = new MainWindow(FIO);
 
                     MessageBox.Show(
-                         "Добро пожаловать" + ", " + FIO, //login.Text,
+                         "Добро пожаловать" + ", " + FIO,
                          "Severstal Infocom",
                          MessageBoxButton.OK,
                          MessageBoxImage.Information);
                         window.Show();
                         this.Hide();
                     }
-                    else 
-                    {
+             else
+                {
                     MessageBox.Show(
                             "Введен неверный логин или пароль.",
-                            "Severstal Infocom", 
-                            MessageBoxButton.OK, 
+                            "Severstal Infocom",
+                            MessageBoxButton.OK,
                             MessageBoxImage.Error);
-                    }
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
+
         private void Login_OnMouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)

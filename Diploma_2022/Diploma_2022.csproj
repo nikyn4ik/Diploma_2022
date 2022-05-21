@@ -27,6 +27,7 @@
     <None Remove="Images\icon.ico" />
     <None Remove="Images\logout.png" />
     <None Remove="Images\newbrand-bg2.jpg" />
+    <None Remove="Images\SeverstalPDF.jpg" />
     <None Remove="Images\severstal_logo.ico" />
     <None Remove="Images\Severstal_Logo_LAT_White_RGB.png" />
     <None Remove="Images\severstal_SPP_icon.ico" />
@@ -57,6 +58,8 @@
   <ItemGroup>
     <PackageReference Include="EPPlus" Version="5.8.8" />
     <PackageReference Include="iTextSharp" Version="5.5.13.3" />
+    <PackageReference Include="MaterialDesignColors" Version="2.0.6" />
+    <PackageReference Include="MaterialDesignThemes" Version="4.5.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
     <PackageReference Include="Microsoft.NETCore.Platforms" Version="6.0.2" />
@@ -74,6 +77,7 @@
     <Resource Include="Images\add.jpg" />
     <Resource Include="Images\icon.ico" />
     <Resource Include="Images\newbrand-bg2.jpg" />
+    <Resource Include="Images\SeverstalPDF.jpg" />
     <Resource Include="Images\Severstal_Logo_LAT_White_RGB.png" />
     <Resource Include="Images\ugs.jpg" />
     <Resource Include="Images\voestalpine_voest-1024x1024.jpg" />

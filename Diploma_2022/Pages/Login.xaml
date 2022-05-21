@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Diploma_2022"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Severstal Infocom"
     Icon="/Images\icon.ico"
@@ -27,7 +28,6 @@
             <RowDefinition Height="60*" />
             <RowDefinition Height="20*" />
         </Grid.RowDefinitions>
-        <StackPanel HorizontalAlignment="Left" />
 
         <Border
             Grid.Row="1"
@@ -57,7 +57,7 @@
                     Foreground="black"
                     Background="White"
                     FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="18"/>
+                    FontSize="18" Height="30" BorderBrush="#FFABADB3"/>
 
 
                 <Label
@@ -71,7 +71,15 @@
                     x:Name="password"
                     Background="White"
                     FontSize="18"
-                    Foreground="black">
+                    Foreground="black" Height="31" RenderTransformOrigin="0.5,0.5" Width="604">
+                    <PasswordBox.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform AngleX="1.909"/>
+                            <RotateTransform/>
+                            <TranslateTransform X="0.467"/>
+                        </TransformGroup>
+                    </PasswordBox.RenderTransform>
 
                     <PasswordBox.Style>
                         <Style TargetType="PasswordBox">
@@ -106,7 +114,7 @@
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="14"
                     Foreground="#FFFFFF"
-                    IsDefault="true"/>
+                    IsDefault="true" Height="38"/>
 
             </StackPanel>
         </Border>

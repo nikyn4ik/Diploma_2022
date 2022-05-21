@@ -75,28 +75,31 @@
         <TextBox
             x:Name="standard_per_mark"
             Margin="0,9,11,14"
-            Background="#FFFFFF"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="16"
+            BorderBrush="Black"
             Foreground="Black"
-            TextAlignment="Left" Grid.Row="2" Height="38" Grid.Column="3" Grid.ColumnSpan="2" />
+            Background="#F4F4F4"
+            TextAlignment="Left" Grid.Row="2" Height="32" Grid.Column="3" Grid.ColumnSpan="2" Width="272" />
         <TextBox
             x:Name="tolerance_standart"
-            Height="38"
-            Margin="0,9,11,15"
-            Background="#FFFFFF"
+            Height="32"
+            Margin="0,12,11,19"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="16"
             Foreground="Black"
-            TextAlignment="Left" Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="2" />
+            Background="#F4F4F4"
+            BorderBrush="Black"
+            TextAlignment="Left" Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="2" Width="272" />
         <TextBox
             x:Name="product_standard"
             Margin="0,12,11,11"
-            Background="#FFFFFF"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="16"
             Foreground="Black"
-            TextAlignment="Left" Grid.Row="6" Height="38" Grid.Column="3" Grid.ColumnSpan="2" />
+            Background="#F4F4F4"
+            BorderBrush="Black"
+            TextAlignment="Left" Grid.Row="6" Height="32" Grid.Column="3" Grid.ColumnSpan="2" Width="272" />
         <Button
                 Margin="219,0,174,5"
                 Background="#FF0000"

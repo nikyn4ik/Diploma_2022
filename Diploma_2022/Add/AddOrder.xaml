@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Diploma_2022.Add"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     Title="Severstal Infocom"
     Icon="/Images\icon.ico"
     Width="750"
@@ -38,18 +39,22 @@
             x:Name="consignee"
             Grid.Column="2"
             Foreground="Black"
+            Background="#F4F4F4"
+            BorderBrush="Black"
             RenderTransformOrigin="0.5,0.5"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="18"
-            Margin="104,10,11,11" Grid.Row="1" Height="38" Grid.ColumnSpan="3"/>
+            Margin="104,10,11,11" Grid.Row="1" Height="31" Grid.ColumnSpan="3" Width="304"/>
         <ComboBox
             x:Name="status"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="16"
             Grid.Row="4"
+            Foreground="Black"
+            Background="#F4F4F4"
+            BorderBrush="Black"
             Grid.Column="3"
-            Margin="0,9,0,10"
-            RenderTransformOrigin="0.5,0.5" Width="306" HorizontalAlignment="Center" Height="38" />
+            RenderTransformOrigin="0.5,0.5" Height="31" Margin="0,0,1,0" />
 
         <Label
             Grid.Column="1"
@@ -84,10 +89,13 @@
             x:Name="DatePicker"
             Grid.Row="3"
             Grid.Column="2"
-            Margin="104,10,11,44"
+            Foreground="Black"
+            Background="#F4F4F4"
+            BorderBrush="Black"
+            Margin="104,13,1,0"
             FirstDayOfWeek="Monday"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="18" Grid.ColumnSpan="3" />
+            FontSize="18" Grid.ColumnSpan="2" VerticalAlignment="Top" />
         <Label
             Grid.ColumnSpan="5"
             Height="56"
@@ -109,6 +117,6 @@
             Content="Сохранить"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
-            Foreground="#FFFFFF" Grid.ColumnSpan="3" />
+            Foreground="#FFFFFF" Grid.ColumnSpan="3" Width="282" Height="54" />
     </Grid>
 </Window>
