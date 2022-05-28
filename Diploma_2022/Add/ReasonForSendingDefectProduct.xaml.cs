@@ -36,11 +36,6 @@ namespace Diploma_2022.Add
             DatePicker.Text = DateTime.Today.ToString();
         }
 
-        private void date_of_defect_product_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            DateTime date_of_defect_product = (DateTime)this.DatePicker.SelectedDate;
-        }
-
         private void Button_add(object sender, RoutedEventArgs e)
         {
             sqlConnection.Open();

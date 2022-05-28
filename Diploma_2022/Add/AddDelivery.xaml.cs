@@ -34,8 +34,6 @@ namespace Diploma_2022.Add
 
         private void Button_add(object sender, RoutedEventArgs e)
         {
-            SqlConnection sqlConnection = new SqlConnection();
-            {
             sqlConnection.Open();
             string query = "";
             if (Convert.ToDateTime(DatePicker.Text) < DateTime.Today) 
@@ -57,8 +55,7 @@ namespace Diploma_2022.Add
                 SqlCommand createCommand1 = new SqlCommand(query, sqlConnection);
                 createCommand1.Parameters.AddWithValue("@status_order", status.Text);
                 createCommand1.Parameters.AddWithValue("@id", IdOrder.ToString());
-                createCommand1.ExecuteNonQuery();
-                
+                createCommand1.ExecuteNonQuery();               
                 update(createCommand);
                 this.Close();
             }
@@ -68,7 +65,6 @@ namespace Diploma_2022.Add
                 MessageBox.Show("Введите значения", "Severstal Infocom", MessageBoxButton.OK);
                 sqlConnection.Close();
                 }
-            }
         }
         private void fillComboBoxStatus()
         {

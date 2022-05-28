@@ -90,7 +90,7 @@ namespace Diploma_2022
         private void Button_doc(object sender, RoutedEventArgs e)
         {
             Hide();
-            var window = new Pages.Documents();
+            var window = new Documents();
             window.ShowDialog();
             Show();
         }
@@ -98,7 +98,7 @@ namespace Diploma_2022
         private void Button_Package(object sender, RoutedEventArgs e)
         {
             Hide();
-            var window = new Pages.Package();
+            var window = new Package();
             window.ShowDialog();
             Show();
         }

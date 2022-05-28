@@ -22,5 +22,6 @@ namespace Diploma_2022.Models
 
         public int id_order { get; set; }
 
+        public int id_transport { get; set; }
     }
 }

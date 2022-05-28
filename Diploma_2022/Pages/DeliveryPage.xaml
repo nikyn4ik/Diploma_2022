@@ -70,12 +70,6 @@
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Width="*"
-                    Binding="{Binding id_delivery}"
-                    FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="13"
-                    Header="id доставки" />
-                <DataGridTextColumn
-                    Width="*"
                     Binding="{Binding id_order}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="13"

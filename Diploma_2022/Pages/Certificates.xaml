@@ -72,13 +72,6 @@
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Width="*"
-                    Binding="{Binding id_qua_certificate}"
-                    FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="13"
-                    Header="Id сертификата"
-                    IsReadOnly="True" />
-                <DataGridTextColumn
-                    Width="*"
                     Binding="{Binding standard_per_mark}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="13"
@@ -93,6 +86,13 @@
                     IsReadOnly="True" />
                 <DataGridTextColumn
                     Width="*"
+                    Binding="{Binding manufacturer}"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="13"
+                    Header="Изготовитель"
+                    IsReadOnly="True" />
+                <DataGridTextColumn
+                    Width="*"
                     Binding="{Binding date_add_certificate}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="13"
@@ -102,9 +102,9 @@
         <Button
             x:Name="deleteButton"
             Grid.Row="2"
-            Grid.Column="1"
+            Grid.Column="2"
             Height="48"
-            Margin="0,10,260,0"
+            Margin="0,11,250,0"
             VerticalAlignment="Top"
             Background="#FF0000"
             Click="deleteButton_Click"
@@ -112,22 +112,32 @@
             BorderBrush="#002F6C" BorderThickness="2"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
-            Foreground="#FFFFFF" Width="220" HorizontalAlignment="Right" Grid.ColumnSpan="2" />
+            Foreground="#FFFFFF" Width="220" HorizontalAlignment="Right" Grid.RowSpan="2" />
 
         <Button
-            x:Name="addButton"
             Grid.Row="2"
-            Width="220"
             Height="48"
-            Margin="277,11,0,0"
-            HorizontalAlignment="Left"
+            Margin="267,11,0,0"
+            VerticalAlignment="Top"
+            Background="#FF0000"
+            Click="outpdf"
+            Content="PDF"
+            BorderBrush="#002F6C" BorderThickness="2"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="20"
+            Foreground="#FFFFFF" Width="220" HorizontalAlignment="Left" Grid.RowSpan="2" />
+
+        <Button
+            Grid.Row="2"
+            Height="48"
+            Margin="496,11,4,0"
             VerticalAlignment="Top"
             Background="#002F6C"
             Click="AddButton_Click"
             Content="Добавление"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
-            Foreground="#FFFFFF" BorderBrush="#FF0000" BorderThickness="2" Grid.ColumnSpan="2" Grid.RowSpan="2" />
+            Foreground="#FFFFFF" BorderBrush="#FF0000" BorderThickness="2" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
 
         <TextBox
             x:Name="pole"

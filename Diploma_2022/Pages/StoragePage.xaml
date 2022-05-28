@@ -48,14 +48,6 @@
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Width="*"
-                    Binding="{Binding id_storage}"
-                    FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="13"
-                    Header="ID склад"
-                    IsReadOnly="True" />
-
-                <DataGridTextColumn
-                    Width="*"
                     Binding="{Binding name_storage}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="13"

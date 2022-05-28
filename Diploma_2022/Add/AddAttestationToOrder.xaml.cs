@@ -44,14 +44,14 @@ namespace Diploma_2022.Add
         {
             sqlConnection.Open();
             string query = "";
-            if (Convert.ToDateTime(DatePicker.Text) < DateTime.Today) 
+            if (Convert.ToDateTime(DatePicker.Text) < DateTime.Today)
             {
                 MessageBox.Show("Дата меньше текущей", "Severstal Infocom", MessageBoxButton.OK);
                 sqlConnection.Close();
 
                 return;
             }
-            if (standard_mark.Text != "" && access_standart.Text != "" && product_standard.Text != "" && DatePicker.Text != "")
+             if (standard_mark.Text != "" && access_standart.Text != "" && product_standard.Text != "" && DatePicker.Text != "")
             {
                 var query1 = "SELECT id_qua_certificate FROM [dbo].[qua_certificate] WHERE standard_per_mark=@standard_per_mark";
                 SqlCommand sqlCommand1 = new SqlCommand(query1, sqlConnection);

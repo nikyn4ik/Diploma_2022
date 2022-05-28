@@ -43,7 +43,6 @@ namespace Diploma_2022.Pages
         }
         protected void update()
         {
-            sqlConnection.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.CommandText = "SELECT * FROM [dbo].[storage]";
             cmd.Connection = sqlConnection;
@@ -55,13 +54,15 @@ namespace Diploma_2022.Pages
         }
         private void AddButton(object sender, RoutedEventArgs e)
         {
-            Add.AddStorage taskWindow = new AddStorage();
-            taskWindow.Show();
+            var window = new AddStorage();
+            window.ShowDialog();
+            Show();
             update();
-        }
+    }
 
         private void deleteButton(object sender, RoutedEventArgs e)
         {
+            sqlConnection.Open();
             object item = StorageGrid.SelectedItem;
             if (item == null)
             {
@@ -81,11 +82,11 @@ namespace Diploma_2022.Pages
                         {
                             DataRowView drv = (DataRowView)StorageGrid.SelectedItem;
                             string storage = drv.Row[0].ToString();
-                            sqlConnection.Open();
                             SqlCommand cmd = new SqlCommand("DELETE FROM storage WHERE id_storage=@id", sqlConnection);
                             cmd.Parameters.AddWithValue("@id", storage);
                             cmd.ExecuteNonQuery();
-                            Storage_DataGrid_SelectionChanged();
+                            sqlConnection.Close();
+                            update();
                         }
                         MessageBox.Show("Удален!", "Severstal Infocom");
                         break;
@@ -98,7 +99,7 @@ namespace Diploma_2022.Pages
             try
             {
                 SqlConnection cmds = new SqlConnection(ConnectionString);
-                string cmd = "SELECT * FROM [dbo].[storage] WHERE id_storage like '" + pole.Text + "%'";
+                string cmd = "SELECT * FROM [dbo].[storage] WHERE name_storage like '" + pole.Text + "%'";
                 cmds.Open();
                 SqlCommand sqlcom = new SqlCommand(cmd, cmds);
                 SqlDataAdapter storages = new SqlDataAdapter(sqlcom);

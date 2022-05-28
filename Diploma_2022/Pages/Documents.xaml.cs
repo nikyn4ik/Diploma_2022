@@ -54,7 +54,7 @@ namespace Diploma_2022.Pages
         {
             sqlConnection.Open();
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "SELECT * FROM [dbo].[delivery], [dbo].[orders]";
+            cmd.CommandText = "SELECT delivery.id_order, orders.name_product, delivery.date_of_delivery FROM [dbo].[delivery] LEFT JOIN orders ON delivery.id_order = orders.id_order";
             cmd.Connection = sqlConnection;
             SqlDataAdapter doc = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable("diploma_db");

@@ -77,14 +77,14 @@
                     Binding="{Binding id_order}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="12"
-                    Header="Id заказа"
+                    Header="Id"
                     IsReadOnly="True" />
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding name_product}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="12"
-                    Header="Продукт"
+                    Header="Заказ"
                     IsReadOnly="True" />
                 <DataGridTextColumn
                     Width="*"

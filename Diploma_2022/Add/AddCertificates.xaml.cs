@@ -1,20 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Data.SqlClient;
-using System.Configuration;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using System.Data;
-using System.IO;
 
 namespace Diploma_2022.Add
 {
@@ -27,23 +14,44 @@ namespace Diploma_2022.Add
         public AddCertificates()
         {
             InitializeComponent();
+            DatePicker.DisplayDate = DateTime.Today;
+            DatePicker.Text = DateTime.Today.ToString();
         }
 
         private void Button_add(object sender, RoutedEventArgs e)
         {
-            SqlConnection sqlConnection = new SqlConnection();
-            {
                 sqlConnection.Open();
-                String query = "INSERT INTO [dbo].qua_certificate values(@standard_per_mark, @tolerance_standart, @product_standard); ";
+                string query = "";
+                if (Convert.ToDateTime(DatePicker.Text) < DateTime.Today)
+                {
+                    MessageBox.Show("Дата меньше текущей", "Severstal Infocom", MessageBoxButton.OK);
+                    sqlConnection.Close();
+
+                    return;
+                }
+                if (DatePicker.Text != "" && standard_per_mark.Text != "" && manufacturer.Text != "" && product_standard.Text != "")
+                {
+                query = "INSERT INTO qua_certificate (standard_per_mark, manufacturer, product_standard, date_add_certificate) VALUES (@standard_per_mark, @manufacturer, @product_standard, @date_add_certificate)";
                 SqlCommand createCommand = new SqlCommand(query, sqlConnection);
                 createCommand.Parameters.AddWithValue("@standard_per_mark", standard_per_mark.Text);
-                createCommand.Parameters.AddWithValue("@tolerance_standart", tolerance_standart.Text);
+                createCommand.Parameters.AddWithValue("@manufacturer", manufacturer.Text);
                 createCommand.Parameters.AddWithValue("@product_standard", product_standard.Text);
-                createCommand.ExecuteNonQuery();
-                MessageBox.Show("Сохранено!", "Severstal Infocom", MessageBoxButton.OK);
-                sqlConnection.Close();
+                createCommand.Parameters.AddWithValue("@date_add_certificate", Convert.ToDateTime(DatePicker.Text));
+                update(createCommand);
+                }
 
-            }
+                else
+                {
+                    MessageBox.Show("Введите значения", "Severstal Infocom", MessageBoxButton.OK);
+                    sqlConnection.Close();
+                }
+        }
+        private void update(SqlCommand createCommand)
+        {
+            createCommand.ExecuteNonQuery();
+            MessageBox.Show("Сохранено!", "Severstal Infocom", MessageBoxButton.OK);
+            sqlConnection.Close();
+            this.Close();
         }
 
     }

@@ -55,6 +55,7 @@ namespace Diploma_2022.Pages
         private void Button_Click_search(object sender, RoutedEventArgs e)
         {
             string ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
+            try
             {
                 SqlConnection cmds = new SqlConnection(ConnectionString);
                 string cmd = "SELECT * FROM [dbo].[delivery] WHERE id_delivery like '" + pole.Text + "%'";
@@ -67,6 +68,10 @@ namespace Diploma_2022.Pages
                 deliv.Update(dt);
                 cmds.Close();
             }
+            catch (Exception)
+            {
+                MessageBox.Show("Не найдено в системе.", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
         private void editButton(object sender, RoutedEventArgs e)
         {
@@ -75,8 +80,8 @@ namespace Diploma_2022.Pages
                 MessageBox.Show("Выберите нужную строчку", "Severstal Infocom");
             else
             {
-                string ID = (DeliveryGrid.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
-                var window = new Add.AddDelivery(Convert.ToInt32(ID));
+                string ID = (DeliveryGrid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+                var window = new AddDelivery(Convert.ToInt32(ID));
                 window.ShowDialog();
                 Show();
                 update();
@@ -89,14 +94,14 @@ namespace Diploma_2022.Pages
                 PDFOut(selectedIndex);
             else MessageBox.Show("Выберите нужную строчку!", "Severstal Infocom");
         }
-        private void PDFOut(int cellId)
+        private void PDFOut(int ID_orders)
         {
             object item = DeliveryGrid.SelectedItem;
             DataRowView drv = (DataRowView)DeliveryGrid.SelectedItem;
             string ID_Orders = drv.Row[1].ToString();
-            string ID = (DeliveryGrid.SelectedCells[1].Column.GetCellContent(item) as TextBlock).Text;
+            string ID = (DeliveryGrid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "SELECT * FROM orders WHERE id_order=@id (SELECT * FROM package WHERE id_order=@id) (SELECT * FROM shipment WHERE id_order=@id) (SELECT * FROM delivery WHERE id_order=@id)";
+            cmd.CommandText = "SELECT *, (SELECT FIO as 'фио плательщик' FROM payer where id_payer = orders.id_payer), (SELECT standard_per_mark as 'на марку стандарт серт' FROM qua_certificate where id_qua_certificate = orders.id_qua_certificate), (SELECT product_standard as 'продукт стандарт серт' FROM qua_certificate where id_qua_certificate = orders.id_qua_certificate), (SELECT date_add_certificate as 'дата серт' FROM qua_certificate where id_qua_certificate = orders.id_qua_certificate), (SELECT name_storage as 'Наименование склад' FROM storage where id_storage = shipment.id_storage), (SELECT address as 'адрес склад' FROM storage where id_storage = shipment.id_storage), (SELECT remainder as 'Грузоперевозчик склад' FROM storage where id_storage = shipment.id_storage), (SELECT FIO_responsible_person as 'Фио ответственн склад' FROM storage where id_storage=shipment.id_storage), (SELECT date_add_storage as 'Дата склад' FROM storage where id_storage=shipment.id_storage), (SELECT phone_storage as 'номер склад' FROM storage where id_storage=shipment.id_storage), (SELECT name_transport as 'Наименование' FROM transport where id_transport=shipment.id_transport), (SELECT number_transport as 'Номер транспорта' FROM transport where id_transport=shipment.id_transport) FROM orders INNER JOIN package ON orders.id_order = package.id_order INNER JOIN shipment ON orders.id_order = shipment.id_order INNER JOIN delivery ON orders.id_order = delivery.id_order WHERE orders.id_order = @id";
             cmd.Parameters.AddWithValue("@id", ID_Orders);
             cmd.Connection = sqlConnection;
             sqlConnection.Open();
@@ -114,8 +119,11 @@ namespace Diploma_2022.Pages
                 PdfWriter.GetInstance(doc1, new FileStream("PDF\\Заказ " + ID + ".pdf", FileMode.Create));
                 doc1.Open();
 
-                string imageURL = @"SeverstalPDF.jpg";
-                iTextSharp.text.Image jpg = iTextSharp.text.Image.GetInstance(imageURL);
+                System.Windows.Resources.StreamResourceInfo res = Application.GetResourceStream(new Uri("Images/SeverstalPDF.jpg", UriKind.Relative));
+
+                var img = System.Drawing.Image.FromStream(res.Stream);
+
+                iTextSharp.text.Image jpg = iTextSharp.text.Image.GetInstance(img, BaseColor.BLACK);
                 jpg.ScaleToFit(300f, 280f);
                 jpg.SpacingBefore = 10f;
                 jpg.SpacingAfter = 1f;
@@ -128,8 +136,8 @@ namespace Diploma_2022.Pages
                 Chunk c5 = new Chunk(" " + "                                                        Информация о заказе", font);
                 Chunk c6 = new Chunk(" " + "", font);
                 Chunk c7 = new Chunk(" " + "ID заказа:   " + dr[0], font);
-                Chunk c8 = new Chunk(" " + "Аттестация пройдена:  " + dr[20], font);
-                Chunk c9 = new Chunk(" " + "Заказчик:  " + dr[15], font);
+                Chunk c8 = new Chunk(" " + "Аттестация пройдена:  " + dr[19], font);
+                Chunk c9 = new Chunk(" " + "Заказчик:  " + dr[37], font);
                 Chunk c10 = new Chunk(" " + "СИСТ-С3:  " + dr[1], font);
                 Chunk c11 = new Chunk(" " + "ЛОГ-СЗ:  " + dr[2], font);
                 Chunk c12 = new Chunk(" " + "Продукт:  " + dr[12], font);
@@ -140,23 +148,23 @@ namespace Diploma_2022.Pages
                 Chunk c17 = new Chunk(" " + "Статус заказа:  " + dr[14], font);
                 Chunk c18 = new Chunk(" " + "                         ", font);
                 Chunk c19 = new Chunk("    " + "                                                              Сертификация", font);
-                Chunk c20 = new Chunk(" " + "Стандарт на марку:  " + dr[1], font);
-                Chunk c21 = new Chunk(" " + "Стандарт продукта:  " + dr[2], font);
-                Chunk c22 = new Chunk(" " + "Дата аттестации:  " + dr[3], font);
+                Chunk c20 = new Chunk(" " + "Стандарт на марку:  " + dr[38], font);
+                Chunk c21 = new Chunk(" " + "Стандарт продукта:  " + dr[39], font);
+                Chunk c22 = new Chunk(" " + "Дата аттестации:  " + dr[40], font);
                 Chunk c23 = new Chunk(" " + "                         ", font);
                 Chunk c24 = new Chunk("       " + "                                                              Транспорт", font);
-                Chunk c25 = new Chunk(" " + "Транспорт:  " + dr[1], font);
-                Chunk c26 = new Chunk(" " + "Номер:  " + dr[2], font);
+                Chunk c25 = new Chunk(" " + "Транспорт:  " + dr[47], font);
+                Chunk c26 = new Chunk(" " + "Номер:  " + dr[48], font);
                 Chunk c27 = new Chunk(" " + "                         ", font);
                 Chunk c28 = new Chunk("         " + "                                                                Склад", font);
-                Chunk c29 = new Chunk(" " + "Наименование:  " + dr[1], font);
-                Chunk c30 = new Chunk(" " + "Адрес:  " + dr[2], font);
-                Chunk c31 = new Chunk(" " + "Телефон:  " + dr[3], font);
-                Chunk c32 = new Chunk(" " + "ФИО ответственного за склад:  " + dr[6], font);
+                Chunk c29 = new Chunk(" " + "Наименование:  " + dr[41], font);
+                Chunk c30 = new Chunk(" " + "Адрес:  " + dr[42], font);
+                Chunk c31 = new Chunk(" " + "Телефон:  " + dr[46], font);
+                Chunk c32 = new Chunk(" " + "ФИО ответственного за склад:  " + dr[44], font);
                 Chunk c33 = new Chunk(" " + "                         ", font);
                 Chunk c34 = new Chunk("       " + "                                                                Доставка", font);
-                Chunk c35 = new Chunk(" " + "Ранняя доставка:  " + dr[3], font);
-                Chunk c36 = new Chunk(" " + "Дата доставки:  " + dr[2], font);
+                Chunk c35 = new Chunk(" " + "Ранняя доставка:  " + dr[35], font);
+                Chunk c36 = new Chunk(" " + "Дата доставки:  " + dr[34], font);
                 Chunk c37 = new Chunk(" " + " ", font);
                 Chunk c38 = new Chunk(" " + " ", font);
 
@@ -376,10 +384,13 @@ namespace Diploma_2022.Pages
 
         private void out_excel_button(object sender, RoutedEventArgs e)
         {
-            ExportToExcel();
+            var selectedIndex = DeliveryGrid.SelectedIndex;
+            if (selectedIndex != -1)
+                ExportToExcel(selectedIndex);
+            else MessageBox.Show("Выберите нужную строчку!", "Severstal Infocom");
         }
 
-        private void ExportToExcel()
+        private void ExportToExcel(int ID_orders)
         {
             sqlConnection.Open();
             if (!Directory.Exists("EXCEL"))
@@ -391,29 +402,11 @@ namespace Diploma_2022.Pages
             DataRowView drv = (DataRowView)DeliveryGrid.SelectedItem; //""
             string ID_Orders = drv.Row[1].ToString();
 
-            var sql = "SELECT * FROM orders WHERE id_order=@id (SELECT * FROM package WHERE id_order=@id) (SELECT * FROM shipment WHERE id_order=@id) (SELECT date_of_delivery,early_delivery FROM delivery WHERE id_order=@id)";
+            var sql = "SELECT *, (SELECT FIO as 'фио плательщик' FROM payer where id_payer = orders.id_payer), (SELECT standard_per_mark as 'на марку стандарт серт' FROM qua_certificate where id_qua_certificate = orders.id_qua_certificate), (SELECT product_standard as 'продукт стандарт серт' FROM qua_certificate where id_qua_certificate = orders.id_qua_certificate), (SELECT date_add_certificate as 'дата серт' FROM qua_certificate where id_qua_certificate = orders.id_qua_certificate), (SELECT name_storage as 'Наименование склад' FROM storage where id_storage = shipment.id_storage), (SELECT address as 'адрес склад' FROM storage where id_storage = shipment.id_storage), (SELECT remainder as 'Грузоперевозчик склад' FROM storage where id_storage = shipment.id_storage), (SELECT FIO_responsible_person as 'Фио ответственн склад' FROM storage where id_storage=shipment.id_storage), (SELECT date_add_storage as 'Дата склад' FROM storage where id_storage=shipment.id_storage), (SELECT phone_storage as 'номер склад' FROM storage where id_storage=shipment.id_storage), (SELECT name_transport as 'Наименование' FROM transport where id_transport=shipment.id_transport), (SELECT number_transport as 'Номер транспорта' FROM transport where id_transport=shipment.id_transport) FROM orders INNER JOIN package ON orders.id_order = package.id_order INNER JOIN shipment ON orders.id_order = shipment.id_order INNER JOIN delivery ON orders.id_order = delivery.id_order WHERE orders.id_order = @id";
             SqlCommand cmd = new SqlCommand(sql, sqlConnection);
             cmd.Parameters.AddWithValue("@id", ID_Orders);
             var reader = cmd.ExecuteReader();
             int count = 2;
-
-            //if (!Directory.Exists("EXCEL"))
-            //    Directory.CreateDirectory("EXCEL");
-            //ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-            //using var stream = new FileStream("EXCEL\\ORDER.xlsx", FileMode.Create);
-            //using var package = new ExcelPackage(stream);
-            //var ws = package.Workbook.Worksheets.Add("ORDER"); //id order
-            //sqlConnection.Open();
-
-            //var sql = "SELECT orders.id_order, orders.syst_c3, orders.log_c3, orders.thickness_mm, orders.width_mm, orders.length_mm, orders.name_product, orders.consignee, orders.status_order, " +
-            //    "orders.id_payer, orders.access_standart, orders.id_qua_certificate, qua_certificate.standard_per_mark, qua_certificate.product_standard, qua_certificate.date_add_certificate, " +
-            //    "package.mark_package, package.type_model, package.date_package, shipment.id_transport, shipment.shipment_total_amount_tons, shipment.date_of_shipments, shipment.id_storage, " +
-            //    "transport.name_transport, transport.number_transport, storage.name_storage, storage.address, storage.phone_storage, storage.FIO_responsible_person, delivery.id_delivery, " +
-            //    "delivery.early_delivery, delivery.date_of_delivery " +
-            //    "FROM orders, qua_certificate, package, shipment, transport, storage, delivery";
-            //var cmd = new SqlCommand(sql, sqlConnection);
-            //var reader = cmd.ExecuteReader();
-            //int count = 2;
 
             //order
             ws.Cells["A1"].Value = "ID заказа";
@@ -432,22 +425,23 @@ namespace Diploma_2022.Pages
             ////qua_certificate
             ws.Cells["M1"].Value = "Стандарт на марку";
             ws.Cells["N1"].Value = "Стандарт продукта";
-            ws.Cells["O1"].Value = "Дата аттестации";
+            ws.Cells["O1"].Value = "Изготовитель";
+            ws.Cells["P1"].Value = "Дата аттестации";
 
             ////transport
-            ws.Cells["P1"].Value = "Транспорт";
-            ws.Cells["Q1"].Value = "Номер транспорта";
+            ws.Cells["Q1"].Value = "Транспорт";
+            ws.Cells["R1"].Value = "Номер транспорта";
 
             ////storage
-            ws.Cells["R1"].Value = "Склад";
-            ws.Cells["S1"].Value = "Адрес склада";
-            ws.Cells["T1"].Value = "Телефон склада";
-            ws.Cells["U1"].Value = "ФИО ответственного за склад";
+            ws.Cells["S1"].Value = "Склад";
+            ws.Cells["T1"].Value = "Адрес склада";
+            ws.Cells["U1"].Value = "Телефон склада";
+            ws.Cells["V1"].Value = "ФИО ответственного за склад";
 
             //delivery
-            ws.Cells["V1"].Value = "ID доставки";
-            ws.Cells["W1"].Value = "Ранняя доставка";
-            ws.Cells["X1"].Value = "Дата доставки";
+            ws.Cells["W1"].Value = "ID доставки";
+            ws.Cells["X1"].Value = "Ранняя доставка";
+            ws.Cells["Y1"].Value = "Дата доставки";
 
 
             while (reader.Read())
@@ -470,24 +464,25 @@ namespace Diploma_2022.Pages
                 ////qua_certificate
                 ws.Cells[$"M{count}"].Value = reader.GetValue("standard_per_mark");//
                 ws.Cells[$"N{count}"].Value = reader.GetValue("product_standard");
-                ws.Cells[$"O{count}"].Value = reader.GetValue("date_add_certificate");
-                ws.Cells[$"O{count}"].Style.Numberformat.Format = "yyyy-mm-dd";
+                ws.Cells[$"O{count}"].Value = reader.GetValue("manufacturer");
+                ws.Cells[$"P{count}"].Value = reader.GetValue("date_add_certificate");
+                ws.Cells[$"P{count}"].Style.Numberformat.Format = "yyyy-mm-dd";
 
                 ////transport
-                ws.Cells[$"P{count}"].Value = reader.GetValue("name_transport");
-                ws.Cells[$"Q{count}"].Value = reader.GetValue("number_transport");
+                ws.Cells[$"Q{count}"].Value = reader.GetValue("name_transport");
+                ws.Cells[$"R{count}"].Value = reader.GetValue("number_transport");
 
                 ////storage
-                ws.Cells[$"R{count}"].Value = reader.GetValue("name_storage");
-                ws.Cells[$"S{count}"].Value = reader.GetValue("address");
-                ws.Cells[$"T{count}"].Value = reader.GetValue("phone_storage");
-                ws.Cells[$"U{count}"].Value = reader.GetValue("FIO_responsible_person");
+                ws.Cells[$"S{count}"].Value = reader.GetValue("name_storage");
+                ws.Cells[$"T{count}"].Value = reader.GetValue("address");
+                ws.Cells[$"U{count}"].Value = reader.GetValue("phone_storage");
+                ws.Cells[$"V{count}"].Value = reader.GetValue("FIO_responsible_person");
 
                 //delivery
-                ws.Cells[$"V{count}"].Value = reader.GetValue("id_delivery");
-                ws.Cells[$"W{count}"].Value = reader.GetValue("early_delivery");
-                ws.Cells[$"X{count}"].Value = reader.GetValue("date_of_delivery");
-                ws.Cells[$"X{count}"].Style.Numberformat.Format = "yyyy-mm-dd";
+                ws.Cells[$"W{count}"].Value = reader.GetValue("id_delivery");
+                ws.Cells[$"X{count}"].Value = reader.GetValue("early_delivery");
+                ws.Cells[$"Y{count}"].Value = reader.GetValue("date_of_delivery");
+                ws.Cells[$"Y{count}"].Style.Numberformat.Format = "yyyy-mm-dd";
                 count++;
             }
             package.Save();
