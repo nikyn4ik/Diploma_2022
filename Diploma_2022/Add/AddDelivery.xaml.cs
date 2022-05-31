@@ -70,6 +70,7 @@ namespace Diploma_2022.Add
         {
             status.Items.Add("Заказ на выполнении");
             status.Items.Add("Заказ выполнен");
+            status.Items.Add("Заказ отменен");
         }
         private void update(SqlCommand createCommand)
         {
