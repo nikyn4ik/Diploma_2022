@@ -70,6 +70,11 @@ namespace HashPassword
             }
             else return false;
         }
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Application.Current.Shutdown();
+            System.Diagnostics.Process.GetCurrentProcess().Kill();
+        }
     }
 }
 

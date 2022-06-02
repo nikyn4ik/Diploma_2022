@@ -134,10 +134,5 @@ namespace Diploma_2022.Add
             status.Items.Add("Заказ выполнен");
             status.Items.Add("Заказ отменен");
         }
-
-        //private void date_of_adoption_TextChanged(object sender, TextChangedEventArgs e)
-        //{
-        //    DateTime date_of_adoption = (DateTime)this.DatePicker.DisplayDate;
-        //}
     }
 }

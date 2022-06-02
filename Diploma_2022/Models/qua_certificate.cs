@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Diploma_2022.Models
 {
-    public class Certificates
+    public class qua_certificate
     {
         public int id_qua_certificate { get; set; }
 
@@ -17,5 +17,7 @@ namespace Diploma_2022.Models
         public DateTime date_add_certificate { get; set; }
 
         public string manufacturer { get; set; }
+
+        public int id_cert_directory { get; set; }
     }
 }

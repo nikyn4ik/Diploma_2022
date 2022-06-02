@@ -29,17 +29,18 @@ namespace Diploma_2022.Add
         SqlDataReader db;
         int IdOrder;
         public string FIO;
+        double thickness_mm;
+        double width_mm;
+        double length_mm;
         public AddAttestationToOrder(int idOrder)
         {
             InitializeComponent();
-            fillComboBoxStandart();
-            standard_mark_Select();
-            product_standard_Select();
             IdOrder = idOrder;
+            standard_mark_Select();
             DatePicker.DisplayDate = DateTime.Today;
             DatePicker.Text = DateTime.Today.ToString();
         }
-
+       
         private void Button_add(object sender, RoutedEventArgs e)
         {
             sqlConnection.Open();
@@ -51,7 +52,7 @@ namespace Diploma_2022.Add
 
                 return;
             }
-             if (standard_mark.Text != "" && access_standart.Text != "" && product_standard.Text != "" && DatePicker.Text != "")
+             if (standard_mark.Text != "" && units.Text != "" && product_standard.Text != "" && DatePicker.Text != "")
             {
                 var query1 = "SELECT id_qua_certificate FROM [dbo].[qua_certificate] WHERE standard_per_mark=@standard_per_mark";
                 SqlCommand sqlCommand1 = new SqlCommand(query1, sqlConnection);
@@ -65,11 +66,11 @@ namespace Diploma_2022.Add
                 }
                 sqlConnection.Close();
                 sqlConnection.Open();
-                query = "UPDATE [dbo].[orders] SET id_qua_certificate=@id_sert, access_standart=@access WHERE id_order=@id";
+                query = "UPDATE [dbo].[orders] SET id_qua_certificate=@id_sert, units=@units WHERE id_order=@id";
                 SqlCommand createCommand = new SqlCommand(query, sqlConnection);
                 createCommand.Parameters.AddWithValue("@id", IdOrder.ToString());
                 createCommand.Parameters.AddWithValue("@id_sert", data);
-                createCommand.Parameters.AddWithValue("@access", access_standart.Text);
+                createCommand.Parameters.AddWithValue("@units", units.Text);
                 update(createCommand);
                 this.Close();
             }
@@ -88,50 +89,49 @@ namespace Diploma_2022.Add
             this.Close();
         }
 
-        private void fillComboBoxStandart()
-        {
-            access_standart.Items.Add("Да");
-            access_standart.Items.Add("Нет");
-        }
-
         private void standard_mark_Select()
         {
-            SqlCommand cmd = new SqlCommand("SELECT standard_per_mark FROM [dbo].[qua_certificate]", sqlConnection);
+            SqlCommand cmd1 = new SqlCommand("SELECT thickness_mm, width_mm, length_mm FROM [dbo].[orders] where id_order = @id", sqlConnection);
+            sqlConnection.Open();
+            cmd1.Parameters.AddWithValue("@id", IdOrder.ToString());
+            db = cmd1.ExecuteReader();
+            while (db.Read())
+            {
+                thickness_mm = (double)db.GetValue(0);
+                width_mm = (double)db.GetValue(1);
+                length_mm = (double)db.GetValue(2);
+            }
+            sqlConnection.Close();
+
+            SqlCommand cmd = new SqlCommand("SELECT * FROM [dbo].[qua_certificate], [dbo].[cert_directory] WHERE [dbo].[qua_certificate].id_qua_certificate = [dbo].[cert_directory].id_qua_certificate", sqlConnection);
             sqlConnection.Open();
             cmd.CommandType = CommandType.Text;
             db = cmd.ExecuteReader();
             while (db.Read())
             {
-                standard_mark.Items.Add(db.GetValue(0));
+                double min = Convert.ToDouble(db.GetValue(7).ToString());
+                double max = Convert.ToDouble(db.GetValue(8).ToString());
+                if (thickness_mm > min && thickness_mm < max && width_mm > min && width_mm < max && length_mm > min && length_mm < max) 
+                {
+                    standard_mark.Items.Add(db.GetValue(1));
+                    product_standard.Items.Add(db.GetValue(2));
+                }
+                    
             }
             sqlConnection.Close();
         }
-
-        private void product_standard_Select()
-        {
-            SqlCommand cmd = new SqlCommand("SELECT product_standard FROM [dbo].[qua_certificate]", sqlConnection);
-            sqlConnection.Open();
-            cmd.CommandType = CommandType.Text;
-            db = cmd.ExecuteReader();
-            while (db.Read())
-            {
-                product_standard.Items.Add(db.GetValue(0));
-            }
-            sqlConnection.Close();
-
-        }
-
         private void standard_mark_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (standard_mark.SelectedIndex > -1)
             {
                 sqlConnection.Open();
                 var ind = Convert.ToString(standard_mark.SelectedValue);
-                var cmd = new SqlCommand("SELECT product_standard from qua_certificate WHERE standard_per_mark='" + ind.ToString() +" '", sqlConnection);
+                var cmd = new SqlCommand("SELECT product_standard, units from qua_certificate, cert_directory WHERE qua_certificate.standard_per_mark='" + ind.ToString() + " ' AND [dbo].[qua_certificate].standard_per_mark = [dbo].[cert_directory].standard_per_mark", sqlConnection);
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
                     product_standard.SelectedItem=reader.GetString(0);
+                    units.Text = reader.GetString(1);
                 }
                 reader.Close();
             }

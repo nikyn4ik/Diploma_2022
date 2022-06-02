@@ -165,6 +165,16 @@
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="18"
                     Foreground="#002F6C" Width="278" Height="44" />
+                <Button
+                    Height="44"
+                    Margin="0,467,920,183"
+                    AllowDrop="True"
+                    Background="#FF0000"
+                    Click="Button_directory"
+                    Content="Справочник"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="18"
+                    Foreground="#FFFFFF" />
             </Grid>
         </Grid>
     </Grid>

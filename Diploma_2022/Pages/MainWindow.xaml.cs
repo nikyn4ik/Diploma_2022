@@ -102,5 +102,13 @@ namespace Diploma_2022
             window.ShowDialog();
             Show();
         }
+
+        private void Button_directory(object sender, RoutedEventArgs e)
+        {
+            Hide();
+            var window = new CertDirectoryPage();
+            window.ShowDialog();
+            Show();
+        }
     }
 }

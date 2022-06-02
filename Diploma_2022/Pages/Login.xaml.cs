@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Input;
 using System.Data.SqlClient;
+using Diploma_2022.Models;
 
 namespace Diploma_2022
 {
@@ -38,23 +39,22 @@ namespace Diploma_2022
                 if (sqlConnection.State == System.Data.ConnectionState.Closed)
                     sqlConnection.Open();
 
-                var query = "SELECT COUNT(*) FROM [dbo].[authorization] WHERE Login=@lg AND Password=@pass";
+                var query = "SELECT COUNT(*) FROM [dbo].[authorization] WHERE Login=@lg AND password_hash=@pass";
 
                 SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
 
                 sqlCommand.Parameters.AddWithValue("@lg", System.Data.SqlDbType.NVarChar).Value = login.Text;
-                sqlCommand.Parameters.AddWithValue("@pass", System.Data.SqlDbType.NVarChar).Value = password.Password;
+                sqlCommand.Parameters.AddWithValue("@pass", System.Data.SqlDbType.NVarChar).Value = md5.hashPassword(password.Password);
 
                 int count = Convert.ToInt32(sqlCommand.ExecuteScalar());
                 sqlConnection.Close();
-
-                    if (count == 1)
-                    {
+                if (count == 1)
+                {
                     sqlConnection.Open();
-                    var query1 = "SELECT FIO FROM [dbo].[authorization] WHERE Login=@lg AND Password=@pass";
+                    var query1 = "SELECT FIO FROM [dbo].[authorization] WHERE Login=@lg AND password_hash=@pass";
                     SqlCommand sqlCommand1 = new SqlCommand(query1, sqlConnection);
                     sqlCommand1.Parameters.AddWithValue("@lg", System.Data.SqlDbType.NVarChar).Value = login.Text;
-                    sqlCommand1.Parameters.AddWithValue("@pass", System.Data.SqlDbType.NVarChar).Value = password.Password;
+                    sqlCommand1.Parameters.AddWithValue("@pass", System.Data.SqlDbType.NVarChar).Value = md5.hashPassword(password.Password);
                     var reader = sqlCommand1.ExecuteReader();
                     var FIO = "";
                     if (reader.Read())
@@ -62,7 +62,7 @@ namespace Diploma_2022
                          FIO = reader["FIO"].ToString(); 
                     }
                     var Login = login.Text;
-                    var Password = password.Password;
+                    var Password = md5.hashPassword(password.Password);
                     var window = new MainWindow(FIO);
 
                     MessageBox.Show(
