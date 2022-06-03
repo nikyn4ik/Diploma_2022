@@ -29,9 +29,9 @@ namespace Diploma_2022.Add
         SqlDataReader db;
         int IdOrder;
         public string FIO;
-        double thickness_mm;
-        double width_mm;
-        double length_mm;
+        int thickness_mm;
+        int width_mm;
+        int length_mm;
         public AddAttestationToOrder(int idOrder)
         {
             InitializeComponent();
@@ -66,11 +66,25 @@ namespace Diploma_2022.Add
                 }
                 sqlConnection.Close();
                 sqlConnection.Open();
-                query = "UPDATE [dbo].[orders] SET id_qua_certificate=@id_sert, units=@units WHERE id_order=@id";
+                query = "UPDATE [dbo].[orders] SET id_qua_certificate=@id_sert WHERE id_order=@id";
+                //query = "UPDATE [dbo].[orders] SET id_qua_certificate=@id_sert, units=@units WHERE id_order=@id";
                 SqlCommand createCommand = new SqlCommand(query, sqlConnection);
                 createCommand.Parameters.AddWithValue("@id", IdOrder.ToString());
                 createCommand.Parameters.AddWithValue("@id_sert", data);
-                createCommand.Parameters.AddWithValue("@units", units.Text);
+                if(units.Text != null)
+                {
+                    SqlCommand cmd = new SqlCommand("UPDATE [dbo].[orders] SET access_standart = 'Да' WHERE  id_order=@id", sqlConnection);
+                    cmd.Parameters.AddWithValue("@id", IdOrder.ToString());
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Продукт проходит аттестацию!", "Severstal Infocom");
+                }
+                else
+                {
+                    SqlCommand cmd = new SqlCommand("UPDATE [dbo].[orders] SET access_standart = 'Нет' WHERE  id_order=@id", sqlConnection);
+                    cmd.Parameters.AddWithValue("@id", IdOrder.ToString());
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Продукт НЕ проходит аттестацию!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
                 update(createCommand);
                 this.Close();
             }
@@ -97,9 +111,9 @@ namespace Diploma_2022.Add
             db = cmd1.ExecuteReader();
             while (db.Read())
             {
-                thickness_mm = (double)db.GetValue(0);
-                width_mm = (double)db.GetValue(1);
-                length_mm = (double)db.GetValue(2);
+                thickness_mm = (int)db.GetValue(0);
+                width_mm = (int)db.GetValue(1);
+                length_mm = (int)db.GetValue(2);
             }
             sqlConnection.Close();
 
@@ -109,14 +123,13 @@ namespace Diploma_2022.Add
             db = cmd.ExecuteReader();
             while (db.Read())
             {
-                double min = Convert.ToDouble(db.GetValue(7).ToString());
-                double max = Convert.ToDouble(db.GetValue(8).ToString());
+                int min = Convert.ToInt32(db.GetValue(7).ToString());
+                int max = Convert.ToInt32(db.GetValue(8).ToString());
                 if (thickness_mm > min && thickness_mm < max && width_mm > min && width_mm < max && length_mm > min && length_mm < max) 
                 {
                     standard_mark.Items.Add(db.GetValue(1));
                     product_standard.Items.Add(db.GetValue(2));
                 }
-                    
             }
             sqlConnection.Close();
         }

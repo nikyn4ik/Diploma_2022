@@ -3,6 +3,7 @@ using System.Windows;
 using System.Data.SqlClient;
 using Diploma_2022.Pages;
 using Diploma_2022.Models;
+using System.Data;
 
 namespace Diploma_2022.Add
 {
@@ -25,11 +26,11 @@ namespace Diploma_2022.Add
             string query = "";
             if (min.Text != "" && max.Text != "" && units.Text != "")
             {
-                query = "UPDATE [dbo].[cert_directory] SET max=@max,min=@min, units=@units WHERE id_cert_directory=@id";
+                query = "UPDATE [dbo].[cert_directory] SET max=@max, min=@min, units=@units WHERE id_cert_directory=@id";
                 SqlCommand createCommand = new SqlCommand(query, sqlConnection);
                 createCommand.Parameters.AddWithValue("@id", Id_qua_cert.ToString());
-                createCommand.Parameters.AddWithValue("@min", min.Text);
-                createCommand.Parameters.AddWithValue("@max", max.Text);
+                createCommand.Parameters.Add("@min", SqlDbType.Int).Value = Convert.ToInt32(min.Text);
+                createCommand.Parameters.Add("@max", SqlDbType.Int).Value = Convert.ToInt32(max.Text);
                 createCommand.Parameters.AddWithValue("@units", units.Text);
                 update(createCommand);
             }

@@ -175,7 +175,6 @@ namespace Diploma_2022.Pages
                 string ID = (OrdersGrid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
                 var window = new AddAttestationToOrder(Convert.ToInt32(ID));
                 window.ShowDialog();
-                Show();
                 update();
             }
         }

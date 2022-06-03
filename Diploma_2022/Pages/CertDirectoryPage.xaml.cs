@@ -80,7 +80,7 @@ namespace Diploma_2022.Pages
             try
             {
                 SqlConnection cmds = new SqlConnection(ConnectionString);
-                string cmd = "SELECT * FROM [dbo].[cert_directory] WHERE id_qua_certificate like '" + pole.Text + "%'";
+                string cmd = "SELECT * FROM [dbo].[cert_directory] WHERE standard_per_mark like '" + pole.Text + "%'";
                 cmds.Open();
                 SqlCommand sqlcom = new SqlCommand(cmd, cmds);
                 SqlDataAdapter directory = new SqlDataAdapter(sqlcom);

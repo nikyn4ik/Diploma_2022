@@ -20,11 +20,11 @@ namespace Diploma_2022.Models
 
         public DateTime date_of_adoption { get; set; }
 
-        public float thickness_mm { get; set; }
+        public int thickness_mm { get; set; }
 
-        public float width_mm { get; set; }
+        public int width_mm { get; set; }
 
-        public float length_mm { get; set; }
+        public int length_mm { get; set; }
 
         public string name_product { get; set; }
 

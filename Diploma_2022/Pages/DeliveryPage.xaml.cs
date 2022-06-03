@@ -28,7 +28,7 @@ namespace Diploma_2022.Pages
         private void DeliveryGrid_SelectionChanged()
         {
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "SELECT * FROM [dbo].[delivery]";
+            cmd.CommandText = "SELECT *, (SELECT name_product FROM orders WHERE orders.id_order=delivery.id_order)  AS 'name_product' FROM [diploma_db].[dbo].[delivery]";
             cmd.Connection = sqlConnection;
             SqlDataAdapter deliv = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable("diploma_db");
@@ -396,93 +396,77 @@ namespace Diploma_2022.Pages
             if (!Directory.Exists("EXCEL"))
                 Directory.CreateDirectory("EXCEL");
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-            using var stream = new FileStream("EXCEL\\ORDER.xlsx", FileMode.Create);
+            DataRowView drv = (DataRowView)DeliveryGrid.SelectedItem;
+            string ID_Orders = drv.Row[0].ToString();
+            using var stream = new FileStream("EXCEL\\ORDER " + ID_Orders + " .xlsx", FileMode.Create);
             using var package = new ExcelPackage(stream);
-            var ws = package.Workbook.Worksheets.Add("ORDER"); //id order
-            DataRowView drv = (DataRowView)DeliveryGrid.SelectedItem; //""
-            string ID_Orders = drv.Row[1].ToString();
-
-            var sql = "SELECT *, (SELECT FIO FROM payer where id_payer = orders.id_payer), (SELECT standard_per_mark FROM qua_certificate where id_qua_certificate = orders.id_qua_certificate), (SELECT product_standard FROM qua_certificate where id_qua_certificate = orders.id_qua_certificate), (SELECT date_add_certificate FROM qua_certificate where id_qua_certificate = orders.id_qua_certificate), (SELECT name_storage FROM storage where id_storage = shipment.id_storage), (SELECT address FROM storage where id_storage = shipment.id_storage), (SELECT remainder FROM storage where id_storage = shipment.id_storage), (SELECT FIO_responsible_person FROM storage where id_storage=shipment.id_storage), (SELECT date_add_storage FROM storage where id_storage=shipment.id_storage), (SELECT phone_storage FROM storage where id_storage=shipment.id_storage), (SELECT name_transport FROM transport where id_transport=shipment.id_transport), (SELECT number_transport FROM transport where id_transport=shipment.id_transport) FROM orders INNER JOIN package ON orders.id_order = package.id_order INNER JOIN shipment ON orders.id_order = shipment.id_order INNER JOIN delivery ON orders.id_order = delivery.id_order WHERE orders.id_order = @id";
+            var ws = package.Workbook.Worksheets.Add("ORDER");
+            var sql = "SELECT *, (SELECT FIO FROM payer where id_payer = orders.id_payer ) AS 'FIO', (SELECT standard_per_mark FROM qua_certificate where id_qua_certificate = orders.id_qua_certificate) AS 'standard_per_mark', (SELECT product_standard FROM qua_certificate where id_qua_certificate = orders.id_qua_certificate) AS 'product_standard', (SELECT manufacturer FROM qua_certificate where id_qua_certificate = orders.id_qua_certificate) AS 'manufacturer', (SELECT date_add_certificate FROM qua_certificate where id_qua_certificate = orders.id_qua_certificate) AS 'date_add_certificate', (SELECT name_storage FROM storage where id_storage = shipment.id_storage) AS 'name_storage', (SELECT address FROM storage where id_storage = shipment.id_storage) AS 'address', (SELECT FIO_responsible_person FROM storage where id_storage=shipment.id_storage) AS 'FIO_responsible_person', (SELECT date_add_storage FROM storage where id_storage=shipment.id_storage) AS 'date_add_storage', (SELECT phone_storage FROM storage where id_storage=shipment.id_storage) AS 'phone_storage', (SELECT name_transport FROM transport where id_transport=shipment.id_transport) AS 'name_transport', (SELECT number_transport FROM transport where id_transport=shipment.id_transport) AS 'number_transport' FROM orders INNER JOIN package ON orders.id_order = package.id_order INNER JOIN shipment ON orders.id_order = shipment.id_order INNER JOIN delivery ON orders.id_order = delivery.id_order WHERE orders.id_order = @id";
             SqlCommand cmd = new SqlCommand(sql, sqlConnection);
             cmd.Parameters.AddWithValue("@id", ID_Orders);
             var reader = cmd.ExecuteReader();
-            int count = 2;
+            int count = 10;
 
             //order
-            ws.Cells["A1"].Value = "ID заказа";
-            ws.Cells["B1"].Value = "ID аттестации";
-            ws.Cells["C1"].Value = "ID заказчика";
-            ws.Cells["D1"].Value = "СИСТ #СЗ";
-            ws.Cells["E1"].Value = "ЛОГ #СЗ";
-            ws.Cells["F1"].Value = "Толщина продукта";
-            ws.Cells["G1"].Value = "Длина продукта"; //
-            ws.Cells["H1"].Value = "Ширина продукта";
-            ws.Cells["I1"].Value = "Название продукта";
-            ws.Cells["J1"].Value = "Грузоперевозчик";
-            ws.Cells["K1"].Value = "Статус заказа";
-            ws.Cells["L1"].Value = "Пройдена проверка на качество";
+            ws.Cells["A5"].Value = "ID заказа";
+            ws.Cells["B5"].Value = "ID аттестации";
+            ws.Cells["C5"].Value = "ID заказчика";
+            ws.Cells["D5"].Value = "СИСТ #СЗ";
+            ws.Cells["E5"].Value = "ЛОГ #СЗ";
+            ws.Cells["F5"].Value = "Толщина продукта";
+            ws.Cells["G5"].Value = "Длина продукта"; //
+            ws.Cells["H5"].Value = "Ширина продукта";
+            ws.Cells["I5"].Value = "Название продукта";
+            ws.Cells["J5"].Value = "Грузоперевозчик";
+            ws.Cells["K5"].Value = "Статус заказа";
+            ws.Cells["L5"].Value = "Пройдена проверка на качество";
 
             ////qua_certificate
-            ws.Cells["M1"].Value = "Стандарт на марку";
-            ws.Cells["N1"].Value = "Стандарт продукта";
-            ws.Cells["O1"].Value = "Изготовитель";
-            ws.Cells["P1"].Value = "Дата аттестации";
-
-            ////transport
-            ws.Cells["Q1"].Value = "Транспорт";
-            ws.Cells["R1"].Value = "Номер транспорта";
-
-            ////storage
-            ws.Cells["S1"].Value = "Склад";
-            ws.Cells["T1"].Value = "Адрес склада";
-            ws.Cells["U1"].Value = "Телефон склада";
-            ws.Cells["V1"].Value = "ФИО ответственного за склад";
-
-            //delivery
-            ws.Cells["W1"].Value = "ID доставки";
-            ws.Cells["X1"].Value = "Ранняя доставка";
-            ws.Cells["Y1"].Value = "Дата доставки";
+            ws.Cells["A9"].Value = "Стандарт на марку";
+            ws.Cells["B9"].Value = "Стандарт продукта";
+            ws.Cells["C9"].Value = "Изготовитель";
+            ws.Cells["D9"].Value = "Дата аттестации";
+            ws.Cells["E9"].Value = "Транспорт"; ////transport
+            ws.Cells["F9"].Value = "Номер транспорта";
+            ws.Cells["G9"].Value = "Склад"; ////storage
+            ws.Cells["H9"].Value = "Адрес склада";
+            ws.Cells["I9"].Value = "Телефон склада";
+            ws.Cells["J9"].Value = "ФИО ответственного за склад";
+            ws.Cells["K9"].Value = "Ранняя доставка";//delivery
+            ws.Cells["L9"].Value = "Дата доставки";
 
 
             while (reader.Read())
             {
                 //order
-                ws.Cells[$"A{count}"].Value = reader.GetValue("id_order");
-                ws.Cells[$"B{count}"].Value = reader.GetValue("id_qua_certificate");
-                ws.Cells[$"C{count}"].Value = reader.GetValue("id_payer");
-                ws.Cells[$"D{count}"].Value = reader.GetValue("syst_c3");
-                ws.Cells[$"E{count}"].Value = reader.GetValue("log_c3");
-                ws.Cells[$"F{count}"].Value = reader.GetValue("thickness_mm");
-                ws.Cells[$"G{count}"].Value = reader.GetValue("length_mm");
-                ws.Cells[$"H{count}"].Value = reader.GetValue("width_mm");
-                ws.Cells[$"I{count}"].Value = reader.GetValue("name_product");
-                ws.Cells[$"J{count}"].Value = reader.GetValue("name_consignee");
-                ws.Cells[$"K{count}"].Value = reader.GetValue("status_order");
-                ws.Cells[$"L{count}"].Value = reader.GetValue("access_standart");
-
+                ws.Cells[$"A{6}"].Value = reader.GetValue("id_order");
+                ws.Cells[$"B{6}"].Value = reader.GetValue("id_qua_certificate");
+                ws.Cells[$"C{6}"].Value = reader.GetValue("id_payer");
+                ws.Cells[$"D{6}"].Value = reader.GetValue("syst_c3");
+                ws.Cells[$"E{6}"].Value = reader.GetValue("log_c3");
+                ws.Cells[$"F{6}"].Value = reader.GetValue("thickness_mm");
+                ws.Cells[$"G{6}"].Value = reader.GetValue("length_mm");
+                ws.Cells[$"H{6}"].Value = reader.GetValue("width_mm");
+                ws.Cells[$"I{6}"].Value = reader.GetValue("name_product");
+                ws.Cells[$"J{6}"].Value = reader.GetValue("name_consignee");
+                ws.Cells[$"K{6}"].Value = reader.GetValue("status_order");
+                ws.Cells[$"L{6}"].Value = reader.GetValue("access_standart");
 
                 ////qua_certificate
-                ws.Cells[$"M{count}"].Value = reader.GetValue("standard_per_mark");//
-                ws.Cells[$"N{count}"].Value = reader.GetValue("product_standard");
-                ws.Cells[$"O{count}"].Value = reader.GetValue("manufacturer");
-                ws.Cells[$"P{count}"].Value = reader.GetValue("date_add_certificate");
-                ws.Cells[$"P{count}"].Style.Numberformat.Format = "yyyy-mm-dd";
-
-                ////transport
-                ws.Cells[$"Q{count}"].Value = reader.GetValue("name_transport");
-                ws.Cells[$"R{count}"].Value = reader.GetValue("number_transport");
-
-                ////storage
-                ws.Cells[$"S{count}"].Value = reader.GetValue("name_storage");
-                ws.Cells[$"T{count}"].Value = reader.GetValue("address");
-                ws.Cells[$"U{count}"].Value = reader.GetValue("phone_storage");
-                ws.Cells[$"V{count}"].Value = reader.GetValue("FIO_responsible_person");
-
-                //delivery
-                ws.Cells[$"W{count}"].Value = reader.GetValue("id_delivery");
-                ws.Cells[$"X{count}"].Value = reader.GetValue("early_delivery");
-                ws.Cells[$"Y{count}"].Value = reader.GetValue("date_of_delivery");
-                ws.Cells[$"Y{count}"].Style.Numberformat.Format = "yyyy-mm-dd";
+                ws.Cells[$"A{10}"].Value = reader.GetValue("standard_per_mark");
+                ws.Cells[$"B{10}"].Value = reader.GetValue("product_standard");
+                ws.Cells[$"C{10}"].Value = reader.GetValue("manufacturer");
+                ws.Cells[$"D{10}"].Value = reader.GetValue("date_add_certificate");
+                ws.Cells[$"D{10}"].Style.Numberformat.Format = "yyyy-mm-dd";
+                ws.Cells[$"E{10}"].Value = reader.GetValue("name_transport");////transport
+                ws.Cells[$"F{10}"].Value = reader.GetValue("number_transport");
+                ws.Cells[$"G{10}"].Value = reader.GetValue("name_storage");////storage
+                ws.Cells[$"H{10}"].Value = reader.GetValue("address");
+                ws.Cells[$"I{10}"].Value = reader.GetValue("phone_storage");
+                ws.Cells[$"J{10}"].Value = reader.GetValue("FIO_responsible_person");
+                ws.Cells[$"K{10}"].Value = reader.GetValue("early_delivery");//delivery
+                ws.Cells[$"L{10}"].Value = reader.GetValue("date_of_delivery");
+                ws.Cells[$"L{10}"].Style.Numberformat.Format = "yyyy-mm-dd";
                 count++;
             }
             package.Save();

@@ -57,7 +57,7 @@
                     Foreground="black"
                     Background="White"
                     FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="18" Height="30" BorderBrush="#FFABADB3"/>
+                    FontSize="16" Height="30" BorderBrush="#FFABADB3"/>
 
 
                 <Label
@@ -70,7 +70,7 @@
                 <PasswordBox
                     x:Name="password"
                     Background="White"
-                    FontSize="18"
+                    FontSize="16"
                     Foreground="black" Height="31" RenderTransformOrigin="0.5,0.5" Width="604">
                     <PasswordBox.RenderTransform>
                         <TransformGroup>

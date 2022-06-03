@@ -32,7 +32,7 @@ namespace Diploma_2022.Pages
             sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
             sqlConnection.Open();
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "SELECT * FROM [dbo].[shipment]";
+            cmd.CommandText = "SELECT *, (SELECT name_product FROM orders WHERE oorders.id_order = shipment.id_order)  AS 'name_product' FROM [diploma_db].[dbo].[shipment]";
             cmd.Connection = sqlConnection;
             SqlDataAdapter shipment = new SqlDataAdapter(cmd);
             shipment.Fill(dt);

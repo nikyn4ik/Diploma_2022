@@ -37,7 +37,7 @@ namespace Diploma_2022.Add
         {
             sqlConnection.Open();
             string query = "";
-            if (standard_per_mark.Text != "" && min.Text != "" && max.Text != "" && units.Text != "")
+            if (standard_per_mark.Text != "" && min.Text != "" && max.Text != "" && units.Text != "" && properties_cert.Text != "")
             {
                 var query1 = "SELECT id_qua_certificate FROM [dbo].[qua_certificate] WHERE standard_per_mark=@standard_per_mark";
                 SqlCommand sqlCommand1 = new SqlCommand(query1, sqlConnection);
@@ -50,13 +50,14 @@ namespace Diploma_2022.Add
                     data = reader["id_qua_certificate"].ToString();
                 }
                 reader.Close();
-                query = "INSERT INTO  [dbo].[cert_directory] (standard_per_mark, min, max, units,id_qua_certificate) VALUES (@standard_per_mark, @min, @max, @units,@id_qua_certificate)";
+                query = "INSERT INTO  [dbo].[cert_directory] (standard_per_mark, min, max, units,id_qua_certificate, properties_cert) VALUES (@standard_per_mark, @min, @max, @units,@id_qua_certificate, @properties_cert)";
                 SqlCommand createCommand = new SqlCommand(query, sqlConnection);
                 createCommand.Parameters.AddWithValue("@standard_per_mark", standard_per_mark.Text);
                 createCommand.Parameters.AddWithValue("@id_qua_certificate", data);
-                createCommand.Parameters.AddWithValue("@min", min.Text);
-                createCommand.Parameters.AddWithValue("@max", max.Text);
+                createCommand.Parameters.Add("@min", SqlDbType.Int).Value = Convert.ToInt32(min.Text);
+                createCommand.Parameters.Add("@max", SqlDbType.Int).Value = Convert.ToInt32(max.Text);
                 createCommand.Parameters.AddWithValue("@units", units.Text);
+                createCommand.Parameters.AddWithValue("@properties_cert", properties_cert.Text);
                 update(createCommand);
                 this.Close();
             }

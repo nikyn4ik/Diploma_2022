@@ -12,10 +12,12 @@ namespace Diploma_2022.Models
 
         public int id_qua_certificate { get; set; }
 
-        public string min { get; set; }
+        public int min { get; set; }
 
-        public string max { get; set; }
+        public int max { get; set; }
 
         public string units { get; set; }
+
+        public string properties_cert { get; set; }
     }
 }

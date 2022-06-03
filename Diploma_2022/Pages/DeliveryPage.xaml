@@ -76,6 +76,12 @@
                     Header="id заказа" />
                 <DataGridTextColumn
                     Width="*"
+                    Binding="{Binding name_product}"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="13"
+                    Header="Продукт"/>
+                <DataGridTextColumn
+                    Width="*"
                     Binding="{Binding date_of_delivery}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="13"
@@ -99,12 +105,12 @@
             Click="outButton_Click"
             Content="PDF"
             Grid.Row="2"
-            Margin="235,10,0,1"
+            Margin="235,11,0,17"
             Background="#FF0000"
             BorderBrush="#002F6C" BorderThickness="2"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
-            Foreground="#FFFFFF" Width="220" HorizontalAlignment="Left" Grid.ColumnSpan="2" />
+            Foreground="#FFFFFF" Width="220" HorizontalAlignment="Left" Grid.ColumnSpan="2" Height="48" Grid.RowSpan="2" />
         <Button
             x:Name="outexcel"
             Click="out_excel_button"
@@ -138,13 +144,14 @@
             x:Name="pole"
             Grid.Row="1"
             Grid.Column="2"
-            Margin="228,0,0,537"
+            Margin="208,0,0,537"
             TextChanged="polee_TextChanged"
             BorderBrush="#002F6C" BorderThickness="2"
             FontFamily="Microsoft JhengHei UI Light"
+            FontSize="14"
             Foreground="Black"
             Background="White"
-            FontSize="20" Width="115" HorizontalAlignment="Left" Height="34" VerticalAlignment="Bottom" />
+            Width="151" HorizontalAlignment="Left" Height="34" VerticalAlignment="Bottom" />
         <Button
             Grid.Row="1"
             Height="34"

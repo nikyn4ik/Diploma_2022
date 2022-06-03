@@ -34,7 +34,7 @@ namespace Diploma_2022.Pages
             sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
             sqlConnection.Open();
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "SELECT * FROM [dbo].[package]";
+            cmd.CommandText = "SELECT *, (SELECT name_product FROM orders WHERE orders.id_order = package.id_order) AS 'name_product' FROM[diploma_db].[dbo].[package]";
             cmd.Connection = sqlConnection;
             SqlDataAdapter pack = new SqlDataAdapter(cmd);
             pack.Fill(dt);
@@ -47,7 +47,7 @@ namespace Diploma_2022.Pages
             try
             {
                 SqlConnection cmds = new SqlConnection(ConnectionString);
-                string cmd = "SELECT * FROM [dbo].[package] WHERE id_order like '" + pole.Text + "%'";
+                string cmd = "SELECT * FROM [dbo].[package] WHERE name_product like '" + pole.Text + "%'";
                 cmds.Open();
                 SqlCommand sqlcom = new SqlCommand(cmd, cmds);
                 SqlDataAdapter pack = new SqlDataAdapter(sqlcom);

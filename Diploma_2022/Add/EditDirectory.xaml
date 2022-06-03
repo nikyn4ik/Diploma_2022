@@ -18,11 +18,11 @@
     </Window.Background>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="11*" />
-            <ColumnDefinition Width="316*" />
-            <ColumnDefinition Width="106*"/>
-            <ColumnDefinition Width="306*"/>
-            <ColumnDefinition Width="11*"/>
+            <ColumnDefinition Width="10*" />
+            <ColumnDefinition Width="331*" />
+            <ColumnDefinition Width="120*"/>
+            <ColumnDefinition Width="331*"/>
+            <ColumnDefinition Width="10*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="75*" />
@@ -58,7 +58,7 @@
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
-            Content="Единица измерения"
+            Content="Свойства"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
             Foreground="#FFFFFF" VerticalAlignment="Center" Height="57" Grid.Column="1" />
@@ -75,37 +75,37 @@
             Foreground="#002F6C" />
         <TextBox
             x:Name="min"
-            Grid.Row="1"
-            Grid.Column="3"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="18"
             Foreground="Black"
-            BorderBrush="Black"
             Background="White"
-            BorderThickness="1,1,1,1"
-            TextWrapping="Wrap" Height="29" VerticalAlignment="Center" />
+            BorderThickness="1,1,1,1" 
+            BorderBrush="Black"
+            TextAlignment="Left"
+            Grid.Row="1" 
+            Height="32" Grid.Column="3" Width="309" />
         <TextBox
             x:Name="max"
-            Grid.Row="3"
-            Grid.Column="3"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="18"
             Foreground="Black"
-            BorderBrush="Black"
             Background="White"
-            BorderThickness="1,1,1,1"
-            TextWrapping="Wrap" Height="27" VerticalAlignment="Center" />
+            BorderThickness="1,1,1,1" 
+            BorderBrush="Black"
+            TextAlignment="Left"
+            Grid.Row="3" 
+            Height="32" Grid.Column="3" Width="309" />
         <TextBox
             x:Name="units"
-            Grid.Row="5"
-            Grid.Column="3"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="18"
             Foreground="Black"
-            BorderBrush="Black"
             Background="White"
-            BorderThickness="1,1,1,1"
-            TextWrapping="Wrap" Height="29" VerticalAlignment="Center" />
+            BorderThickness="1,1,1,1" 
+            BorderBrush="Black"
+            TextAlignment="Left"
+            Grid.Row="5" 
+            Height="32" Grid.Column="3" Width="309"/>
         <Button
             Grid.Row="6"
             Grid.Column="1"
@@ -115,6 +115,6 @@
             Content="Сохранить"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
-            Foreground="#FFFFFF" Grid.ColumnSpan="3" Width="282" Height="54" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            Foreground="#FFFFFF" Grid.ColumnSpan="3" Width="282" Height="54"/>
     </Grid>
 </Window>

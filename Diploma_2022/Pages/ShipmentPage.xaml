@@ -35,7 +35,7 @@
             Grid.RowSpan="2"
             Grid.ColumnSpan="3"
             Width="668"
-            Margin="283,10,0,526"
+            Margin="272,10,0,527"
             HorizontalAlignment="Left"
             Background="#002F6C"
             BorderThickness="0,0,0,0"
@@ -83,10 +83,10 @@
                     Header="id отгрузки" />
                 <DataGridTextColumn
                     Width="*"
-                    Binding="{Binding id_order}"
+                    Binding="{Binding name_product}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="13"
-                    Header="id заказа" />
+                    Header="Продукт" />
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding date_of_shipments}"
@@ -143,13 +143,14 @@
             x:Name="pole"
             Grid.Row="1"
             Grid.Column="2"
-            Margin="240,0,0,537"
+            Margin="217,0,0,537"
             TextChanged="polee_TextChanged"
             BorderBrush="#002F6C" BorderThickness="2"
             Foreground="Black"
             Background="White"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="20" Width="115" HorizontalAlignment="Left" Height="34" VerticalAlignment="Bottom" />
+            FontSize="14"
+            Width="151" HorizontalAlignment="Left" Height="34" VerticalAlignment="Bottom" />
         <Button
             Grid.Row="1"
             Height="34"

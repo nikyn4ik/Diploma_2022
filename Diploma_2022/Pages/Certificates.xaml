@@ -143,11 +143,11 @@
             x:Name="pole"
             Grid.Row="1"
             Grid.Column="2"
-            Margin="256,0,0,540"
+            Margin="233,0,0,540"
             TextChanged="polee_TextChanged"
             BorderBrush="#002F6C" BorderThickness="2"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="20" Width="115" HorizontalAlignment="Left" 
+            FontSize="20" Width="151" HorizontalAlignment="Left" 
             Foreground="Black"
             Background="White"
             Height="34" VerticalAlignment="Bottom"/>
