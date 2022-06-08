@@ -14,14 +14,14 @@ namespace Diploma_2022.Pages
     /// </summary>
     public partial class CertDirectoryPage : Window
     {
-        SqlConnection sqlConnection = new SqlConnection(@"Data Source=SPUTNIK; Initial Catalog=diploma_db; Integrated Security=True");
+        SqlConnection sqlConnection = new SqlConnection(@"Data Source=SPUTNIK; Initial Catalog=diploma_db; Integrated Security=True"); //соединение с базой данных.
         public CertDirectoryPage()
         {
             InitializeComponent();
             DirectoryGrid_SelectionChanged();
         }
 
-        private void DirectoryGrid_SelectionChanged()
+        private void DirectoryGrid_SelectionChanged() //обработка события SelectionChanged и получение выделенного элемента
         {
             SqlCommand cmd = new SqlCommand();
             cmd.CommandText = "SELECT * FROM [dbo].[cert_directory]";
@@ -33,7 +33,7 @@ namespace Diploma_2022.Pages
             sqlConnection.Close();
         }
 
-        private void addButton(object sender, RoutedEventArgs e)
+        private void addButton(object sender, RoutedEventArgs e) //добавление
         {
             var window = new AddDirectory();
             window.ShowDialog();
@@ -41,7 +41,7 @@ namespace Diploma_2022.Pages
             update();
         }
 
-        protected void update()
+        protected void update() //обновление
         {
             sqlConnection.Open();
             SqlCommand cmd = new SqlCommand();
@@ -54,7 +54,7 @@ namespace Diploma_2022.Pages
             sqlConnection.Close();
         }
 
-        private void editButton(object sender, RoutedEventArgs e)
+        private void editButton(object sender, RoutedEventArgs e) //редактирование
         {
             object item = DirectoryGrid.SelectedItem;
             if (item == null)
@@ -69,15 +69,15 @@ namespace Diploma_2022.Pages
             }
         }
 
-        private void polee_TextChanged(object sender, TextChangedEventArgs e)
+        private void polee_TextChanged(object sender, TextChangedEventArgs e) //текстовая строка / поиск
         {
             DirectoryGrid.Items.Refresh();
         }
 
-        private void Button_Click_search(object sender, RoutedEventArgs e)
+        private void Button_Click_search(object sender, RoutedEventArgs e) // запрос бд исходя из того, что введено в polee_TextChanged / поиск
         {
             string ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
-            try
+            try //Оператор try-catch (обработка исключений)
             {
                 SqlConnection cmds = new SqlConnection(ConnectionString);
                 string cmd = "SELECT * FROM [dbo].[cert_directory] WHERE standard_per_mark like '" + pole.Text + "%'";
@@ -90,7 +90,7 @@ namespace Diploma_2022.Pages
                 directory.Update(dt);
                 cmds.Close();
             }
-            catch (Exception)
+            catch (Exception)//Оператор try-catch (обработка исключений)
             {
                 MessageBox.Show("Не найдено в системе.", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Error);
             }

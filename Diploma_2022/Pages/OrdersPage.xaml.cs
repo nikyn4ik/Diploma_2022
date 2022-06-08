@@ -17,7 +17,7 @@ namespace Diploma_2022.Pages
     /// </summary>
     public partial class OrdersPage : Window
     {
-        SqlConnection sqlConnection = new SqlConnection(@"Data Source=SPUTNIK; Initial Catalog=diploma_db; Integrated Security=True");
+        SqlConnection sqlConnection = new SqlConnection(@"Data Source=SPUTNIK; Initial Catalog=diploma_db; Integrated Security=True"); //соединение с бд
         public string FIO;
         DataTable dt = new DataTable("diploma_db");
         ObservableCollection<Orders> orders = new ObservableCollection<Orders>();
