@@ -35,7 +35,8 @@
             <RowDefinition Height="98*"/>
             <RowDefinition Height="26*"/>
         </Grid.RowDefinitions>
-        <ComboBox
+        <TextBox
+            IsEnabled="False"
             x:Name="consignee"
             Grid.Column="2"
             Foreground="Black"

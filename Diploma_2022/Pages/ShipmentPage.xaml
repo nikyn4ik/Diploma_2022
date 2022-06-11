@@ -143,14 +143,14 @@
             x:Name="pole"
             Grid.Row="1"
             Grid.Column="2"
-            Margin="217,0,0,537"
+            Margin="222,0,0,537"
             TextChanged="polee_TextChanged"
             BorderBrush="#002F6C" BorderThickness="2"
             Foreground="Black"
             Background="White"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
-            Width="151" HorizontalAlignment="Left" Height="34" VerticalAlignment="Bottom" />
+            Width="146" HorizontalAlignment="Left" Height="34" VerticalAlignment="Bottom" />
         <Button
             Grid.Row="1"
             Height="34"

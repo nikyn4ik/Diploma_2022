@@ -32,7 +32,7 @@ namespace Diploma_2022.Pages
             sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
             sqlConnection.Open();
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "SELECT *, (SELECT name_product FROM orders WHERE oorders.id_order = shipment.id_order)  AS 'name_product' FROM [diploma_db].[dbo].[shipment]";
+            cmd.CommandText = "SELECT *, (SELECT name_product FROM orders WHERE orders.id_order = shipment.id_order)  AS 'name_product' FROM [diploma_db].[dbo].[shipment]";
             cmd.Connection = sqlConnection;
             SqlDataAdapter shipment = new SqlDataAdapter(cmd);
             shipment.Fill(dt);
@@ -156,7 +156,7 @@ namespace Diploma_2022.Pages
                 Chunk c2 = new Chunk(" " + "                         ", font);
                 Chunk c3 = new Chunk(" " + "Россия, Колпино, Санкт-Петербург, Территория промзоны 'Ижорские завод', д.90, лит. Д, помещение 1-Н", font);
                 Chunk c4 = new Chunk(" " + "                         ", font);
-                Chunk c5 = new Chunk(" " + "                                                        Накладная | Упаковка", font);
+                Chunk c5 = new Chunk(" " + "                                                        Накладная | Отгрузка", font);
                 Chunk c6 = new Chunk(" " + "", font);
                 Chunk c7 = new Chunk(" " + "ID заказа:   " + dr[0], font);
                 Chunk c8 = new Chunk(" " + "", font);
@@ -173,6 +173,8 @@ namespace Diploma_2022.Pages
                 Chunk c19 = new Chunk(" " + "Номер:  " + dr[6], font);
                 Chunk c20 = new Chunk(" " + "", font);
                 Chunk c21 = new Chunk(" " + "", font);
+                Chunk c22 = new Chunk(" " + "Заказ отгружен Ф.И.О. (разборчиво)      __________________        __________________", font);
+                Chunk c23 = new Chunk(" " + "                                                                               Ф.И.О                                  подпись                      ", font);
 
                 Phrase ph1 = new Phrase();
                 ph1.Font = new Font(Font.FontFamily.TIMES_ROMAN, 35, Font.BOLD, BaseColor.BLACK);
@@ -197,6 +199,9 @@ namespace Diploma_2022.Pages
                 Phrase ph18 = new Phrase();
                 Phrase ph19 = new Phrase();
                 Phrase ph20 = new Phrase();
+                Phrase ph21 = new Phrase();
+                Phrase ph22 = new Phrase();
+                Phrase ph23 = new Phrase();
 
                 ph1.Add(c1);
                 ph2.Add(c2);
@@ -218,7 +223,9 @@ namespace Diploma_2022.Pages
                 ph18.Add(c18);
                 ph19.Add(c19);
                 ph20.Add(c20);
-
+                ph21.Add(c21);
+                ph22.Add(c22);
+                ph23.Add(c23);
 
                 Paragraph p1 = new Paragraph();
                 p1.Add(ph1);
@@ -260,6 +267,12 @@ namespace Diploma_2022.Pages
                 p19.Add(ph19);
                 Paragraph p20 = new Paragraph();
                 p20.Add(ph20);
+                Paragraph p21 = new Paragraph();
+                p21.Add(ph21);
+                Paragraph p22 = new Paragraph();
+                p22.Add(ph22);
+                Paragraph p23 = new Paragraph();
+                p23.Add(ph23);
 
                 doc1.Add(jpg);
                 doc1.Add(p1);
@@ -282,6 +295,9 @@ namespace Diploma_2022.Pages
                 doc1.Add(p18);
                 doc1.Add(p19);
                 doc1.Add(p20);
+                doc1.Add(p21);
+                doc1.Add(p22);
+                doc1.Add(p23);
 
                 doc1.CloseDocument();
                 doc1.Close();

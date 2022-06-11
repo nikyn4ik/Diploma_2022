@@ -181,6 +181,8 @@ namespace Diploma_2022.Pages
                 Chunk c15 = new Chunk(" " + "Дата добавления:  " + dr[4], font);
                 Chunk c16 = new Chunk(" " + "", font);
                 Chunk c17 = new Chunk(" " + "", font);
+                Chunk c18 = new Chunk(" " + "Ф.И.О. эксперта   (разборчиво)      __________________        __________________", font);
+                Chunk c19 = new Chunk(" " + "                                                                      Ф.И.О                                  подпись                      ", font);
 
                 Phrase ph1 = new Phrase();
                 ph1.Font = new Font(Font.FontFamily.TIMES_ROMAN, 35, Font.BOLD, BaseColor.BLACK);
@@ -202,6 +204,8 @@ namespace Diploma_2022.Pages
                 Phrase ph15 = new Phrase();
                 Phrase ph16 = new Phrase();
                 Phrase ph17 = new Phrase();
+                Phrase ph18 = new Phrase();
+                Phrase ph19 = new Phrase();
 
                 ph1.Add(c1);
                 ph2.Add(c2);
@@ -220,7 +224,8 @@ namespace Diploma_2022.Pages
                 ph15.Add(c15);
                 ph16.Add(c16);
                 ph17.Add(c17);
-
+                ph18.Add(c18);
+                ph19.Add(c19);
 
                 Paragraph p1 = new Paragraph();
                 p1.Add(ph1);
@@ -256,6 +261,10 @@ namespace Diploma_2022.Pages
                 p16.Add(ph16);
                 Paragraph p17 = new Paragraph();
                 p17.Add(ph17);
+                Paragraph p18 = new Paragraph();
+                p18.Add(ph18);
+                Paragraph p19 = new Paragraph();
+                p19.Add(ph19);
 
                 doc1.Add(jpg);
                 doc1.Add(p1);
@@ -275,6 +284,8 @@ namespace Diploma_2022.Pages
                 doc1.Add(p15);
                 doc1.Add(p16);
                 doc1.Add(p17);
+                doc1.Add(p18);
+                doc1.Add(p19);
 
                 doc1.CloseDocument();
                 doc1.Close();
