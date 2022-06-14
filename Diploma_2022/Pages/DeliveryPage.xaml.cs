@@ -28,7 +28,7 @@ namespace Diploma_2022.Pages
         private void DeliveryGrid_SelectionChanged()
         {
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "SELECT *, (SELECT name_product FROM orders WHERE orders.id_order=delivery.id_order)  AS 'name_product' FROM [diploma_db].[dbo].[delivery]";
+            cmd.CommandText = "SELECT delivery.id_delivery, orders.id_order, orders.name_product, delivery.id_storage, delivery.early_delivery, delivery.date_of_delivery FROM [dbo].[delivery] LEFT JOIN orders ON orders.id_order=delivery.id_order";
             cmd.Connection = sqlConnection;
             SqlDataAdapter deliv = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable("diploma_db");
@@ -40,7 +40,7 @@ namespace Diploma_2022.Pages
         {
             sqlConnection.Open();
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "SELECT * FROM [dbo].[delivery]";
+            cmd.CommandText = "SELECT delivery.id_delivery, orders.id_order, orders.name_product, delivery.id_storage, delivery.early_delivery, delivery.date_of_delivery FROM [dbo].[delivery] LEFT JOIN orders ON orders.id_order=delivery.id_order";
             cmd.Connection = sqlConnection;
             SqlDataAdapter deliv = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable("diploma_db");
@@ -58,7 +58,7 @@ namespace Diploma_2022.Pages
             try
             {
                 SqlConnection cmds = new SqlConnection(ConnectionString);
-                string cmd = "SELECT * FROM [dbo].[delivery] WHERE id_delivery like '" + pole.Text + "%'";
+                string cmd = "SELECT * FROM [dbo].[delivery] WHERE id_order like '" + pole.Text + "%'";
                 cmds.Open();
                 SqlCommand sqlcom = new SqlCommand(cmd, cmds);
                 SqlDataAdapter deliv = new SqlDataAdapter(sqlcom);
@@ -101,7 +101,7 @@ namespace Diploma_2022.Pages
             string ID_Orders = drv.Row[1].ToString();
             string ID = (DeliveryGrid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "SELECT *, (SELECT FIO as 'фио плательщик' FROM payer where id_payer = orders.id_payer), (SELECT standard_per_mark as 'на марку стандарт серт' FROM qua_certificate where id_qua_certificate = orders.id_qua_certificate), (SELECT product_standard as 'продукт стандарт серт' FROM qua_certificate where id_qua_certificate = orders.id_qua_certificate), (SELECT date_add_certificate as 'дата серт' FROM qua_certificate where id_qua_certificate = orders.id_qua_certificate), (SELECT name_storage as 'Наименование склад' FROM storage where id_storage = shipment.id_storage), (SELECT address as 'адрес склад' FROM storage where id_storage = shipment.id_storage), (SELECT remainder as 'Грузоперевозчик склад' FROM storage where id_storage = shipment.id_storage), (SELECT FIO_responsible_person as 'Фио ответственн склад' FROM storage where id_storage=shipment.id_storage), (SELECT date_add_storage as 'Дата склад' FROM storage where id_storage=shipment.id_storage), (SELECT phone_storage as 'номер склад' FROM storage where id_storage=shipment.id_storage), (SELECT name_transport as 'Наименование' FROM transport where id_transport=shipment.id_transport), (SELECT number_transport as 'Номер транспорта' FROM transport where id_transport=shipment.id_transport), (SELECT FIO_consignee as 'грузоперевозчик' FROM consignee where id_consignee=orders.id_consignee)  FROM orders INNER JOIN package ON orders.id_order = package.id_order INNER JOIN shipment ON orders.id_order = shipment.id_order INNER JOIN delivery ON orders.id_order = delivery.id_order WHERE orders.id_order = @id";
+            cmd.CommandText = "SELECT *, (SELECT FIO as 'фио плательщик' FROM payer where id_payer = orders.id_payer), (SELECT standard_per_mark as 'на марку стандарт серт' FROM qua_certificate where id_qua_certificate = orders.id_qua_certificate), (SELECT product_standard as 'продукт стандарт серт' FROM qua_certificate where id_qua_certificate = orders.id_qua_certificate), (SELECT date_add_certificate as 'дата серт' FROM qua_certificate where id_qua_certificate = orders.id_qua_certificate), (SELECT name_storage as 'Наименование склад' FROM storage where id_storage = shipment.id_storage), (SELECT address as 'адрес склад' FROM storage where id_storage = shipment.id_storage), (SELECT FIO_responsible_person as 'Фио ответственн склад' FROM storage where id_storage=shipment.id_storage), (SELECT date_add_storage as 'Дата склад' FROM storage where id_storage=shipment.id_storage), (SELECT phone_storage as 'номер склад' FROM storage where id_storage=shipment.id_storage), (SELECT name_transport as 'Наименование' FROM transport where id_transport=shipment.id_transport), (SELECT number_transport as 'Номер транспорта' FROM transport where id_transport=shipment.id_transport), (SELECT FIO_consignee as 'грузоперевозчик' FROM consignee where id_consignee=orders.id_consignee)  FROM orders INNER JOIN package ON orders.id_order = package.id_order INNER JOIN shipment ON orders.id_order = shipment.id_order INNER JOIN delivery ON orders.id_order = delivery.id_order WHERE orders.id_order = @id";
             cmd.Parameters.AddWithValue("@id", ID_Orders);
             cmd.Connection = sqlConnection;
             sqlConnection.Open();
@@ -144,27 +144,27 @@ namespace Diploma_2022.Pages
                 Chunk c13 = new Chunk(" " + "Толщина продукта:  " + dr[6], font);
                 Chunk c14 = new Chunk(" " + "Длина продукта:  " + dr[7], font);
                 Chunk c15 = new Chunk(" " + "Ширина продукта:  " + dr[8], font);
-                Chunk c16 = new Chunk(" " + "Грузоперевозчик:  " + dr[46], font);
+                Chunk c16 = new Chunk(" " + "Грузоперевозчик:  " + dr[44], font);
                 Chunk c17 = new Chunk(" " + "Статус заказа:  " + dr[11], font);
                 Chunk c18 = new Chunk(" " + "                         ", font);
                 Chunk c19 = new Chunk("    " + "                                                              Сертификация", font);
-                Chunk c20 = new Chunk(" " + "Стандарт на марку:  " + dr[35], font);
-                Chunk c21 = new Chunk(" " + "Стандарт продукта:  " + dr[36], font);
-                Chunk c22 = new Chunk(" " + "Дата аттестации:  " + dr[37], font);
+                Chunk c20 = new Chunk(" " + "Стандарт на марку:  " + dr[34], font);
+                Chunk c21 = new Chunk(" " + "Стандарт продукта:  " + dr[35], font);
+                Chunk c22 = new Chunk(" " + "Дата аттестации:  " + dr[36], font);
                 Chunk c23 = new Chunk(" " + "                         ", font);
                 Chunk c24 = new Chunk("       " + "                                                              Транспорт", font);
-                Chunk c25 = new Chunk(" " + "Транспорт:  " + dr[44], font);
-                Chunk c26 = new Chunk(" " + "Номер:  " + dr[45], font);
+                Chunk c25 = new Chunk(" " + "Транспорт:  " + dr[42], font);
+                Chunk c26 = new Chunk(" " + "Номер:  " + dr[43], font);
                 Chunk c27 = new Chunk(" " + "                         ", font);
                 Chunk c28 = new Chunk("         " + "                                                                Склад", font);
-                Chunk c29 = new Chunk(" " + "Склад:  " + dr[38], font);
-                Chunk c30 = new Chunk(" " + "Адрес:  " + dr[39], font);
-                Chunk c31 = new Chunk(" " + "Телефон:  " + dr[43], font);
-                Chunk c32 = new Chunk(" " + "ФИО ответственного за склад:  " + dr[41], font);
+                Chunk c29 = new Chunk(" " + "Склад:  " + dr[37], font);
+                Chunk c30 = new Chunk(" " + "Адрес:  " + dr[38], font);
+                Chunk c31 = new Chunk(" " + "Телефон:  " + dr[41], font);
+                Chunk c32 = new Chunk(" " + "ФИО ответственного за склад:  " + dr[39], font);
                 Chunk c33 = new Chunk(" " + "                         ", font);
                 Chunk c34 = new Chunk("       " + "                                                                Доставка", font);
-                Chunk c35 = new Chunk(" " + "Ранняя доставка:  " + dr[32], font);
-                Chunk c36 = new Chunk(" " + "Дата доставки:  " + dr[31], font);
+                Chunk c35 = new Chunk(" " + "Ранняя доставка:  " + dr[31], font);
+                Chunk c36 = new Chunk(" " + "Дата доставки:  " + dr[30], font);
                 Chunk c37 = new Chunk(" " + " ", font);
                 Chunk c38 = new Chunk(" " + "Ф.И.О. Получателя (разборчиво)      __________________        __________________", font);
                 Chunk c39 = new Chunk(" " + "                                                                          Ф.И.О                                подпись                      ", font);

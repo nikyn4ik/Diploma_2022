@@ -27,16 +27,16 @@
             <ColumnDefinition Width="451*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="11*" />
-            <RowDefinition Height="598*"/>
+            <RowDefinition Height="12*" />
+            <RowDefinition Height="601*"/>
             <RowDefinition Height="58*" />
             <RowDefinition Height="17*" />
         </Grid.RowDefinitions>
         <Border
             Grid.RowSpan="2"
             Grid.ColumnSpan="3"
+            Margin="260,10,0,527"
             Width="668"
-            Margin="272,10,0,527"
             HorizontalAlignment="Left"
             Background="#002F6C"
             BorderThickness="0,0,0,0"
@@ -78,6 +78,12 @@
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Width="*"
+                    Binding="{Binding id_order}"
+                    Header="Заказ" 
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="13"/>
+                <DataGridTextColumn
+                    Width="*"
                     Binding="{Binding id_package}"
                     Header="Id упаковка" 
                     FontFamily="Microsoft JhengHei UI Light"
@@ -111,15 +117,14 @@
         <TextBox
             x:Name="pole"
             Grid.Row="1"
-            Grid.Column="2"
-            Margin="208,0,0,539"
+            Grid.Column="2" Margin="214,0,0,539"
             TextChanged="polee_TextChanged"
             BorderBrush="#002F6C" BorderThickness="2"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
             Foreground="Black"
             Background="White"
-            Width="151" 
+            Width="141" 
             HorizontalAlignment="Left" Height="34" VerticalAlignment="Bottom" />
         <Button
             x:Name="outputdoc"
@@ -154,7 +159,7 @@
         <Button
             Grid.Row="1"
             Height="34"
-            Margin="364,0,10,539"
+            Margin="364,0,0,539"
             VerticalAlignment="Bottom"
             Background="#002F6C"
             Click="Button_Click_search"
@@ -163,7 +168,8 @@
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
             Foreground="#FFFFFF"
-            Grid.Column="2" />
+            BorderBrush="#FF2196F3" BorderThickness="2"
+            Grid.Column="2" Width="80" HorizontalAlignment="Left" />
         <Button
             x:Name="toshipment"
             Click="Buttontoshipment"

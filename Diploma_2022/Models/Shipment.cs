@@ -16,8 +16,6 @@ namespace Diploma_2022.Models
 
         public int shipment_total_amount_tons { get; set; }
 
-        public float number_of_shipments_per_month_tons { get; set; }
-
         public int id_storage { get; set; }
 
         public int id_order { get; set; }

@@ -6,13 +6,13 @@
         xmlns:local="clr-namespace:Diploma_2022.Add"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
-    Title="Severstal Infocom"
-    Icon="/Images\icon.ico"
-    Width="750"
-    Height="470"
-    ResizeMode="NoResize"
-    WindowStartupLocation="CenterScreen"
-    mc:Ignorable="d">
+        Title="Severstal Infocom"
+        Icon="/Images\icon.ico"
+        Width="750"
+        Height="470"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d">
     <Window.Background>
 
         <ImageBrush ImageSource="/Images/add.jpg" />
@@ -39,15 +39,15 @@
             x:Name="reasonbrak"
             Grid.Row="2"
             Grid.Column="3"
-            Margin="0,13,0,14"
+            Margin="0,13,0,0"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="18"
+            FontSize="16"
             Foreground="Black"
             BorderBrush="Black"
             Background="White"
             BorderThickness="1,1,1,1"
             Height="31"
-            TextWrapping="Wrap" />
+            TextWrapping="Wrap" VerticalAlignment="Top" />
         <Label
             Grid.Row="2"
             HorizontalContentAlignment="Center"
@@ -56,8 +56,8 @@
             Content="Причина"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
-            Foreground="#FFFFFF" Width="316" VerticalAlignment="Center" 
-            Height="57" HorizontalAlignment="Center" Grid.Column="1" />
+            Foreground="#FFFFFF" Width="314" VerticalAlignment="Center" 
+            Height="50" HorizontalAlignment="Center" Grid.Column="1" />
         <Label
             Grid.Row="4"
             HorizontalContentAlignment="Center"
@@ -66,8 +66,8 @@
             Content="Дата отправки в брак"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
-            Foreground="#FFFFFF" Width="316" VerticalAlignment="Center" 
-            Height="57" HorizontalAlignment="Center" Grid.Column="1" />
+            Foreground="#FFFFFF" Width="314" VerticalAlignment="Center" 
+            Height="50" HorizontalAlignment="Center" Grid.Column="1" />
         <Label
             Grid.ColumnSpan="5"
             Height="56"
@@ -92,14 +92,14 @@
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="18" />
         <Button
-            Grid.Row="6"
-            Margin="227,1,0,0"
+            Grid.Row="5"
+            Margin="230,72,230,0"
             Background="#FF0000"
             BorderThickness="0,0,0,0"
             Click="Button_add"
             Content="Сохранить"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
-            Foreground="#FFFFFF" Grid.Column="1" Grid.ColumnSpan="3" Width="282" Height="54" VerticalAlignment="Top" HorizontalAlignment="Left" />
+            Foreground="#FFFFFF" Grid.Column="1" Height="54" VerticalAlignment="Top" Grid.RowSpan="2" Grid.ColumnSpan="3" />
     </Grid>
 </Window>

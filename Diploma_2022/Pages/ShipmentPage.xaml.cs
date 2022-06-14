@@ -32,7 +32,7 @@ namespace Diploma_2022.Pages
             sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
             sqlConnection.Open();
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "SELECT *, (SELECT name_product FROM orders WHERE orders.id_order = shipment.id_order)  AS 'name_product' FROM [diploma_db].[dbo].[shipment]";
+            cmd.CommandText = "SELECT shipment.id_shipment, orders.id_order, orders.name_product, shipment.id_storage, shipment.id_transport, shipment.shipment_total_amount_tons, shipment.date_of_shipments FROM [dbo].[shipment] LEFT JOIN orders ON orders.id_order=shipment.id_order";
             cmd.Connection = sqlConnection;
             SqlDataAdapter shipment = new SqlDataAdapter(cmd);
             shipment.Fill(dt);
@@ -46,23 +46,16 @@ namespace Diploma_2022.Pages
         private void Button_Click_search(object sender, RoutedEventArgs e)
         {
             string ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
-            try
-            {
-                SqlConnection cmds = new SqlConnection(ConnectionString);
-                string cmd = "SELECT * FROM [dbo].[shipment] WHERE id_order like '" + pole.Text + "%'";
-                cmds.Open();
-                SqlCommand sqlcom = new SqlCommand(cmd, cmds);
-                SqlDataAdapter shipments = new SqlDataAdapter(sqlcom);
-                DataTable dt = new DataTable("shipment");
-                shipments.Fill(dt);
-                ShipmentGrid.ItemsSource = dt.DefaultView;
-                shipments.Update(dt);
-                cmds.Close();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Не найдено в системе.", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            SqlConnection cmds = new SqlConnection(ConnectionString);
+            string cmd = "SELECT * FROM [dbo].[shipment] WHERE id_order like '" + pole.Text + "%'";
+            cmds.Open();
+            SqlCommand sqlcom = new SqlCommand(cmd, cmds);
+            SqlDataAdapter shipments = new SqlDataAdapter(sqlcom);
+            DataTable dt = new DataTable("shipment");
+            shipments.Fill(dt);
+            ShipmentGrid.ItemsSource = dt.DefaultView;
+            shipments.Update(dt);
+            cmds.Close();
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
@@ -102,7 +95,7 @@ namespace Diploma_2022.Pages
         {
             sqlConnection.Open();
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "SELECT * FROM [dbo].[shipment]";
+            cmd.CommandText = "SELECT shipment.id_shipment, orders.id_order, orders.name_product, shipment.id_storage, shipment.id_transport, shipment.shipment_total_amount_tons, shipment.date_of_shipments FROM [dbo].[shipment] LEFT JOIN orders ON orders.id_order=shipment.id_order";
             cmd.Connection = sqlConnection;
             SqlDataAdapter ship = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable("diploma_db");
@@ -319,7 +312,6 @@ namespace Diploma_2022.Pages
                 string ID = (ShipmentGrid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
                 var window = new AddShipment(Convert.ToInt32(ID));
                 window.ShowDialog();
-                Show();
                 update();
             }
         }

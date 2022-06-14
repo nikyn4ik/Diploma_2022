@@ -10,6 +10,8 @@ using iTextSharp.text;
 using iTextSharp.text.pdf;
 using Diploma_2022.Add;
 using Diploma_2022.Models;
+using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace Diploma_2022.Pages
 {
@@ -18,59 +20,50 @@ namespace Diploma_2022.Pages
     /// </summary>
     public partial class Package : Window
     {
+        //List<Package> list = new();
         SqlConnection sqlConnection = new SqlConnection(@"Data Source=SPUTNIK; Initial Catalog=diploma_db; Integrated Security=True");
         DataTable dt = new DataTable("diploma_db");
-        List<Package> list = new();
         public Package()
         {
             InitializeComponent();
             Package_DataGrid_SelectionChanged();
+
             //var ppp = CodePagesEncodingProvider.Instance;
             //Encoding.RegisterProvider(ppp);     
         }
         private void Package_DataGrid_SelectionChanged()
         {
-            SqlConnection sqlConnection = new SqlConnection();
-            sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
             sqlConnection.Open();
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "SELECT *, (SELECT name_product FROM orders WHERE orders.id_order = package.id_order) AS 'name_product' FROM[diploma_db].[dbo].[package]";
+            cmd.CommandText = "SELECT package.id_package, orders.id_order, orders.name_product, package.type_model, package.mark_package, package.date_package FROM [dbo].[package] LEFT JOIN orders ON orders.id_order=package.id_order";
             cmd.Connection = sqlConnection;
             SqlDataAdapter pack = new SqlDataAdapter(cmd);
             pack.Fill(dt);
             PackageGrid.ItemsSource = dt.DefaultView;
+            sqlConnection.Close();
         }
 
         private void Button_Click_search(object sender, RoutedEventArgs e)
         {
-            string ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
-            try
-            {
-                SqlConnection cmds = new SqlConnection(ConnectionString);
-                string cmd = "SELECT * FROM [dbo].[package] WHERE name_product like '" + pole.Text + "%'";
-                cmds.Open();
-                SqlCommand sqlcom = new SqlCommand(cmd, cmds);
-                SqlDataAdapter pack = new SqlDataAdapter(sqlcom);
-                DataTable dt = new DataTable("package");
-                pack.Fill(dt);
-                PackageGrid.ItemsSource = dt.DefaultView;
-                pack.Update(dt);
-                cmds.Close();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Не найдено в системе.", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            string cmd = "SELECT package.id_package, orders.id_order, orders.name_product, package.type_model, package.mark_package, package.date_package FROM[dbo].[package] WHERE id_order like '" + pole.Text + "%'";
+            sqlConnection.Open();
+            SqlCommand sqlcom = new SqlCommand(cmd, sqlConnection);
+            SqlDataAdapter pack = new SqlDataAdapter(sqlcom);
+            DataTable dt = new DataTable("package");
+            pack.Fill(dt);
+            PackageGrid.ItemsSource = dt.DefaultView;
+            pack.Update(dt);
+            sqlConnection.Close();
         }
         protected void update()
         {
             sqlConnection.Open();
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "SELECT * FROM [dbo].[package]";
+            cmd.CommandText = "SELECT package.id_package, orders.id_order, orders.name_product, package.type_model, package.mark_package, package.date_package FROM [dbo].[package] LEFT JOIN orders ON orders.id_order=package.id_order";
             cmd.Connection = sqlConnection;
-            SqlDataAdapter ord = new SqlDataAdapter(cmd);
+            SqlDataAdapter pack = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable("diploma_db");
-            ord.Fill(dt);
+            pack.Fill(dt);
             PackageGrid.ItemsSource = dt.DefaultView;
             sqlConnection.Close();
         }

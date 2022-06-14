@@ -83,7 +83,7 @@
             BorderBrush="Black"
             TextAlignment="Left"
             Grid.Row="1" 
-            Height="32" Grid.Column="3" Width="309" />
+            Height="32" Grid.Column="2" Margin="112,0,1,0" VerticalAlignment="Center" Grid.ColumnSpan="2" />
         <TextBox
             x:Name="max"
             FontFamily="Microsoft JhengHei UI Light"
@@ -94,7 +94,7 @@
             BorderBrush="Black"
             TextAlignment="Left"
             Grid.Row="3" 
-            Height="32" Grid.Column="3" Width="309" />
+            Height="32" Grid.Column="2" Margin="112,0,1,0" VerticalAlignment="Center" Grid.ColumnSpan="2" />
         <TextBox
             x:Name="units"
             FontFamily="Microsoft JhengHei UI Light"
@@ -105,7 +105,7 @@
             BorderBrush="Black"
             TextAlignment="Left"
             Grid.Row="5" 
-            Height="32" Grid.Column="3" Width="309"/>
+            Height="32" Grid.Column="2" Margin="112,0,1,0" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
         <Button
             Grid.Row="6"
             Grid.Column="1"

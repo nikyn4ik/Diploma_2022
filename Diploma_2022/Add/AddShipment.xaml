@@ -102,6 +102,7 @@
         <DatePicker
             x:Name="DatePicker"
             Grid.Row="7"
+            Language="fr-FR"
             Grid.Column="3"
             Foreground="Black"
             BorderBrush="Black"

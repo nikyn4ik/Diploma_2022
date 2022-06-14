@@ -27,24 +27,23 @@
             <RowDefinition Height="17*" />
         </Grid.RowDefinitions>
         <Border
-            Grid.RowSpan="2"
             Grid.ColumnSpan="3"
             Width="668"
-            Margin="272,10,0,527"
+            Margin="250,5,0,520"
             HorizontalAlignment="Left"
             Background="#002F6C"
             BorderThickness="0,0,0,0"
-            CornerRadius="10" Height="72">
+            CornerRadius="10" Height="72" Grid.Row="1">
             <StackPanel
                 Width="392"
-                Height="41"
-                Margin="0,20,0,0"
+                Height="42"
+                Margin="0,19,0,0"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Top">
 
                 <TextBlock
                     Width="310"
-                    Height="36"
+                    Height="38"
                     Margin="0,0,-11,0"
                     HorizontalAlignment="Center"
                     FontFamily="Microsoft JhengHei UI Light"
@@ -128,25 +127,25 @@
             x:Name="pole"
             Grid.Row="1"
             Grid.Column="2"
-            Margin="213,0,0,537"
+            Margin="0,24,106,539"
             TextChanged="polee_TextChanged"
             BorderBrush="#002F6C" BorderThickness="2"
             FontFamily="Microsoft JhengHei UI Light"
+            FontSize="14"
             Foreground="Black"
             Background="White"
-            FontSize="20" Width="146" HorizontalAlignment="Left" Height="34" VerticalAlignment="Bottom" />
+            Width="141" HorizontalAlignment="Right" />
         <Button
             Grid.Row="1"
-            Height="34"
-            Margin="364,0,10,537"
-            VerticalAlignment="Bottom"
+            Margin="360,25,0,540"
             Background="#002F6C"
+            BorderBrush="#FF2196F3" BorderThickness="2"
             Click="Button_Click_search"
             Content="Поиск"
             IsDefault="true"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
             Foreground="#FFFFFF"
-            Grid.Column="2" />
+            Grid.Column="2" HorizontalAlignment="Left" Width="81" />
     </Grid>
 </Window>

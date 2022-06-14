@@ -18,6 +18,7 @@ namespace Diploma_2022.Pages
     {
         SqlConnection sqlConnection = new SqlConnection(@"Data Source=SPUTNIK; Initial Catalog=diploma_db; Integrated Security=True");
         DataTable dt = new DataTable("diploma_db");
+        string ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
         public Documents()
         {
             InitializeComponent();
@@ -26,15 +27,14 @@ namespace Diploma_2022.Pages
 
         private void DocGrid_SelectionChanged()
         {
-            SqlConnection sqlConnection = new SqlConnection();
-            sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
             sqlConnection.Open();
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "SELECT * FROM [dbo].[orders]";
+            cmd.CommandText = "SELECT delivery.id_order, orders.name_product, delivery.date_of_delivery FROM [dbo].[delivery] LEFT JOIN orders ON orders.id_order=delivery.id_order";
             cmd.Connection = sqlConnection;
-            SqlDataAdapter doc = new SqlDataAdapter(cmd);
-            doc.Fill(dt);
+            SqlDataAdapter pack = new SqlDataAdapter(cmd);
+            pack.Fill(dt);
             DocGrid.ItemsSource = dt.DefaultView;
+            sqlConnection.Close();
         }
 
         private void outButton_Click(object sender, RoutedEventArgs e)
@@ -52,6 +52,7 @@ namespace Diploma_2022.Pages
         
         private void UpdButton(object sender, RoutedEventArgs e)
         {
+            string ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
             sqlConnection.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.CommandText = "SELECT delivery.id_order, orders.name_product, delivery.date_of_delivery FROM [dbo].[delivery] LEFT JOIN orders ON orders.id_order=delivery.id_order";
@@ -70,23 +71,14 @@ namespace Diploma_2022.Pages
 
         private void Button_Click_search(object sender, RoutedEventArgs e)
         {
-            string ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
-            try
-            {
-                SqlConnection cmds = new SqlConnection(ConnectionString);
-                string cmd = "SELECT * FROM [dbo].[orders] WHERE id_order like '" + pole.Text + "%'";
-                cmds.Open();
-                SqlCommand sqlcom = new SqlCommand(cmd, cmds);
-                SqlDataAdapter dc = new SqlDataAdapter(sqlcom);
-                dc.Fill(dt);
-                DocGrid.ItemsSource = dt.DefaultView;
-                dc.Update(dt);
-                cmds.Close();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Не найдено в системе.", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            string cmd = "SELECT * FROM [dbo].[orders] WHERE id_order like '" + pole.Text + "%'";
+            sqlConnection.Open();
+            SqlCommand sqlcom = new SqlCommand(cmd, sqlConnection);
+            SqlDataAdapter dc = new SqlDataAdapter(sqlcom);
+            dc.Fill(dt);
+            DocGrid.ItemsSource = dt.DefaultView;
+            dc.Update(dt);
+            sqlConnection.Close();
         }
     }
 }

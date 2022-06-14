@@ -25,7 +25,7 @@ namespace Diploma_2022
             Keyboard.AddKeyDownHandler(Application.Current.MainWindow, HandlerSub);
         }
         private void HandlerSub(object sender, KeyEventArgs e)
-        {
+            {
             if (e.Key == Key.CapsLock)
             { capsLabel.Visibility = e.IsToggled ? Visibility.Visible : Visibility.Hidden;
             

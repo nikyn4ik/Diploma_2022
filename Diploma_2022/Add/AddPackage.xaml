@@ -113,7 +113,8 @@
         <DatePicker
             x:Name="DatePicker"
             Grid.Row="5"
-            Grid.Column="3"
+            Grid.Column="3" 
+            Language="fr-FR"
             RenderTransformOrigin="0.5,0.5"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="18"

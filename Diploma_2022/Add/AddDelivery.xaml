@@ -10,6 +10,7 @@
     Icon="/Images\icon.ico"
     Width="750"
     Height="470"
+    ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
 

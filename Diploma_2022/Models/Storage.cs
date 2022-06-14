@@ -18,8 +18,6 @@ namespace Diploma_2022.Models
 
         public string FIO_responsible_person { get; set; }
 
-        public string remainder { get; set; }
-
         public DateTime date_add_storage { get; set; }
     }
 }

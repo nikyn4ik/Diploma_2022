@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Diploma_2022.Pages"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Severstal Infocom"
     Width="1200"
@@ -32,12 +33,10 @@
         <Border
             Grid.RowSpan="2"
             Grid.ColumnSpan="3"
-            Width="668"
-            Margin="272,10,0,527"
-            HorizontalAlignment="Left"
+            Margin="266,10,0,526"
             Background="#002F6C"
             BorderThickness="0,0,0,0"
-            CornerRadius="10">
+            CornerRadius="10" Height="72" Width="668" HorizontalAlignment="Left">
             <StackPanel
                 Width="392"
                 Height="41"
@@ -61,7 +60,7 @@
             Name="CertificatesGrid"
             Grid.Row="1"
             Grid.ColumnSpan="3"
-            Margin="10,81,10,0"
+            Margin="10,93,10,0"
             AutoGenerateColumns="False"
             Background="White"
             FontFamily="Microsoft JhengHei UI Light"
@@ -104,7 +103,7 @@
             Grid.Row="2"
             Grid.Column="2"
             Height="48"
-            Margin="0,11,250,0"
+            Margin="0,11,240,0"
             VerticalAlignment="Top"
             Background="#FF0000"
             Click="deleteButton_Click"
@@ -117,7 +116,7 @@
         <Button
             Grid.Row="2"
             Height="48"
-            Margin="267,11,0,0"
+            Margin="248,11,0,0"
             VerticalAlignment="Top"
             Background="#FF0000"
             Click="outpdf"
@@ -130,38 +129,38 @@
         <Button
             Grid.Row="2"
             Height="48"
-            Margin="496,11,4,0"
+            Margin="1,11,1,0"
             VerticalAlignment="Top"
             Background="#002F6C"
             Click="AddButton_Click"
             Content="Добавление"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
-            Foreground="#FFFFFF" BorderBrush="#FF0000" BorderThickness="2" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+            Foreground="#FFFFFF" BorderBrush="#FF0000" BorderThickness="2" Grid.RowSpan="2" Grid.Column="1"/>
 
         <TextBox
             x:Name="pole"
             Grid.Row="1"
-            Grid.Column="2"
-            Margin="233,0,0,540"
+            Grid.Column="2" Margin="0,0,99,540"
             TextChanged="polee_TextChanged"
             BorderBrush="#002F6C" BorderThickness="2"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="20" Width="151" HorizontalAlignment="Left" 
+            FontSize="14"
+            Width="141" HorizontalAlignment="Right" 
             Foreground="Black"
             Background="White"
             Height="34" VerticalAlignment="Bottom"/>
         <Button
             Grid.Row="1"
             Grid.Column="2"
-            Margin="389,0,10,540"
+            Margin="389,0,0,540"
             Background="#002F6C"
             Click="Button_Click_search"
             Content="Поиск"
             IsDefault="true"
-            BorderBrush="#002F6C" BorderThickness="2"
+            BorderBrush="#FF2196F3" BorderThickness="2"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
-            Foreground="#FFFFFF" Height="34" VerticalAlignment="Bottom" />
+            Foreground="#FFFFFF" Height="34" VerticalAlignment="Bottom" Width="80.7899159663865" HorizontalAlignment="Left" />
     </Grid>
 </Window>

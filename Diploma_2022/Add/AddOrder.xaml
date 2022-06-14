@@ -27,65 +27,68 @@
             <ColumnDefinition Width="11*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="91*" />
-            <RowDefinition Height="59*" />
-            <RowDefinition Height="32*"/>
-            <RowDefinition Height="92*" />
-            <RowDefinition Height="57*" />
-            <RowDefinition Height="98*"/>
-            <RowDefinition Height="26*"/>
+            <RowDefinition Height="58*" />
+            <RowDefinition Height="48*" />
+            <RowDefinition Height="21*"/>
+            <RowDefinition Height="48*" />
+            <RowDefinition Height="21*" />
+            <RowDefinition Height="48*"/>
+            <RowDefinition Height="61*"/>
         </Grid.RowDefinitions>
         <TextBox
             IsEnabled="False"
             x:Name="consignee"
-            Grid.Column="2"
+            Grid.Column="3"
             Foreground="Black"
             Background="#F4F4F4"
             BorderBrush="Black"
             RenderTransformOrigin="0.5,0.5"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="18"
-            Margin="104,10,11,11" Grid.Row="1" Height="31" Grid.ColumnSpan="3" Width="304"/>
+            Margin="0,22,1,0" Grid.Row="1" Height="31" Width="304" VerticalAlignment="Top"/>
         <ComboBox
             x:Name="status"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="16"
-            Grid.Row="4"
+            Grid.Row="5"
             Foreground="Black"
             Background="#F4F4F4"
             BorderBrush="Black"
             Grid.Column="3"
-            RenderTransformOrigin="0.5,0.5" Height="31" Margin="0,0,1,0" />
+            RenderTransformOrigin="0.5,0.5" Height="31" Margin="0,9,1,0" VerticalAlignment="Top" />
 
         <Label
-            Grid.Column="1"
+            Grid.Row="1" Margin="0,5,0,4" Grid.Column="1"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
             Content="Грузополучатель"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
-            Foreground="#FFFFFF" Grid.Row="1" Height="57" VerticalAlignment="Center" Width="316" HorizontalAlignment="Center" />
+            Foreground="#FFFFFF" Height="50" VerticalAlignment="Center" Width="317" HorizontalAlignment="Center" />
         <Label
-            Grid.Column="1"
-            Width="316"
+            Grid.Row="5" Margin="10,4,1,4" Grid.ColumnSpan="2"
+            Width="317"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
             Content="Статус заказа"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
-            Foreground="#FFFFFF" Grid.Row="4" VerticalAlignment="Center" Height="57" HorizontalAlignment="Center" />
+            Foreground="#FFFFFF"
+            VerticalAlignment="Top" 
+            Height="50" HorizontalAlignment="Center" Grid.RowSpan="2" />
         <Label
-            Grid.Column="1"
-            Width="316"
+            Margin="0,4,0,4"
+            Width="317" Grid.Column="1"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
             Content="Дата принятия"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
-            Foreground="#FFFFFF" Grid.Row="3" VerticalAlignment="Top" Height="57" HorizontalAlignment="Center" />
+            Foreground="#FFFFFF"
+            Grid.Row="3" VerticalAlignment="Top" Height="50" HorizontalAlignment="Center" />
         <DatePicker
             x:Name="DatePicker"
             Grid.Row="3"
@@ -98,7 +101,7 @@
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="18" Grid.ColumnSpan="2" VerticalAlignment="Top" />
         <Label
-            Grid.ColumnSpan="5"
+            Grid.ColumnSpan="9"
             Height="56"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"
@@ -109,15 +112,14 @@
             FontSize="35"
             Foreground="#002F6C" />
         <Button
-            Grid.Row="5"
+            Grid.Row="6"
             Grid.Column="1"
-            Margin="220,36,220,0"
             Background="#FF0000"
             BorderThickness="0,0,0,0"
             Click="Button_add"
             Content="Сохранить"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
-            Foreground="#FFFFFF" Grid.ColumnSpan="3" Width="282" Height="54" />
+            Foreground="#FFFFFF" Grid.ColumnSpan="3" Height="54" VerticalAlignment="Center" Margin="230,0,230,0" />
     </Grid>
 </Window>

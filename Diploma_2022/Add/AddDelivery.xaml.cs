@@ -45,26 +45,29 @@ namespace Diploma_2022.Add
             }
             if (DatePicker.Text != "" && early_delivery.Text != "" && status.Text != "")
             {
+                query = "UPDATE [dbo].[orders] SET date_of_delivery=@date_of_delivery,status_order=@status_order WHERE id_order=@id";
+                SqlCommand createCommand1 = new SqlCommand(query, sqlConnection);
+                createCommand1.Parameters.AddWithValue("@id", IdOrder.ToString());
+                createCommand1.Parameters.AddWithValue("@date_of_delivery", Convert.ToDateTime(DatePicker.Text));
+                createCommand1.Parameters.AddWithValue("@status_order", status.Text);
+                createCommand1.ExecuteNonQuery();
+
+                if (DatePicker.Text != "" && early_delivery.Text != "" && status.Text != "")
+                {
                 query = "UPDATE [dbo].[delivery] SET date_of_delivery=@date_of_delivery, early_delivery=@early_delivery WHERE id_order=@id";
                 SqlCommand createCommand = new SqlCommand(query, sqlConnection);
                 createCommand.Parameters.AddWithValue("@id", IdOrder.ToString());
                 createCommand.Parameters.AddWithValue("@date_of_delivery", Convert.ToDateTime(DatePicker.Text));
                 createCommand.Parameters.AddWithValue("@early_delivery", early_delivery.Text);
-                createCommand.ExecuteNonQuery();
-                query = "UPDATE [dbo].[orders] SET status_order=@status_order WHERE id_order=@id";
-                SqlCommand createCommand1 = new SqlCommand(query, sqlConnection);
-                createCommand1.Parameters.AddWithValue("@status_order", status.Text);
-                createCommand1.Parameters.AddWithValue("@id", IdOrder.ToString());
-                createCommand1.ExecuteNonQuery();               
                 update(createCommand);
                 this.Close();
-            }
-            
-            else
-            {
-                MessageBox.Show("Введите значения", "Severstal Infocom", MessageBoxButton.OK);
-                sqlConnection.Close();
                 }
+                else
+                {
+                    MessageBox.Show("Введите значения", "Severstal Infocom", MessageBoxButton.OK);
+                    sqlConnection.Close();
+                }
+            }
         }
         private void fillComboBoxStatus()
         {

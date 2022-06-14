@@ -4,19 +4,6 @@ using System.Windows.Controls;
 using System.Data.SqlClient;
 using System.Data;
 using Diploma_2022.Models;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using System.IO;
-using System.Configuration;
-using System.Globalization;
 
 namespace Diploma_2022.Add
 {
@@ -40,7 +27,7 @@ namespace Diploma_2022.Add
             DatePicker.DisplayDate = DateTime.Today;
             DatePicker.Text = DateTime.Today.ToString();
         }
-       
+
         private void Button_add(object sender, RoutedEventArgs e)
         {
             sqlConnection.Open();
@@ -58,41 +45,24 @@ namespace Diploma_2022.Add
                 SqlCommand sqlCommand1 = new SqlCommand(query1, sqlConnection);
                 sqlCommand1.Parameters.AddWithValue("@standard_per_mark", SqlDbType.NVarChar).Value = standard_mark.Text;
                 var reader = sqlCommand1.ExecuteReader();
-
                 var data = "";
                 if (reader.Read())
                 {
                     data = reader["id_qua_certificate"].ToString();
                 }
-                sqlConnection.Close();
-                sqlConnection.Open();
+                reader.Close();
                 query = "UPDATE [dbo].[orders] SET id_qua_certificate=@id_sert WHERE id_order=@id";
-                //query = "UPDATE [dbo].[orders] SET id_qua_certificate=@id_sert, units=@units WHERE id_order=@id";
                 SqlCommand createCommand = new SqlCommand(query, sqlConnection);
                 createCommand.Parameters.AddWithValue("@id", IdOrder.ToString());
                 createCommand.Parameters.AddWithValue("@id_sert", data);
-                if(units.Text != null)
-                {
-                    SqlCommand cmd = new SqlCommand("UPDATE [dbo].[orders] SET access_standart = 'Да' WHERE  id_order=@id", sqlConnection);
-                    cmd.Parameters.AddWithValue("@id", IdOrder.ToString());
-                    cmd.ExecuteNonQuery();
-                    MessageBox.Show("Продукт проходит аттестацию!", "Severstal Infocom");
-                }
-                else
-                {
-                    SqlCommand cmd = new SqlCommand("UPDATE [dbo].[orders] SET access_standart = 'Нет' WHERE  id_order=@id", sqlConnection);
-                    cmd.Parameters.AddWithValue("@id", IdOrder.ToString());
-                    cmd.ExecuteNonQuery();
-                    MessageBox.Show("Продукт НЕ проходит аттестацию!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
                 update(createCommand);
                 this.Close();
             }
             else
             {
                 MessageBox.Show("Введите значения", "Severstal Infocom", MessageBoxButton.OK);
-                sqlConnection.Close();
             }
+            sqlConnection.Close();
         }
 
         private void update(SqlCommand createCommand)
@@ -125,7 +95,7 @@ namespace Diploma_2022.Add
             {
                 int min = Convert.ToInt32(db.GetValue(7).ToString());
                 int max = Convert.ToInt32(db.GetValue(8).ToString());
-                if (thickness_mm > min && thickness_mm < max && width_mm > min && width_mm < max && length_mm > min && length_mm < max) 
+                if (thickness_mm > min && thickness_mm < max && width_mm > min && width_mm < max && length_mm > min && length_mm < max)
                 {
                     standard_mark.Items.Add(db.GetValue(1));
                     product_standard.Items.Add(db.GetValue(2));

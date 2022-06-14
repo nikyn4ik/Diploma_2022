@@ -22,7 +22,7 @@ namespace Diploma_2022.Pages
     /// </summary>
     public partial class StoragePage : Window
     {
-        List<Models.Storage> list = new();
+        List<Storage> list = new();
         SqlConnection sqlConnection = new SqlConnection(@"Data Source=SPUTNIK; Initial Catalog=diploma_db; Integrated Security=True");
         public StoragePage()
         {
@@ -96,23 +96,16 @@ namespace Diploma_2022.Pages
         private void Button_Click_search(object sender, RoutedEventArgs e)
         {
             string ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
-            try
-            {
-                SqlConnection cmds = new SqlConnection(ConnectionString);
-                string cmd = "SELECT * FROM [dbo].[storage] WHERE name_storage like '" + pole.Text + "%'";
-                cmds.Open();
-                SqlCommand sqlcom = new SqlCommand(cmd, cmds);
-                SqlDataAdapter storages = new SqlDataAdapter(sqlcom);
-                DataTable dt = new DataTable("storage");
-                storages.Fill(dt);
-                StorageGrid.ItemsSource = dt.DefaultView;
-                storages.Update(dt);
-                cmds.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            SqlConnection cmds = new SqlConnection(ConnectionString);
+            string cmd = "SELECT * FROM [dbo].[storage] WHERE name_storage like '" + pole.Text + "%'";
+            cmds.Open();
+            SqlCommand sqlcom = new SqlCommand(cmd, cmds);
+            SqlDataAdapter storages = new SqlDataAdapter(sqlcom);
+            DataTable dt = new DataTable("storage");
+            storages.Fill(dt);
+            StorageGrid.ItemsSource = dt.DefaultView;
+            storages.Update(dt);
+            cmds.Close();
         }
 
         private void polee_TextChanged(object sender, TextChangedEventArgs e)

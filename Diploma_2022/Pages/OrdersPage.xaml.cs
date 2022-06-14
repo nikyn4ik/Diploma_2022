@@ -21,6 +21,11 @@ namespace Diploma_2022.Pages
         public string FIO;
         DataTable dt = new DataTable("diploma_db");
         ObservableCollection<Orders> orders = new ObservableCollection<Orders>();
+        int thickness_mm;
+        int width_mm;
+        int length_mm;
+        int IdOrder;
+        SqlDataReader db;
 
         public OrdersPage(string fIO_work)
         {
@@ -46,17 +51,6 @@ namespace Diploma_2022.Pages
             result = tap.Rows.OfType<DataRow>().Select(dr => dr.Field<int>("id_order")).ToList();
             orders = new ObservableCollection<Orders>();
 
-            OrdersGrid.ItemsSource = dt.DefaultView;
-        }
-
-        private void UpdateButton_Click(object sender, RoutedEventArgs e)
-        {
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "SELECT * FROM [dbo].[orders]";
-            cmd.Connection = sqlConnection;
-            SqlDataAdapter ord = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable("diploma_db");
-            ord.Fill(dt);
             OrdersGrid.ItemsSource = dt.DefaultView;
             sqlConnection.Close();
         }
@@ -139,7 +133,6 @@ namespace Diploma_2022.Pages
 
         protected void update()
         {
-            sqlConnection.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.CommandText = "SELECT * FROM [dbo].[orders]";
             cmd.Connection = sqlConnection;
@@ -166,18 +159,71 @@ namespace Diploma_2022.Pages
 
         private void AddButton_attestation(object sender, RoutedEventArgs e)
         {
-            object items = OrdersGrid.SelectedItem;
-            if (items == null)
-                MessageBox.Show("Выберите строчку", "Severstal Infocom");
-            else
+            SqlCommand cmd1 = new SqlCommand("SELECT thickness_mm, width_mm, length_mm FROM [dbo].[orders] where id_order = @id", sqlConnection);
+            sqlConnection.Open();
+            object item = OrdersGrid.SelectedItem;
+            string ID = (OrdersGrid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+            cmd1.Parameters.AddWithValue("@id", ID.ToString());
+            db = cmd1.ExecuteReader();
+            while (db.Read())
             {
-                object item = OrdersGrid.SelectedItem;
-                string ID = (OrdersGrid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
-                var window = new AddAttestationToOrder(Convert.ToInt32(ID));
-                window.ShowDialog();
-                update();
+                thickness_mm = (int)db.GetValue(0);
+                width_mm = (int)db.GetValue(1);
+                length_mm = (int)db.GetValue(2);
             }
+            db.Close();
+            sqlConnection.Close();
+
+            SqlCommand cmd = new SqlCommand("SELECT * FROM [dbo].[qua_certificate], [dbo].[cert_directory] WHERE [dbo].[qua_certificate].id_qua_certificate = [dbo].[cert_directory].id_qua_certificate", sqlConnection);
+            sqlConnection.Open();
+            cmd.CommandType = CommandType.Text;
+            db = cmd.ExecuteReader();
+            bool check = false;
+            while (db.Read())
+            {
+                int min = Convert.ToInt32(db.GetValue(7).ToString());
+                int max = Convert.ToInt32(db.GetValue(8).ToString());
+
+                if (thickness_mm > min && thickness_mm < max && width_mm > min && width_mm < max && length_mm > min && length_mm < max)
+                {
+                    yes();
+                    check = true;
+                    break;
+                    db.Close();
+                }
+            }
+            if (check == false)
+            {
+                no();
+            }
+            sqlConnection.Close();
         }
+
+        private void no()
+        {
+            SqlCommand cmd12 = new SqlCommand ("UPDATE [dbo].[orders] SET access_standart = 'Нет' WHERE  id_order=@id", sqlConnection);
+            object item = OrdersGrid.SelectedItem;
+            string ID = (OrdersGrid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+            cmd12.Parameters.AddWithValue("@id", ID.ToString());
+            MessageBox.Show("Продукт НЕ проходит аттестацию!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Error);
+            db.Close();
+            cmd12.ExecuteNonQuery();
+            update();
+        }
+        private void yes()
+        {
+            SqlCommand cmd13 = new SqlCommand ("UPDATE [dbo].[orders] SET access_standart = 'Да' WHERE  id_order=@id", sqlConnection);
+            object item = OrdersGrid.SelectedItem;
+            string ID = (OrdersGrid.SelectedCells[0].Column.GetCellContent(item) as TextBlock).Text;
+            cmd13.Parameters.AddWithValue("@id", ID.ToString());
+            MessageBox.Show("Продукт проходит аттестацию!", "Severstal Infocom", MessageBoxButton.OK);
+            var window = new AddAttestationToOrder(Convert.ToInt32(ID));
+            window.ShowDialog();
+            db.Close();
+            cmd13.ExecuteNonQuery();
+            update();
+        }
+
         private void polee_TextChanged(object sender, TextChangedEventArgs e)
         {
             OrdersGrid.Items.Refresh();
@@ -186,23 +232,16 @@ namespace Diploma_2022.Pages
         private void Button_Click_search(object sender, RoutedEventArgs e)
         {
             string ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
-            try
-            {
-                SqlConnection cmds = new SqlConnection(ConnectionString);
-                string cmd = "SELECT * FROM [dbo].[orders] WHERE id_order like '" + pole.Text + "%'";
-                cmds.Open();
-                SqlCommand sqlcom = new SqlCommand(cmd, cmds);
-                SqlDataAdapter order = new SqlDataAdapter(sqlcom);
-                DataTable dt = new DataTable("package");
-                order.Fill(dt);
-                OrdersGrid.ItemsSource = dt.DefaultView;
-                order.Update(dt);
-                cmds.Close();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Не найдено в системе.", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            SqlConnection cmds = new SqlConnection(ConnectionString);
+            string cmd = "SELECT * FROM [dbo].[orders] WHERE name_product like '" + pole.Text + "%'";
+            cmds.Open();
+            SqlCommand sqlcom = new SqlCommand(cmd, cmds);
+            SqlDataAdapter order = new SqlDataAdapter(sqlcom);
+            DataTable dt = new DataTable("orders");
+            order.Fill(dt);
+            OrdersGrid.ItemsSource = dt.DefaultView;
+            order.Update(dt);
+            cmds.Close();
         }
     }
     }
