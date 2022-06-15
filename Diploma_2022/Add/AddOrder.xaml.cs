@@ -23,7 +23,7 @@ namespace Diploma_2022.Add
             InitializeComponent();
             IdOrder = idOrder;
             consigneeSelect();
-            fillComboBoxStatus();
+            statusSelect();
 
             DatePicker.DisplayDate = DateTime.Today;
             DatePicker.Text = DateTime.Today.ToString();
@@ -45,10 +45,9 @@ namespace Diploma_2022.Add
                 }
                 if (consignee.Text != "" && status.Text != "" && DatePicker.Text != "")
                 {
-                    query = "UPDATE [dbo].[orders] SET status_order=@status_order, date_of_adoption=@date_of_adoption WHERE id_order=@id";
+                    query = "UPDATE [dbo].[orders] SET date_of_adoption=@date_of_adoption WHERE id_order=@id";
                     SqlCommand createCommand = new SqlCommand(query, sqlConnection);
                     createCommand.Parameters.AddWithValue("@id", IdOrder.ToString());
-                    createCommand.Parameters.AddWithValue("@status_order", status.Text);
                     createCommand.Parameters.AddWithValue("@date_of_adoption", Convert.ToDateTime(DatePicker.Text));
                     updateOrder(createCommand);
                 }
@@ -75,19 +74,26 @@ namespace Diploma_2022.Add
             sqlConnection.Close();
         }
 
+        private void statusSelect()
+        {
+            SqlCommand cmd = new SqlCommand("SELECT status_order FROM [dbo].[orders] WHERE id_order = @id", sqlConnection);
+            sqlConnection.Open();
+            cmd.Parameters.AddWithValue("@id", IdOrder.ToString());
+            db = cmd.ExecuteReader();
+
+            while (db.Read())
+            {
+                status.Text = (string)db.GetString(0);
+            }
+            sqlConnection.Close();
+        }
+
         private void updateOrder(SqlCommand createCommand) 
         {
             createCommand.ExecuteNonQuery();
             MessageBox.Show("Сохранено!", "Severstal Infocom", MessageBoxButton.OK);
             sqlConnection.Close();
             this.Close();
-        }
-
-        private void fillComboBoxStatus() 
-        {
-            status.Items.Add("Заказ на выполнении");
-            status.Items.Add("Заказ выполнен");
-            status.Items.Add("Заказ отменен");
         }
     }
 }

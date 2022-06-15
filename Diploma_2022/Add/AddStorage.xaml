@@ -46,8 +46,8 @@
             FontSize="35"
             Foreground="#002F6C" Grid.ColumnSpan="5" />
         <Label
-            Width="317"
-            Height="57"
+            Width="316"
+            Height="50"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
             HorizontalContentAlignment="Center"
@@ -59,7 +59,7 @@
             Foreground="White" Grid.Row="1" Grid.Column="1" />
         <Label
             Width="317"
-            Height="57"
+            Height="50"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
             HorizontalContentAlignment="Center"
@@ -71,7 +71,7 @@
             Foreground="White" Grid.Row="2" Grid.Column="1" />
         <Label
             Width="317"
-            Height="57"
+            Height="50"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
@@ -81,7 +81,7 @@
             Foreground="White" Grid.Row="3" Grid.Column="1"/>
         <Label
             Width="317"
-            Height="57"
+            Height="50"
             VerticalAlignment="Stretch"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
@@ -98,7 +98,7 @@
             Content="ФИО ответственного"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
-            Foreground="White" Grid.Row="5" Height="57" 
+            Foreground="White" Grid.Row="5" Height="50" 
             Grid.Column="1" />
 
         <TextBox

@@ -10,6 +10,8 @@ using iTextSharp.text.pdf;
 using OfficeOpenXml;
 using Diploma_2022.Models;
 using Diploma_2022.Add;
+using OfficeOpenXml.Drawing;
+using OfficeOpenXml.Style;
 
 namespace Diploma_2022.Pages
 {
@@ -116,7 +118,7 @@ namespace Diploma_2022.Pages
                 var baseFont = BaseFont.CreateFont(ttf, BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
                 var font = new Font(baseFont, Font.DEFAULTSIZE, Font.NORMAL);
                 Document doc1 = new Document(PageSize.A4);
-                PdfWriter.GetInstance(doc1, new FileStream("PDF\\Заказ " + ID + ".pdf", FileMode.Create));
+                PdfWriter.GetInstance(doc1, new FileStream("PDF\\Заказ № " + ID + ".pdf", FileMode.Create));
                 doc1.Open();
 
                 System.Windows.Resources.StreamResourceInfo res = Application.GetResourceStream(new Uri("Images/SeverstalPDF.jpg", UriKind.Relative));
@@ -137,7 +139,7 @@ namespace Diploma_2022.Pages
                 Chunk c6 = new Chunk(" " + "", font);
                 Chunk c7 = new Chunk(" " + "ID заказа:   " + dr[0], font);
                 Chunk c8 = new Chunk(" " + "Аттестация пройдена:  " + dr[16], font);
-                Chunk c9 = new Chunk(" " + "Заказчик:  " + dr[34], font);
+                Chunk c9 = new Chunk(" " + "Заказчик:  " + dr[33], font);
                 Chunk c10 = new Chunk(" " + "СИСТ-С3:  " + dr[1], font);
                 Chunk c11 = new Chunk(" " + "ЛОГ-СЗ:  " + dr[2], font);
                 Chunk c12 = new Chunk(" " + "Продукт:  " + dr[9], font);
@@ -404,78 +406,192 @@ namespace Diploma_2022.Pages
                 Directory.CreateDirectory("EXCEL");
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             DataRowView drv = (DataRowView)DeliveryGrid.SelectedItem;
-            string ID_Orders = drv.Row[0].ToString();
-            using var stream = new FileStream("EXCEL\\ORDER " + ID_Orders + " .xlsx", FileMode.Create);
+            string ID_Orders = drv.Row[1].ToString();
+            using var stream = new FileStream("EXCEL\\Заказ № " + ID_Orders + " .xlsx", FileMode.Create);
             using var package = new ExcelPackage(stream);
-            var ws = package.Workbook.Worksheets.Add("ORDER");
+            var ws = package.Workbook.Worksheets.Add("Заказ № " + ID_Orders);
             var sql = "SELECT *, (SELECT FIO FROM payer where id_payer = orders.id_payer ) AS 'FIO', (SELECT standard_per_mark FROM qua_certificate where id_qua_certificate = orders.id_qua_certificate) AS 'standard_per_mark', (SELECT product_standard FROM qua_certificate where id_qua_certificate = orders.id_qua_certificate) AS 'product_standard', (SELECT manufacturer FROM qua_certificate where id_qua_certificate = orders.id_qua_certificate) AS 'manufacturer', (SELECT date_add_certificate FROM qua_certificate where id_qua_certificate = orders.id_qua_certificate) AS 'date_add_certificate', (SELECT name_storage FROM storage where id_storage = shipment.id_storage) AS 'name_storage', (SELECT address FROM storage where id_storage = shipment.id_storage) AS 'address', (SELECT FIO_responsible_person FROM storage where id_storage=shipment.id_storage) AS 'FIO_responsible_person', (SELECT date_add_storage FROM storage where id_storage=shipment.id_storage) AS 'date_add_storage', (SELECT phone_storage FROM storage where id_storage=shipment.id_storage) AS 'phone_storage', (SELECT name_transport FROM transport where id_transport=shipment.id_transport) AS 'name_transport', (SELECT number_transport FROM transport where id_transport=shipment.id_transport) AS 'number_transport' FROM orders INNER JOIN package ON orders.id_order = package.id_order INNER JOIN shipment ON orders.id_order = shipment.id_order INNER JOIN delivery ON orders.id_order = delivery.id_order WHERE orders.id_order = @id";
             SqlCommand cmd = new SqlCommand(sql, sqlConnection);
             cmd.Parameters.AddWithValue("@id", ID_Orders);
             var reader = cmd.ExecuteReader();
             int count = 10;
 
-            //order
-            ws.Cells["A5"].Value = "ID заказа";
-            ws.Cells["B5"].Value = "ID аттестации";
-            ws.Cells["C5"].Value = "ID заказчика";
-            ws.Cells["D5"].Value = "СИСТ #СЗ";
-            ws.Cells["E5"].Value = "ЛОГ #СЗ";
-            ws.Cells["F5"].Value = "Толщина продукта";
-            ws.Cells["G5"].Value = "Длина продукта"; //
-            ws.Cells["H5"].Value = "Ширина продукта";
-            ws.Cells["I5"].Value = "Название продукта";
-            ws.Cells["J5"].Value = "Грузоперевозчик";
-            ws.Cells["K5"].Value = "Статус заказа";
-            ws.Cells["L5"].Value = "Пройдена проверка на качество";
+            ws.TabColor = System.Drawing.Color.Black;
 
-            ////qua_certificate
-            ws.Cells["A9"].Value = "Стандарт на марку";
-            ws.Cells["B9"].Value = "Стандарт продукта";
-            ws.Cells["C9"].Value = "Изготовитель";
-            ws.Cells["D9"].Value = "Дата аттестации";
-            ws.Cells["E9"].Value = "Транспорт"; ////transport
-            ws.Cells["F9"].Value = "Номер транспорта";
-            ws.Cells["G9"].Value = "Склад"; ////storage
-            ws.Cells["H9"].Value = "Адрес склада";
-            ws.Cells["I9"].Value = "Телефон склада";
-            ws.Cells["J9"].Value = "ФИО ответственного за склад";
-            ws.Cells["K9"].Value = "Ранняя доставка";//delivery
-            ws.Cells["L9"].Value = "Дата доставки";
+            ws.Cells[1, 1].Value = "Сервисный металлоцентр СМЦ-Колпино";
+            ws.Cells[1, 1].Style.Font.Size = 16;
+            ws.Cells[1, 1].Style.Font.Name = "Times New Roman";
+
+            ws.Cells[2, 1].Value = "Россия, Колпино, Санкт-Петербург, Территория промзоны 'Ижорские завод', д.90, лит. Д, помещение 1-Н";
+            ws.Cells[2, 1].Style.Font.Size = 12;
+            ws.Cells[2, 1].Style.Font.Name = "Times New Roman";
+
+            ws.Cells[3, 1].Value = "Информация о заказе";
+            ws.Cells[3, 1].Style.Font.Size = 16;
+            ws.Cells[3, 1].Style.Font.Name = "Times New Roman";
+
+
+            //order
+            ws.Cells[5, 1].Value = "ID заказа" ;
+            ws.Cells[5, 1].Style.Font.Size = 12;
+            ws.Cells[5, 1].Style.Font.Name = "Calibri";
+            ws.Cells[5, 1].Style.Font.Bold = true;
+
+            ws.Cells[5, 4].Value = "Аттестация пройдена";
+            ws.Cells[5, 4].Style.Font.Size = 12;
+            ws.Cells[5, 4].Style.Font.Name = "Calibri";
+            ws.Cells[5, 4].Style.Font.Bold = true;
+
+            ws.Cells[9, 1].Value = "Заказчик";
+            ws.Cells[9, 1].Style.Font.Size = 12;
+            ws.Cells[9, 1].Style.Font.Name = "Calibri";
+            ws.Cells[9, 1].Style.Font.Bold = true;
+
+            ws.Cells[9, 4].Value = "СИСТ #СЗ";
+            ws.Cells[9, 4].Style.Font.Size = 12;
+            ws.Cells[9, 4].Style.Font.Name = "Calibri";
+            ws.Cells[9, 4].Style.Font.Bold = true;
+
+            ws.Cells[13, 1].Value = "ЛОГ #СЗ";
+            ws.Cells[13, 1].Style.Font.Size = 12;
+            ws.Cells[13, 1].Style.Font.Name = "Calibri";
+            ws.Cells[13, 1].Style.Font.Bold = true;
+
+            ws.Cells[13, 4].Value = "Название продукта";
+            ws.Cells[13, 4].Style.Font.Size = 12;
+            ws.Cells[13, 4].Style.Font.Name = "Calibri";
+            ws.Cells[13, 4].Style.Font.Bold = true;
+
+            ws.Cells[16, 1].Value = "Толщина продукта";
+            ws.Cells[16, 1].Style.Font.Size = 12;
+            ws.Cells[16, 1].Style.Font.Name = "Calibri";
+            ws.Cells[16, 1].Style.Font.Bold = true;
+
+            ws.Cells[16, 4].Value = "Длина продукта"; //
+            ws.Cells[16, 4].Style.Font.Size = 12;
+            ws.Cells[16, 4].Style.Font.Name = "Calibri";
+            ws.Cells[16, 4].Style.Font.Bold = true;
+
+            ws.Cells[20, 1].Value = "Ширина продукта";
+            ws.Cells[20, 1].Style.Font.Size = 12;
+            ws.Cells[20, 1].Style.Font.Name = "Calibri";
+            ws.Cells[20, 1].Style.Font.Bold = true;
+
+            ws.Cells[20, 4].Value = "Грузоперевозчик";
+            ws.Cells[20, 4].Style.Font.Size = 12;
+            ws.Cells[20, 4].Style.Font.Name = "Calibri";
+            ws.Cells[20, 4].Style.Font.Bold = true;
+
+            ws.Cells[24, 1].Value = "Статус заказа";
+            ws.Cells[24, 1].Style.Font.Size = 12;
+            ws.Cells[24, 1].Style.Font.Name = "Calibri";
+            ws.Cells[24, 1].Style.Font.Bold = true;
+
+            //////qua_certificate
+            ws.Cells[24, 4].Value = "Стандарт на марку";
+            ws.Cells[24, 4].Style.Font.Size = 12;
+            ws.Cells[24, 4].Style.Font.Name = "Calibri";
+            ws.Cells[24, 4].Style.Font.Bold = true;
+
+            ws.Cells[28, 1].Value = "Стандарт продукта";
+            ws.Cells[28, 1].Style.Font.Size = 12;
+            ws.Cells[28, 1].Style.Font.Name = "Calibri";
+            ws.Cells[28, 1].Style.Font.Bold = true;
+
+            ws.Cells[28, 4].Value = "Изготовитель";
+            ws.Cells[28, 4].Style.Font.Size = 12;
+            ws.Cells[28, 4].Style.Font.Name = "Calibri";
+            ws.Cells[28, 4].Style.Font.Bold = true;
+
+            ws.Cells[32, 1].Value = "Дата аттестации";
+            ws.Cells[32, 1].Style.Font.Size = 12;
+            ws.Cells[32, 1].Style.Font.Name = "Calibri";
+            ws.Cells[32, 1].Style.Font.Bold = true;
+
+            ws.Cells[32, 4].Value = "Транспорт"; ////transport
+            ws.Cells[32, 4].Style.Font.Size = 12;
+            ws.Cells[32, 4].Style.Font.Name = "Calibri";
+            ws.Cells[32, 4].Style.Font.Bold = true;
+
+            ws.Cells[36, 1].Value = "Номер транспорта";
+            ws.Cells[36, 1].Style.Font.Size = 12;
+            ws.Cells[36, 1].Style.Font.Name = "Calibri";
+            ws.Cells[36, 1].Style.Font.Bold = true;
+
+            ws.Cells[36, 4].Value = "Склад"; ////storage
+            ws.Cells[36, 4].Style.Font.Size = 12;
+            ws.Cells[36, 4].Style.Font.Name = "Calibri";
+            ws.Cells[36, 4].Style.Font.Bold = true;
+
+            ws.Cells[40, 1].Value = "Адрес склада";
+            ws.Cells[40, 1].Style.Font.Size = 12;
+            ws.Cells[40, 1].Style.Font.Name = "Calibri";
+            ws.Cells[40, 1].Style.Font.Bold = true;
+
+            ws.Cells[40, 4].Value = "Телефон склада";
+            ws.Cells[40, 4].Style.Font.Size = 12;
+            ws.Cells[40, 4].Style.Font.Name = "Calibri";
+            ws.Cells[40, 4].Style.Font.Bold = true;
+
+            ws.Cells[44, 1].Value = "ФИО ответственного за склад";
+            ws.Cells[44, 1].Style.Font.Size = 12;
+            ws.Cells[44, 1].Style.Font.Name = "Calibri";
+            ws.Cells[44, 1].Style.Font.Bold = true;
+
+            ws.Cells[44, 4].Value = "Ранняя доставка";//delivery
+            ws.Cells[44, 4].Style.Font.Size = 12;
+            ws.Cells[44, 4].Style.Font.Name = "Calibri";
+            ws.Cells[44, 4].Style.Font.Bold = true;
+
+            ws.Cells[48, 1].Value = "Дата доставки";
+            ws.Cells[48, 1].Style.Font.Size = 12;
+            ws.Cells[48, 1].Style.Font.Name = "Calibri";
+            ws.Cells[48, 1].Style.Font.Bold = true;
+
 
 
             while (reader.Read())
             {
                 //order
-                ws.Cells[$"A{6}"].Value = reader.GetValue("id_order");
-                ws.Cells[$"B{6}"].Value = reader.GetValue("id_qua_certificate");
-                ws.Cells[$"C{6}"].Value = reader.GetValue("id_payer");
-                ws.Cells[$"D{6}"].Value = reader.GetValue("syst_c3");
-                ws.Cells[$"E{6}"].Value = reader.GetValue("log_c3");
-                ws.Cells[$"F{6}"].Value = reader.GetValue("thickness_mm");
-                ws.Cells[$"G{6}"].Value = reader.GetValue("length_mm");
-                ws.Cells[$"H{6}"].Value = reader.GetValue("width_mm");
-                ws.Cells[$"I{6}"].Value = reader.GetValue("name_product");
-                ws.Cells[$"J{6}"].Value = reader.GetValue("name_consignee");
-                ws.Cells[$"K{6}"].Value = reader.GetValue("status_order");
-                ws.Cells[$"L{6}"].Value = reader.GetValue("access_standart");
+                ws.Cells[6, 1].Value = reader.GetValue("id_order");
+                ws.Cells[6, 1].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
+                ws.Cells[6, 4].Value = reader.GetValue("access_standart");
+                ws.Cells[10, 1].Value = reader.GetValue("FIO");
+                ws.Cells[10, 4].Value = reader.GetValue("syst_c3");
+                ws.Cells[10, 4].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
+                ws.Cells[14, 1].Value = reader.GetValue("log_c3");
+                ws.Cells[14, 1].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
+                ws.Cells[14, 4].Value = reader.GetValue("name_product");
+                ws.Cells[17, 1].Value = reader.GetValue("thickness_mm");
+                ws.Cells[17, 1].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
+                ws.Cells[17, 4].Value = reader.GetValue("length_mm");
+                ws.Cells[17, 4].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
+                ws.Cells[21, 1].Value = reader.GetValue("width_mm");
+                ws.Cells[21, 1].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
+                ws.Cells[21, 4].Value = reader.GetValue("name_consignee");
+                ws.Cells[25, 1].Value = reader.GetValue("status_order");
 
-                ////qua_certificate
-                ws.Cells[$"A{10}"].Value = reader.GetValue("standard_per_mark");
-                ws.Cells[$"B{10}"].Value = reader.GetValue("product_standard");
-                ws.Cells[$"C{10}"].Value = reader.GetValue("manufacturer");
-                ws.Cells[$"D{10}"].Value = reader.GetValue("date_add_certificate");
-                ws.Cells[$"D{10}"].Style.Numberformat.Format = "yyyy-mm-dd";
-                ws.Cells[$"E{10}"].Value = reader.GetValue("name_transport");////transport
-                ws.Cells[$"F{10}"].Value = reader.GetValue("number_transport");
-                ws.Cells[$"G{10}"].Value = reader.GetValue("name_storage");////storage
-                ws.Cells[$"H{10}"].Value = reader.GetValue("address");
-                ws.Cells[$"I{10}"].Value = reader.GetValue("phone_storage");
-                ws.Cells[$"J{10}"].Value = reader.GetValue("FIO_responsible_person");
-                ws.Cells[$"K{10}"].Value = reader.GetValue("early_delivery");//delivery
-                ws.Cells[$"L{10}"].Value = reader.GetValue("date_of_delivery");
-                ws.Cells[$"L{10}"].Style.Numberformat.Format = "yyyy-mm-dd";
+                //////qua_certificate
+                ws.Cells[25, 4].Value = reader.GetValue("standard_per_mark");
+                ws.Cells[29, 1].Value = reader.GetValue("product_standard");
+                ws.Cells[29, 4].Value = reader.GetValue("manufacturer");
+                ws.Cells[33, 1].Value = reader.GetValue("date_add_certificate");
+                ws.Cells[33, 1].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
+                ws.Cells[33, 1].Style.Numberformat.Format = "yyyy-mm-dd";
+                ws.Cells[33, 4].Value = reader.GetValue("name_transport");////transport
+                ws.Cells[37, 1].Value = reader.GetValue("number_transport");
+                ws.Cells[37, 4].Value = reader.GetValue("name_storage");////storage
+                ws.Cells[41, 1].Value = reader.GetValue("address");
+                ws.Cells[41, 4].Value = reader.GetValue("phone_storage");
+                ws.Cells[45, 1].Value = reader.GetValue("FIO_responsible_person");
+                ws.Cells[45, 4].Value = reader.GetValue("early_delivery");//delivery
+                ws.Cells[49, 1].Value = reader.GetValue("date_of_delivery");
+                ws.Cells[49, 1].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
+                ws.Cells[49, 1].Style.Numberformat.Format = "yyyy-mm-dd";
+                ws.Cells[ws.Dimension.Address].AutoFitColumns();
                 count++;
             }
+            ws.Cells[ws.Dimension.Address].AutoFitColumns();
             package.Save();
             MessageBox.Show("EXCEL-таблица сохранена", "Severstal Infocom");
             sqlConnection.Close();

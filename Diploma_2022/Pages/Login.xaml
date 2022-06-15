@@ -42,7 +42,7 @@
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="28"
                     Foreground="#FFFFFF"
-                    Text="Добро пожаловать в Северсталь-Инфоком" />
+                    Text="Добро пожаловать в Северсталь-инфоком" />
 
                 <Separator />
 

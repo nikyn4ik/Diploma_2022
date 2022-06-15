@@ -42,7 +42,7 @@
             Content="Минимальное значение"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
-            Foreground="#FFFFFF" Height="57" 
+            Foreground="#FFFFFF" Height="50" 
             VerticalAlignment="Center" Grid.Column="1" />
         <Label
             Grid.Row="3"
@@ -52,7 +52,7 @@
             Content="Максимальное значение"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
-            Foreground="#FFFFFF" VerticalAlignment="Center" Height="57" Grid.Column="1" />
+            Foreground="#FFFFFF" VerticalAlignment="Center" Height="50" Grid.Column="1" />
         <Label
             Grid.Row="5"
             HorizontalContentAlignment="Center"
@@ -61,7 +61,7 @@
             Content="Свойства"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
-            Foreground="#FFFFFF" VerticalAlignment="Center" Height="57" Grid.Column="1" />
+            Foreground="#FFFFFF" VerticalAlignment="Center" Height="50" Grid.Column="1" HorizontalAlignment="Stretch" />
         <Label
             Grid.ColumnSpan="5"
             Height="56"
