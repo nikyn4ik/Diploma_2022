@@ -1,97 +1,86 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using System.Configuration;
 using System.Data.SqlClient;
-
+using System.Windows;
+using System.Windows.Input;
 
 namespace Diploma_2022
 {
-    /// <summary>
-    /// Логика взаимодействия для Login.xaml
-    /// </summary>
     public partial class Login : Window
     {
         public Login()
         {
             InitializeComponent();
-            if((Keyboard.GetKeyStates(Key.CapsLock) & KeyStates.Toggled)==KeyStates.Toggled)
-            {
-                capsLabel.Visibility = Visibility.Visible;  
-            }
-            else
-            {
-                capsLabel.Visibility = Visibility.Hidden;
-            }
+            UpdateCapsLockVisibility();
             Keyboard.AddKeyDownHandler(Application.Current.MainWindow, HandlerSub);
         }
+
         private void HandlerSub(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.CapsLock)
-            { capsLabel.Visibility = e.IsToggled ? Visibility.Visible : Visibility.Hidden;
-            
+            {
+                UpdateCapsLockVisibility();
             }
         }
+
+        private void UpdateCapsLockVisibility()
+        {
+            capsLabel.Visibility = (Keyboard.GetKeyStates(Key.CapsLock) & KeyStates.Toggled) == KeyStates.Toggled
+                ? Visibility.Visible
+                : Visibility.Hidden;
+        }
+
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            SqlConnection sqlConnection = new SqlConnection(@"Data Source=localhost; Initial Catalog=diploma_db; Integrated Security=True");
-            try
+            string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            using (SqlConnection sqlConnection = new SqlConnection(connectionString))
             {
-                if (sqlConnection.State == System.Data.ConnectionState.Closed)
+                try
+                {
                     sqlConnection.Open();
 
-                var query = "SELECT COUNT(*) FROM [dbo].[authorization] WHERE Login=@lg AND Password=@pass"; //@1
-
-                SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
-
-                sqlCommand.Parameters.AddWithValue("@lg", System.Data.SqlDbType.NVarChar).Value = login.Text;
-                sqlCommand.Parameters.AddWithValue("@pass", System.Data.SqlDbType.NVarChar).Value = password.Password;
-
-                int count = Convert.ToInt32(sqlCommand.ExecuteScalar());
-
-                    if (count == 1)
+                    var query = "SELECT COUNT(*) FROM [dbo].[authorizations] WHERE Login=@lg AND Password_hash=@password_hash";
+                    using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
                     {
-                    var Login = login.Text;
-                    var Password = password.Password;
-                      var window = new MainWindow();
-                     window.lplogin.Text = Login;
+                        sqlCommand.Parameters.AddWithValue("@lg", login.Text);
+                        sqlCommand.Parameters.AddWithValue("@password_hash", Users.HashPassword(password.Password));
 
+                        int count = Convert.ToInt32(sqlCommand.ExecuteScalar());
 
-                     MessageBox.Show(
-                         "Добро пожаловать" + ", " + login.Text,
-                         "Severstal Infocom",
-                         MessageBoxButton.OK,
-                         MessageBoxImage.Information);
-                        window.Show();//!!!!!!!!!!!
-                        this.Hide();
+                        if (count == 1)
+                        {
+                            var fioQuery = "SELECT FIO FROM [dbo].[authorizations] WHERE Login=@lg";
+                            using (SqlCommand fioCommand = new SqlCommand(fioQuery, sqlConnection))
+                            {
+                                fioCommand.Parameters.AddWithValue("@lg", login.Text);
+                                string FIO = fioCommand.ExecuteScalar()?.ToString();
+
+                                var window = new MainWindow();
+                                window.lplogin.Text = FIO;
+
+                                MessageBox.Show(
+                                    $"Добро пожаловать, {FIO}",
+                                    "Severstal Infocom",
+                                    MessageBoxButton.OK,
+                                    MessageBoxImage.Information);
+                                window.Show();
+                                Hide();
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show(
+                                "Введен неверный логин или пароль.",
+                                "Severstal Infocom",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Error);
+                        }
                     }
-                    else 
-                    {
-                        MessageBox.Show(
-                            "Введен неверный логин или пароль.",
-                            "Severstal Infocom", 
-                            MessageBoxButton.OK, 
-                            MessageBoxImage.Error);
-                    }
-
-               // }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
         private void Login_OnMouseDown(object sender, MouseButtonEventArgs e)
@@ -99,5 +88,6 @@ namespace Diploma_2022
             if (e.LeftButton == MouseButtonState.Pressed)
                 DragMove();
         }
+
     }
 }

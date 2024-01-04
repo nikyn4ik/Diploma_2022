@@ -12,19 +12,18 @@ using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 
-
 namespace Diploma_2022.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для StoragePage.xaml
-    /// </summary>
     public partial class StoragePage : Window
     {
         List<Models.Storage> list = new();
-        SqlConnection sqlConnection = new SqlConnection(@"Data Source=SPUTNIK; Initial Catalog=diploma_db; Integrated Security=True");
+        SqlConnection sqlConnection;
+
         public StoragePage()
         {
             InitializeComponent();
+            string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            sqlConnection = new SqlConnection(connectionString);
             Storage_DataGrid_SelectionChanged();
         }
 
@@ -39,6 +38,7 @@ namespace Diploma_2022.Pages
             storage.Fill(dt);
             StorageGrid.ItemsSource = dt.DefaultView;
         }
+
         private void AddButton(object sender, RoutedEventArgs e)
         {
             Windows.AddStorage taskWindow = new Windows.AddStorage();
@@ -54,7 +54,7 @@ namespace Diploma_2022.Pages
                 case MessageBoxResult.No:
                     break;
 
-                    case MessageBoxResult.Yes:
+                case MessageBoxResult.Yes:
                     if (StorageGrid.SelectedItems.Count > 0)
                     {
                         DataRowView drv = (DataRowView)StorageGrid.SelectedItem;
@@ -73,23 +73,24 @@ namespace Diploma_2022.Pages
         private void UpdButton(object sender, RoutedEventArgs e)
         {
             StorageGrid.Items.Refresh();
-
         }
+
         private void Button_Click_search(object sender, RoutedEventArgs e)
         {
-            string ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
             try
             {
-                SqlConnection cmds = new SqlConnection(ConnectionString);
-                string cmd = "SELECT * FROM [dbo].[storage] WHERE id_storage like '" + pole.Text + "%'";
-                cmds.Open();
-                SqlCommand sqlcom = new SqlCommand(cmd, cmds);
-                SqlDataAdapter storages = new SqlDataAdapter(sqlcom);
-                DataTable dt = new DataTable("storage");
-                storages.Fill(dt);
-                StorageGrid.ItemsSource = dt.DefaultView;
-                storages.Update(dt);
-                cmds.Close();
+                string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+                using (SqlConnection cmds = new SqlConnection(connectionString))
+                {
+                    string cmd = "SELECT * FROM [dbo].[storage] WHERE id_storage like '" + pole.Text + "%'";
+                    cmds.Open();
+                    SqlCommand sqlcom = new SqlCommand(cmd, cmds);
+                    SqlDataAdapter storages = new SqlDataAdapter(sqlcom);
+                    DataTable dt = new DataTable("storage");
+                    storages.Fill(dt);
+                    StorageGrid.ItemsSource = dt.DefaultView;
+                    storages.Update(dt);
+                }
             }
             catch (Exception ex)
             {
@@ -104,7 +105,6 @@ namespace Diploma_2022.Pages
 
         private void StorageGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
         }
     }
-    }
+}

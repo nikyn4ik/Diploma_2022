@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Diploma_2022
 {
@@ -10,6 +7,29 @@ namespace Diploma_2022
     {
         public int id_authorization { get; set; }
         public string login { get; set; }
-        public string password { get; set; }
+        private string passwordHash;
+
+        public string Password
+        {
+            get { return passwordHash; }
+            set { passwordHash = HashPassword(value); }
+        }
+
+        public static string HashPassword(string password)
+        {
+            using (MD5 md5 = MD5.Create())
+            {
+                byte[] inputBytes = Encoding.ASCII.GetBytes(password);
+                byte[] hashBytes = md5.ComputeHash(inputBytes);
+
+                StringBuilder sb = new StringBuilder();
+                foreach (byte b in hashBytes)
+                {
+                    sb.Append(b.ToString("X2"));
+                }
+
+                return sb.ToString();
+            }
+        }
     }
 }

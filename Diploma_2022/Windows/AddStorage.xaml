@@ -12,9 +12,7 @@
     mc:Ignorable="d">
 
     <Window.Background>
-
-        <ImageBrush ImageSource="\Images\lebedevsevers.jpg" />
-
+        <ImageBrush ImageSource="/Images/lebedevsevers.jpg" />
     </Window.Background>
     <Grid>
         <Border

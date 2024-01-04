@@ -15,7 +15,7 @@
     mc:Ignorable="d">
 
     <Window.Background>
-        <ImageBrush ImageSource="/Images\newbrand-bg2.jpg" />
+        <ImageBrush ImageSource="/Images/newbrand-bg2.jpg" />
     </Window.Background>
 
     <Grid Height="684" VerticalAlignment="Top">

@@ -10,9 +10,7 @@
     Height="700"
     mc:Ignorable="d">
     <Window.Background>
-
-        <ImageBrush ImageSource="\Images\ugs.jpg" />
-
+        <ImageBrush ImageSource="/Images\ugs.jpg" />
     </Window.Background>
 
     <Grid>
@@ -73,16 +71,16 @@
                     Header="Стандарт на марку" />
                 <DataGridTextColumn
                     Width="*"
-                    Binding="{Binding tolerance_standart}"
+                    Binding="{Binding product_standard}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="12"
                     Header="Стандарт на допуск " />
                 <DataGridTextColumn
                     Width="*"
-                    Binding="{Binding product_standard}"
+                    Binding="{Binding manufacturer}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="12"
-                    Header="Стандарт на продукцию" />
+                    Header="Производитель" />
             </DataGrid.Columns>
         </DataGrid>
         <Button

@@ -1,80 +1,97 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Data;
-using System.IO;
 using System.Configuration;
-
 
 namespace Diploma_2022.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для OrdersPage.xaml
-    /// </summary>
     public partial class OrdersPage : Window
     {
-        SqlConnection sqlConnection = new SqlConnection(@"Data Source=SPUTNIK; Initial Catalog=diploma_db; Integrated Security=True");
-
+        private readonly SqlConnection sqlConnection;
+        private int id_order;
         public OrdersPage()
         {
             InitializeComponent();
+            string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            sqlConnection = new SqlConnection(connectionString);
             OrdersDataGrid_SelectionChanged();
-
         }
 
         private void OrdersDataGrid_SelectionChanged()
         {
-            SqlConnection sqlConnection = new SqlConnection();
-            sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
-            sqlConnection.Open();
             SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "SELECT * FROM [dbo].[orders]";
-            cmd.Connection = sqlConnection;
+            try
+            {
+                cmd.CommandText = "SELECT * FROM [dbo].[orders]";
+                cmd.Connection = sqlConnection;
 
-            SqlDataAdapter orders = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable("diploma_db");
-            orders.Fill(dt);
-            OrdersGrid.ItemsSource = dt.DefaultView;
-            sqlConnection.Close();
-
+                SqlDataAdapter orders = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable("diploma_db");
+                orders.Fill(dt);
+                OrdersGrid.ItemsSource = dt.DefaultView;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка загрузки: " + ex.Message, "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
         }
 
-        private void Buttontoshipment(object sender, RoutedEventArgs e) //после оформления заявки и отправки в доставку - её нет - сделать
+        private void Buttontoshipment(object sender, RoutedEventArgs e)
         {
             try
             {
                 if (OrdersGrid.SelectedItems.Count > 0)
                 {
                     DataRowView drv = (DataRowView)OrdersGrid.SelectedItem;
-                    string orders = drv.Row[0].ToString();
+                    id_order = Convert.ToInt32(drv.Row["id_order"]);
+
                     sqlConnection.Open();
-                    SqlCommand cmd = new SqlCommand("INSERT INTO [dbo]. shipment" +
-                     "(id_shipment, consignee, date_of_shipments) SELECT id_order, SAP_product_code, date_of_delivery " +
-                    "FROM orders WHERE id_order=@id", sqlConnection);
-                    cmd.Parameters.AddWithValue("@id", orders);
-                    cmd.ExecuteNonQuery();
-                    OrdersDataGrid_SelectionChanged();
-                    MessageBox.Show("Заявка успешно отправлена в отгрузку!", "Severstal Infocom");
+
+                    SqlCommand checkCmd = new SqlCommand("SELECT COUNT(*) FROM [dbo].[shipment] WHERE id_order = @id", sqlConnection);
+                    checkCmd.Parameters.AddWithValue("@id", id_order);
+
+                    int count = (int)checkCmd.ExecuteScalar();
+
+                    if (count == 0)
+                    {
+                        DateTime currentDate = DateTime.Now;
+
+                        SqlCommand updateOrdersCmd = new SqlCommand("UPDATE [dbo].[orders] SET date_of_adoption = @currentDate WHERE id_order = @id", sqlConnection);
+                        updateOrdersCmd.Parameters.AddWithValue("@currentDate", currentDate);
+                        updateOrdersCmd.Parameters.AddWithValue("@id", id_order);
+                        updateOrdersCmd.ExecuteNonQuery();
+
+                        SqlCommand insertShipmentCmd = new SqlCommand("INSERT INTO [dbo].[shipment] (id_order, consignee) " +
+                            "SELECT id_order, name_consignee  FROM orders WHERE id_order=@id", sqlConnection);
+                        insertShipmentCmd.Parameters.AddWithValue("@id", id_order);
+                        insertShipmentCmd.ExecuteNonQuery();
+
+                        OrdersDataGrid_SelectionChanged();
+                        MessageBox.Show("Заявка успешно отправлена в отгрузку!", "Severstal Infocom");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Данная заявка уже отправлена в отгрузку", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Выберите заказ.", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
             catch (Exception ex)
             {
-                if (OrdersGrid.SelectedItems.Count == 0)
-                {
-                    MessageBox.Show("Данная заявка уже отправлена в отгрузку", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
-
+                MessageBox.Show("Error: " + ex.Message, "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            finally
+            {
+                sqlConnection.Close();
             }
         }
 

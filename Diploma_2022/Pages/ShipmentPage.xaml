@@ -14,7 +14,7 @@
 
     <Window.Background>
 
-        <ImageBrush ImageSource="\Images\ugs.jpg" />
+        <ImageBrush ImageSource="/Images/ugs.jpg" />
 
     </Window.Background>
 
@@ -74,87 +74,73 @@
             CanUserResizeRows="False"
             CanUserSortColumns="False"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="12"
-            IsReadOnly="False">
+            FontSize="12">
 
             <DataGrid.Columns>
                 <DataGridTextColumn
-                    Width="4*"
-                    Binding="{Binding id_shipment}"
-                    FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="12"
-                    Header="id отгрузки"
+        Width="4*"
+        Binding="{Binding id_shipment}"
+        FontFamily="Microsoft JhengHei UI Light"
+        FontSize="12"
+        Header="id отгрузки"
+        IsReadOnly="True" />
+                <DataGridTextColumn
+    Width="4*"
+    Binding="{Binding name_product}"
+    FontFamily="Microsoft JhengHei UI Light"
+    FontSize="12"
+    Header="Груз"
+    IsReadOnly="True" />
+                <DataGridTextColumn
+        Width="4*"
+        Binding="{Binding date_of_shipments}"
+        FontFamily="Microsoft JhengHei UI Light"
+        FontSize="12"
+        Header="Дата отгрузки"
+        IsReadOnly="True" />
+                <DataGridTextColumn
+        Width="4*"
+        Binding="{Binding shipment_total_amount_tons}"
+        FontFamily="Microsoft JhengHei UI Light"
+        FontSize="12"
+        Header="Отгр.кол-во всего [тонны]"
+                    IsReadOnly="False"/>
+                <DataGridTextColumn
+        Width="4*"
+        Binding="{Binding number_of_shipments_per_month_tons}"
+        FontFamily="Microsoft JhengHei UI Light"
+        FontSize="12"
+        Header="Отгр. кол-во за месяц [тонны]"
+                    IsReadOnly="False"/>
+                <DataGridTextColumn
+        Width="4*"
+        Binding="{Binding early_shipment}"
+        FontFamily="Microsoft JhengHei UI Light"
+        FontSize="12"
+        Header="Ранняя отгрузка"
+                    IsReadOnly="False"/>
+                <DataGridTextColumn
+        Width="4*"
+        Binding="{Binding standard_per_mark}"
+        FontFamily="Microsoft JhengHei UI Light"
+        FontSize="12"
+        Header="Сертификат"
                     IsReadOnly="True" />
-                <DataGridTextColumn
-                    Width="4*"
-                    Binding="{Binding consignee}"
-                    FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="12"
-                    Header="Груз"
-                    IsReadOnly="True" />
-                <DataGridTextColumn
-                    Width="4*"
-                    Binding="{Binding date_of_shipments}"
-                    FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="12"
-                    Header="Дата отгрузки"
-                    IsReadOnly="True" />
-                <DataGridTextColumn
-                    Width="4*"
-                    Binding="{Binding shipment_total_amount_tons}"
-                    FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="12"
-                    Header="Отгр.кол-во всего [тонны]" />
-                <DataGridTextColumn
-                    Width="4*"
-                    Binding="{Binding number_of_shipments_per_month_tons}"
-                    FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="12"
-                    Header="Отгр. кол-во за месяц [тонны]" />
-                <DataGridTextColumn
-                    Width="4*"
-                    Binding="{Binding early_shipment}"
-                    FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="12"
-                    Header="Ранняя отгрузка" />
-                <DataGridTextColumn
-                    Width="4*"
-                    Binding="{Binding product_standard}"
-                    FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="12"
-                    Header="Сертификат" />
             </DataGrid.Columns>
         </DataGrid>
-
-        <Button
-            x:Name="dateship"
-            Grid.Row="2"
-            Grid.Column="2"
-            Width="240"
-            Height="48"
-            Margin="0,10,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Background="#002F6C"
-            Click="dateships"
-            Content="Указать дату отгрузки"
-            FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14"
-            Foreground="#FFFFFF" />
         <Button
             x:Name="go_to_dostav_Button"
             Grid.Row="2"
-            Width="247"
+            Width="248"
             Height="48"
-            Margin="304,10,0,0"
-            HorizontalAlignment="Left"
+            HorizontalAlignment="Right"
             VerticalAlignment="Top"
             Background="#002F6C"
             Click="go_to_dostav_Click"
             Content="Отправить из отгрузки в доставку"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
-            Foreground="#FFFFFF" />
+            Foreground="#FFFFFF" Grid.ColumnSpan="3" Margin="0,10,476,0" />
         <Button
             x:Name="brakButton"
             Grid.Row="2"
@@ -201,7 +187,7 @@
             VerticalAlignment="Top"
             Background="#002F6C"
             Click="cert_Click"
-            Content="Добавление сертификации"
+            Content="Сертификация продукта"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
             Foreground="#FFFFFF" />

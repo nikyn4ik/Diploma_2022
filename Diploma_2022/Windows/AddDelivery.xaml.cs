@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Data.SqlClient;
@@ -19,8 +16,9 @@ namespace Diploma_2022.Windows
     public partial class AddDelivery : Window
     {
         List<Models.Storage> list = new();
-        SqlConnection sqlConnection = new SqlConnection(@"Data Source=SPUTNIK; Initial Catalog=diploma_db; Integrated Security=True");
+        SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
         SqlDataReader db;
+
         public AddDelivery()
         {
             InitializeComponent();
@@ -194,8 +192,7 @@ namespace Diploma_2022.Windows
 
         private void DeliveryGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SqlConnection sqlConnection = new SqlConnection();
-            sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
+            sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             sqlConnection.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.CommandText = "SELECT * FROM [dbo].[delivery]";

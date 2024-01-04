@@ -1,53 +1,98 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Diploma_2022.Windows;
+using iTextSharp.text.pdf;
+using System;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using System.Data.SqlClient;
-using System.Data;
-using System.IO;
-using System.Configuration;
-
 
 namespace Diploma_2022.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для ShipmentPage.xaml
-    /// </summary>
     public partial class ShipmentPage : Window
     {
-        SqlConnection sqlConnection = new SqlConnection(@"Data Source=SPUTNIK; Initial Catalog=diploma_db; Integrated Security=True");
-
+        private readonly string connectionString;
+        private readonly SqlConnection sqlConnection;
+        private DataTable shipmentDataTable;
         public ShipmentPage()
         {
             InitializeComponent();
-            Shipment_DataGrid_SelectionChanged();
-
+            connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            showdata();
         }
+        public void showdata()
+        {
+            try
+            {
+                sqlConnection.Open();
+                SqlDataAdapter adpt = new SqlDataAdapter(@"
+            SELECT TOP (1000)
+            s.[id_shipment],
+            o.[id_order] as [id_order], 
+            o.[name_product] as [name_product],
+            s.[date_of_shipments],
+            s.[shipment_total_amount_tons],
+            deliv.[early_delivery],
+            cd.[standard_per_mark]
+            FROM [diploma_db].[dbo].[shipment] s
+            LEFT JOIN [diploma_db].[dbo].[storage] stor ON s.[id_storage] = stor.[id_storage]
+            LEFT JOIN [diploma_db].[dbo].[delivery] deliv ON s.[id_order] = deliv.[id_order]
+            LEFT JOIN [diploma_db].[dbo].[orders] o ON s.[id_order] = o.[id_order]
+            LEFT JOIN [diploma_db].[dbo].[transport] t ON s.[id_transport] = t.[id_transport]
+            LEFT JOIN [diploma_db].[dbo].[cert_directory] cd ON o.[id_qua_certificate] = cd.[id_qua_certificate]",
+                    sqlConnection);
 
+                shipmentDataTable = new DataTable();
+                adpt.Fill(shipmentDataTable);
+                ShipmentGrid.DataContext = shipmentDataTable;
+                ShipmentGrid.ItemsSource = shipmentDataTable.DefaultView;
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
+        }
         private void Shipment_DataGrid_SelectionChanged()
         {
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "SELECT * FROM [dbo].[shipment], [dbo].[qua_certificate] ";
-            cmd.Connection = sqlConnection;
-            SqlDataAdapter Shipment = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable("diploma_db");
-            Shipment.Fill(dt);
-            ShipmentGrid.ItemsSource = dt.DefaultView;
-            sqlConnection.Close();
-        }
+            try
+            {
+                using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+                {
+                    sqlConnection.Open();
+                    SqlDataAdapter Shipment = new SqlDataAdapter(@"SELECT TOP (1000)
+s.[id_shipment],
+o.[id_order] as [id_order], 
+o.[name_product] as [name_product],
+s.[date_of_shipments],
+s.[shipment_total_amount_tons],
+deliv.[early_delivery],
+cd.[standard_per_mark]
+FROM [diploma_db].[dbo].[shipment] s
+LEFT JOIN [diploma_db].[dbo].[storage] stor ON s.[id_storage] = stor.[id_storage]
+LEFT JOIN [diploma_db].[dbo].[delivery] deliv ON s.[id_order] = deliv.[id_order]
+LEFT JOIN [diploma_db].[dbo].[orders] o ON s.[id_order] = o.[id_order]
+LEFT JOIN [diploma_db].[dbo].[transport] t ON s.[id_transport] = t.[id_transport]
+LEFT JOIN [diploma_db].[dbo].[cert_directory] cd ON o.[id_qua_certificate] = cd.[id_qua_certificate]",
+sqlConnection);
+                    DataTable dt = new DataTable("diploma_db");
+                    Shipment.Fill(dt);
 
-        private void dateships(object sender, RoutedEventArgs e)/* (!!!)*/
-        {
+                    ShipmentGrid.ItemsSource = null;
+                    ShipmentGrid.Items.Clear();
 
+                    ShipmentGrid.ItemsSource = dt.DefaultView;
+                    
+                    using (SqlCommandBuilder sqlCommandBuilder = new SqlCommandBuilder(Shipment))
+                    {
+                        Shipment.UpdateCommand = sqlCommandBuilder.GetUpdateCommand();
+                        Shipment.Update(dt);
+                    }
+                }
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
         }
 
         private void polee_TextChanged(object sender, TextChangedEventArgs e)
@@ -55,74 +100,138 @@ namespace Diploma_2022.Pages
             ShipmentGrid.Items.Refresh();
         }
 
+        private void ShipmentGrid_BeginningEdit(object sender, DataGridBeginningEditEventArgs e)
+        {
+            if (e.Column != null &&
+                (e.Column.Header.ToString() != "shipment_total_amount_tons" &&
+                 e.Column.Header.ToString() != "early_shipment"))
+            {
+                e.Cancel = true;
+            }
+        }
         private void Button_Click_search(object sender, RoutedEventArgs e)
         {
-            string ConnectionString = ConfigurationManager.ConnectionStrings["Severstal"].ConnectionString;
+            try
             {
-                SqlConnection cmds = new SqlConnection(ConnectionString);
-                string cmd = "SELECT * FROM [dbo].[shipment] WHERE id_shipment like '" + pole.Text + "%'";
-                cmds.Open();
-                SqlCommand sqlcom = new SqlCommand(cmd, cmds);
-                SqlDataAdapter shipments = new SqlDataAdapter(sqlcom);
-                DataTable dt = new DataTable("shipment");
-                shipments.Fill(dt);
-                ShipmentGrid.ItemsSource = dt.DefaultView;
-                shipments.Update(dt);
-                cmds.Close();
+                using (SqlConnection cmds = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+                {
+                    string cmdText = "SELECT * FROM [dbo].[shipment] WHERE id_shipment like '" + pole.Text + "%'";
+                    cmds.Open();
+                    using (SqlCommand sqlcom = new SqlCommand(cmdText, cmds))
+                    {
+                        SqlDataAdapter shipments = new SqlDataAdapter(sqlcom);
+                        DataTable dt = new DataTable("shipment");
+                        shipments.Fill(dt);
+                        ShipmentGrid.ItemsSource = dt.DefaultView;
+                    }
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
+        }
         private void brakButton_Click(object sender, RoutedEventArgs e)
         {
-            var window = new ShipmentPage();
-            MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите отменить заявку?", "Sevestal Infocom", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning);
-            switch (result)
+            try
             {
-                case MessageBoxResult.No:
-                    MessageBox.Show("Заявка НЕ была отменена", "Severstal Infocom");
-                    break;
-                case MessageBoxResult.Yes:
-                    MessageBox.Show("Заявка отменена", "Severstal Infocom");
-                    this.Hide();
-                    DataRowView drv = (DataRowView)ShipmentGrid.SelectedItem; //if (ShipmentGrid.SelectedItems.Count > 0)
-                        string shipment = drv.Row[0].ToString();
-                    sqlConnection.Open();
-                    SqlCommand cmd = new SqlCommand("DELETE FROM shipment WHERE id_shipment=@id", sqlConnection);
-                    cmd.Parameters.AddWithValue("@id", shipment);
-                    cmd.ExecuteNonQuery();
-                    Shipment_DataGrid_SelectionChanged();
-                    window.Show();
-                    break;
-                case MessageBoxResult.Cancel:
-                    break;
-}
+                MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите отменить заявку?", "Sevestal Infocom", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning);
+                switch (result)
+                {
+                    case MessageBoxResult.No:
+                        MessageBox.Show("Заявка НЕ была отменена", "Severstal Infocom");
+                        break;
+                    case MessageBoxResult.Yes:
+                        DataRowView drv = (DataRowView)ShipmentGrid.SelectedItem;
+                        if (drv != null)
+                        {
+                            string shipment = drv.Row[0].ToString();
+                            sqlConnection.Open();
+                            using (SqlCommand cmd = new SqlCommand("DELETE FROM shipment WHERE id_shipment=@id", sqlConnection))
+                            {
+                                cmd.Parameters.AddWithValue("@id", shipment);
+                                cmd.ExecuteNonQuery();
+                            }
+                            Shipment_DataGrid_SelectionChanged();
+                            MessageBox.Show("Заявка отменена", "Severstal Infocom");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Выберите заказ.", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        }
+                        break;
+                    case MessageBoxResult.Cancel:
+                        break;
+                }
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
         }
 
         private void cert_Click(object sender, RoutedEventArgs e)
         {
-            Hide();
-            var window = new Certificates();
-            window.ShowDialog();
-            Show();
-        }
-
-        private void go_to_dostav_Click(object sender, RoutedEventArgs e)
-        {
             if (ShipmentGrid.SelectedItems.Count > 0)
-            {
-                DataRowView drv = (DataRowView)ShipmentGrid.SelectedItem;
-                string shipment = drv.Row[0].ToString();
-                sqlConnection.Open();
-                SqlCommand cmd = new SqlCommand("INSERT INTO delivery" + " (id_delivery, consignee) SELECT id_shipment, " + "consignee FROM shipment WHERE id_shipment=@id", sqlConnection); 
-                //date_of_delivery   date_of_shipment
-                cmd.Parameters.AddWithValue("@id", shipment);
-                cmd.ExecuteNonQuery();
-                Shipment_DataGrid_SelectionChanged();
-                MessageBox.Show("Заявка из отгрузки успешно отправлена в доставку!", "Severstal Infocom");
-                var window = new Windows.AddDelivery();
-                window.ShowDialog();
-                Show();
+                {
+                    DataRowView drv = (DataRowView)ShipmentGrid.SelectedItem;
+
+                    string orderIdString = drv.Row["id_order"].ToString();
+
+                    if (int.TryParse(orderIdString, out int selectedOrderId))
+                    {
+                    AddCertificates addCertificatesWindow = new AddCertificates(selectedOrderId);
+
+                    addCertificatesWindow.Closed += (s, args) => { RefreshShipmentData(); };
+                    addCertificatesWindow.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Выберите заказ из отгрузки.", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
             }
         }
 
+        public void RefreshShipmentData()
+        {
+            showdata();
+        }
+        private void go_to_dostav_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (ShipmentGrid.SelectedItems.Count > 0)
+                {
+                    DataRowView drv = (DataRowView)ShipmentGrid.SelectedItem;
+                    string shipment = drv.Row[0].ToString();
+                    sqlConnection.Open();
+                    using (SqlCommand cmd = new SqlCommand(@"
+SET IDENTITY_INSERT delivery ON;
+INSERT INTO delivery (id_delivery, consignee)
+SELECT s.id_shipment, c.name_consignee
+FROM shipment s
+JOIN consignee c ON s.id_order = o.id_order
+WHERE s.id_shipment = @id;
+SET IDENTITY_INSERT delivery OFF;", sqlConnection))
+                    {
+                        cmd.Parameters.AddWithValue("@id", shipment);
+                        cmd.ExecuteNonQuery();
+                    }
+                    MessageBox.Show("Заявка из отгрузки успешно отправлена в доставку!", "Severstal Infocom");
+
+                    Windows.AddDelivery taskWindow = new Windows.AddDelivery();
+                    taskWindow.Show();
+                    Shipment_DataGrid_SelectionChanged();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
+        }
     }
 }

@@ -12,9 +12,7 @@
     mc:Ignorable="d">
 
     <Window.Background>
-
-        <ImageBrush ImageSource="C:\Users\nikab\source\repos\Diploma_2022\Diploma_2022\Images\lebedevsevers.jpg" />
-
+        <ImageBrush ImageSource="/Images/lebedevsevers.jpg" />
     </Window.Background>
     <Grid>
         <Border
@@ -52,6 +50,7 @@
             CanUserReorderColumns="False"
             CanUserResizeColumns="False"
             CanUserResizeRows="False"
+            IsReadOnly="True" 
             CanUserSortColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn
@@ -64,8 +63,8 @@
                     Header="Стандарт на марку" />
                 <DataGridTextColumn
                     Width="*"
-                    Binding="{Binding tolerance_standart}"
-                    Header="Стандарт на допуск " />
+                    Binding="{Binding manufacturer}"
+                    Header="Производитель" />
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding product_standard}"
@@ -83,7 +82,7 @@
                 Background="#002F6C"
                 BorderThickness="0,0,0,0"
                 Click="Button_add"
-                Content="Загрузить в таблицу"
+                Content="Загрузить"
                 FontFamily="Microsoft JhengHei UI Light"
                 FontSize="26"
                 Foreground="White" />
@@ -123,42 +122,43 @@
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
-            Content="Стандарт на продукцию"
+            Content="Производитель"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
             Foreground="White" />
-        <TextBox
-            x:Name="standard_per_mark"
-            Width="330"
-            Height="51"
-            Margin="246,434,624,0"
-            VerticalAlignment="Top"
-            Background="#FFFFFF"
-            FontFamily="Segoe UI"
-            FontSize="12"
-            Foreground="#FF0000"
-            TextAlignment="Left" />
-        <TextBox
-            x:Name="tolerance_standart"
-            Width="330"
-            Height="51"
-            Margin="246,527,624,0"
-            VerticalAlignment="Top"
-            Background="#FFFFFF"
-            FontFamily="Segoe UI"
-            FontSize="12"
-            Foreground="#FF0000"
-            TextAlignment="Left" />
-        <TextBox
-            x:Name="product_standard"
-            Width="330"
-            Height="51"
-            Margin="858,434,12,0"
-            VerticalAlignment="Top"
-            Background="#FFFFFF"
-            FontFamily="Segoe UI"
-            FontSize="12"
-            Foreground="#FF0000"
-            TextAlignment="Left" />
+        <ComboBox
+    x:Name="standardCombo"
+    Width="330"
+    Height="51"
+    Margin="246,434,0,0"
+    VerticalAlignment="Top"
+    FontFamily="Segoe UI"
+    FontSize="12"
+    Foreground="#FF0000"
+    SelectionChanged="standardComboBox_SelectionChanged" 
+    HorizontalAlignment="Left">
+        </ComboBox>
+
+        <ComboBox
+    x:Name="manufacturerCombo"
+    Width="330"
+    Height="51"
+    Margin="246,527,624,0"
+    VerticalAlignment="Top"
+    FontFamily="Segoe UI"
+    FontSize="12"
+    Foreground="#FF0000"
+    IsEditable="False"/>
+
+        <ComboBox
+    x:Name="productCombo"
+    Width="330"
+    Height="51"
+    Margin="858,434,12,0"
+    VerticalAlignment="Top"
+    FontFamily="Segoe UI"
+    FontSize="12"
+    Foreground="#FF0000"
+    IsEditable="False"/>
     </Grid>
 </Window>

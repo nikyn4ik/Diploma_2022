@@ -64,7 +64,7 @@
                     Header="Id заказа" />
                 <DataGridTextColumn
                     Width="4*"
-                    Binding="{Binding SAP_product_code}"
+                    Binding="{Binding name_product}"
                     Header="Продукт" />
                 <DataGridTextColumn
                     Width="4*"

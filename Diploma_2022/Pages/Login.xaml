@@ -17,7 +17,7 @@
     mc:Ignorable="d">
 
     <Window.Background>
-        <ImageBrush ImageSource="\Images\voestalpine_voest-1024x1024.jpg" />
+        <ImageBrush ImageSource="/Images\voestalpine_voest-1024x1024.jpg" />
     </Window.Background>
 
     <Grid>
