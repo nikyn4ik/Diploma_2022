@@ -5,7 +5,6 @@ using System.Data;
 using System.Configuration;
 using System.Collections.Generic;
 using System.Linq;
-using Diploma_2022.Pages;
 
 namespace Diploma_2022.Windows
 {

@@ -12,20 +12,23 @@ namespace Diploma_2022.Pages
     public partial class ShipmentPage : Window
     {
         private readonly string connectionString;
-        private readonly SqlConnection sqlConnection;
+        private SqlConnection sqlConnection;
         private DataTable shipmentDataTable;
         public ShipmentPage()
         {
             InitializeComponent();
             connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            sqlConnection = new SqlConnection(connectionString);
             showdata();
         }
         public void showdata()
         {
             try
             {
-                sqlConnection.Open();
-                SqlDataAdapter adpt = new SqlDataAdapter(@"
+                using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+                {
+                    sqlConnection.Open();
+                    SqlDataAdapter adpt = new SqlDataAdapter(@"
             SELECT TOP (1000)
             s.[id_shipment],
             o.[id_order] as [id_order], 
@@ -47,10 +50,11 @@ namespace Diploma_2022.Pages
                 ShipmentGrid.DataContext = shipmentDataTable;
                 ShipmentGrid.ItemsSource = shipmentDataTable.DefaultView;
             }
+            }
             finally
             {
                 sqlConnection.Close();
-            }
+        }
         }
         private void Shipment_DataGrid_SelectionChanged()
         {
@@ -203,9 +207,12 @@ sqlConnection);
                 if (ShipmentGrid.SelectedItems.Count > 0)
                 {
                     DataRowView drv = (DataRowView)ShipmentGrid.SelectedItem;
-                    string shipment = drv.Row[0].ToString();
-                    sqlConnection.Open();
-                    using (SqlCommand cmd = new SqlCommand(@"
+
+                    if (drv != null && drv.Row != null)
+                    {
+                        string shipment = drv.Row[0].ToString();
+                        sqlConnection.Open();
+                        using (SqlCommand cmd = new SqlCommand(@"
 SET IDENTITY_INSERT delivery ON;
 INSERT INTO delivery (id_delivery, consignee)
 SELECT s.id_shipment, c.name_consignee
@@ -213,15 +220,24 @@ FROM shipment s
 JOIN consignee c ON s.id_order = o.id_order
 WHERE s.id_shipment = @id;
 SET IDENTITY_INSERT delivery OFF;", sqlConnection))
-                    {
-                        cmd.Parameters.AddWithValue("@id", shipment);
-                        cmd.ExecuteNonQuery();
-                    }
-                    MessageBox.Show("Заявка из отгрузки успешно отправлена в доставку!", "Severstal Infocom");
+                        {
+                            cmd.Parameters.AddWithValue("@id", shipment);
+                            cmd.ExecuteNonQuery();
+                        }
+                        MessageBox.Show("Заявка из отгрузки успешно отправлена в доставку!", "Severstal Infocom");
 
-                    Windows.AddDelivery taskWindow = new Windows.AddDelivery();
-                    taskWindow.Show();
-                    Shipment_DataGrid_SelectionChanged();
+                        Windows.AddDelivery taskWindow = new Windows.AddDelivery();
+                        taskWindow.Show();
+                        Shipment_DataGrid_SelectionChanged();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Выберите строку с заказом из отгрузки.", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Выберите строку с заказом из отгрузки.", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
             catch (Exception ex)

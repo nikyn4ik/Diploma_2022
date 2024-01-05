@@ -116,19 +116,6 @@
             FontSize="14"
             Foreground="White" />
         <Label
-            Width="192"
-            Height="51"
-            Margin="12,556,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            HorizontalContentAlignment="Center"
-            VerticalContentAlignment="Center"
-            Background="#002F6C"
-            Content="Дата создания склада"
-            FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14"
-            Foreground="White" />
-        <Label
             Width="191"
             Height="51"
             Margin="600,342,0,0"
@@ -137,7 +124,7 @@
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
-            Content="Остаток"
+            Content="ФИО ответственного"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
             Foreground="White" />
@@ -169,19 +156,10 @@
             Foreground="#FF0000"
             TextAlignment="Left" />
         <TextBox
-            x:Name="ostatok"
+            x:Name="FIO_responsible"
             Width="330"
             Height="51"
             Margin="858,342,12,0"
-            VerticalAlignment="Top"
-            Background="#FFFFFF"
-            Foreground="#FF0000"
-            TextAlignment="Left" />
-        <TextBox
-            x:Name="dataaddsklad"
-            Width="330"
-            Height="50"
-            Margin="228,558,643,0"
             VerticalAlignment="Top"
             Background="#FFFFFF"
             Foreground="#FF0000"

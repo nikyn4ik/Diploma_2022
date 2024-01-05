@@ -78,10 +78,10 @@
 
                 <DataGridTextColumn
                     Width="*"
-                    Binding="{Binding remainder}"
+                    Binding="{Binding FIO_responsible_person}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="12"
-                    Header="Остаток" />
+                    Header="ФИО ответственного" />
 
                 <DataGridTextColumn
                     Width="*"

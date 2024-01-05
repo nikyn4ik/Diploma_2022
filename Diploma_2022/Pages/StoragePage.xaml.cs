@@ -4,20 +4,14 @@ using System.Windows.Controls;
 using System.Data.SqlClient;
 using System.Data;
 using System.Configuration;
-using OfficeOpenXml;
-using iTextSharp.text;
-using iTextSharp.text.pdf;
-using System.IO;
-using System.Text;
-using System.Collections.Generic;
-using System.Linq;
+using Diploma_2022.Windows;
 
 namespace Diploma_2022.Pages
 {
     public partial class StoragePage : Window
     {
-        List<Models.Storage> list = new();
         SqlConnection sqlConnection;
+        private DataTable storageDataTable;
 
         public StoragePage()
         {
@@ -25,71 +19,114 @@ namespace Diploma_2022.Pages
             string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             sqlConnection = new SqlConnection(connectionString);
             Storage_DataGrid_SelectionChanged();
+            showdata();
         }
 
         private void Storage_DataGrid_SelectionChanged()
         {
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "SELECT * FROM [dbo].[storage]";
-            cmd.Connection = sqlConnection;
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText = "SELECT * FROM [dbo].[storage]";
+                cmd.Connection = sqlConnection;
 
-            SqlDataAdapter storage = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable("diploma_db");
-            storage.Fill(dt);
-            StorageGrid.ItemsSource = dt.DefaultView;
+                SqlDataAdapter storage = new SqlDataAdapter(cmd);
+                storageDataTable = new DataTable("diploma_db");
+                storage.Fill(storageDataTable);
+                StorageGrid.ItemsSource = storageDataTable.DefaultView;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void showdata()
+        {
+            try
+            {
+                sqlConnection.Open();
+                SqlDataAdapter adpt = new SqlDataAdapter(@"
+SELECT TOP (1000) [id_storage]
+,[name_storage]
+,[address]
+,[phone_storage]
+,[date_add_storage]
+,[FIO_responsible_person]
+FROM [diploma_db].[dbo].[storage]", sqlConnection);
+
+                storageDataTable = new DataTable();
+                adpt.Fill(storageDataTable);
+                StorageGrid.DataContext = storageDataTable;
+                StorageGrid.ItemsSource = storageDataTable.DefaultView;
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
         }
 
         private void AddButton(object sender, RoutedEventArgs e)
         {
-            Windows.AddStorage taskWindow = new Windows.AddStorage();
+            AddStorage taskWindow = new AddStorage();
+            taskWindow.Closed += (s, args) => { RefreshStorageData(); };
             taskWindow.Show();
-            Storage_DataGrid_SelectionChanged();
+        }
+
+        public void RefreshStorageData()
+        {
+            showdata();
         }
 
         private void deleteButton(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить данный склад из базы?", "Sevestal Infocom", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-            switch (result)
+            try
             {
-                case MessageBoxResult.No:
-                    break;
+                MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить данный склад из базы?", "Sevestal Infocom", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
-                case MessageBoxResult.Yes:
-                    if (StorageGrid.SelectedItems.Count > 0)
-                    {
-                        DataRowView drv = (DataRowView)StorageGrid.SelectedItem;
-                        string storage = drv.Row[0].ToString();
-                        sqlConnection.Open();
-                        SqlCommand cmd = new SqlCommand("DELETE FROM storage WHERE id_storage=@id", sqlConnection);
-                        cmd.Parameters.AddWithValue("@id", storage);
-                        cmd.ExecuteNonQuery();
-                        Storage_DataGrid_SelectionChanged();
-                    }
+                if (result == MessageBoxResult.Yes && StorageGrid.SelectedItems.Count > 0)
+                {
+                    DataRowView drv = (DataRowView)StorageGrid.SelectedItem;
+                    string storage = drv.Row[0].ToString();
+
+                    sqlConnection.Open();
+                    SqlCommand cmd = new SqlCommand("DELETE FROM storage WHERE id_storage=@id", sqlConnection);
+                    cmd.Parameters.AddWithValue("@id", storage);
+                    cmd.ExecuteNonQuery();
+                    Storage_DataGrid_SelectionChanged();
                     MessageBox.Show("Удален!", "Severstal Infocom");
-                    break;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                sqlConnection.Close();
             }
         }
 
         private void UpdButton(object sender, RoutedEventArgs e)
         {
-            StorageGrid.Items.Refresh();
+            RefreshStorageData();
         }
-
-        private void Button_Click_search(object sender, RoutedEventArgs e)
+            private void Button_Click_search(object sender, RoutedEventArgs e)
         {
             try
             {
                 string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+
                 using (SqlConnection cmds = new SqlConnection(connectionString))
                 {
-                    string cmd = "SELECT * FROM [dbo].[storage] WHERE id_storage like '" + pole.Text + "%'";
+                    string cmdText = "SELECT * FROM [dbo].[storage] WHERE id_storage like '" + pole.Text + "%'";
                     cmds.Open();
-                    SqlCommand sqlcom = new SqlCommand(cmd, cmds);
+                    SqlCommand sqlcom = new SqlCommand(cmdText, cmds);
                     SqlDataAdapter storages = new SqlDataAdapter(sqlcom);
-                    DataTable dt = new DataTable("storage");
-                    storages.Fill(dt);
-                    StorageGrid.ItemsSource = dt.DefaultView;
-                    storages.Update(dt);
+                    storageDataTable = new DataTable("storage");
+                    storages.Fill(storageDataTable);
+                    StorageGrid.ItemsSource = storageDataTable.DefaultView;
+                    storages.Update(storageDataTable);
                 }
             }
             catch (Exception ex)
@@ -100,7 +137,14 @@ namespace Diploma_2022.Pages
 
         private void polee_TextChanged(object sender, TextChangedEventArgs e)
         {
-            StorageGrid.Items.Refresh();
+            try
+            {
+                StorageGrid.Items.Refresh();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void StorageGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
