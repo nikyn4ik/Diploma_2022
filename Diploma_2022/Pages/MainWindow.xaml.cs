@@ -32,7 +32,11 @@ namespace Diploma_2022
 
         private void Button_Delivery(object sender, RoutedEventArgs e) => OpenPage(new DeliveryPage());
 
-        private void Button_RabMestoMastera(object sender, RoutedEventArgs e) => OpenPage(new AddDelivery());
+        private void Button_RabMestoMastera(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Функционал недоступен для десктоп", "Sevestal Infocom", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {

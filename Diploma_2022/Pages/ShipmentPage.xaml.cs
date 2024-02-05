@@ -63,7 +63,8 @@ namespace Diploma_2022.Pages
                 using (SqlConnection sqlConnection = new SqlConnection(connectionString))
                 {
                     sqlConnection.Open();
-                    SqlDataAdapter Shipment = new SqlDataAdapter(@"SELECT TOP (1000)
+                    SqlDataAdapter Shipment = new SqlDataAdapter(@"
+SELECT TOP (1000)
 s.[id_shipment],
 o.[id_order] as [id_order], 
 o.[name_product] as [name_product],
@@ -174,6 +175,7 @@ sqlConnection);
             }
         }
 
+
         private void cert_Click(object sender, RoutedEventArgs e)
         {
             if (ShipmentGrid.SelectedItems.Count > 0)
@@ -210,9 +212,11 @@ sqlConnection);
 
                     if (drv != null && drv.Row != null)
                     {
-                        string shipment = drv.Row[0].ToString();
-                        sqlConnection.Open();
-                        using (SqlCommand cmd = new SqlCommand(@"
+                        if (!string.IsNullOrEmpty(drv.Row["standard_per_mark"]?.ToString()))
+                        {
+                            string shipment = drv.Row[0].ToString();
+                            sqlConnection.Open();
+                            using (SqlCommand cmd = new SqlCommand(@"
 SET IDENTITY_INSERT delivery ON;
 INSERT INTO delivery (id_delivery, consignee)
 SELECT s.id_shipment, c.name_consignee
@@ -224,11 +228,16 @@ SET IDENTITY_INSERT delivery OFF;", sqlConnection))
                             cmd.Parameters.AddWithValue("@id", shipment);
                             cmd.ExecuteNonQuery();
                         }
-                        MessageBox.Show("Заявка из отгрузки успешно отправлена в доставку!", "Severstal Infocom");
+                            MessageBox.Show("Заявка из отгрузки успешно отправлена в доставку!", "Severstal Infocom");
 
-                        Windows.AddDelivery taskWindow = new Windows.AddDelivery();
-                        taskWindow.Show();
-                        Shipment_DataGrid_SelectionChanged();
+                            Windows.AddDelivery taskWindow = new Windows.AddDelivery();
+                            taskWindow.Show();
+                            Shipment_DataGrid_SelectionChanged();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Невозможно отправить заказ в доставку, так как у заказа отсутствует сертификат.", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        }
                     }
                     else
                     {
